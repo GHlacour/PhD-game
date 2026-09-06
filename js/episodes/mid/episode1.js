@@ -7,7 +7,7 @@ export const episode1 = {
     choices: [
         {
             text: "Spend months perfecting your presentation",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +10,
                     publications: +5,
@@ -54,7 +54,7 @@ export const episode1 = {
         },
         {
             text: "Practice with colleagues and get feedback",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: +5,
@@ -100,7 +100,7 @@ export const episode1 = {
         },
         {
             text: "Wing it - you know your stuff",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: -5,
                     publications: 0,

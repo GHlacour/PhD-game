@@ -7,7 +7,7 @@ export const episode1 = {
     choices: [
         {
             text: "Dive deep into research immediately",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
                     publications: 0,
@@ -52,7 +52,7 @@ export const episode1 = {
         },
         {
             text: "Build relationships with other researchers",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
@@ -96,7 +96,7 @@ export const episode1 = {
         },
         {
             text: "Focus on teaching assistant work",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: -5,
                     publications: 0,

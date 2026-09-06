@@ -7,7 +7,7 @@ export const episode1 = {
     choices: [
         {
             text: "Apply broadly to many positions",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: 0,
                     publications: 0,
@@ -58,7 +58,7 @@ export const episode1 = {
         },
         {
             text: "Focus on quality applications to dream positions",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: 0,
                     publications: 0,
@@ -109,7 +109,7 @@ export const episode1 = {
         },
         {
             text: "Leverage your network for opportunities",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: 0,
                     publications: 0,

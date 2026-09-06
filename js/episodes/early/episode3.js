@@ -7,7 +7,7 @@ export const episode3 = {
     choices: [
         {
             text: "Troubleshoot for hours until it works",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
                     publications: 0,
@@ -52,7 +52,7 @@ export const episode3 = {
         },
         {
             text: "Consult with your advisor",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
@@ -98,7 +98,7 @@ export const episode3 = {
         },
         {
             text: "Document the failure and move on",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,

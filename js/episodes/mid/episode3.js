@@ -7,7 +7,7 @@ export const episode3 = {
     choices: [
         {
             text: "Accept and prioritize this project",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
                     publications: +10,
@@ -58,7 +58,7 @@ export const episode3 = {
         },
         {
             text: "Accept but balance with your own work",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +10,
                     publications: +5,
@@ -104,7 +104,7 @@ export const episode3 = {
         },
         {
             text: "Politely decline to focus on your thesis",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +10,
                     publications: 0,

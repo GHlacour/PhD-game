@@ -7,7 +7,7 @@ export const episode3 = {
     choices: [
         {
             text: "Practice with mock defenses",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +10,
                     publications: 0,
@@ -55,7 +55,7 @@ export const episode3 = {
         },
         {
             text: "Review all your research thoroughly",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
                     publications: 0,
@@ -103,7 +103,7 @@ export const episode3 = {
         },
         {
             text: "Trust your knowledge and relax",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,

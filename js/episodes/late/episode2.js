@@ -7,7 +7,7 @@ export const episode2 = {
     choices: [
         {
             text: "Write for 8 hours a day",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: +10,
@@ -54,7 +54,7 @@ export const episode2 = {
         },
         {
             text: "Write in focused 2-hour sessions",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: +5,
@@ -100,7 +100,7 @@ export const episode2 = {
         },
         {
             text: "Take breaks to maintain creativity",
-            getOutcome: (skills) => {
+            getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: +5,

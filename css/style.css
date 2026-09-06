@@ -52,6 +52,75 @@ header h1 {
     display: none;
 }
 
+/* Character selection screen */
+#character-selection-screen {
+    text-align: center;
+}
+
+#character-selection-screen h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.selection-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.selection-section h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.selection-description {
+    color: #666;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+}
+
+.selection-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.selection-btn {
+    padding: 10px 15px;
+    font-size: 0.95em;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    border: 2px solid #bdc3c7;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.selection-btn:hover {
+    background-color: #d6dbdf;
+    border-color: #95a5a6;
+}
+
+.selection-btn.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
+}
+
+#start-with-character-btn {
+    margin-top: 20px;
+    background-color: #2ecc71;
+}
+
+#start-with-character-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
 /* Episode container */
 .episode-container {
     background-color: #ecf0f1;
@@ -175,6 +244,11 @@ header h1 {
     background-color: #27ae60;
 }
 
+.btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
 /* Outcome display styling */
 .outcome-container {
     background-color: #fff;
@@ -266,6 +340,14 @@ footer {
         font-size: 1em;
         min-height: 80px;
     }
+    
+    .selection-buttons {
+        flex-direction: column;
+    }
+    
+    .selection-btn {
+        width: 100%;
+    }
 }
 
 /* Animations */
@@ -286,4 +368,23 @@ footer {
 
 .choice-btn {
     animation: fadeIn 0.5s ease-out;
+}
+
+/* Disclaimer styling */
+#disclaimer-container {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #fff8e1;
+    border-left: 4px solid #ffc107;
+    border-radius: 5px;
+}
+
+#disclaimer-container p {
+    font-size: 0.85em !important;
+    line-height: 1.5 !important;
+    color: #555 !important;
+}
+
+#disclaimer-container strong {
+    color: #333 !important;
 }

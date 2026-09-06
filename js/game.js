@@ -2,6 +2,7 @@
 // Using ES modules for episode loading
 
 import { generateGameSequence, preloadMedia } from './episodes/episodeLoader.js';
+import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter } from './characterSelection.js';
 
 // Game state
 const gameState = {
@@ -20,6 +21,10 @@ const gameState = {
         advisorRelationship: 70,
         reputation: 50,
         personalLife: 60
+    },
+    attributes: {
+        gender: null,
+        origin: null
     },
     maxEpisodes: 9,
     gameActive: false,
@@ -41,6 +46,10 @@ const choicesContainer = document.getElementById('choices-container');
 const skillsDisplay = document.getElementById('skills-display');
 const endTitle = document.getElementById('end-title');
 const endDescription = document.getElementById('end-description');
+
+// Create character selection screen
+const characterSelectionScreen = createCharacterSelectionScreen(startGameWithCharacter);
+document.querySelector('main').prepend(characterSelectionScreen);
 
 // DOM element for outcome display
 const outcomeDisplay = document.createElement('div');
@@ -83,6 +92,22 @@ function playSound(soundPath) {
     currentAudio.play().catch(e => console.log('Audio playback failed:', e));
 }
 
+// Start game with character selection
+function startGameWithCharacter(character) {
+    gameState.attributes.gender = character.gender;
+    gameState.attributes.origin = character.origin;
+    
+    // Update URL hash for sharing
+    updateHashWithCharacter(character);
+    
+    // Hide character selection and start screen
+    characterSelectionScreen.classList.add('hidden');
+    startScreen.classList.add('hidden');
+    
+    // Start the game
+    initGame();
+}
+
 // Initialize the game
 async function initGame() {
     gameState.currentEpisode = 0;
@@ -102,11 +127,10 @@ async function initGame() {
     };
     gameState.gameActive = true;
     
-    // Generate random episode sequence
-    gameState.episodes = generateGameSequence(3, 3, 3);
+    // Generate random episode sequence with character attributes
+    gameState.episodes = generateGameSequence(3, 3, 3, gameState.attributes);
     
     // Hide screens
-    startScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
     outcomeDisplay.classList.add('hidden');
     gameScreen.classList.remove('hidden');
@@ -172,7 +196,7 @@ function selectChoice(choice, episode) {
     let finalEffects = choice.effects || {};
     
     if (choice.getOutcome) {
-        const outcome = choice.getOutcome(gameState.skills);
+        const outcome = choice.getOutcome(gameState.skills, gameState.attributes);
         if (typeof outcome === 'string') {
             outcomeTextContent = outcome;
         } else {
@@ -232,7 +256,7 @@ function continueAfterOutcome() {
     
     // Check if we've completed all episodes
     if (gameState.currentEpisode >= gameState.episodes.length) {
-        // Determine outcome based on skills
+        // Determine outcome based on skills and attributes
         const avgPublicSkill = (gameState.skills.researchProgress + gameState.skills.publications + gameState.skills.writing + gameState.skills.teaching + gameState.skills.networking) / 5;
         
         // Also consider hidden skills for more nuanced endings
@@ -293,11 +317,34 @@ function endGame(message) {
 
 // Restart the game
 function restartGame() {
-    initGame();
+    // Show character selection screen again
+    characterSelectionScreen.classList.remove('hidden');
+    characterSelectionScreen.querySelectorAll('.selection-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    characterSelectionScreen.querySelector('#start-with-character-btn').disabled = true;
+    
+    // Reset game state
+    gameState.currentEpisode = 0;
+    gameState.episodes = [];
+    gameState.attributes = { gender: null, origin: null };
 }
 
 // Event listeners
-startBtn.addEventListener('click', initGame);
+startBtn.addEventListener('click', () => {
+    // If character already selected from hash, start directly
+    const characterFromHash = getCharacterFromHash();
+    if (characterFromHash.gender && characterFromHash.origin) {
+        gameState.attributes = characterFromHash;
+        startScreen.classList.add('hidden');
+        initGame();
+    } else {
+        // Show character selection
+        startScreen.classList.add('hidden');
+        characterSelectionScreen.classList.remove('hidden');
+    }
+});
+
 restartBtn.addEventListener('click', restartGame);
 continueBtn.addEventListener('click', continueAfterOutcome);
 
