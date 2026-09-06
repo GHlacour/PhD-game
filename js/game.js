@@ -1,4 +1,7 @@
 // PhD Life Game - Main JavaScript
+// Using ES modules for episode loading
+
+import { generateGameSequence } from './episodes/episodeLoader.js';
 
 // Game state
 const gameState = {
@@ -11,130 +14,10 @@ const gameState = {
         writing: 40,
         stress: 10
     },
-    maxEpisodes: 10,
-    gameActive: false
+    maxEpisodes: 9,
+    gameActive: false,
+    totalEpisodes: 9
 };
-
-// Sample episodes data
-const episodes = [
-    {
-        title: "Episode 1: The Beginning",
-        description: "You've just started your PhD. What's your first priority?",
-        choices: [
-            {
-                text: "Dive deep into research immediately",
-                effects: {
-                    research: +10,
-                    teaching: 0,
-                    networking: -5,
-                    writing: +5,
-                    stress: +15
-                },
-                nextEpisode: 1
-            },
-            {
-                text: "Build relationships with other researchers",
-                effects: {
-                    research: +5,
-                    teaching: 0,
-                    networking: +15,
-                    writing: 0,
-                    stress: -5
-                },
-                nextEpisode: 1
-            },
-            {
-                text: "Focus on teaching assistant work",
-                effects: {
-                    research: -5,
-                    teaching: +15,
-                    networking: +5,
-                    writing: 0,
-                    stress: +10
-                },
-                nextEpisode: 1
-            }
-        ]
-    },
-    {
-        title: "Episode 2: First Conference",
-        description: "You have the opportunity to present at a major conference. How do you prepare?",
-        choices: [
-            {
-                text: "Spend months perfecting your presentation",
-                effects: {
-                    research: -5,
-                    teaching: 0,
-                    networking: +5,
-                    writing: +10,
-                    stress: +20
-                },
-                nextEpisode: 2
-            },
-            {
-                text: "Practice with colleagues and get feedback",
-                effects: {
-                    research: 0,
-                    teaching: +5,
-                    networking: +10,
-                    writing: +5,
-                    stress: +5
-                },
-                nextEpisode: 2
-            },
-            {
-                text: "Wing it - you know your stuff",
-                effects: {
-                    research: +5,
-                    teaching: 0,
-                    networking: -10,
-                    writing: 0,
-                    stress: +25
-                },
-                nextEpisode: 2
-            }
-        ]
-    },
-    {
-        title: "Episode 3: Midpoint Crisis",
-        description: "You're halfway through and feeling overwhelmed. What do you do?",
-        choices: [
-            {
-                text: "Take a short break to recharge",
-                effects: {
-                    research: -10,
-                    teaching: -5,
-                    networking: -5,
-                    writing: -10,
-                    stress: -30
-                },
-                nextEpisode: 3
-            },
-            {
-                text: "Push through with long hours",
-                effects: {
-                    research: +15,
-                    teaching: 0,
-                    networking: 0,
-                    writing: +10,
-                    stress: +35
-                },
-                nextEpisode: 3
-            },
-            {
-                text: "Seek help from your advisor",
-                effects: {
-                    research: +5,
-                    teaching: 0,
-                    networking: +10,
-                    writing: +5,
-                    stress: -20
-                },
-                nextEpisode: 3
-            }
-        ]
-    }
-];
 
 // DOM elements
 const startScreen = document.getElementById('start-screen');
@@ -150,7 +33,7 @@ const endTitle = document.getElementById('end-title');
 const endDescription = document.getElementById('end-description');
 
 // Initialize the game
-function initGame() {
+async function initGame() {
     gameState.currentEpisode = 0;
     gameState.skills = {
         research: 50,
@@ -160,6 +43,9 @@ function initGame() {
         stress: 10
     };
     gameState.gameActive = true;
+    
+    // Generate random episode sequence
+    gameState.episodes = generateGameSequence(3, 3, 3);
     
     // Hide screens
     startScreen.classList.add('hidden');
@@ -173,13 +59,25 @@ function initGame() {
 
 // Load an episode
 function loadEpisode(episodeIndex) {
-    if (episodeIndex >= episodes.length) {
+    if (episodeIndex >= gameState.episodes.length) {
         endGame();
         return;
     }
     
-    const episode = episodes[episodeIndex];
-    episodeTitle.textContent = episode.title;
+    const episode = gameState.episodes[episodeIndex];
+    
+    // Add phase indicator if available
+    let title = episode.title;
+    if (episode.phase) {
+        const phaseNames = {
+            early: 'Early PhD',
+            mid: 'Mid PhD',
+            late: 'Late PhD'
+        };
+        title = `[${phaseNames[episode.phase]}] ${episode.title}`;
+    }
+    
+    episodeTitle.textContent = title;
     episodeDescription.textContent = episode.description;
     
     // Clear previous choices
@@ -214,10 +112,10 @@ function selectChoice(choice) {
     }
     
     // Move to next episode
-    gameState.currentEpisode = choice.nextEpisode;
+    gameState.currentEpisode++;
     
     // Check if we've completed all episodes
-    if (gameState.currentEpisode >= episodes.length) {
+    if (gameState.currentEpisode >= gameState.episodes.length) {
         // Determine outcome based on skills
         const avgSkill = (gameState.skills.research + gameState.skills.writing + gameState.skills.teaching) / 3;
         if (avgSkill >= 70) {
