@@ -2,7 +2,7 @@
 // Using ES modules for episode loading
 
 import { generateGameSequence, preloadMedia } from './episodes/episodeLoader.js';
-import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter } from './characterSelection.js';
+import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT } from './characterSelection.js';
 
 // Game state
 const gameState = {
@@ -35,10 +35,8 @@ const gameState = {
 const PUBLIC_SKILLS = ['researchProgress', 'publications', 'writing', 'teaching', 'networking'];
 
 // DOM elements
-const startScreen = document.getElementById('start-screen');
 const gameScreen = document.getElementById('game-screen');
 const endScreen = document.getElementById('end-screen');
-const startBtn = document.getElementById('start-btn');
 const restartBtn = document.getElementById('restart-btn');
 const episodeTitle = document.getElementById('episode-title');
 const episodeDescription = document.getElementById('episode-description');
@@ -47,12 +45,26 @@ const skillsDisplay = document.getElementById('skills-display');
 const endTitle = document.getElementById('end-title');
 const endDescription = document.getElementById('end-description');
 
-// Create character selection screen
-const characterSelectionScreen = createCharacterSelectionScreen(startGameWithCharacter);
-document.querySelector('main').insertBefore(characterSelectionScreen, document.querySelector('main').firstChild);
+// Create welcome screen
+const welcomeScreen = document.createElement('div');
+welcomeScreen.id = 'welcome-screen';
+welcomeScreen.className = 'game-screen';
+welcomeScreen.innerHTML = `
+    <div class="welcome-container">
+        <img src="assets/images/welcome_phd.jpg" alt="PhD Life Game" id="welcome-image">
+        <h2>Welcome to PhD Life</h2>
+        <p>Experience the journey of a PhD student through challenging choices and real-world scenarios.</p>
+        <p>Build your skills, navigate obstacles, and shape your academic future.</p>
+        <button id="welcome-start-btn" class="btn">Start Game</button>
+    </div>
+`;
+document.querySelector('main').prepend(welcomeScreen);
 
-// Hide start screen initially since character selection comes first
-startScreen.classList.add('hidden');
+const welcomeStartBtn = document.getElementById('welcome-start-btn');
+
+// Create character selection screen
+const characterSelectionScreen = createCharacterSelectionScreen(startPhD);
+document.querySelector('main').insertBefore(characterSelectionScreen, document.querySelector('main').firstChild.nextSibling);
 
 // DOM element for outcome display
 const outcomeDisplay = document.createElement('div');
@@ -95,17 +107,23 @@ function playSound(soundPath) {
     currentAudio.play().catch(e => console.log('Audio playback failed:', e));
 }
 
-// Start game with character selection
-function startGameWithCharacter(character) {
+// Start game from welcome screen
+function startGameFromWelcome() {
+    // Hide welcome screen, show character selection
+    welcomeScreen.classList.add('hidden');
+    characterSelectionScreen.classList.remove('hidden');
+}
+
+// Start PhD after character selection
+function startPhD(character) {
     gameState.attributes.gender = character.gender;
     gameState.attributes.origin = character.origin;
     
     // Update URL hash for sharing
     updateHashWithCharacter(character);
     
-    // Hide character selection and start screen
+    // Hide character selection and show game
     characterSelectionScreen.classList.add('hidden');
-    startScreen.classList.add('hidden');
     
     // Start the game
     initGame();
@@ -134,6 +152,7 @@ async function initGame() {
     gameState.episodes = generateGameSequence(3, 3, 3, gameState.attributes);
     
     // Hide screens
+    welcomeScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
     outcomeDisplay.classList.add('hidden');
     gameScreen.classList.remove('hidden');
@@ -320,8 +339,13 @@ function endGame(message) {
 
 // Restart the game
 function restartGame() {
-    // Show character selection screen again
-    characterSelectionScreen.classList.remove('hidden');
+    // Show welcome screen again
+    endScreen.classList.add('hidden');
+    gameScreen.classList.add('hidden');
+    welcomeScreen.classList.remove('hidden');
+    
+    // Reset character selection
+    characterSelectionScreen.classList.add('hidden');
     characterSelectionScreen.querySelectorAll('.selection-btn').forEach(btn => {
         btn.classList.remove('active');
     });
@@ -334,21 +358,7 @@ function restartGame() {
 }
 
 // Event listeners
-startBtn.addEventListener('click', () => {
-    // If character already selected from hash, start directly
-    const characterFromHash = getCharacterFromHash();
-    if (characterFromHash.gender && characterFromHash.origin) {
-        gameState.attributes = characterFromHash;
-        startScreen.classList.add('hidden');
-        characterSelectionScreen.classList.add('hidden');
-        initGame();
-    } else {
-        // Show character selection
-        startScreen.classList.add('hidden');
-        characterSelectionScreen.classList.remove('hidden');
-    }
-});
-
+welcomeStartBtn.addEventListener('click', startGameFromWelcome);
 restartBtn.addEventListener('click', restartGame);
 continueBtn.addEventListener('click', continueAfterOutcome);
 

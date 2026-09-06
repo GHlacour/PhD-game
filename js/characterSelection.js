@@ -32,7 +32,7 @@ export const DISCLAIMER_TEXT = `
 export function createCharacterSelectionScreen(onStart) {
     const screen = document.createElement('div');
     screen.id = 'character-selection-screen';
-    screen.className = 'game-screen';
+    screen.className = 'game-screen hidden';
     
     screen.innerHTML = `
         <h2>Create Your Character</h2>
@@ -50,7 +50,7 @@ export function createCharacterSelectionScreen(onStart) {
             <div id="origin-selection" class="selection-buttons"></div>
         </div>
         
-        <button id="start-with-character-btn" class="btn" disabled>Start Game</button>
+        <button id="start-with-character-btn" class="btn" disabled>Start PhD</button>
     `;
     
     // Add disclaimer
