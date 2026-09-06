@@ -49,7 +49,10 @@ const endDescription = document.getElementById('end-description');
 
 // Create character selection screen
 const characterSelectionScreen = createCharacterSelectionScreen(startGameWithCharacter);
-document.querySelector('main').prepend(characterSelectionScreen);
+document.querySelector('main').insertBefore(characterSelectionScreen, document.querySelector('main').firstChild);
+
+// Hide start screen initially since character selection comes first
+startScreen.classList.add('hidden');
 
 // DOM element for outcome display
 const outcomeDisplay = document.createElement('div');
@@ -337,6 +340,7 @@ startBtn.addEventListener('click', () => {
     if (characterFromHash.gender && characterFromHash.origin) {
         gameState.attributes = characterFromHash;
         startScreen.classList.add('hidden');
+        characterSelectionScreen.classList.add('hidden');
         initGame();
     } else {
         // Show character selection
