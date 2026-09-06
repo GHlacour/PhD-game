@@ -1,7 +1,7 @@
 // Mid PhD Episode 5: Year 2 Evaluation Meeting
 export const episode5 = {
     title: "Year 2 Evaluation Meeting",
-    description: "It's the end of your second year. Time for your annual evaluation meeting with your advisor. You should have at least one more publication by now, and your research should be well advanced.",
+    description: "It's the end of Year 2. Time for your annual evaluation meeting with your advisor. Your research should be well advanced.", 
     image: "assets/images/evaluation_meeting.jpg",
     sound: "assets/sounds/evaluation.mp3",
     phase: "mid",
@@ -9,7 +9,7 @@ export const episode5 = {
     year: 2,
     choices: [
         {
-            text: "Submit your second (or third) research paper",
+            text: "Submit a research paper",
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +8,
@@ -26,7 +26,7 @@ export const episode5 = {
                 
                 if (skills.publications >= 2 && skills.researchProgress >= 60) {
                     return {
-                        text: "Outstanding! Your advisor is very pleased with your consistent publishing record. Your paper is accepted to a high-impact journal. You're making excellent progress and are well on track for graduation. Your advisor mentions you're building a strong publication portfolio.",
+                        text: "Outstanding! Your advisor is very pleased with your publishing record. Your paper is accepted to a high-impact journal. You're making excellent progress and are well on track for graduation. Your advisor mentions you're building a strong publication portfolio.",
                         effects: {
                             ...effects,
                             publications: +1,

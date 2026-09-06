@@ -11,7 +11,7 @@ export const motivationCrisis = {
             text: "Reconnect with your original research passion",
             getOutcome: (skills, attributes) => {
                 return {
-                    text: "You take time to revisit what excited you about your research in the first place. Reading foundational papers in your field reignites some of your curiosity. The spark is faint, but it's there.",
+                    text: "You take time to revisit what excited you about your research. Reading foundational papers in your field reignites some of your curiosity. The spark is faint, but it's there.",
                     effects: {
                         motivation: +10,
                         researchProgress: +3,

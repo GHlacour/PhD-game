@@ -152,7 +152,7 @@ function getTeacherOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Difficult Job Search',
-                    description: `With limited teaching experience (${skills.teaching}) and networking (${skills.networking}), you struggle to find academic teaching positions. You may need to consider alternative paths: teaching at a community college, working as a tutor, or gaining industry experience first before returning to academia. The job market is competitive and your current profile isn't standing out.`,
+                    description: `With limited teaching experience (${skills.teaching}) and networking (${skills.networking}), you struggle to find academic teaching positions. You may need to consider alternative paths: teaching at a community college, working as a tutor, or gaining industry experience before returning to academia. The job market is competitive and your current profile isn't standing out.`,
                     salary: 'Varies - may need additional training',
                     timeline: '6-12 months of searching',
                     satisfaction: 'Low - considering other options'
@@ -169,7 +169,7 @@ function getAcademicOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Prestigious Postdoc at Top Institution!',
-                    description: `Your exceptional publication record (${skills.publications} papers) and strong research progress (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is the first step toward a tenure-track faculty position.`,
+                    description: `Your exceptional publication record (${skills.publications} papers) and strong research progress (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is a key step toward a tenure-track faculty position.`,
                     salary: 'Competitive postdoc salary with research funding',
                     timeline: 'Start in 2 months',
                     satisfaction: 'Very High'

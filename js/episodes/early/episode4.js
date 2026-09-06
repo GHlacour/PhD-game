@@ -88,7 +88,7 @@ export const episode4 = {
                         };
                     } else {
                         return {
-                            text: "You spend considerable time troubleshooting your experimental setup. The problem turns out to be a calibration issue that requires recalibrating several instruments. You learn a lot about your equipment but lose valuable research time. Your advisor helps you prioritize which issues to address first.",
+                            text: "You spend considerable time troubleshooting your experimental setup. The problem turns out to be a calibration issue that requires recalibrating several instruments. You learn a lot about your equipment but lose valuable research time. Your advisor helps you prioritize which issues to address.",
                             effects: {
                                 ...effects,
                                 researchProgress: +10,

@@ -1,7 +1,7 @@
 // Early PhD Episode 5: Year 1 Evaluation Meeting
 export const episode5 = {
     title: "Year 1 Evaluation Meeting",
-    description: "It's the end of your first year. Time for your annual evaluation meeting with your advisor. This is your opportunity to discuss your progress and potentially submit your first paper.",
+    description: "It's the end of Year 1. Time for your annual evaluation meeting with your advisor. This is your opportunity to discuss your progress and potentially submit a paper for publication.",
     image: "assets/images/evaluation_meeting.jpg",
     sound: "assets/sounds/evaluation.mp3",
     phase: "early",
@@ -9,7 +9,7 @@ export const episode5 = {
     year: 1,
     choices: [
         {
-            text: "Submit your first research paper for publication",
+            text: "Submit a research paper for publication",
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
@@ -26,7 +26,7 @@ export const episode5 = {
                 
                 if (skills.researchProgress >= 40 && skills.writing >= 30) {
                     return {
-                        text: "Excellent work! Your advisor is very impressed with your first paper. It's accepted for publication in a good journal. This is a strong start to your PhD! Your advisor notes that you're on track for timely graduation.",
+                        text: "Excellent work! Your advisor is very impressed with your paper. It's accepted for publication in a good journal. This is a strong start to your PhD! Your advisor notes that you're on track for timely graduation.",
                         effects: {
                             ...effects,
                             publications: +1,
@@ -37,7 +37,7 @@ export const episode5 = {
                     };
                 } else if (skills.researchProgress >= 25 && skills.writing >= 20) {
                     return {
-                        text: "Good effort! Your paper is accepted to a conference. Your advisor is satisfied with your first year progress and encourages you to keep up the good work. You've met the annual publication expectation.",
+                        text: "Good effort! Your paper is accepted to a conference. Your advisor is satisfied with your progress and encourages you to keep up the good work. You've met the annual publication expectation.",
                         effects: {
                             ...effects,
                             publications: +1
@@ -99,7 +99,7 @@ export const episode5 = {
                     };
                 } else {
                     return {
-                        text: "Your advisor is very disappointed with your first year progress. Without any publications and limited research progress, they question whether you're suited for a PhD. You leave the meeting feeling very stressed and uncertain about your future.",
+                        text: "Your advisor is very disappointed with your progress. Without any publications and limited research progress, they question whether you're suited for a PhD. You leave the meeting feeling very stressed and uncertain about your future.",
                         effects: {
                             ...effects,
                             researchProgress: +2,
@@ -130,7 +130,7 @@ export const episode5 = {
                 
                 if (skills.advisorRelationship >= 60) {
                     return {
-                        text: "Your advisor appreciates your honesty and provides excellent guidance. They help you create a realistic plan for Year 2, including a timeline for your first publication. You feel supported and motivated to improve.",
+                        text: "Your advisor appreciates your honesty and provides excellent guidance. They help you create a realistic plan for Year 2, including a timeline for your next publication. You feel supported and motivated to improve.",
                         effects: {
                             ...effects,
                             advisorRelationship: +15,

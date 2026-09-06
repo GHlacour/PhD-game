@@ -1,6 +1,6 @@
-// Mid PhD Episode 1: First Conference
+// Mid PhD Episode 1: Conference Presentation
 export const episode1 = {
-    title: "First Conference",
+    title: "Conference Presentation",
     description: "You have the opportunity to present at a major conference. How do you prepare?",
     image: "assets/images/conference.jpg",
     sound: "assets/sounds/conference.mp3",
