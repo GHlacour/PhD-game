@@ -27,7 +27,7 @@ export const episode8 = {
                         effects: {
                             ...effects,
                             researchProgress: +8,
-                            writing: +10,
+                            writing: +5,
                             advisorRelationship: +8,
                             stress: -5,
                             motivation: +10
@@ -150,7 +150,7 @@ export const episode8 = {
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            writing: +10,
+                            writing: +5,
                             networking: +8,
                             advisorRelationship: -4
                         }

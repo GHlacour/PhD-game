@@ -11,7 +11,7 @@ export const episode1 = {
                 const effects = {
                     researchProgress: +10,
                     publications: 0,
-                    writing: +10,
+                    writing: +5,
                     teaching: +5,
                     networking: +5,
                     stress: +15,

@@ -11,7 +11,7 @@ export const episode2 = {
                 const effects = {
                     researchProgress: +15,
                     publications: 0,
-                    writing: +10,
+                    writing: +5,
                     teaching: 0,
                     networking: 0,
                     stress: +15,
@@ -27,7 +27,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            writing: +15,
+                            writing: +5,
                             reputation: +10,
                             advisorRelationship: +10
                         }
@@ -73,7 +73,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            writing: +10,
+                            writing: +5,
                             motivation: +10
                         }
                     };

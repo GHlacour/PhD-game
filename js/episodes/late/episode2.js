@@ -11,7 +11,7 @@ export const episode2 = {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
-                    writing: +15,
+                    writing: +5,
                     teaching: 0,
                     networking: 0,
                     stress: +15,
@@ -26,7 +26,7 @@ export const episode2 = {
                         text: "Your intense writing schedule pays off! You make excellent progress and the quality of your writing is exceptional. Your advisor is impressed with your dedication and the depth of your analysis.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: -15,
                             publications: +1,
                             stress: +15
@@ -42,7 +42,7 @@ export const episode2 = {
                         text: "You struggle to maintain quality with such a demanding schedule. Your writing feels rushed and you're not satisfied with the results. Your advisor expresses concern about the coherence of your thesis.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: 0,
                             publications: 0,
                             stress: +15,
@@ -58,7 +58,7 @@ export const episode2 = {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
-                    writing: +15,
+                    writing: +5,
                     teaching: 0,
                     networking: 0,
                     stress: +10,
@@ -73,7 +73,7 @@ export const episode2 = {
                         text: "Your focused approach works perfectly! You maintain high writing quality and good progress without burning out. Your advisor is pleased with your steady output and the clarity of your arguments.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: +8,
                             motivation: +10,
                             advisorRelationship: +5
@@ -89,7 +89,7 @@ export const episode2 = {
                         text: "Even with the focused sessions, you struggle to make good progress. Your lack of motivation is affecting your writing quality. Your advisor notices the lack of depth in your analysis.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: 0,
                             publications: 0,
                             motivation: -5
@@ -104,7 +104,7 @@ export const episode2 = {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
-                    writing: +15,
+                    writing: +5,
                     teaching: 0,
                     networking: 0,
                     stress: -10,
@@ -119,7 +119,7 @@ export const episode2 = {
                         text: "Your balanced approach results in surprisingly productive writing sessions! The breaks help you maintain creativity and your writing flows naturally. Your advisor is pleased with both your progress and your well-being.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: -15,
                             personalLife: +15,
                             motivation: +15
@@ -135,7 +135,7 @@ export const episode2 = {
                         text: "You take breaks, but still struggle to make good writing progress. Your personal life is suffering despite your efforts at balance. Your advisor notices the uneven quality of your work.",
                         effects: {
                             ...effects,
-                            writing: +10,
+                            writing: +5,
                             researchProgress: 0,
                             publications: 0,
                             personalLife: +10,

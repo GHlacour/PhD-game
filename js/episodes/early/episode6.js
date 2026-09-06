@@ -82,7 +82,7 @@ export const episode6 = {
                         effects: {
                             ...effects,
                             researchProgress: +18,
-                            writing: +10,
+                            writing: +5,
                             stress: +10,
                             advisorRelationship: +10,
                             reputation: +10
@@ -117,7 +117,7 @@ export const episode6 = {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
-                    writing: +15,
+                    writing: +5,
                     teaching: 0,
                     networking: +5,
                     stress: +5,
@@ -132,7 +132,7 @@ export const episode6 = {
                         text: "You take advantage of the downtime to write up your preliminary results and theoretical framework. Your advisor is very pleased with your productivity during the outage. When the cluster returns, you have a solid paper draft ready to expand with new simulation results. This turns a crisis into an opportunity.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: +10,
                             advisorRelationship: +15,
                             reputation: +15,
@@ -144,7 +144,7 @@ export const episode6 = {
                         text: "You use the time to work on a paper draft. While your writing isn't perfect, you make good progress documenting your theoretical approach. Your advisor appreciates your effort to stay productive despite the setback.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: +8
                         }
                     };
@@ -153,7 +153,7 @@ export const episode6 = {
                         text: "You attempt to write up your results, but struggle with organizing your thoughts. The writing process is slow and you don't make as much progress as you'd hoped. However, you do have a better understanding of your work by the end of it.",
                         effects: {
                             ...effects,
-                            writing: +10,
+                            writing: +5,
                             researchProgress: +5,
                             stress: +10
                         }

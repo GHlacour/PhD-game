@@ -16,7 +16,7 @@ export const episode5 = {
                 const effects = {
                     researchProgress: 0,
                     publications: 0,
-                    writing: +10,
+                    writing: +5,
                     teaching: 0,
                     networking: +5,
                     stress: -20,
@@ -42,7 +42,7 @@ export const episode5 = {
                         text: `Your thesis is submitted but requires minor revisions before final approval. With ${skills.publications} publications, you meet the publication requirement. Your advisor is satisfied and confident you'll address the feedback successfully.`,
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             stress: -10,
                             thesisSubmitted: true
                         }
@@ -53,7 +53,7 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            writing: +10,
+                            writing: +5,
                             stress: +10,
                             motivation: +5
                         }
@@ -79,7 +79,7 @@ export const episode5 = {
                 const effects = {
                     researchProgress: 0,
                     publications: 0,
-                    writing: +10,
+                    writing: +5,
                     teaching: 0,
                     networking: +5,
                     stress: +10,

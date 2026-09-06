@@ -11,7 +11,7 @@ export const episode3 = {
                 const effects = {
                     researchProgress: +15,
                     publications: 0,
-                    writing: +10,
+                    writing: +5,
                     teaching: 0,
                     networking: +5,
                     stress: +10,
@@ -27,7 +27,7 @@ export const episode3 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            writing: +15,
+                            writing: +5,
                             reputation: +10,
                             advisorRelationship: +10
                         }
@@ -101,7 +101,7 @@ export const episode3 = {
                 const effects = {
                     researchProgress: +10,
                     publications: 0,
-                    writing: +15,
+                    writing: +5,
                     teaching: 0,
                     networking: +5,
                     stress: +5,
@@ -116,7 +116,7 @@ export const episode3 = {
                         text: "Your research proposal is well-written and comprehensive. Your advisor is impressed with your clarity of thought and organization. This document will serve as an excellent roadmap for your PhD, regardless of your research approach.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: +15,
                             advisorRelationship: +15,
                             reputation: +10
@@ -132,7 +132,7 @@ export const episode3 = {
                         text: "Your research proposal is a bit disorganized and lacks depth. Your advisor spends significant time helping you revise it. You realize you need to improve your writing skills to succeed in your PhD.",
                         effects: {
                             ...effects,
-                            writing: +10,
+                            writing: +5,
                             researchProgress: +5,
                             advisorRelationship: +5,
                             stress: +10

@@ -38,7 +38,7 @@ export const episode6 = {
                         text: "Getting started was the hardest part. Your draft is rough but it's a start. Your advisor provides constructive feedback that helps you see the path forward.",
                         effects: {
                             ...effects,
-                            writing: +15,
+                            writing: +5,
                             researchProgress: +8,
                             advisorRelationship: +6
                         }
@@ -48,7 +48,7 @@ export const episode6 = {
                         text: "Your first draft is very rough and disorganized. Your advisor gives you extensive feedback that feels overwhelming. But at least you have something to work with now.",
                         effects: {
                             ...effects,
-                            writing: +10,
+                            writing: +5,
                             researchProgress: +5,
                             stress: -5,
                             advisorRelationship: +2
@@ -79,7 +79,7 @@ export const episode6 = {
                         effects: {
                             ...effects,
                             researchProgress: +12,
-                            writing: +15,
+                            writing: +5,
                             stress: -10,
                             motivation: +15,
                             advisorRelationship: +10,
@@ -116,7 +116,7 @@ export const episode6 = {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
-                    writing: +10,
+                    writing: +5,
                     teaching: +2,
                     networking: +8,
                     stress: -12,
@@ -155,7 +155,7 @@ export const episode6 = {
                         text: "The group is helpful but you don't contribute as much as you'd like. Still, having the structure and knowing others are in the same boat reduces your stress and helps you make steady progress.",
                         effects: {
                             ...effects,
-                            writing: +10,
+                            writing: +5,
                             researchProgress: +5,
                             networking: +6,
                             stress: -10
