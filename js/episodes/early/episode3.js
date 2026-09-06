@@ -6,31 +6,46 @@ export const episode3 = {
         {
             text: "Troubleshoot for hours until it works",
             effects: {
-                research: +10,
+                researchProgress: +15,
+                publications: 0,
+                writing: 0,
                 teaching: 0,
                 networking: 0,
-                writing: 0,
-                stress: +25
+                stress: +25,
+                motivation: +10,
+                advisorRelationship: 0,
+                reputation: +5,
+                personalLife: -20
             }
         },
         {
             text: "Consult with your advisor",
             effects: {
-                research: +5,
+                researchProgress: +5,
+                publications: 0,
+                writing: 0,
                 teaching: 0,
                 networking: +5,
-                writing: 0,
-                stress: +5
+                stress: +5,
+                motivation: +5,
+                advisorRelationship: +15,
+                reputation: +5,
+                personalLife: 0
             }
         },
         {
             text: "Document the failure and move on",
             effects: {
-                research: +5,
+                researchProgress: +5,
+                publications: 0,
+                writing: +10,
                 teaching: 0,
                 networking: 0,
-                writing: +10,
-                stress: -5
+                stress: -5,
+                motivation: +5,
+                advisorRelationship: +5,
+                reputation: +5,
+                personalLife: +5
             }
         }
     ]

@@ -6,31 +6,46 @@ export const episode1 = {
         {
             text: "Dive deep into research immediately",
             effects: {
-                research: +10,
+                researchProgress: +15,
+                publications: 0,
+                writing: +5,
                 teaching: 0,
                 networking: -5,
-                writing: +5,
-                stress: +15
+                stress: +15,
+                motivation: +10,
+                advisorRelationship: +5,
+                reputation: 0,
+                personalLife: -10
             }
         },
         {
             text: "Build relationships with other researchers",
             effects: {
-                research: +5,
+                researchProgress: +5,
+                publications: 0,
+                writing: 0,
                 teaching: 0,
                 networking: +15,
-                writing: 0,
-                stress: -5
+                stress: -5,
+                motivation: +5,
+                advisorRelationship: +5,
+                reputation: +10,
+                personalLife: +5
             }
         },
         {
             text: "Focus on teaching assistant work",
             effects: {
-                research: -5,
+                researchProgress: -5,
+                publications: 0,
+                writing: 0,
                 teaching: +15,
                 networking: +5,
-                writing: 0,
-                stress: +10
+                stress: +10,
+                motivation: +5,
+                advisorRelationship: +10,
+                reputation: +5,
+                personalLife: 0
             }
         }
     ]

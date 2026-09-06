@@ -8,7 +8,9 @@ PhD Life Game is a browser-based pedagogical game where players experience the j
 
 - **Episode-based gameplay**: Players progress through early, mid, and late PhD phases
 - **Choice-driven narrative**: Each episode presents 3 options that affect the player's skills
-- **Skill system**: 5 core skills (research, teaching, networking, writing, stress) that change based on choices
+- **Skill system**: 10 skills (5 public, 5 hidden) that change based on choices:
+  - Public: Research Progress, Publications, Writing, Teaching, Networking
+  - Hidden: Stress, Motivation, Advisor Relationship, Reputation, Personal Life
 - **Multiple endings**: Final outcome depends on skill levels at game end
 
 ## Repository Structure
@@ -47,7 +49,18 @@ PhD-game/
        choices: [
            {
                text: "Choice text",
-               effects: { research: ±X, teaching: ±X, networking: ±X, writing: ±X, stress: ±X }
+               effects: {
+                   researchProgress: ±X,
+                   publications: ±X,
+                   writing: ±X,
+                   teaching: ±X,
+                   networking: ±X,
+                   stress: ±X,
+                   motivation: ±X,
+                   advisorRelationship: ±X,
+                   reputation: ±X,
+                   personalLife: ±X
+               }
            },
            // Two more choices...
        ]
@@ -60,6 +73,17 @@ PhD-game/
 - **Early PhD**: Focus on learning, first experiences, establishing routines
 - **Mid PhD**: Focus on challenges, collaboration, growing independence
 - **Late PhD**: Focus on completion, job searching, legacy building
+
+### Public vs Hidden Skills
+- **Public Skills** (visible to player): Research Progress, Publications, Writing, Teaching, Networking
+- **Hidden Skills** (invisible to player): Stress, Motivation, Advisor Relationship, Reputation, Personal Life
+
+### Skill Balance Guidelines
+- Research Progress and Publications should generally increase over time
+- Stress typically increases with intense work, decreases with rest
+- Motivation can go up or down based on successes and setbacks
+- Advisor Relationship improves with good communication, worsens with neglect
+- Personal Life suffers from overwork, improves with balance
 
 ### Skill Balance
 

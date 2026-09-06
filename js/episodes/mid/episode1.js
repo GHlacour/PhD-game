@@ -6,31 +6,46 @@ export const episode1 = {
         {
             text: "Spend months perfecting your presentation",
             effects: {
-                research: -5,
-                teaching: 0,
-                networking: +5,
+                researchProgress: +10,
+                publications: +5,
                 writing: +10,
-                stress: +20
+                teaching: +5,
+                networking: +5,
+                stress: +20,
+                motivation: -10,
+                advisorRelationship: +5,
+                reputation: +10,
+                personalLife: -15
             }
         },
         {
             text: "Practice with colleagues and get feedback",
             effects: {
-                research: 0,
+                researchProgress: +5,
+                publications: +5,
+                writing: +5,
                 teaching: +5,
                 networking: +10,
-                writing: +5,
-                stress: +5
+                stress: +5,
+                motivation: +5,
+                advisorRelationship: +5,
+                reputation: +10,
+                personalLife: 0
             }
         },
         {
             text: "Wing it - you know your stuff",
             effects: {
-                research: +5,
+                researchProgress: -5,
+                publications: 0,
+                writing: 0,
                 teaching: 0,
                 networking: -10,
-                writing: 0,
-                stress: +25
+                stress: +25,
+                motivation: -5,
+                advisorRelationship: -10,
+                reputation: -15,
+                personalLife: +5
             }
         }
     ]

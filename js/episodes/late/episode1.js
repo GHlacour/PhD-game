@@ -6,31 +6,46 @@ export const episode1 = {
         {
             text: "Apply broadly to many positions",
             effects: {
-                research: -5,
+                researchProgress: 0,
+                publications: 0,
+                writing: +15,
                 teaching: 0,
                 networking: +10,
-                writing: +15,
-                stress: +25
+                stress: +25,
+                motivation: -5,
+                advisorRelationship: 0,
+                reputation: +5,
+                personalLife: -10
             }
         },
         {
             text: "Focus on quality applications to dream positions",
             effects: {
-                research: 0,
+                researchProgress: 0,
+                publications: 0,
+                writing: +20,
                 teaching: 0,
                 networking: +5,
-                writing: +20,
-                stress: +20
+                stress: +20,
+                motivation: +5,
+                advisorRelationship: +5,
+                reputation: +10,
+                personalLife: -5
             }
         },
         {
             text: "Leverage your network for opportunities",
             effects: {
-                research: 0,
+                researchProgress: 0,
+                publications: 0,
+                writing: +5,
                 teaching: 0,
                 networking: +20,
-                writing: +5,
-                stress: +10
+                stress: +10,
+                motivation: +5,
+                advisorRelationship: +5,
+                reputation: +15,
+                personalLife: 0
             }
         }
     ]

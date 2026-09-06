@@ -8,16 +8,26 @@ const gameState = {
     currentEpisode: 0,
     episodes: [],
     skills: {
-        research: 50,
+        // Public skills (visible to player)
+        researchProgress: 0,
+        publications: 0,
+        writing: 50,
         teaching: 30,
         networking: 20,
-        writing: 40,
-        stress: 10
+        // Hidden skills (invisible to player)
+        stress: 10,
+        motivation: 80,
+        advisorRelationship: 70,
+        reputation: 50,
+        personalLife: 60
     },
     maxEpisodes: 9,
     gameActive: false,
     totalEpisodes: 9
 };
+
+// Public skills that are shown to the player
+const PUBLIC_SKILLS = ['researchProgress', 'publications', 'writing', 'teaching', 'networking'];
 
 // DOM elements
 const startScreen = document.getElementById('start-screen');
@@ -36,11 +46,18 @@ const endDescription = document.getElementById('end-description');
 async function initGame() {
     gameState.currentEpisode = 0;
     gameState.skills = {
-        research: 50,
+        // Public skills
+        researchProgress: 0,
+        publications: 0,
+        writing: 50,
         teaching: 30,
         networking: 20,
-        writing: 40,
-        stress: 10
+        // Hidden skills
+        stress: 10,
+        motivation: 80,
+        advisorRelationship: 70,
+        reputation: 50,
+        personalLife: 60
     };
     gameState.gameActive = true;
     
@@ -106,8 +123,23 @@ function selectChoice(choice) {
         return;
     }
     
-    if (gameState.skills.research <= 0 && gameState.skills.writing <= 0) {
-        endGame("Your research and writing skills are too low. Game Over.");
+    if (gameState.skills.motivation <= 0) {
+        endGame("You lost all motivation. Game Over.");
+        return;
+    }
+    
+    if (gameState.skills.advisorRelationship <= 0) {
+        endGame("Your advisor relationship broke down. Game Over.");
+        return;
+    }
+    
+    if (gameState.skills.personalLife <= 0) {
+        endGame("Your personal life collapsed. Game Over.");
+        return;
+    }
+    
+    if (gameState.skills.researchProgress <= 0 && gameState.skills.writing <= 0) {
+        endGame("Your research progress and writing skills are too low. Game Over.");
         return;
     }
     
@@ -117,13 +149,21 @@ function selectChoice(choice) {
     // Check if we've completed all episodes
     if (gameState.currentEpisode >= gameState.episodes.length) {
         // Determine outcome based on skills
-        const avgSkill = (gameState.skills.research + gameState.skills.writing + gameState.skills.teaching) / 3;
-        if (avgSkill >= 70) {
+        const avgPublicSkill = (gameState.skills.researchProgress + gameState.skills.publications + gameState.skills.writing + gameState.skills.teaching + gameState.skills.networking) / 5;
+        
+        // Also consider hidden skills for more nuanced endings
+        const hiddenFactor = (gameState.skills.stress + gameState.skills.motivation + gameState.skills.advisorRelationship + gameState.skills.reputation + gameState.skills.personalLife) / 5;
+        
+        if (avgPublicSkill >= 70 && hiddenFactor >= 50) {
+            endGame("Congratulations! You've successfully graduated with honors and are ready for a prestigious career in academia!");
+        } else if (avgPublicSkill >= 70) {
             endGame("Congratulations! You've successfully graduated and are ready for a career in academia!");
-        } else if (avgSkill >= 50) {
+        } else if (avgPublicSkill >= 50) {
             endGame("You've graduated! Your skills open doors to both academia and industry.");
+        } else if (avgPublicSkill >= 30) {
+            endGame("You've completed your PhD journey, but your skills suggest you might thrive better in industry or non-research roles.");
         } else {
-            endGame("You've completed your PhD journey, but your skills suggest you might thrive better outside academia.");
+            endGame("You've completed your PhD journey, but your limited skills suggest you may need additional training for most academic positions.");
         }
         return;
     }
@@ -133,11 +173,12 @@ function selectChoice(choice) {
     updateSkillsDisplay();
 }
 
-// Update skills display
+// Update skills display - only show public skills
 function updateSkillsDisplay() {
     skillsDisplay.innerHTML = '';
     
-    for (const [skill, value] of Object.entries(gameState.skills)) {
+    for (const skill of PUBLIC_SKILLS) {
+        const value = gameState.skills[skill];
         const skillElement = document.createElement('div');
         skillElement.className = 'skill';
         

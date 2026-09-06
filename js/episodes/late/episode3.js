@@ -6,31 +6,46 @@ export const episode3 = {
         {
             text: "Practice with mock defenses",
             effects: {
-                research: +5,
+                researchProgress: +10,
+                publications: 0,
+                writing: 0,
                 teaching: +10,
                 networking: +5,
-                writing: 0,
-                stress: +15
+                stress: +15,
+                motivation: +5,
+                advisorRelationship: +10,
+                reputation: +10,
+                personalLife: -5
             }
         },
         {
             text: "Review all your research thoroughly",
             effects: {
-                research: +15,
+                researchProgress: +15,
+                publications: 0,
+                writing: +5,
                 teaching: 0,
                 networking: 0,
-                writing: +5,
-                stress: +20
+                stress: +20,
+                motivation: -5,
+                advisorRelationship: +5,
+                reputation: +5,
+                personalLife: -10
             }
         },
         {
             text: "Trust your knowledge and relax",
             effects: {
-                research: 0,
+                researchProgress: +5,
+                publications: 0,
+                writing: 0,
                 teaching: 0,
                 networking: 0,
-                writing: 0,
-                stress: -20
+                stress: -20,
+                motivation: +15,
+                advisorRelationship: 0,
+                reputation: -5,
+                personalLife: +20
             }
         }
     ]

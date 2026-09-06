@@ -6,31 +6,46 @@ export const episode2 = {
         {
             text: "Write for 8 hours a day",
             effects: {
-                research: 0,
+                researchProgress: +5,
+                publications: +10,
+                writing: +25,
                 teaching: 0,
                 networking: 0,
-                writing: +25,
-                stress: +30
+                stress: +30,
+                motivation: -15,
+                advisorRelationship: -5,
+                reputation: +5,
+                personalLife: -20
             }
         },
         {
             text: "Write in focused 2-hour sessions",
             effects: {
-                research: 0,
+                researchProgress: +5,
+                publications: +5,
+                writing: +20,
                 teaching: 0,
                 networking: 0,
-                writing: +20,
-                stress: +10
+                stress: +10,
+                motivation: +5,
+                advisorRelationship: 0,
+                reputation: +5,
+                personalLife: -5
             }
         },
         {
             text: "Take breaks to maintain creativity",
             effects: {
-                research: +5,
+                researchProgress: +5,
+                publications: +5,
+                writing: +15,
                 teaching: 0,
                 networking: 0,
-                writing: +15,
-                stress: -10
+                stress: -10,
+                motivation: +15,
+                advisorRelationship: +5,
+                reputation: +5,
+                personalLife: +15
             }
         }
     ]
