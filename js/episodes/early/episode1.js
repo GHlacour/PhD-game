@@ -1,6 +1,6 @@
 // Early PhD Episode 1: The Beginning
 export const episode1 = {
-    title: "Episode 1: The Beginning",
+    title: "The Beginning",
     description: "You've just started your PhD. What's your first priority?",
     image: "assets/images/early_phd_start.jpg",
     sound: "assets/sounds/start_phd.mp3",

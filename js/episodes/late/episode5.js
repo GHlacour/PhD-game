@@ -78,7 +78,7 @@ export const episode5 = {
                 const requiredPublications = programLength || 3;
                 const effects = {
                     researchProgress: +5,
-                    publications: +1,
+                    publications: 0,
                     writing: +10,
                     teaching: 0,
                     networking: +5,
@@ -103,7 +103,10 @@ export const episode5 = {
                 } else if (skills.publications >= requiredPublications - 1) {
                     return {
                         text: `Your paper is accepted! With this publication, you now have ${skills.publications + 1} papers. However, your thesis still needs more work before it can be submitted for examination.`,
-                        effects: effects
+                        effects: {
+                            ...effects,
+                            publications: +1
+                        }
                     };
                 } else {
                     return {

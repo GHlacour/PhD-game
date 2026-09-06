@@ -3,6 +3,7 @@
 
 import { generateGameSequence, preloadMedia, getTotalEpisodes } from './episodes/episodeLoader.js';
 import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS, PHD_TYPE_OPTIONS } from './characterSelection.js';
+import { checkForWarningEpisode, preloadWarningMedia } from './episodes/warnings/warningLoader.js';
 
 // Game state
 const gameState = {
@@ -29,7 +30,8 @@ const gameState = {
         programLength: 3
     },
     thesisSubmitted: false,
-    gameActive: false
+    gameActive: false,
+    inWarningEpisode: false
 };
 
 // Public skills that are shown to the player
@@ -172,6 +174,7 @@ async function initGame() {
     };
     gameState.thesisSubmitted = false;
     gameState.gameActive = true;
+    gameState.inWarningEpisode = false;
     
     // Generate episode sequence based on program length and phdType
     gameState.episodes = generateGameSequence(gameState.attributes.programLength, gameState.attributes);
@@ -218,23 +221,8 @@ function loadEpisode(episodeIndex) {
     
     const episode = gameState.episodes[episodeIndex];
     
-    // Add phase indicator if available
-    let title = episode.title;
-    if (episode.phase) {
-        const phaseNames = {
-            early: 'Early PhD',
-            mid: 'Mid PhD',
-            late: 'Late PhD'
-        };
-        title = `[${phaseNames[episode.phase]}] ${episode.title}`;
-    }
-    
-    // Add episode number
-    if (episode.episodeNumber) {
-        title = `Episode ${episode.episodeNumber}: ${title}`;
-    }
-    
-    episodeTitle.textContent = title;
+    // Just use the episode title (removed phase and episode number since we have year progress display)
+    episodeTitle.textContent = episode.title;
     episodeDescription.textContent = episode.description;
     
     // Set episode image
@@ -267,6 +255,8 @@ function loadEpisode(episodeIndex) {
 
 // Handle choice selection
 function selectChoice(choice, episode) {
+    gameState.inWarningEpisode = false;
+    
     // Get outcome - can be either just text or {text, effects}
     let outcomeTextContent = '';
     let finalEffects = choice.effects || {};
@@ -289,10 +279,15 @@ function selectChoice(choice, episode) {
         outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
     }
     
-    // Apply skill changes
+    // Apply skill changes - ensure publications only increases by at most 1 per choice
     for (const [skill, change] of Object.entries(finalEffects)) {
         if (skill !== 'thesisSubmitted') {
-            gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
+            if (skill === 'publications') {
+                // Clamp publication increase to maximum of 1 per choice
+                gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + Math.min(change, 1)));
+            } else {
+                gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
+            }
         }
     }
     
@@ -304,11 +299,122 @@ function selectChoice(choice, episode) {
     updateSkillsDisplay();
 }
 
-// Continue after outcome is displayed
+// Load a warning episode
+function loadWarningEpisode(warningEpisode) {
+    gameState.inWarningEpisode = true;
+    
+    // Load the warning episode
+    episodeTitle.textContent = warningEpisode.title;
+    episodeDescription.textContent = warningEpisode.description;
+    
+    // Set episode image
+    if (warningEpisode.image) {
+        episodeImage.src = warningEpisode.image;
+        episodeImageContainer.classList.remove('hidden');
+    } else {
+        episodeImageContainer.classList.add('hidden');
+    }
+    
+    // Play episode sound
+    if (warningEpisode.sound) {
+        playSound(warningEpisode.sound);
+    }
+    
+    // Clear previous choices
+    choicesContainer.innerHTML = '';
+    
+    // Add warning choices
+    warningEpisode.choices.forEach((choice, index) => {
+        const choiceBtn = document.createElement('button');
+        choiceBtn.className = 'choice-btn warning-choice';
+        choiceBtn.textContent = choice.text;
+        choiceBtn.addEventListener('click', () => selectWarningChoice(choice, warningEpisode));
+        choicesContainer.appendChild(choiceBtn);
+    });
+    
+    updateSkillsDisplay();
+    updateYearProgress();
+}
+
+// Handle choice selection in warning episode
+function selectWarningChoice(choice, warningEpisode) {
+    gameState.inWarningEpisode = false;
+    
+    // Get outcome - can be either just text or {text, effects}
+    let outcomeTextContent = '';
+    let finalEffects = choice.effects || {};
+    
+    if (choice.getOutcome) {
+        const outcome = choice.getOutcome(gameState.skills, gameState.attributes, gameState.attributes.programLength);
+        if (typeof outcome === 'string') {
+            outcomeTextContent = outcome;
+        } else {
+            outcomeTextContent = outcome.text;
+            finalEffects = outcome.effects;
+        }
+    } else {
+        outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
+    }
+    
+    // Apply skill changes
+    for (const [skill, change] of Object.entries(finalEffects)) {
+        if (skill !== 'thesisSubmitted') {
+            if (skill === 'publications') {
+                // Clamp publication increase to maximum of 1 per choice
+                gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + Math.min(change, 1)));
+            } else {
+                gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
+            }
+        }
+    }
+    
+    // Show outcome
+    outcomeText.textContent = outcomeTextContent;
+    outcomeDisplay.classList.remove('hidden');
+    gameScreen.classList.add('hidden');
+    
+    updateSkillsDisplay();
+}
+
+// Continue after outcome is displayed - handles both regular and warning episodes
 function continueAfterOutcome() {
     outcomeDisplay.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     
+    // Check if we should trigger a warning episode
+    setTimeout(() => {
+        import('./episodes/warnings/warningLoader.js').then(module => {
+            const warningEpisode = module.checkForWarningEpisode(gameState.skills);
+            
+            if (warningEpisode) {
+                // Insert warning episode
+                loadWarningEpisode(warningEpisode);
+                return;
+            }
+            
+            // No warning, check if we're in a warning episode context
+            if (gameState.inWarningEpisode) {
+                // This was a warning episode outcome - check for game over
+                handlePostWarningCheck();
+                return;
+            }
+            
+            // Normal flow - continue to next episode
+            continueNormalFlow();
+        }).catch(e => {
+            console.log('Warning check failed:', e);
+            // Fallback to normal flow
+            if (gameState.inWarningEpisode) {
+                handlePostWarningCheck();
+            } else {
+                continueNormalFlow();
+            }
+        });
+    }, 0);
+}
+
+// Handle checks after a warning episode
+function handlePostWarningCheck() {
     // Check for game over conditions
     if (gameState.skills.stress >= 100) {
         endGame("You burned out! The stress of the PhD became too much. Game Over.");
@@ -335,6 +441,27 @@ function continueAfterOutcome() {
         return;
     }
     
+    // Check again if another warning should trigger (in case the first warning made things worse)
+    setTimeout(() => {
+        import('./episodes/warnings/warningLoader.js').then(module => {
+            const warningEpisode = module.checkForWarningEpisode(gameState.skills);
+            
+            if (warningEpisode) {
+                loadWarningEpisode(warningEpisode);
+                return;
+            }
+            
+            // No more warnings, continue with normal flow
+            continueNormalFlow();
+        }).catch(e => {
+            console.log('Warning check failed:', e);
+            continueNormalFlow();
+        });
+    }, 0);
+}
+
+// Continue with normal episode flow
+function continueNormalFlow() {
     // Move to next episode
     gameState.currentEpisode++;
     
@@ -401,6 +528,7 @@ function updateSkillsDisplay() {
 // End the game
 function endGame(message) {
     gameState.gameActive = false;
+    gameState.inWarningEpisode = false;
     gameScreen.classList.add('hidden');
     outcomeDisplay.classList.add('hidden');
     endScreen.classList.remove('hidden');
@@ -429,6 +557,7 @@ function restartGame() {
     gameState.episodes = [];
     gameState.attributes = { gender: null, origin: null, phdType: null, programLength: 3 };
     gameState.thesisSubmitted = false;
+    gameState.inWarningEpisode = false;
 }
 
 // Event listeners
@@ -439,3 +568,4 @@ continueBtn.addEventListener('click', continueAfterOutcome);
 // Initial setup
 updateSkillsDisplay();
 preloadMedia();
+preloadWarningMedia();

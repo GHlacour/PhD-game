@@ -1,6 +1,6 @@
 // Mid PhD Episode 4: Visa Extension (Origin-specific)
 export const episode4 = {
-    title: "Mid PhD Episode 4: Visa Extension",
+    title: "Visa Extension",
     description: "Your student visa is about to expire. You need to apply for an extension to continue your PhD studies.",
     image: "assets/images/visa_extension.jpg",
     sound: "assets/sounds/stress.mp3",

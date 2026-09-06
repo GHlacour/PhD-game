@@ -1,6 +1,6 @@
 // Early PhD Episode 3: Research Setup
 export const episode3 = {
-    title: "Episode 3: Setting Up Your Research",
+    title: "Setting Up Your Research",
     description: "It's time to set up your research environment. Your approach will depend on whether you're doing theoretical or experimental work.",
     image: "assets/images/research_setup.jpg",
     sound: "assets/sounds/research.mp3",

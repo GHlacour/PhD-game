@@ -1,6 +1,6 @@
 // Late PhD Episode 1: Job Applications
 export const episode1 = {
-    title: "Late PhD Episode 1: Job Applications",
+    title: "Job Applications",
     description: "It's time to start applying for post-PhD positions. What's your strategy?",
     image: "assets/images/job_applications.jpg",
     sound: "assets/sounds/job_search.mp3",

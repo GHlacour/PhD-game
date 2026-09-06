@@ -1,6 +1,6 @@
 // Late PhD Episode 3: Defense Preparation
 export const episode3 = {
-    title: "Late PhD Episode 3: Defense Preparation",
+    title: "Defense Preparation",
     description: "Your defense is coming up. How do you prepare?",
     image: "assets/images/defense_prep.jpg",
     sound: "assets/sounds/defense.mp3",

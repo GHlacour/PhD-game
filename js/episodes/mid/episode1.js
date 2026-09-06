@@ -1,6 +1,6 @@
 // Mid PhD Episode 1: First Conference
 export const episode1 = {
-    title: "Mid PhD Episode 1: First Conference",
+    title: "First Conference",
     description: "You have the opportunity to present at a major conference. How do you prepare?",
     image: "assets/images/conference.jpg",
     sound: "assets/sounds/conference.mp3",
@@ -10,7 +10,7 @@ export const episode1 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +10,
-                    publications: +5,
+                    publications: 0,
                     writing: +10,
                     teaching: +5,
                     networking: +5,
@@ -26,7 +26,7 @@ export const episode1 = {
                         text: "Your meticulous preparation results in a flawless presentation! The audience is impressed and you receive several collaboration offers. One leads to a joint publication!",
                         effects: {
                             ...effects,
-                            publications: +10,
+                            publications: +1,
                             reputation: +20,
                             networking: +15,
                             researchProgress: +15
@@ -57,7 +57,7 @@ export const episode1 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
-                    publications: +5,
+                    publications: 0,
                     writing: +5,
                     teaching: +5,
                     networking: +10,
@@ -76,7 +76,7 @@ export const episode1 = {
                             networking: +15,
                             reputation: +15,
                             researchProgress: +10,
-                            publications: +8
+                            publications: +1
                         }
                     };
                 } else if (skills.networking >= 20) {
@@ -91,7 +91,7 @@ export const episode1 = {
                             ...effects,
                             networking: +5,
                             reputation: +5,
-                            publications: +2,
+                            publications: 0,
                             motivation: -5
                         }
                     };

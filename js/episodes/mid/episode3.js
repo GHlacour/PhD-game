@@ -1,6 +1,6 @@
 // Mid PhD Episode 3: Collaborative Project
 export const episode3 = {
-    title: "Mid PhD Episode 3: Collaborative Project",
+    title: "Collaborative Project",
     description: "A renowned researcher invites you to collaborate on a project. How do you respond?",
     image: "assets/images/collaboration.jpg",
     sound: "assets/sounds/collaboration.mp3",
@@ -10,7 +10,7 @@ export const episode3 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
-                    publications: +10,
+                    publications: 0,
                     writing: +5,
                     teaching: 0,
                     networking: +20,
@@ -26,7 +26,7 @@ export const episode3 = {
                         text: "The collaboration is a huge success! Your combined expertise leads to a high-impact publication in a top journal. You gain valuable experience working with a leader in the field and your reputation soars.",
                         effects: {
                             ...effects,
-                            publications: +20,
+                            publications: +1,
                             networking: +25,
                             reputation: +30,
                             researchProgress: +20
@@ -37,7 +37,7 @@ export const episode3 = {
                         text: "The project goes well and results in a solid publication in a respected journal. You learn a lot from your collaborator and expand your professional network significantly.",
                         effects: {
                             ...effects,
-                            publications: +15,
+                            publications: +1,
                             networking: +20
                         }
                     };
@@ -46,7 +46,7 @@ export const episode3 = {
                         text: "The collaboration is more challenging than expected. You struggle to contribute equally and the results are modest - just a conference paper. Your collaborator is somewhat disappointed.",
                         effects: {
                             ...effects,
-                            publications: +5,
+                            publications: +1,
                             networking: +10,
                             reputation: +5,
                             researchProgress: +10,
@@ -61,7 +61,7 @@ export const episode3 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +10,
-                    publications: +5,
+                    publications: 0,
                     writing: +5,
                     teaching: 0,
                     networking: +15,
@@ -77,7 +77,7 @@ export const episode3 = {
                         text: "You successfully balance both projects! The collaboration results in a good publication in a mid-tier journal, and you still make solid progress on your own research. Your reputation grows and your advisor is impressed with your time management.",
                         effects: {
                             ...effects,
-                            publications: +12,
+                            publications: +1,
                             researchProgress: +15,
                             reputation: +15,
                             advisorRelationship: +10
@@ -93,7 +93,7 @@ export const episode3 = {
                         text: "Balancing both projects proves difficult. The collaboration suffers from your divided attention, and the results are underwhelming - just a workshop paper. Your advisor notices your struggle.",
                         effects: {
                             ...effects,
-                            publications: +3,
+                            publications: +1,
                             researchProgress: +5,
                             reputation: +2,
                             advisorRelationship: 0

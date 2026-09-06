@@ -1,6 +1,6 @@
 // Mid PhD Episode 2: Midpoint Crisis
 export const episode2 = {
-    title: "Mid PhD Episode 2: Midpoint Crisis",
+    title: "Midpoint Crisis",
     description: "You're halfway through and feeling overwhelmed. What do you do?",
     image: "assets/images/midpoint_crisis.jpg",
     sound: "assets/sounds/stress.mp3",
@@ -57,7 +57,7 @@ export const episode2 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
-                    publications: +5,
+                    publications: 0,
                     writing: +10,
                     teaching: 0,
                     networking: 0,
@@ -74,7 +74,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             researchProgress: +20,
-                            publications: +8,
+                            publications: +1,
                             reputation: +10,
                             advisorRelationship: 0
                         }
@@ -90,7 +90,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            publications: +2,
+                            publications: 0,
                             stress: +40,
                             motivation: -20,
                             advisorRelationship: -10,

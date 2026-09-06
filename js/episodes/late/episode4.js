@@ -1,6 +1,6 @@
 // Late PhD Episode 4: Work-Life Balance Challenge (Gender-specific)
 export const episode4 = {
-    title: "Episode 4: Work-Life Balance Challenge",
+    title: "Work-Life Balance Challenge",
     description: "As a female or non-binary researcher, you're facing increasing pressure to balance your academic career with personal life expectations. How do you navigate this challenge?",
     image: "assets/images/work_life_balance.jpg",
     sound: "assets/sounds/reflection.mp3",
@@ -13,7 +13,7 @@ export const episode4 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
-                    publications: +1,
+                    publications: 0,
                     writing: +10,
                     teaching: 0,
                     networking: +5,
@@ -31,13 +31,17 @@ export const episode4 = {
                             ...effects,
                             researchProgress: +20,
                             reputation: +15,
-                            advisorRelationship: +10
+                            advisorRelationship: +10,
+                            publications: +1
                         }
                     };
                 } else if (skills.researchProgress >= 50) {
                     return {
                         text: "You make good research progress and submit a solid paper. But you feel exhausted and realize you've been neglecting your personal life. Your friends express concern about your constant availability for work.",
-                        effects: effects
+                        effects: {
+                            ...effects,
+                            publications: +1
+                        }
                     };
                 } else {
                     return {

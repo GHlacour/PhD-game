@@ -1,6 +1,6 @@
 // Late PhD Episode 2: Thesis Writing
 export const episode2 = {
-    title: "Late PhD Episode 2: Thesis Writing",
+    title: "Thesis Writing",
     description: "You're deep into writing your thesis. How do you manage your time?",
     image: "assets/images/thesis_writing.jpg",
     sound: "assets/sounds/writing.mp3",
@@ -10,7 +10,7 @@ export const episode2 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
-                    publications: +10,
+                    publications: 0,
                     writing: +25,
                     teaching: 0,
                     networking: 0,
@@ -28,7 +28,7 @@ export const episode2 = {
                             ...effects,
                             writing: +30,
                             researchProgress: +10,
-                            publications: +15,
+                            publications: +1,
                             stress: +25
                         }
                     };
@@ -44,7 +44,7 @@ export const episode2 = {
                             ...effects,
                             writing: +20,
                             researchProgress: +2,
-                            publications: +5,
+                            publications: 0,
                             stress: +35,
                             advisorRelationship: -10
                         }
@@ -57,7 +57,7 @@ export const episode2 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
-                    publications: +5,
+                    publications: 0,
                     writing: +20,
                     teaching: 0,
                     networking: 0,
@@ -91,7 +91,7 @@ export const episode2 = {
                             ...effects,
                             writing: +15,
                             researchProgress: +2,
-                            publications: +2,
+                            publications: 0,
                             motivation: -5
                         }
                     };
@@ -103,7 +103,7 @@ export const episode2 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
-                    publications: +5,
+                    publications: 0,
                     writing: +15,
                     teaching: 0,
                     networking: 0,
@@ -137,7 +137,7 @@ export const episode2 = {
                             ...effects,
                             writing: +10,
                             researchProgress: +2,
-                            publications: +2,
+                            publications: 0,
                             personalLife: +10,
                             motivation: +5
                         }

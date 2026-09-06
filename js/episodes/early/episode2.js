@@ -1,6 +1,6 @@
 // Early PhD Episode 2: First Literature Review
 export const episode2 = {
-    title: "Episode 2: First Literature Review",
+    title: "First Literature Review",
     description: "Your advisor asks you to review the literature in your field. How do you approach this?",
     image: "assets/images/literature_review.jpg",
     sound: "assets/sounds/research.mp3",

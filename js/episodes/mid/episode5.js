@@ -13,7 +13,7 @@ export const episode5 = {
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +8,
-                    publications: +1,
+                    publications: 0,
                     writing: +10,
                     teaching: 0,
                     networking: +5,
@@ -39,7 +39,10 @@ export const episode5 = {
                 } else if (skills.publications >= 1 && skills.researchProgress >= 40) {
                     return {
                         text: "Good work! Your paper is accepted for publication. Your advisor is satisfied with your progress and notes that you're meeting the annual publication requirement. They encourage you to aim for higher-impact venues for your next paper.",
-                        effects: effects
+                        effects: {
+                            ...effects,
+                            publications: +1
+                        }
                     };
                 } else {
                     return {
