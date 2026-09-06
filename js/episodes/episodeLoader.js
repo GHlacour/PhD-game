@@ -24,6 +24,9 @@ import { episode6 as mid6 } from './mid/episode6.js';
 import { episode7 as mid7 } from './mid/episode7.js';
 import { episode8 as mid8 } from './mid/episode8.js';
 import { episode9 as mid9 } from './mid/episode9.js';
+import { episode10 as mid10 } from './mid/episode10.js';
+import { episode11 as mid11 } from './mid/episode11.js';
+import { episode12 as mid12 } from './mid/episode12.js';
 
 import { episode1 as late1 } from './late/episode1.js';
 import { episode2 as late2 } from './late/episode2.js';
@@ -92,7 +95,7 @@ export function preloadMedia() {
 
 // Episode pools by phase
 export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7, early8, early9, early10, early11];
-export const midEpisodes = [mid1, mid2, mid3, mid4, mid5, mid6, mid7, mid8, mid9];
+export const midEpisodes = [mid1, mid2, mid3, mid4, mid5, mid6, mid7, mid8, mid9, mid10, mid11, mid12];
 export const lateEpisodes = [late1, late2, late3, late4, late5, late6, late7, late8, late9];
 
 // Separate regular episodes from evaluation episodes
