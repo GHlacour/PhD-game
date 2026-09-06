@@ -1,0 +1,330 @@
+// Career Selection Module
+// Handles the career choice screen and outcomes after PhD completion
+
+// Career path definitions with their requirements and descriptions
+const CAREER_PATHS = {
+    teacher: {
+        id: 'teacher',
+        name: 'Teacher / Educator',
+        description: 'Pursue a career in education, teaching the next generation of students at a university or college.',
+        icon: '🎓',
+        primarySkills: ['teaching', 'networking', 'writing'],
+        secondarySkills: ['researchProgress', 'publications'],
+        requiredThresholds: {
+            immediate: { teaching: 70, networking: 50, writing: 40 },
+            good: { teaching: 50, networking: 30, writing: 30 },
+            acceptable: { teaching: 30, networking: 20, writing: 20 },
+            struggle: { teaching: 10, networking: 0, writing: 0 }
+        },
+        image: 'assets/images/career_teacher.jpg'
+    },
+    academic: {
+        id: 'academic',
+        name: 'Academic Researcher',
+        description: 'Continue in academia as a postdoc, research scientist, or professor, conducting cutting-edge research.',
+        icon: '🔬',
+        primarySkills: ['publications', 'researchProgress', 'writing', 'reputation'],
+        secondarySkills: ['teaching', 'networking'],
+        requiredThresholds: {
+            immediate: { publications: 10, researchProgress: 70, writing: 60, reputation: 60 },
+            good: { publications: 6, researchProgress: 50, writing: 40, reputation: 40 },
+            acceptable: { publications: 3, researchProgress: 30, writing: 20, reputation: 20 },
+            struggle: { publications: 0, researchProgress: 0, writing: 0, reputation: 0 }
+        },
+        image: 'assets/images/career_academic.jpg'
+    },
+    industry: {
+        id: 'industry',
+        name: 'R&D Industry',
+        description: 'Join industry as a research scientist, engineer, or data scientist in a company\'s R&D department.',
+        icon: '🏭',
+        primarySkills: ['researchProgress', 'networking', 'writing'],
+        secondarySkills: ['publications', 'teaching'],
+        requiredThresholds: {
+            immediate: { researchProgress: 60, networking: 50, writing: 40 },
+            good: { researchProgress: 40, networking: 30, writing: 30 },
+            acceptable: { researchProgress: 20, networking: 15, writing: 20 },
+            struggle: { researchProgress: 0, networking: 0, writing: 0 }
+        },
+        image: 'assets/images/career_industry.jpg'
+    }
+};
+
+// Get career outcome based on skills and choice
+export function getCareerOutcome(careerId, skills, attributes) {
+    const career = CAREER_PATHS[careerId];
+    if (!career) return null;
+    
+    const thresholds = career.requiredThresholds;
+    
+    // Check which outcome tier the player qualifies for
+    let outcomeTier = 'struggle';
+    
+    // Check immediate success
+    const immediatePass = Object.entries(thresholds.immediate).every(([skill, minValue]) => {
+        return skills[skill] >= minValue;
+    });
+    
+    if (immediatePass) {
+        outcomeTier = 'immediate';
+    }
+    // Check good outcome
+    else {
+        const goodPass = Object.entries(thresholds.good).every(([skill, minValue]) => {
+            return skills[skill] >= minValue;
+        });
+        
+        if (goodPass) {
+            outcomeTier = 'good';
+        }
+        // Check acceptable outcome
+        else {
+            const acceptablePass = Object.entries(thresholds.acceptable).every(([skill, minValue]) => {
+                return skills[skill] >= minValue;
+            });
+            
+            if (acceptablePass) {
+                outcomeTier = 'acceptable';
+            }
+        }
+    }
+    
+    // Get the outcome for this tier
+    const outcomes = getOutcomesForCareer(careerId, outcomeTier, skills, attributes);
+    return {
+        career: career,
+        tier: outcomeTier,
+        outcomes: outcomes
+    };
+}
+
+// Define outcomes for each career and tier
+function getOutcomesForCareer(careerId, tier, skills, attributes) {
+    const career = CAREER_PATHS[careerId];
+    
+    switch (careerId) {
+        case 'teacher':
+            return getTeacherOutcomes(tier, skills, attributes);
+        case 'academic':
+            return getAcademicOutcomes(tier, skills, attributes);
+        case 'industry':
+            return getIndustryOutcomes(tier, skills, attributes);
+        default:
+            return [];
+    }
+}
+
+function getTeacherOutcomes(tier, skills, attributes) {
+    const phdType = attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+    
+    switch (tier) {
+        case 'immediate':
+            return [
+                {
+                    title: 'Tenure-Track Position Secured!',
+                    description: `With your excellent teaching skills (${skills.teaching}) and strong reputation (${skills.reputation}), you're offered a tenure-track position at a prestigious university. Your ability to communicate complex concepts and your dedication to student mentorship set you apart. You've found your calling in education.`,
+                    salary: 'Competitive academic salary with benefits',
+                    timeline: 'Start in 3 months',
+                    satisfaction: 'Very High'
+                }
+            ];
+        case 'good':
+            return [
+                {
+                    title: 'Lecturer Position',
+                    description: `Your solid teaching background (${skills.teaching}) lands you a lecturer position. While not tenure-track initially, you have a clear path to advancement. The department values your ${phdType} expertise and your ability to engage students. With continued excellence, a permanent position is within reach.`,
+                    salary: 'Good academic salary',
+                    timeline: 'Start next semester',
+                    satisfaction: 'High'
+                }
+            ];
+        case 'acceptable':
+            return [
+                {
+                    title: 'Adjunct Professor / Teaching Assistant',
+                    description: `You secure a position as an adjunct professor or senior teaching assistant. While the pay and stability are less than ideal, it's a foot in the door. Your teaching skills (${skills.teaching}) need development, but you have potential. You may need to take on additional coursework or gain more experience before landing a permanent role.`,
+                    salary: 'Modest with limited benefits',
+                    timeline: 'Start immediately but temporary',
+                    satisfaction: 'Moderate'
+                }
+            ];
+        case 'struggle':
+            return [
+                {
+                    title: 'Difficult Job Search',
+                    description: `With limited teaching experience (${skills.teaching}) and networking (${skills.networking}), you struggle to find academic teaching positions. You may need to consider alternative paths: teaching at a community college, working as a tutor, or gaining industry experience first before returning to academia. The job market is competitive and your current profile isn't standing out.`,
+                    salary: 'Varies - may need additional training',
+                    timeline: '6-12 months of searching',
+                    satisfaction: 'Low - considering other options'
+                }
+            ];
+    }
+}
+
+function getAcademicOutcomes(tier, skills, attributes) {
+    const phdType = attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+    
+    switch (tier) {
+        case 'immediate':
+            return [
+                {
+                    title: 'Prestigious Postdoc at Top Institution!',
+                    description: `Your exceptional publication record (${skills.publications} papers) and strong research progress (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is the first step toward a tenure-track faculty position.`,
+                    salary: 'Competitive postdoc salary with research funding',
+                    timeline: 'Start in 2 months',
+                    satisfaction: 'Very High'
+                }
+            ];
+        case 'good':
+            return [
+                {
+                    title: 'Postdoc Position',
+                    description: `With ${skills.publications} publications and solid research experience, you secure a postdoc position at a respected university. While not at the most prestigious institution, it's a good opportunity to build your research portfolio. Your advisor helps connect you with the right people. With hard work, you can aim for a faculty position in a few years.`,
+                    salary: 'Standard postdoc salary',
+                    timeline: 'Start in 3-4 months',
+                    satisfaction: 'High'
+                }
+            ];
+        case 'acceptable':
+            return [
+                {
+                    title: 'Industry Research with Academic Hopes',
+                    description: `Your publication count (${skills.publications}) is on the lower side for academia, so you take a research position in industry that allows you to continue publishing. It's not your dream of becoming a professor, but it pays well and keeps your academic options open. You can try for academic positions again after gaining more experience and publications.`,
+                    salary: 'Good industry salary',
+                    timeline: 'Start in 1 month',
+                    satisfaction: 'Moderate - still hoping for academia'
+                }
+            ];
+        case 'struggle':
+            return [
+                {
+                    title: 'Academic Career in Jeopardy',
+                    description: `With only ${skills.publications} publications and limited research impact, you find it nearly impossible to secure a postdoc or faculty position. The academic job market is brutal, and your CV doesn't stand out. You may need to consider leaving academia entirely or pursuing a non-research role in a university. This is a tough realization after years of PhD work.`,
+                    salary: 'Uncertain - may need to change career path',
+                    timeline: '12+ months of difficult searching',
+                    satisfaction: 'Low - facing career disappointment'
+                }
+            ];
+    }
+}
+
+function getIndustryOutcomes(tier, skills, attributes) {
+    const phdType = attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+    
+    switch (tier) {
+        case 'immediate':
+            return [
+                {
+                    title: 'Senior Research Scientist at Top Tech Company!',
+                    description: `Your strong research background (${skills.researchProgress}) and excellent networking skills (${skills.networking}) land you a senior research scientist position at a leading technology company. They value your ${phdType} expertise and your ability to communicate complex ideas (writing: ${skills.writing}). The salary and benefits are excellent, and you have opportunities for rapid advancement.`,
+                    salary: 'High industry salary with stock options',
+                    timeline: 'Start in 1-2 months',
+                    satisfaction: 'Very High'
+                }
+            ];
+        case 'good':
+            return [
+                {
+                    title: 'Research Scientist Position',
+                    description: `With your solid research skills (${skills.researchProgress}) and decent professional network (${skills.networking}), you secure a research scientist position at a mid-sized company. The work is interesting and the pay is good. While not at the most prestigious company, you have room to grow and make an impact in your field.`,
+                    salary: 'Good industry salary with benefits',
+                    timeline: 'Start in 2-3 months',
+                    satisfaction: 'High'
+                }
+            ];
+        case 'acceptable':
+            return [
+                {
+                    title: 'Junior Researcher / Data Scientist',
+                    description: `Your research experience (${skills.researchProgress}) gets you a junior researcher or data scientist position. The company takes a chance on you despite your limited networking (${skills.networking}). The salary is decent but not great, and you'll need to prove yourself. It's a good entry point, but you'll need to work hard to advance.`,
+                    salary: 'Modest starting salary',
+                    timeline: 'Start in 1-2 months',
+                    satisfaction: 'Moderate - room for growth'
+                }
+            ];
+        case 'struggle':
+            return [
+                {
+                    title: 'Difficult Transition to Industry',
+                    description: `With limited research progress (${skills.researchProgress}) and weak networking (${skills.networking}), you struggle to find research positions in industry. Companies want proven skills and connections. You may need to consider non-research roles, take a lower-level position, or gain additional qualifications. The PhD doesn't guarantee industry success without the right complementary skills.`,
+                    salary: 'Entry-level or below expectations',
+                    timeline: '6-12 months of challenging job search',
+                    satisfaction: 'Low - questioning PhD value in industry'
+                }
+            ];
+    }
+}
+
+// Create the career selection screen
+export function createCareerSelectionScreen(onSelect) {
+    const screen = document.createElement('div');
+    screen.id = 'career-selection-screen';
+    screen.className = 'career-selection-screen game-screen hidden';
+    
+    screen.innerHTML = `
+        <div class="career-selection-container">
+            <h2>Choose Your Career Path</h2>
+            <p class="career-intro">
+                Congratulations on completing your PhD! Now it's time to decide what comes next. 
+                Your skills and achievements will influence your success in each path.
+            </p>
+            <div class="career-options" id="career-options">
+                <!-- Career options will be added dynamically -->
+            </div>
+        </div>
+    `;
+    
+    const optionsContainer = screen.querySelector('#career-options');
+    
+    // Add each career path as a selectable card
+    Object.values(CAREER_PATHS).forEach(career => {
+        const card = document.createElement('div');
+        card.className = 'career-card';
+        card.dataset.careerId = career.id;
+        
+        card.innerHTML = `
+            <div class="career-icon">${career.icon}</div>
+            <h3 class="career-name">${career.name}</h3>
+            <p class="career-description">${career.description}</p>
+            <div class="career-requirements">
+                <strong>Key Skills:</strong> ${career.primarySkills.join(', ')}
+            </div>
+            <button class="btn career-select-btn">Select This Path</button>
+        `;
+        
+        // Set background image if available
+        if (career.image) {
+            card.style.backgroundImage = `url('${career.image}')`;
+            card.style.backgroundSize = 'cover';
+            card.style.backgroundPosition = 'center';
+        }
+        
+        card.querySelector('.career-select-btn').addEventListener('click', () => {
+            onSelect(career.id);
+        });
+        
+        card.addEventListener('click', (e) => {
+            // Only trigger if clicking on the card itself, not the button
+            if (e.target === card || e.target.classList.contains('career-icon') || 
+                e.target.classList.contains('career-name') || 
+                e.target.classList.contains('career-description') ||
+                e.target.classList.contains('career-requirements')) {
+                onSelect(career.id);
+            }
+        });
+        
+        optionsContainer.appendChild(card);
+    });
+    
+    return screen;
+}
+
+// Get all career paths
+export function getAllCareerPaths() {
+    return CAREER_PATHS;
+}
+
+// Get career path by ID
+export function getCareerPath(careerId) {
+    return CAREER_PATHS[careerId];
+}

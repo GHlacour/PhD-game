@@ -259,6 +259,14 @@ header h1 {
     transform: translateY(0);
 }
 
+.choice-btn.warning-choice {
+    background-color: #e74c3c;
+}
+
+.choice-btn.warning-choice:hover {
+    background-color: #c0392b;
+}
+
 /* Skills container */
 .skills-container {
     background-color: #f8f9fa;
@@ -459,4 +467,235 @@ footer {
 
 #disclaimer-container strong {
     color: #333 !important;
+}
+
+/* Career Selection Screen */
+#career-selection-screen {
+    text-align: center;
+}
+
+#career-selection-screen h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.career-intro {
+    font-size: 1.1em;
+    color: #34495e;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.career-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.career-card {
+    width: 280px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: #3498db;
+}
+
+.career-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.career-name {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.career-description {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.career-requirements {
+    font-size: 0.85em;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.career-select-btn {
+    width: 100%;
+    background-color: #3498db;
+}
+
+.career-select-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Career Outcome Screen */
+#career-outcome-screen {
+    text-align: center;
+    padding: 30px;
+}
+
+#career-outcome-screen h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+#career-outcome-content {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+.career-outcome-details {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid #3498db;
+    margin-bottom: 25px;
+}
+
+.career-outcome-details p {
+    margin-bottom: 10px;
+    font-size: 1.05em;
+}
+
+.career-outcome-details p:first-child {
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+.career-description {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+    font-size: 1em;
+    line-height: 1.8;
+    color: #34495e;
+}
+
+.career-stats {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.career-stats p {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.career-stats strong {
+    color: #2c3e50;
+}
+
+.final-summary {
+    background-color: #e8f8f5;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #b8e0d8;
+}
+
+.final-summary h3 {
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+.final-summary p {
+    margin-bottom: 10px;
+}
+
+.final-summary ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.final-summary li {
+    padding: 5px 0;
+    border-bottom: 1px solid #d0e8e0;
+}
+
+.final-summary li:last-child {
+    border-bottom: none;
+}
+
+/* Tier styling */
+.tier-immediate {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.tier-good {
+    color: #2980b9;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.tier-acceptable {
+    color: #f39c12;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.tier-struggle {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Responsive career selection */
+@media (max-width: 768px) {
+    .career-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .career-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .career-outcome-details {
+        padding: 20px;
+    }
+    
+    .final-summary {
+        padding: 15px;
+    }
+}
+
+/* Warning choice styling */
+.choice-btn.warning-choice {
+    background-color: #e74c3c;
+}
+
+.choice-btn.warning-choice:hover {
+    background-color: #c0392b;
 }

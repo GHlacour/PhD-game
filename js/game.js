@@ -4,6 +4,7 @@
 import { generateGameSequence, preloadMedia, getTotalEpisodes } from './episodes/episodeLoader.js';
 import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS, PHD_TYPE_OPTIONS } from './characterSelection.js';
 import { checkForWarningEpisode, preloadWarningMedia } from './episodes/warnings/warningLoader.js';
+import { createCareerSelectionScreen, getCareerOutcome, getCareerPath } from './careerSelection.js';
 
 // Game state
 const gameState = {
@@ -31,7 +32,9 @@ const gameState = {
     },
     thesisSubmitted: false,
     gameActive: false,
-    inWarningEpisode: false
+    inWarningEpisode: false,
+    careerSelected: null,
+    careerOutcome: null
 };
 
 // Public skills that are shown to the player
@@ -90,6 +93,10 @@ const welcomeStartBtn = document.getElementById('welcome-start-btn');
 const characterSelectionScreen = createCharacterSelectionScreen(startPhD);
 document.querySelector('main').insertBefore(characterSelectionScreen, document.querySelector('main').firstChild.nextSibling);
 
+// Create career selection screen
+const careerSelectionScreen = createCareerSelectionScreen(handleCareerSelection);
+document.querySelector('main').appendChild(careerSelectionScreen);
+
 // DOM element for outcome display
 const outcomeDisplay = document.createElement('div');
 outcomeDisplay.id = 'outcome-display';
@@ -108,6 +115,23 @@ episodeImageContainer.innerHTML = '<img id="episode-image" src="" alt="Episode I
 document.querySelector('.episode-container').prepend(episodeImageContainer);
 
 const episodeImage = document.getElementById('episode-image');
+
+// Create career outcome display
+const careerOutcomeScreen = document.createElement('div');
+careerOutcomeScreen.id = 'career-outcome-screen';
+careerOutcomeScreen.className = 'career-outcome-screen game-screen hidden';
+careerOutcomeScreen.innerHTML = `
+    <div class="career-outcome-container">
+        <h2 id="career-outcome-title">Career Outcome</h2>
+        <div id="career-outcome-content"></div>
+        <button id="career-outcome-continue" class="btn">New Game</button>
+    </div>
+`;
+document.querySelector('main').appendChild(careerOutcomeScreen);
+
+const careerOutcomeTitle = document.getElementById('career-outcome-title');
+const careerOutcomeContent = document.getElementById('career-outcome-content');
+const careerOutcomeContinueBtn = document.getElementById('career-outcome-continue');
 
 // Audio context for sound effects
 let audioContext = null;
@@ -175,6 +199,8 @@ async function initGame() {
     gameState.thesisSubmitted = false;
     gameState.gameActive = true;
     gameState.inWarningEpisode = false;
+    gameState.careerSelected = null;
+    gameState.careerOutcome = null;
     
     // Generate episode sequence based on program length and phdType
     gameState.episodes = generateGameSequence(gameState.attributes.programLength, gameState.attributes);
@@ -186,6 +212,8 @@ async function initGame() {
     welcomeScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
     outcomeDisplay.classList.add('hidden');
+    careerSelectionScreen.classList.add('hidden');
+    careerOutcomeScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     yearProgressContainer.classList.remove('hidden');
     
@@ -467,32 +495,17 @@ function continueNormalFlow() {
     
     // Check if we've completed all episodes
     if (gameState.currentEpisode >= gameState.episodes.length) {
-        // Determine outcome based on skills, attributes, and thesis submission
+        // Check if player has met graduation requirements
         const requiredPublications = gameState.attributes.programLength || 3;
-        const avgPublicSkill = (gameState.skills.researchProgress + gameState.skills.publications + gameState.skills.writing + gameState.skills.teaching + gameState.skills.networking) / 5;
-        
-        // Also consider hidden skills for more nuanced endings
-        const hiddenFactor = (gameState.skills.stress + gameState.skills.motivation + gameState.skills.advisorRelationship + gameState.skills.reputation + gameState.skills.personalLife) / 5;
-        
-        // Check graduation requirements
         const hasEnoughPublications = gameState.skills.publications >= requiredPublications;
         const hasThesisSubmitted = gameState.thesisSubmitted;
         
-        if (hasEnoughPublications && hasThesisSubmitted && avgPublicSkill >= 70 && hiddenFactor >= 50) {
-            const phdTypeName = gameState.attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
-            endGame(`CONGRATULATIONS! You've successfully graduated with honors from your ${phdTypeName} PhD! With ${gameState.skills.publications} publications and a completed thesis, you've exceeded all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is extremely proud and you're ready for a prestigious career in academia!`);
-        } else if (hasEnoughPublications && hasThesisSubmitted && avgPublicSkill >= 50) {
-            const phdTypeName = gameState.attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
-            endGame(`Congratulations! You've successfully graduated from your ${phdTypeName} PhD! With ${gameState.skills.publications} publications and a completed thesis, you've met all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is satisfied with your work and you're ready for a career in academia or industry.`);
-        } else if (hasEnoughPublications && hasThesisSubmitted) {
-            const phdTypeName = gameState.attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
-            endGame(`You've graduated from your ${phdTypeName} PhD! With ${gameState.skills.publications} publications and a completed thesis, you've met the basic requirements. Your skills open doors to both academia and industry, though you may need additional training for the most competitive positions.`);
-        } else if (hasEnoughPublications && !hasThesisSubmitted) {
-            endGame(`You've completed your publication requirement with ${gameState.skills.publications} papers, but without a submitted thesis, you cannot graduate. Your contract ends and you leave without a degree.`);
-        } else if (hasThesisSubmitted && !hasEnoughPublications) {
-            endGame(`You've submitted your thesis, but with only ${gameState.skills.publications} publications (required: ${requiredPublications}), you don't meet the publication requirement. Without sufficient publications, you cannot graduate.`);
+        if (hasEnoughPublications && hasThesisSubmitted) {
+            // Player graduated - show career selection
+            showCareerSelection();
         } else {
-            endGame(`Your PhD journey has ended. With ${gameState.skills.publications} publications (required: ${requiredPublications}) and no thesis submitted, you have not met the graduation requirements. Your contract ends without a degree.`);
+            // Player did not meet requirements - show failure ending
+            showGraduationFailure();
         }
         return;
     }
@@ -500,6 +513,95 @@ function continueNormalFlow() {
     // Load next episode
     loadEpisode(gameState.currentEpisode);
     updateSkillsDisplay();
+}
+
+// Show career selection screen
+function showCareerSelection() {
+    gameState.gameActive = false;
+    gameScreen.classList.add('hidden');
+    outcomeDisplay.classList.add('hidden');
+    endScreen.classList.add('hidden');
+    yearProgressContainer.classList.add('hidden');
+    careerSelectionScreen.classList.remove('hidden');
+}
+
+// Handle career selection
+function handleCareerSelection(careerId) {
+    gameState.careerSelected = careerId;
+    
+    // Get the career outcome based on skills
+    const outcome = getCareerOutcome(careerId, gameState.skills, gameState.attributes);
+    gameState.careerOutcome = outcome;
+    
+    // Hide career selection and show outcome
+    careerSelectionScreen.classList.add('hidden');
+    careerOutcomeScreen.classList.remove('hidden');
+    
+    // Display the outcome
+    displayCareerOutcome(outcome);
+}
+
+// Display the career outcome
+function displayCareerOutcome(outcome) {
+    const career = outcome.career;
+    const tier = outcome.tier;
+    const result = outcome.outcomes[0];
+    
+    // Set title
+    careerOutcomeTitle.textContent = `${career.icon} ${result.title}`;
+    
+    // Build content
+    let contentHTML = `
+        <div class="career-outcome-details">
+            <p><strong>Career Path:</strong> ${career.name}</p>
+            <p><strong>Success Level:</strong> <span class="tier-${tier}">${tier.charAt(0).toUpperCase() + tier.slice(1)}</span></p>
+            <div class="career-description">
+                ${result.description}
+            </div>
+            <div class="career-stats">
+                <p><strong>Salary:</strong> ${result.salary}</p>
+                <p><strong>Timeline:</strong> ${result.timeline}</p>
+                <p><strong>Satisfaction:</strong> ${result.satisfaction}</p>
+            </div>
+        </div>
+    `;
+    
+    // Add final summary
+    contentHTML += `
+        <div class="final-summary">
+            <h3>Your PhD Journey Summary</h3>
+            <p>After ${gameState.attributes.programLength} years of hard work, you've completed your PhD with:</p>
+            <ul>
+                <li><strong>Publications:</strong> ${gameState.skills.publications}</li>
+                <li><strong>Research Progress:</strong> ${gameState.skills.researchProgress}</li>
+                <li><strong>Writing Skill:</strong> ${gameState.skills.writing}</li>
+                <li><strong>Teaching Skill:</strong> ${gameState.skills.teaching}</li>
+                <li><strong>Networking:</strong> ${gameState.skills.networking}</li>
+            </ul>
+        </div>
+    `;
+    
+    careerOutcomeContent.innerHTML = contentHTML;
+}
+
+// Show graduation failure (didn't meet requirements)
+function showGraduationFailure() {
+    const requiredPublications = gameState.attributes.programLength || 3;
+    const phdTypeName = gameState.attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+    
+    let message = '';
+    
+    if (!gameState.thesisSubmitted && gameState.skills.publications < requiredPublications) {
+        message = `Your PhD journey has ended without graduation. With ${gameState.skills.publications} publications (required: ${requiredPublications}) and no thesis submitted, you have not met the requirements. Your contract ends without a degree.`;
+    } else if (!gameState.thesisSubmitted) {
+        message = `You've completed your publication requirement with ${gameState.skills.publications} papers, but without a submitted thesis, you cannot graduate. Your contract ends and you leave without a degree.`;
+    } else if (gameState.skills.publications < requiredPublications) {
+        message = `You've submitted your thesis, but with only ${gameState.skills.publications} publications (required: ${requiredPublications}), you don't meet the publication requirement. Without sufficient publications, you cannot graduate.`;
+    } else {
+        message = `Your PhD journey has ended. With ${gameState.skills.publications} publications (required: ${requiredPublications}) and no thesis submitted, you have not met the graduation requirements. Your contract ends without a degree.`;
+    }
+    
+    endGame(message);
 }
 
 // Update skills display - only show public skills
@@ -531,6 +633,8 @@ function endGame(message) {
     gameState.inWarningEpisode = false;
     gameScreen.classList.add('hidden');
     outcomeDisplay.classList.add('hidden');
+    careerSelectionScreen.classList.add('hidden');
+    careerOutcomeScreen.classList.add('hidden');
     endScreen.classList.remove('hidden');
     yearProgressContainer.classList.add('hidden');
     
@@ -543,6 +647,8 @@ function restartGame() {
     // Show welcome screen again
     endScreen.classList.add('hidden');
     gameScreen.classList.add('hidden');
+    careerSelectionScreen.classList.add('hidden');
+    careerOutcomeScreen.classList.add('hidden');
     welcomeScreen.classList.remove('hidden');
     
     // Reset character selection
@@ -558,12 +664,15 @@ function restartGame() {
     gameState.attributes = { gender: null, origin: null, phdType: null, programLength: 3 };
     gameState.thesisSubmitted = false;
     gameState.inWarningEpisode = false;
+    gameState.careerSelected = null;
+    gameState.careerOutcome = null;
 }
 
 // Event listeners
 welcomeStartBtn.addEventListener('click', startGameFromWelcome);
 restartBtn.addEventListener('click', restartGame);
 continueBtn.addEventListener('click', continueAfterOutcome);
+careerOutcomeContinueBtn.addEventListener('click', restartGame);
 
 // Initial setup
 updateSkillsDisplay();
