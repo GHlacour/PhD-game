@@ -139,6 +139,7 @@ To test the game:
 - Use descriptive commit messages
 - Reference issue numbers when applicable
 - Keep commits atomic and focused
+- **Update version number in index.html footer after every commit** (e.g., from 0.0.11 to 0.0.12)
 
 ## Future Enhancements
 
