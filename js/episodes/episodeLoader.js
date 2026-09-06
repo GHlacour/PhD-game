@@ -196,20 +196,30 @@ export function getEvaluationEpisode(year, totalYears, attributes = {}) {
         const episode = earlyEvaluationEpisodes[0];
         return { ...episode, phase: 'early', year, isFinalEvaluation: false };
     }
-    // Year 2 evaluation is mid phase
-    else if (year === 2) {
+    // Year 2 or Year 3 evaluation (for 4-year PhD) is mid phase
+    // Override the title and description to reflect the actual year
+    else if (year === 2 || year === 3) {
         const episode = midEvaluationEpisodes[0];
-        return { ...episode, phase: 'mid', year, isFinalEvaluation: false };
-    }
-    // Year 3 evaluation for 4-year PhD - use mid phase evaluation
-    else if (year === 3 && totalYears === 4) {
-        const episode = midEvaluationEpisodes[0];
-        return { ...episode, phase: 'mid', year, isFinalEvaluation: false };
+        return { 
+            ...episode, 
+            phase: 'mid', 
+            year, 
+            isFinalEvaluation: false,
+            title: `Year ${year} Evaluation Meeting`,
+            description: `It's the end of Year ${year}. Time for your annual evaluation meeting with your advisor. Your research should be well advanced.`
+        };
     }
     // Any other year (shouldn't happen with current setup)
     else {
         const episode = midEvaluationEpisodes[0];
-        return { ...episode, phase: 'mid', year, isFinalEvaluation: false };
+        return { 
+            ...episode, 
+            phase: 'mid', 
+            year, 
+            isFinalEvaluation: false,
+            title: `Year ${year} Evaluation Meeting`,
+            description: `It's the end of Year ${year}. Time for your annual evaluation meeting with your advisor. Your research should be well advanced.`
+        };
     }
 }
 
