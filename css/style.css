@@ -491,15 +491,14 @@ footer {
 }
 
 .career-options {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
-    justify-content: center;
-    margin-bottom: 30px;
+    max-width: 800px;
+    margin: 0 auto 30px;
 }
 
 .career-card {
-    width: 280px;
     padding: 25px;
     background-color: #fff;
     border-radius: 10px;

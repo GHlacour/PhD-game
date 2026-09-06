@@ -1,3 +1,17 @@
+// Skill display names mapping
+export const SKILL_DISPLAY_NAMES = {
+    researchProgress: 'Research',
+    publications: 'Publications',
+    writing: 'Writing',
+    teaching: 'Teaching',
+    networking: 'Networking',
+    reputation: 'Reputation',
+    stress: 'Stress',
+    motivation: 'Motivation',
+    advisorRelationship: 'Advisor Relationship',
+    personalLife: 'Personal Life'
+};
+
 // Career Selection Module
 // Handles the career choice screen and outcomes after PhD completion
 
@@ -7,7 +21,7 @@ const CAREER_PATHS = {
         id: 'teacher',
         name: 'Teacher / Educator',
         description: 'Pursue a career in education, teaching the next generation of students at a university or college.',
-        icon: '🎓',
+        icon: '\ud83c\udf93',
         primarySkills: ['teaching', 'networking', 'writing'],
         secondarySkills: ['researchProgress', 'publications'],
         requiredThresholds: {
@@ -22,7 +36,7 @@ const CAREER_PATHS = {
         id: 'academic',
         name: 'Academic Researcher',
         description: 'Continue in academia as a postdoc, research scientist, or professor, conducting cutting-edge research.',
-        icon: '🔬',
+        icon: '\ud83d\udd2c',
         primarySkills: ['publications', 'researchProgress', 'writing', 'reputation'],
         secondarySkills: ['teaching', 'networking'],
         requiredThresholds: {
@@ -37,7 +51,7 @@ const CAREER_PATHS = {
         id: 'industry',
         name: 'R&D Industry',
         description: 'Join industry as a research scientist, engineer, or data scientist in a company\'s R&D department.',
-        icon: '🏭',
+        icon: '\ud83c\udfed',
         primarySkills: ['researchProgress', 'networking', 'writing'],
         secondarySkills: ['publications', 'teaching'],
         requiredThresholds: {
@@ -47,6 +61,21 @@ const CAREER_PATHS = {
             struggle: { researchProgress: 0, networking: 0, writing: 0 }
         },
         image: 'assets/images/career_industry.jpg'
+    },
+    consultancy: {
+        id: 'consultancy',
+        name: 'Consultant',
+        description: 'Work as a consultant, providing expert advice to businesses, governments, or organizations in your field of expertise.',
+        icon: '\ud83d\udcbc',
+        primarySkills: ['networking', 'writing', 'reputation'],
+        secondarySkills: ['researchProgress', 'teaching', 'publications'],
+        requiredThresholds: {
+            immediate: { networking: 60, writing: 50, reputation: 50 },
+            good: { networking: 40, writing: 40, reputation: 30 },
+            acceptable: { networking: 25, writing: 25, reputation: 15 },
+            struggle: { networking: 0, writing: 0, reputation: 0 }
+        },
+        image: 'assets/images/career_consultancy.jpg'
     }
 };
 
@@ -109,6 +138,8 @@ function getOutcomesForCareer(careerId, tier, skills, attributes) {
             return getAcademicOutcomes(tier, skills, attributes);
         case 'industry':
             return getIndustryOutcomes(tier, skills, attributes);
+        case 'consultancy':
+            return getConsultancyOutcomes(tier, skills, attributes);
         default:
             return [];
     }
@@ -169,7 +200,7 @@ function getAcademicOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Prestigious Postdoc at Top Institution!',
-                    description: `Your exceptional publication record (${skills.publications} papers) and strong research progress (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is a key step toward a tenure-track faculty position.`,
+                    description: `Your exceptional publication record (${skills.publications} papers) and strong research (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is a key step toward a tenure-track faculty position.`,
                     salary: 'Competitive postdoc salary with research funding',
                     timeline: 'Start in 2 months',
                     satisfaction: 'Very High'
@@ -216,7 +247,7 @@ function getIndustryOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Senior Research Scientist at Top Tech Company!',
-                    description: `Your strong research background (${skills.researchProgress}) and excellent networking skills (${skills.networking}) land you a senior research scientist position at a leading technology company. They value your ${phdType} expertise and your ability to communicate complex ideas (writing: ${skills.writing}). The salary and benefits are excellent, and you have opportunities for rapid advancement.`,
+                    description: `Your strong research (${skills.researchProgress}) and excellent networking skills (${skills.networking}) land you a senior research scientist position at a leading technology company. They value your ${phdType} expertise and your ability to communicate complex ideas (writing: ${skills.writing}). The salary and benefits are excellent, and you have opportunities for rapid advancement.`,
                     salary: 'High industry salary with stock options',
                     timeline: 'Start in 1-2 months',
                     satisfaction: 'Very High'
@@ -246,13 +277,70 @@ function getIndustryOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Difficult Transition to Industry',
-                    description: `With limited research progress (${skills.researchProgress}) and weak networking (${skills.networking}), you struggle to find research positions in industry. Companies want proven skills and connections. You may need to consider non-research roles, take a lower-level position, or gain additional qualifications. The PhD doesn't guarantee industry success without the right complementary skills.`,
+                    description: `With limited research (${skills.researchProgress}) and weak networking (${skills.networking}), you struggle to find research positions in industry. Companies want proven skills and connections. You may need to consider non-research roles, take a lower-level position, or gain additional qualifications. The PhD doesn't guarantee industry success without the right complementary skills.`,
                     salary: 'Entry-level or below expectations',
                     timeline: '6-12 months of challenging job search',
                     satisfaction: 'Low - questioning PhD value in industry'
                 }
             ];
     }
+}
+
+function getConsultancyOutcomes(tier, skills, attributes) {
+    const phdType = attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+    
+    switch (tier) {
+        case 'immediate':
+            return [
+                {
+                    title: 'Senior Consultant at Top Firm!',
+                    description: `Your excellent networking (${skills.networking}) and strong reputation (${skills.reputation}) land you a senior consultant position at a prestigious consulting firm. Your ability to communicate complex ideas (writing: ${skills.writing}) and your ${phdType} expertise make you a valuable asset to clients. You'll work on high-impact projects with major organizations.`,
+                    salary: 'High consulting salary with bonuses',
+                    timeline: 'Start in 1-2 months',
+                    satisfaction: 'Very High'
+                }
+            ];
+        case 'good':
+            return [
+                {
+                    title: 'Consultant Position',
+                    description: `With your solid networking (${skills.networking}) and good writing skills (${skills.writing}), you secure a consultant position at a respected firm. You'll advise clients on ${phdType} challenges and help them implement solutions. The work is varied and intellectually stimulating, with good travel opportunities.`,
+                    salary: 'Good consulting salary',
+                    timeline: 'Start in 2-3 months',
+                    satisfaction: 'High'
+                }
+            ];
+        case 'acceptable':
+            return [
+                {
+                    title: 'Junior Consultant / Analyst',
+                    description: `Your networking (${skills.networking}) and writing skills (${skills.writing}) get you a junior consultant or analyst position. You'll support senior consultants on client projects. The salary is decent and you'll gain valuable experience, though you may need to work long hours to prove yourself.`,
+                    salary: 'Modest starting salary with potential bonuses',
+                    timeline: 'Start in 1-2 months',
+                    satisfaction: 'Moderate - good learning experience'
+                }
+            ];
+        case 'struggle':
+            return [
+                {
+                    title: 'Difficult Entry into Consulting',
+                    description: `With limited networking (${skills.networking}) and weak reputation (${skills.reputation}), you struggle to find consulting positions. Firms want consultants with strong connections and communication skills. You may need to start in a support role, gain industry experience first, or build your professional network before attempting consulting again.`,
+                    salary: 'Entry-level or below expectations',
+                    timeline: '6-12 months of challenging job search',
+                    satisfaction: 'Low - need to build credentials'
+                }
+            ];
+    }
+}
+
+// Get career path by ID
+export function getCareerPath(careerId) {
+    return CAREER_PATHS[careerId];
+}
+
+// Get all career paths
+export function getAllCareerPaths() {
+    return CAREER_PATHS;
 }
 
 // Create the career selection screen
@@ -268,63 +356,33 @@ export function createCareerSelectionScreen(onSelect) {
                 Congratulations on completing your PhD! Now it's time to decide what comes next. 
                 Your skills and achievements will influence your success in each path.
             </p>
-            <div class="career-options" id="career-options">
-                <!-- Career options will be added dynamically -->
+            <div class="career-options">
+                ${Object.values(CAREER_PATHS).map(career => `
+                    <div class="career-card" data-career-id="${career.id}">
+                        <div class="career-icon">${career.icon}</div>
+                        <h3>${career.name}</h3>
+                        <p>${career.description}</p>
+                        <div class="career-requirements">
+                            <strong>Primary Skills:</strong> ${career.primarySkills.map(s => SKILL_DISPLAY_NAMES[s] || s).join(', ')}
+                        </div>
+                    </div>
+                `).join('')}
             </div>
         </div>
     `;
     
-    const optionsContainer = screen.querySelector('#career-options');
-    
-    // Add each career path as a selectable card
-    Object.values(CAREER_PATHS).forEach(career => {
-        const card = document.createElement('div');
-        card.className = 'career-card';
-        card.dataset.careerId = career.id;
-        
-        card.innerHTML = `
-            <div class="career-icon">${career.icon}</div>
-            <h3 class="career-name">${career.name}</h3>
-            <p class="career-description">${career.description}</p>
-            <div class="career-requirements">
-                <strong>Key Skills:</strong> ${career.primarySkills.join(', ')}
-            </div>
-            <button class="btn career-select-btn">Select This Path</button>
-        `;
-        
-        // Set background image if available
-        if (career.image) {
-            card.style.backgroundImage = `url('${career.image}')`;
-            card.style.backgroundSize = 'cover';
-            card.style.backgroundPosition = 'center';
-        }
-        
-        card.querySelector('.career-select-btn').addEventListener('click', () => {
-            onSelect(career.id);
+    // Add event listeners to career cards
+    screen.querySelectorAll('.career-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const careerId = card.dataset.careerId;
+            onSelect(careerId);
         });
-        
-        card.addEventListener('click', (e) => {
-            // Only trigger if clicking on the card itself, not the button
-            if (e.target === card || e.target.classList.contains('career-icon') || 
-                e.target.classList.contains('career-name') || 
-                e.target.classList.contains('career-description') ||
-                e.target.classList.contains('career-requirements')) {
-                onSelect(career.id);
-            }
-        });
-        
-        optionsContainer.appendChild(card);
     });
     
     return screen;
 }
 
-// Get all career paths
-export function getAllCareerPaths() {
-    return CAREER_PATHS;
-}
-
-// Get career path by ID
-export function getCareerPath(careerId) {
-    return CAREER_PATHS[careerId];
+// Helper function to format skill display names
+export function getSkillDisplayName(skillKey) {
+    return SKILL_DISPLAY_NAMES[skillKey] || skillKey;
 }

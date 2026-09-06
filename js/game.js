@@ -4,7 +4,7 @@
 import { generateGameSequence, preloadMedia, getTotalEpisodes } from './episodes/episodeLoader.js';
 import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS, PHD_TYPE_OPTIONS } from './characterSelection.js';
 import { checkForWarningEpisode, preloadWarningMedia } from './episodes/warnings/warningLoader.js';
-import { createCareerSelectionScreen, getCareerOutcome, getCareerPath } from './careerSelection.js';
+import { createCareerSelectionScreen, getCareerOutcome, getCareerPath, SKILL_DISPLAY_NAMES } from './careerSelection.js';
 
 // Game state
 const gameState = {
@@ -573,7 +573,7 @@ function displayCareerOutcome(outcome) {
             <p>After ${gameState.attributes.programLength} years of hard work, you've completed your PhD with:</p>
             <ul>
                 <li><strong>Publications:</strong> ${gameState.skills.publications}</li>
-                <li><strong>Research Progress:</strong> ${gameState.skills.researchProgress}</li>
+                <li><strong>Research:</strong> ${gameState.skills.researchProgress}</li>
                 <li><strong>Writing Skill:</strong> ${gameState.skills.writing}</li>
                 <li><strong>Teaching Skill:</strong> ${gameState.skills.teaching}</li>
                 <li><strong>Networking:</strong> ${gameState.skills.networking}</li>
@@ -604,6 +604,15 @@ function showGraduationFailure() {
     endGame(message);
 }
 
+// Skill display names mapping
+const SKILL_DISPLAY_NAMES = {
+    researchProgress: 'Research',
+    publications: 'Publications',
+    writing: 'Writing',
+    teaching: 'Teaching',
+    networking: 'Networking'
+};
+
 // Update skills display - only show public skills
 function updateSkillsDisplay() {
     skillsDisplay.innerHTML = '';
@@ -615,7 +624,7 @@ function updateSkillsDisplay() {
         
         const skillName = document.createElement('div');
         skillName.className = 'skill-name';
-        skillName.textContent = skill.charAt(0).toUpperCase() + skill.slice(1);
+        skillName.textContent = SKILL_DISPLAY_NAMES[skill] || skill.charAt(0).toUpperCase() + skill.slice(1);
         
         const skillValue = document.createElement('div');
         skillValue.className = 'skill-value';
