@@ -1,7 +1,7 @@
 // PhD Life Game - Main JavaScript
 // Using ES modules for episode loading
 
-import { generateGameSequence } from './episodes/episodeLoader.js';
+import { generateGameSequence, preloadMedia } from './episodes/episodeLoader.js';
 
 // Game state
 const gameState = {
@@ -42,6 +42,47 @@ const skillsDisplay = document.getElementById('skills-display');
 const endTitle = document.getElementById('end-title');
 const endDescription = document.getElementById('end-description');
 
+// DOM element for outcome display
+const outcomeDisplay = document.createElement('div');
+outcomeDisplay.id = 'outcome-display';
+outcomeDisplay.className = 'outcome-container hidden';
+outcomeDisplay.innerHTML = '<h3>Outcome</h3><p id="outcome-text"></p><button id="continue-btn" class="btn">Continue</button>';
+document.querySelector('main').appendChild(outcomeDisplay);
+
+const outcomeText = document.getElementById('outcome-text');
+const continueBtn = document.getElementById('continue-btn');
+
+// DOM element for episode image
+const episodeImageContainer = document.createElement('div');
+episodeImageContainer.id = 'episode-image-container';
+episodeImageContainer.className = 'episode-image-container';
+episodeImageContainer.innerHTML = '<img id="episode-image" src="" alt="Episode Image">';
+document.querySelector('.episode-container').prepend(episodeImageContainer);
+
+const episodeImage = document.getElementById('episode-image');
+
+// Audio context for sound effects
+let audioContext = null;
+let currentAudio = null;
+
+function playSound(soundPath) {
+    if (!soundPath) return;
+    
+    // Create audio context on first use
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    
+    // Stop current sound if playing
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    
+    currentAudio = new Audio(soundPath);
+    currentAudio.play().catch(e => console.log('Audio playback failed:', e));
+}
+
 // Initialize the game
 async function initGame() {
     gameState.currentEpisode = 0;
@@ -67,6 +108,7 @@ async function initGame() {
     // Hide screens
     startScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
+    outcomeDisplay.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     
     // Load first episode
@@ -97,6 +139,19 @@ function loadEpisode(episodeIndex) {
     episodeTitle.textContent = title;
     episodeDescription.textContent = episode.description;
     
+    // Set episode image
+    if (episode.image) {
+        episodeImage.src = episode.image;
+        episodeImageContainer.classList.remove('hidden');
+    } else {
+        episodeImageContainer.classList.add('hidden');
+    }
+    
+    // Play episode sound
+    if (episode.sound) {
+        playSound(episode.sound);
+    }
+    
     // Clear previous choices
     choicesContainer.innerHTML = '';
     
@@ -105,17 +160,38 @@ function loadEpisode(episodeIndex) {
         const choiceBtn = document.createElement('button');
         choiceBtn.className = 'choice-btn';
         choiceBtn.textContent = choice.text;
-        choiceBtn.addEventListener('click', () => selectChoice(choice));
+        choiceBtn.addEventListener('click', () => selectChoice(choice, episode));
         choicesContainer.appendChild(choiceBtn);
     });
 }
 
 // Handle choice selection
-function selectChoice(choice) {
+function selectChoice(choice, episode) {
     // Apply skill changes
     for (const [skill, change] of Object.entries(choice.effects)) {
         gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
     }
+    
+    // Get outcome text based on skills
+    let outcomeTextContent = '';
+    if (choice.getOutcome) {
+        outcomeTextContent = choice.getOutcome(gameState.skills);
+    } else {
+        outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
+    }
+    
+    // Show outcome
+    outcomeText.textContent = outcomeTextContent;
+    outcomeDisplay.classList.remove('hidden');
+    gameScreen.classList.add('hidden');
+    
+    updateSkillsDisplay();
+}
+
+// Continue after outcome is displayed
+function continueAfterOutcome() {
+    outcomeDisplay.classList.add('hidden');
+    gameScreen.classList.remove('hidden');
     
     // Check for game over conditions
     if (gameState.skills.stress >= 100) {
@@ -200,6 +276,7 @@ function updateSkillsDisplay() {
 function endGame(message) {
     gameState.gameActive = false;
     gameScreen.classList.add('hidden');
+    outcomeDisplay.classList.add('hidden');
     endScreen.classList.remove('hidden');
     
     endTitle.textContent = "Game Over";
@@ -214,6 +291,8 @@ function restartGame() {
 // Event listeners
 startBtn.addEventListener('click', initGame);
 restartBtn.addEventListener('click', restartGame);
+continueBtn.addEventListener('click', continueAfterOutcome);
 
 // Initial setup
 updateSkillsDisplay();
+preloadMedia();

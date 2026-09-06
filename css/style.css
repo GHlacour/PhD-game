@@ -72,6 +72,23 @@ header h1 {
     color: #34495e;
 }
 
+/* Episode image styling */
+.episode-image-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.episode-image-container.hidden {
+    display: none;
+}
+
+#episode-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Choices container */
 .choices-container {
     display: flex;
@@ -158,6 +175,39 @@ header h1 {
     background-color: #27ae60;
 }
 
+/* Outcome display styling */
+.outcome-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.outcome-container.hidden {
+    display: none;
+}
+
+.outcome-container h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+#outcome-text {
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #34495e;
+    margin-bottom: 30px;
+    min-height: 100px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    border-left: 4px solid #3498db;
+}
+
 /* End screen */
 #end-screen {
     text-align: center;
@@ -202,6 +252,19 @@ footer {
     #skills-display {
         flex-direction: column;
         align-items: center;
+    }
+    
+    #episode-image {
+        max-height: 200px;
+    }
+    
+    .outcome-container {
+        padding: 20px;
+    }
+    
+    #outcome-text {
+        font-size: 1em;
+        min-height: 80px;
     }
 }
 

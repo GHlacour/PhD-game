@@ -46,6 +46,8 @@ PhD-game/
    export const episodeN = {
        title: "Episode N: Title",
        description: "Brief description of the situation",
+       image: "assets/images/filename.jpg",        // Optional
+       sound: "assets/sounds/filename.mp3",        // Optional
        choices: [
            {
                text: "Choice text",
@@ -60,6 +62,15 @@ PhD-game/
                    advisorRelationship: ±X,
                    reputation: ±X,
                    personalLife: ±X
+               },
+               getOutcome: (skills) => {           // Optional
+                   if (skills.researchProgress >= 30) {
+                       return "Positive outcome with high skills";
+                   } else if (skills.researchProgress >= 15) {
+                       return "Moderate outcome";
+                   } else {
+                       return "Negative outcome with low skills";
+                   }
                }
            },
            // Two more choices...
@@ -67,6 +78,7 @@ PhD-game/
    };
    ```
 4. **Update Loader**: Add import and export in `js/episodes/episodeLoader.js`
+5. **All 10 Skills**: Each choice must affect all 10 skills (5 public + 5 hidden)
 
 ### Episode Design Principles
 
@@ -74,19 +86,26 @@ PhD-game/
 - **Mid PhD**: Focus on challenges, collaboration, growing independence
 - **Late PhD**: Focus on completion, job searching, legacy building
 
-### Public vs Hidden Skills
-- **Public Skills** (visible to player): Research Progress, Publications, Writing, Teaching, Networking
-- **Hidden Skills** (invisible to player): Stress, Motivation, Advisor Relationship, Reputation, Personal Life
+### Episode Features
 
-### Skill Balance Guidelines
+Each episode can include:
+- **Image**: Visual representation (path in `image` field)
+- **Sound**: Background sound or effect (path in `sound` field)
+- **Dynamic Outcomes**: Each choice can have a `getOutcome` function that returns different text based on current skill levels
+
+### Skill Balance
+
 - Research Progress and Publications should generally increase over time
 - Stress typically increases with intense work, decreases with rest
 - Motivation can go up or down based on successes and setbacks
 - Advisor Relationship improves with good communication, worsens with neglect
 - Personal Life suffers from overwork, improves with balance
 
-### Skill Balance
+### Public vs Hidden Skills
+- **Public Skills** (visible to player): Research Progress, Publications, Writing, Teaching, Networking
+- **Hidden Skills** (invisible to player): Stress, Motivation, Advisor Relationship, Reputation, Personal Life
 
+### Skill Balance Guidelines
 - Keep skill changes reasonable (typically -10 to +20)
 - Stress should generally increase with positive actions
 - Ensure choices have meaningful trade-offs
@@ -108,6 +127,9 @@ To test the game:
 4. Verify:
    - All choices work
    - Skills update correctly
+   - Episode images display
+   - Sounds play (if available)
+   - Outcome text appears after choices
    - Episode progression works
    - Ending is determined by final skills
 
@@ -126,3 +148,5 @@ To test the game:
 - Multiple difficulty levels
 - Customizable character/starting skills
 - Achievements system
+- More sophisticated outcome logic
+- Random events between episodes

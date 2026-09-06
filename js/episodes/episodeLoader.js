@@ -13,6 +13,46 @@ import { episode1 as late1 } from './late/episode1.js';
 import { episode2 as late2 } from './late/episode2.js';
 import { episode3 as late3 } from './late/episode3.js';
 
+// Preload images and sounds for better performance
+export function preloadMedia() {
+    const images = [
+        'assets/images/early_phd_start.jpg',
+        'assets/images/literature_review.jpg',
+        'assets/images/experiment.jpg',
+        'assets/images/conference.jpg',
+        'assets/images/midpoint_crisis.jpg',
+        'assets/images/collaboration.jpg',
+        'assets/images/job_applications.jpg',
+        'assets/images/thesis_writing.jpg',
+        'assets/images/defense_prep.jpg'
+    ];
+    
+    const sounds = [
+        'assets/sounds/start_phd.mp3',
+        'assets/sounds/research.mp3',
+        'assets/sounds/experiment.mp3',
+        'assets/sounds/conference.mp3',
+        'assets/sounds/stress.mp3',
+        'assets/sounds/collaboration.mp3',
+        'assets/sounds/job_search.mp3',
+        'assets/sounds/writing.mp3',
+        'assets/sounds/defense.mp3'
+    ];
+    
+    // Preload images
+    images.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+    
+    // Preload sounds (note: browsers may block autoplay, but we can at least cache the files)
+    sounds.forEach(src => {
+        const audio = new Audio();
+        audio.src = src;
+        audio.preload = 'auto';
+    });
+}
+
 // Episode pools by phase
 export const earlyEpisodes = [early1, early2, early3];
 export const midEpisodes = [mid1, mid2, mid3];
