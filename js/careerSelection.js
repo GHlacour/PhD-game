@@ -172,10 +172,10 @@ function getTeacherOutcomes(tier, skills, attributes) {
         case 'acceptable':
             return [
                 {
-                    title: 'Adjunct Professor / Teaching Assistant',
-                    description: `You secure a position as an adjunct professor or senior teaching assistant. While the pay and stability are less than ideal, it's a foot in the door. Your teaching skills (${skills.teaching}) need development, but you have potential. You may need to take on additional coursework or gain more experience before landing a permanent role.`,
-                    salary: 'Modest with limited benefits',
-                    timeline: 'Start immediately but temporary',
+                    title: 'High School Teacher',
+                    description: `You secure a position as a high school teacher. While the pay and stability are modest, it's a stable career path. Your teaching skills (${skills.teaching}) are developing, and you have the opportunity to inspire young students. You may need to take on additional coursework or gain more experience before landing a permanent role.`,
+                    salary: 'Modest with full benefits',
+                    timeline: 'Start immediately',
                     satisfaction: 'Moderate'
                 }
             ];
