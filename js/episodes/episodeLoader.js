@@ -12,6 +12,7 @@ import { episode6 as early6 } from './early/episode6.js';
 import { episode7 as early7 } from './early/episode7.js';
 import { episode8 as early8 } from './early/episode8.js';
 import { episode9 as early9 } from './early/episode9.js';
+import { episode10 as early10 } from './early/episode10.js';
 
 import { episode1 as mid1 } from './mid/episode1.js';
 import { episode2 as mid2 } from './mid/episode2.js';
@@ -20,6 +21,7 @@ import { episode4 as mid4 } from './mid/episode4.js';
 import { episode5 as mid5 } from './mid/episode5.js';
 import { episode6 as mid6 } from './mid/episode6.js';
 import { episode7 as mid7 } from './mid/episode7.js';
+import { episode8 as mid8 } from './mid/episode8.js';
 
 import { episode1 as late1 } from './late/episode1.js';
 import { episode2 as late2 } from './late/episode2.js';
@@ -28,6 +30,7 @@ import { episode4 as late4 } from './late/episode4.js';
 import { episode5 as late5 } from './late/episode5.js';
 import { episode6 as late6 } from './late/episode6.js';
 import { episode7 as late7 } from './late/episode7.js';
+import { episode8 as late8 } from './late/episode8.js';
 
 // Preload images and sounds for better performance
 export function preloadMedia() {
@@ -85,19 +88,19 @@ export function preloadMedia() {
 }
 
 // Episode pools by phase
-export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7, early8, early9];
-export const midEpisodes = [mid1, mid2, mid3, mid4, mid5, mid6, mid7];
-export const lateEpisodes = [late1, late2, late3, late4, late5, late6, late7];
+export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7, early8, early9, early10];
+export const midEpisodes = [mid1, mid2, mid3, mid4, mid5, mid6, mid7, mid8];
+export const lateEpisodes = [late1, late2, late3, late4, late5, late6, late7, late8];
 
 // Separate regular episodes from evaluation episodes
-const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7, early8, early9];
+const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7, early8, early9, early10];
 const earlyEvaluationEpisodes = [early5]; // Year 1 evaluation
 
-const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7];
+const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7, mid8];
 const midEvaluationEpisodes = [mid5]; // Year 2 evaluation
 
 // Late regular episodes (non-final)
-const lateRegularEpisodes = [late1, late2, late3, late4, late6, late7];
+const lateRegularEpisodes = [late1, late2, late3, late4, late6, late7, late8];
 // Final evaluation episode
 const finalEvaluationEpisodes = [late5];
 
