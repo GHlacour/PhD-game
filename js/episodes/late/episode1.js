@@ -26,9 +26,9 @@ export const episode1 = {
                         text: "Your strong publication record and writing skills make your applications stand out! You receive multiple interview requests from prestigious institutions. Your advisor is proud of your success.",
                         effects: {
                             ...effects,
-                            reputation: +15,
-                            motivation: +15,
-                            advisorRelationship: +10,
+                            reputation: +5,
+                            motivation: +5,
+                            advisorRelationship: +5,
                             stress: +15
                         }
                     };
@@ -37,7 +37,7 @@ export const episode1 = {
                         text: "You get a reasonable number of interview requests, but mostly from less competitive positions. Your publication record is good but not exceptional. Your advisor encourages you to aim higher.",
                         effects: {
                             ...effects,
-                            reputation: +10,
+                            reputation: +5,
                             motivation: +5,
                             stress: +15
                         }
@@ -68,7 +68,7 @@ export const episode1 = {
                     stress: +15,
                     motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +10,
+                    reputation: +5,
                     personalLife: -5
                 };
                 
@@ -77,9 +77,9 @@ export const episode1 = {
                         text: "Your targeted approach pays off! Your excellent reputation and strong application materials secure you interviews at your top-choice institutions. Your advisor is thrilled with your success.",
                         effects: {
                             ...effects,
-                            reputation: +15,
-                            motivation: +15,
-                            advisorRelationship: +15,
+                            reputation: +5,
+                            motivation: +5,
+                            advisorRelationship: +5,
                             networking: +15
                         }
                     };
@@ -88,8 +88,8 @@ export const episode1 = {
                         text: "You receive some interview requests from your dream institutions, but not as many as you'd hoped. Your reputation helps, but isn't quite strong enough. Your advisor suggests you expand your search.",
                         effects: {
                             ...effects,
-                            reputation: +10,
-                            motivation: +10,
+                            reputation: +5,
+                            motivation: +5,
                             stress: +15
                         }
                     };
@@ -119,7 +119,7 @@ export const episode1 = {
                     stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +15,
+                    reputation: +5,
                     personalLife: 0
                 };
                 
@@ -129,9 +129,9 @@ export const episode1 = {
                         effects: {
                             ...effects,
                             networking: +15,
-                            reputation: +15,
-                            motivation: +15,
-                            advisorRelationship: +10
+                            reputation: +5,
+                            motivation: +5,
+                            advisorRelationship: +5
                         }
                     };
                 } else if (skills.networking >= 30) {
@@ -140,8 +140,8 @@ export const episode1 = {
                         effects: {
                             ...effects,
                             networking: +15,
-                            reputation: +10,
-                            motivation: +10
+                            reputation: +5,
+                            motivation: +5
                         }
                     };
                 } else {

@@ -17,7 +17,7 @@ export const episode1 = {
                     stress: +15,
                     motivation: -10,
                     advisorRelationship: +5,
-                    reputation: +10,
+                    reputation: +5,
                     personalLife: -15
                 };
                 
@@ -27,7 +27,7 @@ export const episode1 = {
                         effects: {
                             ...effects,
                             publications: +1,
-                            reputation: +15,
+                            reputation: +5,
                             networking: +15,
                             researchProgress: -15
                         }
@@ -64,7 +64,7 @@ export const episode1 = {
                     stress: +5,
                     motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +10,
+                    reputation: +5,
                     personalLife: 0
                 };
                 
@@ -74,7 +74,7 @@ export const episode1 = {
                         effects: {
                             ...effects,
                             networking: +15,
-                            reputation: +15,
+                            reputation: +5,
                             researchProgress: +10,
                             publications: +1
                         }

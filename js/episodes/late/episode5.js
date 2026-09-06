@@ -20,9 +20,9 @@ export const episode5 = {
                     teaching: 0,
                     networking: +5,
                     stress: -20,
-                    motivation: +15,
-                    advisorRelationship: +15,
-                    reputation: +15,
+                    motivation: +5,
+                    advisorRelationship: +5,
+                    reputation: +5,
                     personalLife: +10
                 };
                 
@@ -31,9 +31,9 @@ export const episode5 = {
                         text: `CONGRATULATIONS! Your thesis is accepted for examination! With ${skills.publications} publications and strong research progress, your advisor is extremely proud. You've successfully met all requirements for graduation. Your hard work and dedication have paid off!`,
                         effects: {
                             ...effects,
-                            reputation: +15,
-                            advisorRelationship: +15,
-                            motivation: +15,
+                            reputation: +5,
+                            advisorRelationship: +5,
+                            motivation: +5,
                             thesisSubmitted: true
                         }
                     };
@@ -83,9 +83,9 @@ export const episode5 = {
                     teaching: 0,
                     networking: +5,
                     stress: +10,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +10,
+                    reputation: +5,
                     personalLife: -5
                 };
                 
@@ -95,8 +95,8 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: +1,
-                            reputation: +15,
-                            advisorRelationship: +10,
+                            reputation: +5,
+                            advisorRelationship: +5,
                             thesisSubmitted: true
                         }
                     };
@@ -145,7 +145,7 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             stress: -20,
-                            motivation: +15,
+                            motivation: +5,
                             advisorRelationship: -5,
                             thesisSubmitted: false
                         }

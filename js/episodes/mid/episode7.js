@@ -27,7 +27,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             stress: -25,
-                            motivation: +15,
+                            motivation: +5,
                             personalLife: +15,
                             researchProgress: -2,
                             advisorRelationship: 0
@@ -40,7 +40,7 @@ export const episode7 = {
                             ...effects,
                             stress: -18,
                             personalLife: +18,
-                            motivation: +10,
+                            motivation: +5,
                             advisorRelationship: -5
                         }
                     };
@@ -134,7 +134,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             stress: -30,
-                            motivation: +15,
+                            motivation: +5,
                             personalLife: +15,
                             researchProgress: +8,
                             advisorRelationship: +8
@@ -146,7 +146,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             stress: -25,
-                            motivation: +15,
+                            motivation: +5,
                             personalLife: +18,
                             researchProgress: +5
                         }
@@ -157,7 +157,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             stress: -15,
-                            motivation: +10,
+                            motivation: +5,
                             personalLife: +12
                         }
                     };

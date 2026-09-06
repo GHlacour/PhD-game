@@ -18,9 +18,9 @@ export const episode4 = {
                     teaching: 0,
                     networking: +5,
                     stress: +15,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +10,
+                    reputation: +5,
                     personalLife: -20
                 };
                 
@@ -30,8 +30,8 @@ export const episode4 = {
                         effects: {
                             ...effects,
                             researchProgress: -20,
-                            reputation: +15,
-                            advisorRelationship: +10,
+                            reputation: +5,
+                            advisorRelationship: +5,
                             publications: +1
                         }
                     };
@@ -68,7 +68,7 @@ export const episode4 = {
                     teaching: 0,
                     networking: +5,
                     stress: -15,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
                     personalLife: +15
@@ -81,7 +81,7 @@ export const episode4 = {
                             ...effects,
                             researchProgress: +10,
                             personalLife: +15,
-                            motivation: +15,
+                            motivation: +5,
                             stress: -20
                         }
                     };
@@ -114,9 +114,9 @@ export const episode4 = {
                     teaching: 0,
                     networking: +15,
                     stress: -10,
-                    motivation: +15,
+                    motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +10,
+                    reputation: +5,
                     personalLife: +10
                 };
                 
@@ -126,8 +126,8 @@ export const episode4 = {
                         effects: {
                             ...effects,
                             networking: +15,
-                            reputation: +15,
-                            motivation: +15,
+                            reputation: +5,
+                            motivation: +5,
                             personalLife: +15
                         }
                     };
@@ -137,7 +137,7 @@ export const episode4 = {
                         effects: {
                             ...effects,
                             networking: +15,
-                            motivation: +15
+                            motivation: +5
                         }
                     };
                 } else {
@@ -146,7 +146,7 @@ export const episode4 = {
                         effects: {
                             ...effects,
                             networking: +10,
-                            motivation: +10,
+                            motivation: +5,
                             personalLife: +5
                         }
                     };

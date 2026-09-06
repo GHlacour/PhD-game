@@ -30,7 +30,7 @@ export const episode8 = {
                             writing: +5,
                             advisorRelationship: +8,
                             stress: -5,
-                            motivation: +10
+                            motivation: +5
                         }
                     };
                 } else if (skills.advisorRelationship >= 50) {
@@ -138,9 +138,9 @@ export const episode8 = {
                             researchProgress: +12,
                             writing: +12,
                             networking: +12,
-                            reputation: +10,
+                            reputation: +5,
                             stress: -10,
-                            motivation: +15,
+                            motivation: +5,
                             advisorRelationship: -2
                         }
                     };

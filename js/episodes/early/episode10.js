@@ -68,7 +68,7 @@ export const episode10 = {
                     networking: +5,
                     stress: -10,
                     motivation: +8,
-                    advisorRelationship: +10,
+                    advisorRelationship: +5,
                     reputation: +5,
                     personalLife: +5
                 };
@@ -78,9 +78,9 @@ export const episode10 = {
                         text: "Your advisor appreciates your honesty and professionalism! They work with you to create a more realistic plan that accounts for the complexities of your research. The pressure lifts significantly.",
                         effects: {
                             ...effects,
-                            advisorRelationship: +15,
+                            advisorRelationship: +5,
                             stress: -20,
-                            motivation: +15,
+                            motivation: +5,
                             researchProgress: +8,
                             reputation: +8
                         }
@@ -118,7 +118,7 @@ export const episode10 = {
                     teaching: 0,
                     networking: +3,
                     stress: +5,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +8,
                     reputation: +5,
                     personalLife: -3
@@ -134,7 +134,7 @@ export const episode10 = {
                             advisorRelationship: +12,
                             reputation: +8,
                             stress: 0,
-                            motivation: +15
+                            motivation: +5
                         }
                     };
                 } else if (skills.researchProgress >= 20) {
@@ -143,7 +143,7 @@ export const episode10 = {
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            advisorRelationship: +10,
+                            advisorRelationship: +5,
                             stress: +3
                         }
                     };

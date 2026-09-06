@@ -17,9 +17,9 @@ export const episode11 = {
                     teaching: 0,
                     networking: +5,
                     stress: +10,
-                    motivation: +10,
-                    advisorRelationship: +15,
-                    reputation: +10,
+                    motivation: +5,
+                    advisorRelationship: +5,
+                    reputation: +5,
                     personalLife: 0
                 }
             }
@@ -36,7 +36,7 @@ export const episode11 = {
                     networking: +3,
                     stress: +5,
                     motivation: +8,
-                    advisorRelationship: +10,
+                    advisorRelationship: +5,
                     reputation: +8,
                     personalLife: 0
                 }

@@ -29,8 +29,8 @@ export const episode4 = {
                                 ...effects,
                                 researchProgress: +15,
                                 writing: +10,
-                                motivation: +15,
-                                advisorRelationship: +10,
+                                motivation: +5,
+                                advisorRelationship: +5,
                                 stress: +10
                             }
                         };
@@ -80,10 +80,10 @@ export const episode4 = {
                             effects: {
                                 ...effects,
                                 researchProgress: +15,
-                                motivation: +15,
-                                advisorRelationship: +10,
+                                motivation: +5,
+                                advisorRelationship: +5,
                                 stress: +10,
-                                reputation: +10
+                                reputation: +5
                             }
                         };
                     } else {
@@ -120,7 +120,7 @@ export const episode4 = {
                     teaching: 0,
                     networking: +10,
                     stress: +5,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
                     personalLife: 0
@@ -133,8 +133,8 @@ export const episode4 = {
                             ...effects,
                             researchProgress: +15,
                             networking: +10,
-                            reputation: +10,
-                            advisorRelationship: +10
+                            reputation: +5,
+                            advisorRelationship: +5
                         }
                     };
                 } else if (skills.networking >= 15) {

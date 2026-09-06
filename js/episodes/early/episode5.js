@@ -18,9 +18,9 @@ export const episode5 = {
                     teaching: 0,
                     networking: +5,
                     stress: -10,
-                    motivation: +15,
-                    advisorRelationship: +15,
-                    reputation: +15,
+                    motivation: +5,
+                    advisorRelationship: +5,
+                    reputation: +5,
                     personalLife: 0
                 };
                 
@@ -31,9 +31,9 @@ export const episode5 = {
                             ...effects,
                             publications: +1,
                             researchProgress: -15,
-                            reputation: +15,
-                            advisorRelationship: +15,
-                            motivation: +15
+                            reputation: +5,
+                            advisorRelationship: +5,
+                            motivation: +5
                         }
                     };
                 } else if (skills.researchProgress >= 25 && skills.writing >= 20) {
@@ -124,8 +124,8 @@ export const episode5 = {
                     teaching: 0,
                     networking: +5,
                     stress: -10,
-                    motivation: +10,
-                    advisorRelationship: +10,
+                    motivation: +5,
+                    advisorRelationship: +5,
                     reputation: 0,
                     personalLife: +5
                 };
@@ -135,8 +135,8 @@ export const episode5 = {
                         text: "Your advisor appreciates your honesty and provides excellent guidance. They help you create a realistic plan for Year 2, including a timeline for your next publication. You feel supported and motivated to improve.",
                         effects: {
                             ...effects,
-                            advisorRelationship: +15,
-                            motivation: +15,
+                            advisorRelationship: +5,
+                            motivation: +5,
                             stress: -15,
                             researchProgress: +5
                         }

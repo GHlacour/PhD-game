@@ -15,7 +15,7 @@ export const episode3 = {
                     teaching: 0,
                     networking: +5,
                     stress: +10,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
                     personalLife: 0
@@ -28,8 +28,8 @@ export const episode3 = {
                             ...effects,
                             researchProgress: +15,
                             writing: +5,
-                            reputation: +10,
-                            advisorRelationship: +10
+                            reputation: +5,
+                            advisorRelationship: +5
                         }
                     };
                 } else if (attributes.phdType === 'experimental') {
@@ -60,7 +60,7 @@ export const episode3 = {
                     teaching: 0,
                     networking: +5,
                     stress: +15,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
                     personalLife: -5
@@ -72,8 +72,8 @@ export const episode3 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            reputation: +10,
-                            advisorRelationship: +10,
+                            reputation: +5,
+                            advisorRelationship: +5,
                             stress: +10
                         }
                     };
@@ -106,7 +106,7 @@ export const episode3 = {
                     networking: +5,
                     stress: +5,
                     motivation: +5,
-                    advisorRelationship: +10,
+                    advisorRelationship: +5,
                     reputation: +5,
                     personalLife: 0
                 };
@@ -118,8 +118,8 @@ export const episode3 = {
                             ...effects,
                             writing: +5,
                             researchProgress: +15,
-                            advisorRelationship: +15,
-                            reputation: +10
+                            advisorRelationship: +5,
+                            reputation: +5
                         }
                     };
                 } else if (skills.writing >= 25) {

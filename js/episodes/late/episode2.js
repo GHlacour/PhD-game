@@ -75,7 +75,7 @@ export const episode2 = {
                             ...effects,
                             writing: +5,
                             researchProgress: +8,
-                            motivation: +10,
+                            motivation: +5,
                             advisorRelationship: +5
                         }
                     };
@@ -108,7 +108,7 @@ export const episode2 = {
                     teaching: 0,
                     networking: 0,
                     stress: -10,
-                    motivation: +15,
+                    motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
                     personalLife: +15
@@ -122,7 +122,7 @@ export const episode2 = {
                             writing: +5,
                             researchProgress: -15,
                             personalLife: +15,
-                            motivation: +15
+                            motivation: +5
                         }
                     };
                 } else if (skills.personalLife >= 30) {

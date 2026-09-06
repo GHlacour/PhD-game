@@ -28,8 +28,8 @@ export const episode8 = {
                             ...effects,
                             researchProgress: +15,
                             writing: +5,
-                            reputation: +10,
-                            advisorRelationship: +10
+                            reputation: +5,
+                            advisorRelationship: +5
                         }
                     };
                 } else if (skills.writing >= 15 || skills.researchProgress >= 15) {
@@ -61,7 +61,7 @@ export const episode8 = {
                     teaching: 0,
                     networking: +5,
                     stress: -10,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +12,
                     reputation: +3,
                     personalLife: 0
@@ -73,8 +73,8 @@ export const episode8 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            advisorRelationship: +15,
-                            motivation: +15,
+                            advisorRelationship: +5,
+                            motivation: +5,
                             stress: -15
                         }
                     };
@@ -84,7 +84,7 @@ export const episode8 = {
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            advisorRelationship: +10
+                            advisorRelationship: +5
                         }
                     };
                 } else {
@@ -122,7 +122,7 @@ export const episode8 = {
                         effects: {
                             ...effects,
                             researchProgress: +12,
-                            motivation: +10,
+                            motivation: +5,
                             advisorRelationship: 0,
                             reputation: +3
                         }

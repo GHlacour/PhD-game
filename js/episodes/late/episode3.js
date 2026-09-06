@@ -16,8 +16,8 @@ export const episode3 = {
                     networking: +5,
                     stress: +15,
                     motivation: +5,
-                    advisorRelationship: +10,
-                    reputation: +10,
+                    advisorRelationship: +5,
+                    reputation: +5,
                     personalLife: -5
                 };
                 
@@ -29,8 +29,8 @@ export const episode3 = {
                             teaching: +15,
                             researchProgress: +15,
                             stress: +10,
-                            motivation: +15,
-                            advisorRelationship: +15
+                            motivation: +5,
+                            advisorRelationship: +5
                         }
                     };
                 } else if (skills.teaching >= 25 || skills.researchProgress >= 40) {
@@ -76,9 +76,9 @@ export const episode3 = {
                             ...effects,
                             researchProgress: +15,
                             writing: +5,
-                            reputation: +15,
-                            advisorRelationship: +15,
-                            motivation: +15
+                            reputation: +5,
+                            advisorRelationship: +5,
+                            motivation: +5
                         }
                     };
                 } else if (skills.researchProgress >= 50) {
@@ -111,7 +111,7 @@ export const episode3 = {
                     teaching: 0,
                     networking: 0,
                     stress: -20,
-                    motivation: +15,
+                    motivation: +5,
                     advisorRelationship: 0,
                     reputation: -5,
                     personalLife: +15
@@ -122,9 +122,9 @@ export const episode3 = {
                         text: "Your confidence is well-placed! You realize you know your research inside and out. The relaxation helps you approach the defense with calm assurance. This is the right mindset. Your advisor notices your newfound confidence.",
                         effects: {
                             ...effects,
-                            motivation: +15,
+                            motivation: +5,
                             stress: -25,
-                            advisorRelationship: +10,
+                            advisorRelationship: +5,
                             reputation: +5
                         }
                     };

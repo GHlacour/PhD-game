@@ -15,7 +15,7 @@ export const episode2 = {
                     teaching: -5,
                     networking: -5,
                     stress: -30,
-                    motivation: +15,
+                    motivation: +5,
                     advisorRelationship: 0,
                     reputation: 0,
                     personalLife: +15
@@ -26,7 +26,7 @@ export const episode2 = {
                         text: "The break works wonders! You return with renewed energy and a fresh perspective on your research. Your personal relationships are strengthened and you feel inspired to work more efficiently.",
                         effects: {
                             ...effects,
-                            motivation: +15,
+                            motivation: +5,
                             personalLife: +15,
                             researchProgress: -2,
                             stress: -35
@@ -42,7 +42,7 @@ export const episode2 = {
                         text: "The break helps a little, but you can't fully relax knowing how much work remains. You return feeling only slightly better and your advisor questions your commitment.",
                         effects: {
                             ...effects,
-                            motivation: +10,
+                            motivation: +5,
                             personalLife: +15,
                             researchProgress: -8,
                             advisorRelationship: -5,
@@ -75,7 +75,7 @@ export const episode2 = {
                             ...effects,
                             researchProgress: -15,
                             publications: +1,
-                            reputation: +10,
+                            reputation: +5,
                             advisorRelationship: 0
                         }
                     };
@@ -110,8 +110,8 @@ export const episode2 = {
                     teaching: 0,
                     networking: +10,
                     stress: -20,
-                    motivation: +10,
-                    advisorRelationship: +15,
+                    motivation: +5,
+                    advisorRelationship: +5,
                     reputation: +5,
                     personalLife: +5
                 };
@@ -122,9 +122,9 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            advisorRelationship: +15,
-                            motivation: +15,
-                            reputation: +10,
+                            advisorRelationship: +5,
+                            motivation: +5,
+                            reputation: +5,
                             stress: -25
                         }
                     };

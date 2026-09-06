@@ -17,9 +17,9 @@ export const episode9 = {
                     teaching: 0,
                     networking: +10,
                     stress: +15,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +15,
+                    reputation: +5,
                     personalLife: 0
                 }
             }
@@ -35,9 +35,9 @@ export const episode9 = {
                     teaching: 0,
                     networking: +15,
                     stress: +5,
-                    motivation: +10,
+                    motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +10,
+                    reputation: +5,
                     personalLife: +5
                 }
             }
@@ -54,7 +54,7 @@ export const episode9 = {
                     networking: +5,
                     stress: +10,
                     motivation: +5,
-                    advisorRelationship: +10,
+                    advisorRelationship: +5,
                     reputation: +5,
                     personalLife: 0
                 }
