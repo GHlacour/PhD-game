@@ -1,7 +1,7 @@
 // Early PhD Episode 11: Authorship Dispute
 export const episode11 = {
     title: "Authorship Dispute",
-    description: "A fellow PhD student in your group has been assigned authorship on a paper that you contributed equally to.",
+    description: "A fellow PhD student in your group has been assigned first authorship on a paper that you contributed equally to.",
     image: "assets/images/collaboration.jpg",
     sound: "assets/sounds/collaboration.mp3",
     phase: "early",
