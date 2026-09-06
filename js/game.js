@@ -571,13 +571,28 @@ function displayCareerOutcome(outcome) {
         <div class="final-summary">
             <h3>Your PhD Journey Summary</h3>
             <p>After ${gameState.attributes.programLength} years of hard work, you've completed your PhD with:</p>
-            <ul>
-                <li><strong>Publications:</strong> ${gameState.skills.publications}</li>
-                <li><strong>Research Progress:</strong> ${gameState.skills.researchProgress}</li>
-                <li><strong>Writing Skill:</strong> ${gameState.skills.writing}</li>
-                <li><strong>Teaching Skill:</strong> ${gameState.skills.teaching}</li>
-                <li><strong>Networking:</strong> ${gameState.skills.networking}</li>
-            </ul>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Public Skills</h4>
+                    <ul class="public-skills">
+                        <li><strong>Publications:</strong> ${gameState.skills.publications}</li>
+                        <li><strong>Research Progress:</strong> ${gameState.skills.researchProgress}</li>
+                        <li><strong>Writing Skill:</strong> ${gameState.skills.writing}</li>
+                        <li><strong>Teaching Skill:</strong> ${gameState.skills.teaching}</li>
+                        <li><strong>Networking:</strong> ${gameState.skills.networking}</li>
+                    </ul>
+                </div>
+                <div class="skill-category hidden-skills">
+                    <h4>Hidden Skills</h4>
+                    <ul class="hidden-skills-list">
+                        <li><strong>Stress:</strong> ${gameState.skills.stress}</li>
+                        <li><strong>Motivation:</strong> ${gameState.skills.motivation}</li>
+                        <li><strong>Advisor Relationship:</strong> ${gameState.skills.advisorRelationship}</li>
+                        <li><strong>Reputation:</strong> ${gameState.skills.reputation}</li>
+                        <li><strong>Personal Life:</strong> ${gameState.skills.personalLife}</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     `;
     
@@ -600,6 +615,35 @@ function showGraduationFailure() {
     } else {
         message = `Your PhD journey has ended. With ${gameState.skills.publications} publications (required: ${requiredPublications}) and no thesis submitted, you have not met the graduation requirements. Your contract ends without a degree.`;
     }
+    
+    // Add hidden skills summary to failure screen
+    message += `
+        <div class="final-summary">
+            <h3>Your PhD Journey Summary</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Public Skills</h4>
+                    <ul class="public-skills">
+                        <li><strong>Publications:</strong> ${gameState.skills.publications}</li>
+                        <li><strong>Research Progress:</strong> ${gameState.skills.researchProgress}</li>
+                        <li><strong>Writing Skill:</strong> ${gameState.skills.writing}</li>
+                        <li><strong>Teaching Skill:</strong> ${gameState.skills.teaching}</li>
+                        <li><strong>Networking:</strong> ${gameState.skills.networking}</li>
+                    </ul>
+                </div>
+                <div class="skill-category hidden-skills">
+                    <h4>Hidden Skills</h4>
+                    <ul class="hidden-skills-list">
+                        <li><strong>Stress:</strong> ${gameState.skills.stress}</li>
+                        <li><strong>Motivation:</strong> ${gameState.skills.motivation}</li>
+                        <li><strong>Advisor Relationship:</strong> ${gameState.skills.advisorRelationship}</li>
+                        <li><strong>Reputation:</strong> ${gameState.skills.reputation}</li>
+                        <li><strong>Personal Life:</strong> ${gameState.skills.personalLife}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    `;
     
     endGame(message);
 }

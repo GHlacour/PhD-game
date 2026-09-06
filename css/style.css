@@ -629,6 +629,31 @@ footer {
     margin-bottom: 10px;
 }
 
+/* Skills grid layout */
+.skills-grid {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 250px;
+}
+
+.skill-category h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+.skill-category.hidden-skills h4 {
+    border-bottom-color: #9b59b6;
+}
+
 .final-summary ul {
     list-style-type: none;
     padding-left: 0;
@@ -642,6 +667,19 @@ footer {
 
 .final-summary li:last-child {
     border-bottom: none;
+}
+
+/* Hidden skills styling */
+.hidden-skills-list li {
+    border-bottom-color: #e8d0e8;
+}
+
+.public-skills li strong {
+    color: #2c3e50;
+}
+
+.hidden-skills-list li strong {
+    color: #8e44ad;
 }
 
 /* Tier styling */
