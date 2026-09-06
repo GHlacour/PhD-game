@@ -1,5 +1,6 @@
 // Episode Loader - Loads and randomly selects episodes from different PhD phases
 // Now supports yearly structure: 5 episodes per year (4 regular + 1 evaluation)
+// Also supports phdType filtering (theory vs experimental)
 
 // Import all episodes
 import { episode1 as early1 } from './early/episode1.js';
@@ -7,6 +8,8 @@ import { episode2 as early2 } from './early/episode2.js';
 import { episode3 as early3 } from './early/episode3.js';
 import { episode4 as early4 } from './early/episode4.js';
 import { episode5 as early5 } from './early/episode5.js';
+import { episode6 as early6 } from './early/episode6.js';
+import { episode7 as early7 } from './early/episode7.js';
 
 import { episode1 as mid1 } from './mid/episode1.js';
 import { episode2 as mid2 } from './mid/episode2.js';
@@ -36,7 +39,11 @@ export function preloadMedia() {
         'assets/images/visa_extension.jpg',
         'assets/images/work_life_balance.jpg',
         'assets/images/evaluation_meeting.jpg',
-        'assets/images/final_evaluation.jpg'
+        'assets/images/final_evaluation.jpg',
+        'assets/images/computer_cluster.jpg',
+        'assets/images/lab_equipment.jpg',
+        'assets/images/research_setup.jpg',
+        'assets/images/research_challenges.jpg'
     ];
     
     const sounds = [
@@ -52,7 +59,9 @@ export function preloadMedia() {
         'assets/sounds/networking.mp3',
         'assets/sounds/reflection.mp3',
         'assets/sounds/evaluation.mp3',
-        'assets/sounds/final_evaluation.mp3'
+        'assets/sounds/final_evaluation.mp3',
+        'assets/sounds/computer_error.mp3',
+        'assets/sounds/lab_failure.mp3'
     ];
     
     // Preload images
@@ -70,12 +79,12 @@ export function preloadMedia() {
 }
 
 // Episode pools by phase
-export const earlyEpisodes = [early1, early2, early3, early4, early5];
+export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7];
 export const midEpisodes = [mid1, mid2, mid3, mid4, mid5];
 export const lateEpisodes = [late1, late2, late3, late4, late5];
 
 // Separate regular episodes from evaluation episodes
-const earlyRegularEpisodes = [early1, early2, early3, early4];
+const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7];
 const earlyEvaluationEpisodes = [early5];
 
 const midRegularEpisodes = [mid1, mid2, mid3, mid4];
@@ -87,7 +96,7 @@ const lateEvaluationEpisodes = [late5];
 /**
  * Check if an episode is available for the given attributes
  * @param {Object} episode - The episode to check
- * @param {Object} attributes - Player attributes (gender, origin)
+ * @param {Object} attributes - Player attributes (gender, origin, phdType)
  * @returns {boolean} Whether the episode is available
  */
 function isEpisodeAvailable(episode, attributes) {
@@ -108,13 +117,20 @@ function isEpisodeAvailable(episode, attributes) {
         }
     }
     
+    // Check phdType restrictions
+    if (episode.availableFor.phdType) {
+        if (!episode.availableFor.phdType.includes(attributes.phdType)) {
+            return false;
+        }
+    }
+    
     return true;
 }
 
 /**
  * Get a random episode from a specific phase, excluding evaluation episodes
  * @param {string} phase - 'early', 'mid', or 'late'
- * @param {Object} attributes - Player attributes (gender, origin)
+ * @param {Object} attributes - Player attributes (gender, origin, phdType)
  * @returns {Object} Random episode from the specified phase
  */
 export function getRandomRegularEpisode(phase, attributes = {}) {
@@ -146,7 +162,7 @@ export function getRandomRegularEpisode(phase, attributes = {}) {
 /**
  * Get the evaluation episode for a specific year
  * @param {number} year - Year number (1, 2, 3, or 4)
- * @param {Object} attributes - Player attributes (gender, origin)
+ * @param {Object} attributes - Player attributes (gender, origin, phdType)
  * @returns {Object} Evaluation episode for the specified year
  */
 export function getEvaluationEpisode(year, attributes = {}) {
@@ -172,7 +188,7 @@ export function getEvaluationEpisode(year, attributes = {}) {
  * Generate a complete game sequence with yearly structure
  * Each year has: 4 regular episodes + 1 evaluation episode
  * @param {number} programLength - 3 or 4 years
- * @param {Object} attributes - Player attributes (gender, origin)
+ * @param {Object} attributes - Player attributes (gender, origin, phdType)
  * @returns {Array} Array of episodes in game order
  */
 export function generateGameSequence(programLength = 3, attributes = {}) {

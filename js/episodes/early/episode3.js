@@ -1,142 +1,141 @@
-// Early PhD Episode 3: First Experiment
+// Early PhD Episode 3: Research Setup
 export const episode3 = {
-    title: "Episode 3: First Experiment",
-    description: "Your first major experiment is not going as planned. What do you do?",
-    image: "assets/images/experiment.jpg",
-    sound: "assets/sounds/experiment.mp3",
+    title: "Episode 3: Setting Up Your Research",
+    description: "It's time to set up your research environment. Your approach will depend on whether you're doing theoretical or experimental work.",
+    image: "assets/images/research_setup.jpg",
+    sound: "assets/sounds/research.mp3",
     choices: [
         {
-            text: "Troubleshoot for hours until it works",
+            text: "Develop a theoretical framework",
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
                     publications: 0,
-                    writing: 0,
-                    teaching: 0,
-                    networking: 0,
-                    stress: +25,
-                    motivation: +10,
-                    advisorRelationship: 0,
-                    reputation: +5,
-                    personalLife: -20
-                };
-                
-                if (skills.researchProgress >= 25) {
-                    return {
-                        text: "After hours of troubleshooting, you finally get the experiment working! Your persistence pays off with valuable data.",
-                        effects: {
-                            ...effects,
-                            researchProgress: +20,
-                            motivation: +15,
-                            reputation: +10
-                        }
-                    };
-                } else if (skills.researchProgress >= 15) {
-                    return {
-                        text: "You eventually fix the issues, but the process is frustrating and time-consuming.",
-                        effects: effects
-                    };
-                } else {
-                    return {
-                        text: "Despite your best efforts, the experiment continues to fail. You're not sure what you're doing wrong and feel discouraged.",
-                        effects: {
-                            ...effects,
-                            researchProgress: +5,
-                            motivation: -10,
-                            stress: +30,
-                            advisorRelationship: -5
-                        }
-                    };
-                }
-            }
-        },
-        {
-            text: "Consult with your advisor",
-            getOutcome: (skills, attributes) => {
-                const effects = {
-                    researchProgress: +5,
-                    publications: 0,
-                    writing: 0,
+                    writing: +10,
                     teaching: 0,
                     networking: +5,
-                    stress: +5,
-                    motivation: +5,
-                    advisorRelationship: +15,
+                    stress: +10,
+                    motivation: +10,
+                    advisorRelationship: +5,
                     reputation: +5,
                     personalLife: 0
                 };
                 
-                if (skills.advisorRelationship >= 60) {
+                if (attributes.phdType === 'theory') {
                     return {
-                        text: "Your advisor provides excellent guidance! Together, you quickly identify and fix the problem. This strengthens your working relationship.",
+                        text: "As a theoretical researcher, you dive deep into developing mathematical models and frameworks. Your advisor is impressed with your abstract thinking and the elegance of your approach. The foundation you're building will serve you well throughout your PhD.",
                         effects: {
                             ...effects,
-                            researchProgress: +15,
-                            advisorRelationship: +20,
+                            researchProgress: +20,
+                            writing: +15,
                             reputation: +10,
-                            stress: 0
+                            advisorRelationship: +10
                         }
                     };
-                } else if (skills.advisorRelationship >= 30) {
+                } else if (attributes.phdType === 'experimental') {
                     return {
-                        text: "Your advisor helps you troubleshoot, but you feel like you should have been able to figure this out yourself.",
-                        effects: effects
+                        text: "You try to develop theoretical frameworks for your experimental work, but find it challenging without concrete data. Your advisor suggests you focus more on the practical aspects of your research. You still make some progress but feel a bit out of your depth.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +10,
+                            stress: +15,
+                            advisorRelationship: 0
+                        }
                     };
                 } else {
                     return {
-                        text: "Your advisor seems impatient with your questions and you feel a bit embarrassed asking for help. The advice isn't very helpful.",
-                        effects: {
-                            ...effects,
-                            researchProgress: +2,
-                            advisorRelationship: +5,
-                            motivation: -5,
-                            stress: +10
-                        }
+                        text: "You develop a solid theoretical framework. Your advisor acknowledges your effort and suggests you consider how to apply this theory to practical problems.",
+                        effects: effects
                     };
                 }
             }
         },
         {
-            text: "Document the failure and move on",
+            text: "Set up experimental apparatus",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: +5,
+                    researchProgress: +15,
                     publications: 0,
-                    writing: +10,
+                    writing: +5,
                     teaching: 0,
-                    networking: 0,
-                    stress: -5,
-                    motivation: +5,
+                    networking: +5,
+                    stress: +15,
+                    motivation: +10,
                     advisorRelationship: +5,
                     reputation: +5,
-                    personalLife: +5
+                    personalLife: -5
                 };
                 
-                if (skills.writing >= 25) {
+                if (attributes.phdType === 'experimental') {
                     return {
-                        text: "Your detailed documentation of the failure provides valuable insights. Sometimes negative results are just as important as positive ones! Your advisor appreciates your thoroughness.",
+                        text: "As an experimental researcher, you meticulously set up your lab equipment and experimental protocols. Your advisor is pleased with your attention to detail and practical approach. You're ready to start collecting data soon.",
                         effects: {
                             ...effects,
-                            writing: +15,
-                            researchProgress: +10,
+                            researchProgress: +20,
                             reputation: +10,
-                            advisorRelationship: +10
+                            advisorRelationship: +10,
+                            stress: +10
                         }
                     };
-                } else if (skills.writing >= 15) {
+                } else if (attributes.phdType === 'theory') {
                     return {
-                        text: "You document the failure adequately, but wish you had more time to analyze what went wrong.",
+                        text: "You attempt to set up experimental apparatus, but lack experience with the equipment. Your advisor gently suggests that theoretical researchers typically don't need extensive lab setups. You learn from the experience but it takes more time than expected.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +8,
+                            stress: +20,
+                            motivation: +5
+                        }
+                    };
+                } else {
+                    return {
+                        text: "You set up the experimental apparatus with reasonable success. Your advisor helps you troubleshoot some issues, and you gain valuable hands-on experience.",
+                        effects: effects
+                    };
+                }
+            }
+        },
+        {
+            text: "Write a research proposal first",
+            getOutcome: (skills, attributes) => {
+                const effects = {
+                    researchProgress: +10,
+                    publications: 0,
+                    writing: +15,
+                    teaching: 0,
+                    networking: +5,
+                    stress: +5,
+                    motivation: +5,
+                    advisorRelationship: +10,
+                    reputation: +5,
+                    personalLife: 0
+                };
+                
+                if (skills.writing >= 40) {
+                    return {
+                        text: "Your research proposal is well-written and comprehensive. Your advisor is impressed with your clarity of thought and organization. This document will serve as an excellent roadmap for your PhD, regardless of your research approach.",
+                        effects: {
+                            ...effects,
+                            writing: +20,
+                            researchProgress: +15,
+                            advisorRelationship: +15,
+                            reputation: +10
+                        }
+                    };
+                } else if (skills.writing >= 25) {
+                    return {
+                        text: "Your research proposal covers the main points but could use more detail. Your advisor provides helpful feedback and suggests some additional literature to review. You're on the right track.",
                         effects: effects
                     };
                 } else {
                     return {
-                        text: "Your documentation is incomplete and you worry you might repeat the same mistakes. Your advisor is disappointed with your lack of attention to detail.",
+                        text: "Your research proposal is a bit disorganized and lacks depth. Your advisor spends significant time helping you revise it. You realize you need to improve your writing skills to succeed in your PhD.",
                         effects: {
                             ...effects,
-                            writing: +5,
-                            researchProgress: +2,
-                            advisorRelationship: 0,
-                            reputation: 0
+                            writing: +10,
+                            researchProgress: +5,
+                            advisorRelationship: +5,
+                            stress: +10
                         }
                     };
                 }

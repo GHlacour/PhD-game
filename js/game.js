@@ -2,7 +2,7 @@
 // Using ES modules for episode loading
 
 import { generateGameSequence, preloadMedia, getTotalEpisodes } from './episodes/episodeLoader.js';
-import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS } from './characterSelection.js';
+import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS, PHD_TYPE_OPTIONS } from './characterSelection.js';
 
 // Game state
 const gameState = {
@@ -25,6 +25,7 @@ const gameState = {
     attributes: {
         gender: null,
         origin: null,
+        phdType: null,
         programLength: 3
     },
     thesisSubmitted: false,
@@ -139,6 +140,7 @@ function startGameFromWelcome() {
 function startPhD(character) {
     gameState.attributes.gender = character.gender;
     gameState.attributes.origin = character.origin;
+    gameState.attributes.phdType = character.phdType;
     gameState.attributes.programLength = character.programLength || 3;
     
     // Update URL hash for sharing
@@ -171,7 +173,7 @@ async function initGame() {
     gameState.thesisSubmitted = false;
     gameState.gameActive = true;
     
-    // Generate episode sequence based on program length
+    // Generate episode sequence based on program length and phdType
     gameState.episodes = generateGameSequence(gameState.attributes.programLength, gameState.attributes);
     
     // Set total years display
@@ -270,7 +272,7 @@ function selectChoice(choice, episode) {
     let finalEffects = choice.effects || {};
     
     if (choice.getOutcome) {
-        // Pass programLength to evaluation episodes
+        // Pass programLength and phdType to episodes that need them
         const outcome = choice.getOutcome(gameState.skills, gameState.attributes, gameState.attributes.programLength);
         if (typeof outcome === 'string') {
             outcomeTextContent = outcome;
@@ -350,11 +352,14 @@ function continueAfterOutcome() {
         const hasThesisSubmitted = gameState.thesisSubmitted;
         
         if (hasEnoughPublications && hasThesisSubmitted && avgPublicSkill >= 70 && hiddenFactor >= 50) {
-            endGame(`CONGRATULATIONS! You've successfully graduated with honors! With ${gameState.skills.publications} publications and a completed thesis, you've exceeded all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is extremely proud and you're ready for a prestigious career in academia!`);
+            const phdTypeName = gameState.attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+            endGame(`CONGRATULATIONS! You've successfully graduated with honors from your ${phdTypeName} PhD! With ${gameState.skills.publications} publications and a completed thesis, you've exceeded all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is extremely proud and you're ready for a prestigious career in academia!`);
         } else if (hasEnoughPublications && hasThesisSubmitted && avgPublicSkill >= 50) {
-            endGame(`Congratulations! You've successfully graduated! With ${gameState.skills.publications} publications and a completed thesis, you've met all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is satisfied with your work and you're ready for a career in academia or industry.`);
+            const phdTypeName = gameState.attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+            endGame(`Congratulations! You've successfully graduated from your ${phdTypeName} PhD! With ${gameState.skills.publications} publications and a completed thesis, you've met all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is satisfied with your work and you're ready for a career in academia or industry.`);
         } else if (hasEnoughPublications && hasThesisSubmitted) {
-            endGame(`You've graduated! With ${gameState.skills.publications} publications and a completed thesis, you've met the basic requirements. Your skills open doors to both academia and industry, though you may need additional training for the most competitive positions.`);
+            const phdTypeName = gameState.attributes.phdType === 'theory' ? 'Theoretical' : 'Experimental';
+            endGame(`You've graduated from your ${phdTypeName} PhD! With ${gameState.skills.publications} publications and a completed thesis, you've met the basic requirements. Your skills open doors to both academia and industry, though you may need additional training for the most competitive positions.`);
         } else if (hasEnoughPublications && !hasThesisSubmitted) {
             endGame(`You've completed your publication requirement with ${gameState.skills.publications} papers, but without a submitted thesis, you cannot graduate. Your contract ends and you leave without a degree.`);
         } else if (hasThesisSubmitted && !hasEnoughPublications) {
@@ -422,7 +427,7 @@ function restartGame() {
     // Reset game state
     gameState.currentEpisode = 0;
     gameState.episodes = [];
-    gameState.attributes = { gender: null, origin: null, programLength: 3 };
+    gameState.attributes = { gender: null, origin: null, phdType: null, programLength: 3 };
     gameState.thesisSubmitted = false;
 }
 
