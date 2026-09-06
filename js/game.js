@@ -4,7 +4,7 @@
 import { generateGameSequence, preloadMedia, getTotalEpisodes } from './episodes/episodeLoader.js';
 import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS, PHD_TYPE_OPTIONS } from './characterSelection.js';
 import { checkForWarningEpisode, preloadWarningMedia } from './episodes/warnings/warningLoader.js';
-import { createCareerSelectionScreen, getCareerOutcome, getCareerPath, SKILL_DISPLAY_NAMES } from './careerSelection.js';
+import { createCareerSelectionScreen, getCareerOutcome, getCareerPath } from './careerSelection.js';
 
 // Game state
 const gameState = {
@@ -604,14 +604,7 @@ function showGraduationFailure() {
     endGame(message);
 }
 
-// Skill display names mapping
-const SKILL_DISPLAY_NAMES = {
-    researchProgress: 'Research',
-    publications: 'Publications',
-    writing: 'Writing',
-    teaching: 'Teaching',
-    networking: 'Networking'
-};
+
 
 // Update skills display - only show public skills
 function updateSkillsDisplay() {
