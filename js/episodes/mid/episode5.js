@@ -78,7 +78,7 @@ export const episode5 = {
                 
                 if (skills.researchProgress >= 60 && skills.publications >= 1) {
                     return {
-                        text: "Your advisor is impressed with your research progress and detailed plans for Year 3. They note that you're on track, but remind you that you need to maintain your publication record to graduate on time.",
+                        text: "Your advisor is impressed with your research progress and detailed plans. They note that you're on track, but remind you that you need to maintain your publication record to graduate on time.",
                         effects: {
                             ...effects,
                             researchProgress: +8,

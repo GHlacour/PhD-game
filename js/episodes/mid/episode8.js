@@ -145,7 +145,7 @@ export const episode8 = {
                     };
                 } else if (skills.writing >= 35) {
                     return {
-                        text: "You manage to split your results into two publishable papers. The first is accepted quickly, giving you momentum. Your advisor appreciates the productivity boost.",
+                        text: "You manage to split your results into two publishable papers. One is accepted quickly, giving you momentum. Your advisor appreciates the productivity boost.",
                         effects: {
                             ...effects,
                             publications: +1,
