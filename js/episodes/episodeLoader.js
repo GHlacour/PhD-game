@@ -1,5 +1,5 @@
 // Episode Loader - Loads and randomly selects episodes from different PhD phases
-// Now supports yearly structure: 5 episodes per year (4 regular + 1 evaluation)
+// Now supports yearly structure: 4 regular episodes + 1 evaluation episode per year
 // Also supports phdType filtering (theory vs experimental)
 
 // Import all episodes
@@ -85,13 +85,15 @@ export const lateEpisodes = [late1, late2, late3, late4, late5];
 
 // Separate regular episodes from evaluation episodes
 const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7];
-const earlyEvaluationEpisodes = [early5];
+const earlyEvaluationEpisodes = [early5]; // Year 1 evaluation
 
 const midRegularEpisodes = [mid1, mid2, mid3, mid4];
-const midEvaluationEpisodes = [mid5];
+const midEvaluationEpisodes = [mid5]; // Year 2 evaluation
 
+// Late regular episodes (non-final)
 const lateRegularEpisodes = [late1, late2, late3, late4];
-const lateEvaluationEpisodes = [late5];
+// Final evaluation episode
+const finalEvaluationEpisodes = [late5];
 
 /**
  * Check if an episode is available for the given attributes
@@ -162,31 +164,43 @@ export function getRandomRegularEpisode(phase, attributes = {}) {
 /**
  * Get the evaluation episode for a specific year
  * @param {number} year - Year number (1, 2, 3, or 4)
+ * @param {number} totalYears - Total program length
  * @param {Object} attributes - Player attributes (gender, origin, phdType)
  * @returns {Object} Evaluation episode for the specified year
  */
-export function getEvaluationEpisode(year, attributes = {}) {
+export function getEvaluationEpisode(year, totalYears, attributes = {}) {
+    // For the final year, use the final evaluation episode
+    if (year === totalYears) {
+        const episode = finalEvaluationEpisodes[0];
+        return { ...episode, phase: 'late', year, isFinalEvaluation: true };
+    }
     // Year 1 evaluation is always early phase
-    if (year === 1) {
+    else if (year === 1) {
         const episode = earlyEvaluationEpisodes[0];
-        return { ...episode, phase: 'early', year };
+        return { ...episode, phase: 'early', year, isFinalEvaluation: false };
     }
     // Year 2 evaluation is mid phase
     else if (year === 2) {
         const episode = midEvaluationEpisodes[0];
-        return { ...episode, phase: 'mid', year };
+        return { ...episode, phase: 'mid', year, isFinalEvaluation: false };
     }
-    // Year 3+ evaluations use late phase
+    // Year 3 evaluation for 4-year PhD - use mid phase evaluation
+    else if (year === 3 && totalYears === 4) {
+        const episode = midEvaluationEpisodes[0];
+        return { ...episode, phase: 'mid', year, isFinalEvaluation: false };
+    }
+    // Any other year (shouldn't happen with current setup)
     else {
-        const episode = lateEvaluationEpisodes[0];
-        // Update the year in the episode
-        return { ...episode, phase: 'late', year };
+        const episode = midEvaluationEpisodes[0];
+        return { ...episode, phase: 'mid', year, isFinalEvaluation: false };
     }
 }
 
 /**
  * Generate a complete game sequence with yearly structure
  * Each year has: 4 regular episodes + 1 evaluation episode
+ * For 4-year PhD: Year 1=early, Year 2=mid, Year 3=mid, Year 4=late
+ * For 3-year PhD: Year 1=early, Year 2=mid, Year 3=late
  * @param {number} programLength - 3 or 4 years
  * @param {Object} attributes - Player attributes (gender, origin, phdType)
  * @returns {Array} Array of episodes in game order
@@ -194,16 +208,20 @@ export function getEvaluationEpisode(year, attributes = {}) {
 export function generateGameSequence(programLength = 3, attributes = {}) {
     const sequence = [];
     
-    // Define phases for each year
-    const yearPhases = {
-        1: 'early',
-        2: 'mid',
-        3: 'late',
-        4: 'late'
-    };
-    
     for (let year = 1; year <= programLength; year++) {
-        const phase = yearPhases[year];
+        // Determine the phase for this year
+        let phase;
+        if (year === 1) {
+            phase = 'early';
+        } else if (year === 2) {
+            phase = 'mid';
+        } else if (year === 3 && programLength === 4) {
+            // For 4-year PhD, year 3 is still mid phase
+            phase = 'mid';
+        } else {
+            // Year 3 for 3-year PhD, or Year 4 for 4-year PhD
+            phase = 'late';
+        }
         
         // Add 4 regular episodes for this year's phase
         for (let i = 0; i < 4; i++) {
@@ -213,7 +231,7 @@ export function generateGameSequence(programLength = 3, attributes = {}) {
         }
         
         // Add the evaluation episode for this year
-        const evalEpisode = getEvaluationEpisode(year, attributes);
+        const evalEpisode = getEvaluationEpisode(year, programLength, attributes);
         sequence.push({ ...evalEpisode, episodeNumber: year * 5 });
     }
     
