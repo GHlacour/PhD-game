@@ -14,7 +14,7 @@ export const episode4 = {
                     writing: +5,
                     teaching: 0,
                     networking: 0,
-                    stress: +20,
+                    stress: +15,
                     motivation: +5,
                     advisorRelationship: 0,
                     reputation: 0,
@@ -27,7 +27,7 @@ export const episode4 = {
                             text: "As a theoretical researcher, debugging is part of your daily work. You methodically track down the bug in your simulation code and fix it. Your advisor is impressed with your persistence and problem-solving skills. The code now runs correctly and produces meaningful results.",
                             effects: {
                                 ...effects,
-                                researchProgress: +20,
+                                researchProgress: +15,
                                 writing: +10,
                                 motivation: +15,
                                 advisorRelationship: +10,
@@ -40,7 +40,7 @@ export const episode4 = {
                             effects: {
                                 ...effects,
                                 researchProgress: +10,
-                                stress: +25
+                                stress: +15
                             }
                         };
                     }
@@ -66,7 +66,7 @@ export const episode4 = {
                     writing: 0,
                     teaching: 0,
                     networking: +5,
-                    stress: +20,
+                    stress: +15,
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: 0,
@@ -92,7 +92,7 @@ export const episode4 = {
                             effects: {
                                 ...effects,
                                 researchProgress: +10,
-                                stress: +20,
+                                stress: +15,
                                 advisorRelationship: +5
                             }
                         };

@@ -28,7 +28,7 @@ export const episode9 = {
                             ...effects,
                             networking: +15,
                             stress: -20,
-                            motivation: +20,
+                            motivation: +15,
                             personalLife: +10
                         }
                     };
@@ -78,7 +78,7 @@ export const episode9 = {
                             ...effects,
                             stress: -25,
                             motivation: +18,
-                            personalLife: +20,
+                            personalLife: +15,
                             researchProgress: +5
                         }
                     };
@@ -114,7 +114,7 @@ export const episode9 = {
                     writing: +5,
                     teaching: 0,
                     networking: -5,
-                    stress: +25,
+                    stress: +15,
                     motivation: +5,
                     advisorRelationship: -3,
                     reputation: 0,
@@ -127,7 +127,7 @@ export const episode9 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            stress: +30,
+                            stress: +15,
                             personalLife: -15
                         }
                     };
@@ -137,7 +137,7 @@ export const episode9 = {
                         effects: {
                             ...effects,
                             researchProgress: +12,
-                            stress: +28,
+                            stress: +15,
                             advisorRelationship: -5
                         }
                     };
@@ -147,7 +147,7 @@ export const episode9 = {
                         effects: {
                             ...effects,
                             researchProgress: +5,
-                            stress: +35,
+                            stress: +15,
                             motivation: -5,
                             advisorRelationship: -8,
                             personalLife: -15

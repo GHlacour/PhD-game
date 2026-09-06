@@ -52,7 +52,7 @@ export const episode6 = {
                         effects: {
                             ...effects,
                             researchProgress: +2,
-                            stress: +25,
+                            stress: +15,
                             motivation: -5,
                             advisorRelationship: +5
                         }
@@ -69,7 +69,7 @@ export const episode6 = {
                     writing: +5,
                     teaching: 0,
                     networking: 0,
-                    stress: +20,
+                    stress: +15,
                     motivation: +10,
                     advisorRelationship: +5,
                     reputation: +5,
@@ -103,7 +103,7 @@ export const episode6 = {
                         effects: {
                             ...effects,
                             researchProgress: +5,
-                            stress: +25,
+                            stress: +15,
                             motivation: -5,
                             advisorRelationship: 0
                         }
@@ -132,7 +132,7 @@ export const episode6 = {
                         text: "You take advantage of the downtime to write up your preliminary results and theoretical framework. Your advisor is very pleased with your productivity during the outage. When the cluster returns, you have a solid paper draft ready to expand with new simulation results. This turns a crisis into an opportunity.",
                         effects: {
                             ...effects,
-                            writing: +20,
+                            writing: +15,
                             researchProgress: +10,
                             advisorRelationship: +15,
                             reputation: +15,

@@ -14,7 +14,7 @@ export const episode1 = {
                     writing: +15,
                     teaching: 0,
                     networking: +10,
-                    stress: +25,
+                    stress: +15,
                     motivation: -5,
                     advisorRelationship: 0,
                     reputation: +5,
@@ -26,10 +26,10 @@ export const episode1 = {
                         text: "Your strong publication record and writing skills make your applications stand out! You receive multiple interview requests from prestigious institutions. Your advisor is proud of your success.",
                         effects: {
                             ...effects,
-                            reputation: +20,
+                            reputation: +15,
                             motivation: +15,
                             advisorRelationship: +10,
-                            stress: +20
+                            stress: +15
                         }
                     };
                 } else if (skills.publications >= 10) {
@@ -39,7 +39,7 @@ export const episode1 = {
                             ...effects,
                             reputation: +10,
                             motivation: +5,
-                            stress: +22
+                            stress: +15
                         }
                     };
                 } else {
@@ -49,7 +49,7 @@ export const episode1 = {
                             ...effects,
                             reputation: +2,
                             motivation: -10,
-                            stress: +30,
+                            stress: +15,
                             advisorRelationship: -5
                         }
                     };
@@ -62,10 +62,10 @@ export const episode1 = {
                 const effects = {
                     researchProgress: 0,
                     publications: 0,
-                    writing: +20,
+                    writing: +15,
                     teaching: 0,
                     networking: +5,
-                    stress: +20,
+                    stress: +15,
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +10,
@@ -77,8 +77,8 @@ export const episode1 = {
                         text: "Your targeted approach pays off! Your excellent reputation and strong application materials secure you interviews at your top-choice institutions. Your advisor is thrilled with your success.",
                         effects: {
                             ...effects,
-                            reputation: +20,
-                            motivation: +20,
+                            reputation: +15,
+                            motivation: +15,
                             advisorRelationship: +15,
                             networking: +15
                         }
@@ -90,7 +90,7 @@ export const episode1 = {
                             ...effects,
                             reputation: +10,
                             motivation: +10,
-                            stress: +22
+                            stress: +15
                         }
                     };
                 } else {
@@ -100,7 +100,7 @@ export const episode1 = {
                             ...effects,
                             reputation: +2,
                             motivation: -5,
-                            stress: +25,
+                            stress: +15,
                             advisorRelationship: -5
                         }
                     };
@@ -115,7 +115,7 @@ export const episode1 = {
                     publications: 0,
                     writing: +5,
                     teaching: 0,
-                    networking: +20,
+                    networking: +15,
                     stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
@@ -128,8 +128,8 @@ export const episode1 = {
                         text: "Your extensive network comes through for you! Former colleagues and collaborators reach out with exciting opportunities you wouldn't have found otherwise. You secure interviews at several excellent institutions.",
                         effects: {
                             ...effects,
-                            networking: +25,
-                            reputation: +20,
+                            networking: +15,
+                            reputation: +15,
                             motivation: +15,
                             advisorRelationship: +10
                         }

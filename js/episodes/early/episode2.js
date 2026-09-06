@@ -9,12 +9,12 @@ export const episode2 = {
             text: "Read every paper systematically",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: +20,
+                    researchProgress: +15,
                     publications: 0,
                     writing: +10,
                     teaching: 0,
                     networking: 0,
-                    stress: +20,
+                    stress: +15,
                     motivation: -5,
                     advisorRelationship: 0,
                     reputation: +5,
@@ -26,7 +26,7 @@ export const episode2 = {
                         text: "Your thorough literature review reveals important gaps in the field. Your advisor is impressed with your comprehensive approach!",
                         effects: {
                             ...effects,
-                            researchProgress: +25,
+                            researchProgress: +15,
                             writing: +15,
                             reputation: +10,
                             advisorRelationship: +10
@@ -44,7 +44,7 @@ export const episode2 = {
                             ...effects,
                             researchProgress: +10,
                             motivation: -10,
-                            stress: +25,
+                            stress: +15,
                             advisorRelationship: -5
                         }
                     };

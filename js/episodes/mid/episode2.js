@@ -15,10 +15,10 @@ export const episode2 = {
                     teaching: -5,
                     networking: -5,
                     stress: -30,
-                    motivation: +20,
+                    motivation: +15,
                     advisorRelationship: 0,
                     reputation: 0,
-                    personalLife: +25
+                    personalLife: +15
                 };
                 
                 if (skills.personalLife >= 40) {
@@ -26,8 +26,8 @@ export const episode2 = {
                         text: "The break works wonders! You return with renewed energy and a fresh perspective on your research. Your personal relationships are strengthened and you feel inspired to work more efficiently.",
                         effects: {
                             ...effects,
-                            motivation: +30,
-                            personalLife: +30,
+                            motivation: +15,
+                            personalLife: +15,
                             researchProgress: -2,
                             stress: -35
                         }
@@ -61,7 +61,7 @@ export const episode2 = {
                     writing: +10,
                     teaching: 0,
                     networking: 0,
-                    stress: +35,
+                    stress: +15,
                     motivation: -15,
                     advisorRelationship: -5,
                     reputation: +5,
@@ -91,7 +91,7 @@ export const episode2 = {
                             ...effects,
                             researchProgress: 0,
                             publications: 0,
-                            stress: +40,
+                            stress: +15,
                             motivation: -20,
                             advisorRelationship: -10,
                             personalLife: -25
@@ -122,8 +122,8 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            advisorRelationship: +25,
-                            motivation: +20,
+                            advisorRelationship: +15,
+                            motivation: +15,
                             reputation: +10,
                             stress: -25
                         }

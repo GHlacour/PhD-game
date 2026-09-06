@@ -50,7 +50,7 @@ export const episode4 = {
                             ...effects,
                             researchProgress: +10,
                             publications: 0,
-                            stress: +25,
+                            stress: +15,
                             motivation: -5,
                             personalLife: -25
                         }
@@ -71,7 +71,7 @@ export const episode4 = {
                     motivation: +10,
                     advisorRelationship: +5,
                     reputation: +5,
-                    personalLife: +20
+                    personalLife: +15
                 };
                 
                 if (skills.personalLife >= 40) {
@@ -80,7 +80,7 @@ export const episode4 = {
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            personalLife: +25,
+                            personalLife: +15,
                             motivation: +15,
                             stress: -20
                         }
@@ -125,9 +125,9 @@ export const episode4 = {
                         text: "Your mentorship connections are invaluable! Senior researchers share their experiences of balancing career and personal life, giving you practical strategies. You gain confidence in navigating academia while maintaining your well-being. Your network expands significantly.",
                         effects: {
                             ...effects,
-                            networking: +20,
+                            networking: +15,
                             reputation: +15,
-                            motivation: +20,
+                            motivation: +15,
                             personalLife: +15
                         }
                     };

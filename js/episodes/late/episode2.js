@@ -11,10 +11,10 @@ export const episode2 = {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
-                    writing: +25,
+                    writing: +15,
                     teaching: 0,
                     networking: 0,
-                    stress: +30,
+                    stress: +15,
                     motivation: -15,
                     advisorRelationship: -5,
                     reputation: +5,
@@ -26,10 +26,10 @@ export const episode2 = {
                         text: "Your intense writing schedule pays off! You make excellent progress and the quality of your writing is exceptional. Your advisor is impressed with your dedication and the depth of your analysis.",
                         effects: {
                             ...effects,
-                            writing: +30,
+                            writing: +15,
                             researchProgress: -15,
                             publications: +1,
-                            stress: +25
+                            stress: +15
                         }
                     };
                 } else if (skills.writing >= 40) {
@@ -42,10 +42,10 @@ export const episode2 = {
                         text: "You struggle to maintain quality with such a demanding schedule. Your writing feels rushed and you're not satisfied with the results. Your advisor expresses concern about the coherence of your thesis.",
                         effects: {
                             ...effects,
-                            writing: +20,
+                            writing: +15,
                             researchProgress: 0,
                             publications: 0,
-                            stress: +35,
+                            stress: +15,
                             advisorRelationship: -10
                         }
                     };
@@ -58,7 +58,7 @@ export const episode2 = {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
-                    writing: +20,
+                    writing: +15,
                     teaching: 0,
                     networking: 0,
                     stress: +10,
@@ -73,7 +73,7 @@ export const episode2 = {
                         text: "Your focused approach works perfectly! You maintain high writing quality and good progress without burning out. Your advisor is pleased with your steady output and the clarity of your arguments.",
                         effects: {
                             ...effects,
-                            writing: +25,
+                            writing: +15,
                             researchProgress: +8,
                             motivation: +10,
                             advisorRelationship: +5
@@ -119,10 +119,10 @@ export const episode2 = {
                         text: "Your balanced approach results in surprisingly productive writing sessions! The breaks help you maintain creativity and your writing flows naturally. Your advisor is pleased with both your progress and your well-being.",
                         effects: {
                             ...effects,
-                            writing: +20,
+                            writing: +15,
                             researchProgress: -15,
-                            personalLife: +20,
-                            motivation: +20
+                            personalLife: +15,
+                            motivation: +15
                         }
                     };
                 } else if (skills.personalLife >= 30) {

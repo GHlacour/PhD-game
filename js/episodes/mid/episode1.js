@@ -14,7 +14,7 @@ export const episode1 = {
                     writing: +10,
                     teaching: +5,
                     networking: +5,
-                    stress: +20,
+                    stress: +15,
                     motivation: -10,
                     advisorRelationship: +5,
                     reputation: +10,
@@ -27,7 +27,7 @@ export const episode1 = {
                         effects: {
                             ...effects,
                             publications: +1,
-                            reputation: +20,
+                            reputation: +15,
                             networking: +15,
                             researchProgress: -15
                         }
@@ -46,7 +46,7 @@ export const episode1 = {
                             publications: 0,
                             reputation: +2,
                             motivation: -15,
-                            stress: +25
+                            stress: +15
                         }
                     };
                 }
@@ -107,7 +107,7 @@ export const episode1 = {
                     writing: 0,
                     teaching: 0,
                     networking: -10,
-                    stress: +25,
+                    stress: +15,
                     motivation: -5,
                     advisorRelationship: -10,
                     reputation: -15,
@@ -121,7 +121,7 @@ export const episode1 = {
                             ...effects,
                             researchProgress: +10,
                             reputation: -5,
-                            stress: +20,
+                            stress: +15,
                             motivation: +5
                         }
                     };
@@ -142,7 +142,7 @@ export const episode1 = {
                             researchProgress: -10,
                             advisorRelationship: -20,
                             reputation: -20,
-                            stress: +30
+                            stress: +15
                         }
                     };
                 }

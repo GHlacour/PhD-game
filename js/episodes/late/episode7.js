@@ -14,7 +14,7 @@ export const episode7 = {
                     writing: +5,
                     teaching: +5,
                     networking: +3,
-                    stress: +20,
+                    stress: +15,
                     motivation: +10,
                     advisorRelationship: +5,
                     reputation: +5,
@@ -48,7 +48,7 @@ export const episode7 = {
                         text: "The academic job market is brutal. With your current publication record and reputation, you're not getting interviews. Your advisor gently suggests you consider other options. The reality is harsh.",
                         effects: {
                             ...effects,
-                            stress: +25,
+                            stress: +15,
                             motivation: -5,
                             advisorRelationship: +3,
                             personalLife: -10
@@ -156,7 +156,7 @@ export const episode7 = {
                             publications: 0,
                             reputation: +3,
                             advisorRelationship: +3,
-                            stress: +20,
+                            stress: +15,
                             motivation: -3
                         }
                     };

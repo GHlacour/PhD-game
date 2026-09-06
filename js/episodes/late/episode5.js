@@ -20,9 +20,9 @@ export const episode5 = {
                     teaching: 0,
                     networking: +5,
                     stress: -20,
-                    motivation: +25,
+                    motivation: +15,
                     advisorRelationship: +15,
-                    reputation: +20,
+                    reputation: +15,
                     personalLife: +10
                 };
                 
@@ -31,9 +31,9 @@ export const episode5 = {
                         text: `CONGRATULATIONS! Your thesis is accepted for examination! With ${skills.publications} publications and strong research progress, your advisor is extremely proud. You've successfully met all requirements for graduation. Your hard work and dedication have paid off!`,
                         effects: {
                             ...effects,
-                            reputation: +30,
-                            advisorRelationship: +25,
-                            motivation: +30,
+                            reputation: +15,
+                            advisorRelationship: +15,
+                            motivation: +15,
                             thesisSubmitted: true
                         }
                     };
@@ -64,7 +64,7 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            stress: +25,
+                            stress: +15,
                             motivation: -10,
                             advisorRelationship: -15
                         }
@@ -114,7 +114,7 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            stress: +20,
+                            stress: +15,
                             motivation: -10,
                             reputation: -5
                         }
@@ -165,7 +165,7 @@ export const episode5 = {
                         text: `Your advisor flatly refuses your extension request. With only ${skills.publications} publications (need: ${requiredPublications}) and your contract ending, they cannot justify an extension to the department. You must submit what you have or leave without a degree.`,
                         effects: {
                             ...effects,
-                            stress: +20,
+                            stress: +15,
                             motivation: -15,
                             advisorRelationship: -20,
                             reputation: -15,

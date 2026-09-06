@@ -13,11 +13,11 @@ export const episode3 = {
                     publications: 0,
                     writing: +5,
                     teaching: 0,
-                    networking: +20,
-                    stress: +20,
+                    networking: +15,
+                    stress: +15,
                     motivation: +10,
                     advisorRelationship: +10,
-                    reputation: +20,
+                    reputation: +15,
                     personalLife: -15
                 };
                 
@@ -27,8 +27,8 @@ export const episode3 = {
                         effects: {
                             ...effects,
                             publications: +1,
-                            networking: +25,
-                            reputation: +30,
+                            networking: +15,
+                            reputation: +15,
                             researchProgress: -20
                         }
                     };
@@ -38,7 +38,7 @@ export const episode3 = {
                         effects: {
                             ...effects,
                             publications: +1,
-                            networking: +20,
+                            networking: +15,
                             researchProgress: -15
                         }
                     };
@@ -51,7 +51,7 @@ export const episode3 = {
                             networking: +10,
                             reputation: +5,
                             researchProgress: -10,
-                            stress: +25
+                            stress: +15
                         }
                     };
                 }
@@ -124,8 +124,8 @@ export const episode3 = {
                         text: "Focusing on your thesis proves to be the right decision! You make excellent progress and your advisor is pleased with your dedication to your own research. You complete a significant chapter of your thesis.",
                         effects: {
                             ...effects,
-                            researchProgress: +25,
-                            writing: +20,
+                            researchProgress: +15,
+                            writing: +15,
                             advisorRelationship: +10,
                             reputation: +5
                         }

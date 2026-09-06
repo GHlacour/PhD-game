@@ -29,7 +29,7 @@ export const episode3 = {
                             teaching: +15,
                             researchProgress: +15,
                             stress: +10,
-                            motivation: +20,
+                            motivation: +15,
                             advisorRelationship: +15
                         }
                     };
@@ -45,7 +45,7 @@ export const episode3 = {
                             ...effects,
                             teaching: +5,
                             researchProgress: +5,
-                            stress: +25,
+                            stress: +15,
                             motivation: -10,
                             advisorRelationship: +5
                         }
@@ -62,7 +62,7 @@ export const episode3 = {
                     writing: +5,
                     teaching: 0,
                     networking: 0,
-                    stress: +20,
+                    stress: +15,
                     motivation: -5,
                     advisorRelationship: +5,
                     reputation: +5,
@@ -74,7 +74,7 @@ export const episode3 = {
                         text: "Your thorough review reveals the depth and significance of your work. You feel confident that you can defend every aspect of your research. Your advisor is impressed with your mastery of the material and predicts a successful defense.",
                         effects: {
                             ...effects,
-                            researchProgress: +20,
+                            researchProgress: +15,
                             writing: +10,
                             reputation: +15,
                             advisorRelationship: +15,
@@ -93,7 +93,7 @@ export const episode3 = {
                             ...effects,
                             researchProgress: +10,
                             writing: +2,
-                            stress: +30,
+                            stress: +15,
                             motivation: -15,
                             advisorRelationship: 0
                         }
@@ -114,7 +114,7 @@ export const episode3 = {
                     motivation: +15,
                     advisorRelationship: 0,
                     reputation: -5,
-                    personalLife: +20
+                    personalLife: +15
                 };
                 
                 if (skills.motivation >= 60 && skills.stress <= 30) {
@@ -122,7 +122,7 @@ export const episode3 = {
                         text: "Your confidence is well-placed! You realize you know your research inside and out. The relaxation helps you approach the defense with calm assurance. This is the right mindset. Your advisor notices your newfound confidence.",
                         effects: {
                             ...effects,
-                            motivation: +20,
+                            motivation: +15,
                             stress: -25,
                             advisorRelationship: +10,
                             reputation: +5

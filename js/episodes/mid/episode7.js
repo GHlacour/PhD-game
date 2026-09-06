@@ -18,7 +18,7 @@ export const episode7 = {
                     motivation: +8,
                     advisorRelationship: -3,
                     reputation: 0,
-                    personalLife: +20
+                    personalLife: +15
                 };
                 
                 if (skills.personalLife >= 40 && skills.stress >= 60) {
@@ -28,7 +28,7 @@ export const episode7 = {
                             ...effects,
                             stress: -25,
                             motivation: +15,
-                            personalLife: +25,
+                            personalLife: +15,
                             researchProgress: -2,
                             advisorRelationship: 0
                         }
@@ -68,7 +68,7 @@ export const episode7 = {
                     writing: +8,
                     teaching: +3,
                     networking: +2,
-                    stress: +25,
+                    stress: +15,
                     motivation: +5,
                     advisorRelationship: +8,
                     reputation: +5,
@@ -83,7 +83,7 @@ export const episode7 = {
                             researchProgress: +18,
                             advisorRelationship: +12,
                             reputation: +8,
-                            stress: +20,
+                            stress: +15,
                             personalLife: -18
                         }
                     };
@@ -93,7 +93,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             researchProgress: +15,
-                            stress: +23,
+                            stress: +15,
                             personalLife: -22
                         }
                     };
@@ -103,7 +103,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             researchProgress: +8,
-                            stress: +35,
+                            stress: +15,
                             motivation: -10,
                             personalLife: -25,
                             advisorRelationship: -5
@@ -134,8 +134,8 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             stress: -30,
-                            motivation: +20,
-                            personalLife: +20,
+                            motivation: +15,
+                            personalLife: +15,
                             researchProgress: +8,
                             advisorRelationship: +8
                         }

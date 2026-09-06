@@ -26,7 +26,7 @@ export const episode3 = {
                         text: "As a theoretical researcher, you dive deep into developing mathematical models and frameworks. Your advisor is impressed with your abstract thinking and the elegance of your approach. The foundation you're building will serve you well throughout your PhD.",
                         effects: {
                             ...effects,
-                            researchProgress: +20,
+                            researchProgress: +15,
                             writing: +15,
                             reputation: +10,
                             advisorRelationship: +10
@@ -71,7 +71,7 @@ export const episode3 = {
                         text: "As an experimental researcher, you meticulously set up your lab equipment and experimental protocols. Your advisor is pleased with your attention to detail and practical approach. You're ready to start collecting data soon.",
                         effects: {
                             ...effects,
-                            researchProgress: +20,
+                            researchProgress: +15,
                             reputation: +10,
                             advisorRelationship: +10,
                             stress: +10
@@ -83,7 +83,7 @@ export const episode3 = {
                         effects: {
                             ...effects,
                             researchProgress: +8,
-                            stress: +20,
+                            stress: +15,
                             motivation: +5
                         }
                     };
@@ -116,7 +116,7 @@ export const episode3 = {
                         text: "Your research proposal is well-written and comprehensive. Your advisor is impressed with your clarity of thought and organization. This document will serve as an excellent roadmap for your PhD, regardless of your research approach.",
                         effects: {
                             ...effects,
-                            writing: +20,
+                            writing: +15,
                             researchProgress: +15,
                             advisorRelationship: +15,
                             reputation: +10

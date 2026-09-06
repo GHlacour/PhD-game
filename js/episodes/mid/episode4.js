@@ -45,7 +45,7 @@ export const episode4 = {
                         text: "You apply early but your advisor is slow to provide the necessary documentation. The process is more stressful than it should be, and you worry about delays affecting your research.",
                         effects: {
                             ...effects,
-                            stress: +25,
+                            stress: +15,
                             researchProgress: +2,
                             advisorRelationship: +5,
                             motivation: -10
@@ -63,7 +63,7 @@ export const episode4 = {
                     writing: 0,
                     teaching: 0,
                     networking: 0,
-                    stress: +30,
+                    stress: +15,
                     motivation: -10,
                     advisorRelationship: -5,
                     reputation: 0,
@@ -75,7 +75,7 @@ export const episode4 = {
                         text: "Waiting until the last minute causes significant stress. However, your good reputation in the department helps expedite the process. You learn an important lesson about planning ahead for bureaucratic requirements.",
                         effects: {
                             ...effects,
-                            stress: +25,
+                            stress: +15,
                             researchProgress: -5,
                             advisorRelationship: 0
                         }
@@ -91,7 +91,7 @@ export const episode4 = {
                         effects: {
                             ...effects,
                             researchProgress: -15,
-                            stress: +40,
+                            stress: +15,
                             advisorRelationship: -15,
                             motivation: -20
                         }

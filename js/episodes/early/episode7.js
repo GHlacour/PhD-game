@@ -17,7 +17,7 @@ export const episode7 = {
                     writing: 0,
                     teaching: 0,
                     networking: 0,
-                    stress: +20,
+                    stress: +15,
                     motivation: +15,
                     advisorRelationship: +10,
                     reputation: +10,
@@ -29,11 +29,11 @@ export const episode7 = {
                         text: "Your deep understanding of the equipment allows you to diagnose and fix the problem yourself! It takes a few hours of careful work, but you save days of downtime. Your advisor is impressed with your technical skills and initiative. You even learn more about how the equipment works, which will help prevent future issues.",
                         effects: {
                             ...effects,
-                            researchProgress: +20,
+                            researchProgress: +15,
                             stress: +10,
                             advisorRelationship: +15,
                             reputation: +15,
-                            motivation: +20
+                            motivation: +15
                         }
                     };
                 } else if (skills.researchProgress >= 20) {
@@ -52,7 +52,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             researchProgress: +5,
-                            stress: +25,
+                            stress: +15,
                             motivation: -5,
                             advisorRelationship: +5
                         }
@@ -104,7 +104,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             researchProgress: +3,
-                            stress: +25,
+                            stress: +15,
                             motivation: -10,
                             advisorRelationship: 0
                         }
@@ -133,7 +133,7 @@ export const episode7 = {
                         text: "You use the equipment downtime productively by diving deep into your existing data. Your careful analysis reveals patterns and insights you hadn't noticed before. Your advisor is very pleased with your ability to make progress despite the setback. You even identify a potential paper topic from your analysis.",
                         effects: {
                             ...effects,
-                            researchProgress: +20,
+                            researchProgress: +15,
                             writing: +15,
                             advisorRelationship: +15,
                             reputation: +10,

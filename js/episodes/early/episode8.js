@@ -143,7 +143,7 @@ export const episode8 = {
                             ...effects,
                             researchProgress: +3,
                             advisorRelationship: -10,
-                            stress: +20,
+                            stress: +15,
                             motivation: -5
                         }
                     };

@@ -33,7 +33,7 @@ export const episode1 = {
                             ...effects,
                             researchProgress: +10,
                             motivation: +5,
-                            stress: +20
+                            stress: +15
                         }
                     };
                 } else {
@@ -43,7 +43,7 @@ export const episode1 = {
                             ...effects,
                             researchProgress: +5,
                             motivation: -5,
-                            stress: +25,
+                            stress: +15,
                             advisorRelationship: 0
                         }
                     };
@@ -71,7 +71,7 @@ export const episode1 = {
                         text: "Your networking efforts pay off! You've built strong connections that will help you throughout your PhD.",
                         effects: {
                             ...effects,
-                            networking: +20,
+                            networking: +15,
                             reputation: +15,
                             researchProgress: +10
                         }
@@ -115,7 +115,7 @@ export const episode1 = {
                         text: "Your teaching experience is valuable! Students appreciate your efforts and you gain confidence in your abilities. Your advisor notices your dedication.",
                         effects: {
                             ...effects,
-                            teaching: +20,
+                            teaching: +15,
                             advisorRelationship: +15,
                             reputation: +10
                         }
