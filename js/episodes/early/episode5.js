@@ -30,6 +30,7 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: +1,
+                            researchProgress: -15,
                             reputation: +20,
                             advisorRelationship: +20,
                             motivation: +25
@@ -40,7 +41,8 @@ export const episode5 = {
                         text: "Good effort! Your paper is accepted to a conference. Your advisor is satisfied with your progress and encourages you to keep up the good work. You've met the annual publication expectation.",
                         effects: {
                             ...effects,
-                            publications: +1
+                            publications: +1,
+                            researchProgress: -10
                         }
                     };
                 } else {
@@ -49,7 +51,7 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            researchProgress: +3,
+                            researchProgress: 0,
                             writing: +5,
                             advisorRelationship: +5,
                             motivation: +5,

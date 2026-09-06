@@ -14,7 +14,7 @@ export const episode5 = {
             getOutcome: (skills, attributes, programLength) => {
                 const requiredPublications = programLength || 3;
                 const effects = {
-                    researchProgress: +5,
+                    researchProgress: 0,
                     publications: 0,
                     writing: +10,
                     teaching: 0,
@@ -77,7 +77,7 @@ export const episode5 = {
             getOutcome: (skills, attributes, programLength) => {
                 const requiredPublications = programLength || 3;
                 const effects = {
-                    researchProgress: +5,
+                    researchProgress: 0,
                     publications: 0,
                     writing: +10,
                     teaching: 0,

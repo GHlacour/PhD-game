@@ -27,7 +27,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             writing: +30,
-                            researchProgress: +10,
+                            researchProgress: -15,
                             publications: +1,
                             stress: +25
                         }
@@ -43,7 +43,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             writing: +20,
-                            researchProgress: +2,
+                            researchProgress: 0,
                             publications: 0,
                             stress: +35,
                             advisorRelationship: -10
@@ -90,7 +90,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             writing: +15,
-                            researchProgress: +2,
+                            researchProgress: 0,
                             publications: 0,
                             motivation: -5
                         }
@@ -120,7 +120,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             writing: +20,
-                            researchProgress: +10,
+                            researchProgress: -15,
                             personalLife: +20,
                             motivation: +20
                         }
@@ -136,7 +136,7 @@ export const episode2 = {
                         effects: {
                             ...effects,
                             writing: +10,
-                            researchProgress: +2,
+                            researchProgress: 0,
                             publications: 0,
                             personalLife: +10,
                             motivation: +5

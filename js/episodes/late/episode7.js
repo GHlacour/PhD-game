@@ -9,7 +9,7 @@ export const episode7 = {
             text: "Focus exclusively on academic positions - it's my dream",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: +8,
+                    researchProgress: 0,
                     publications: 0,
                     writing: +5,
                     teaching: +5,
@@ -79,7 +79,7 @@ export const episode7 = {
                         effects: {
                             ...effects,
                             networking: +15,
-                            researchProgress: +8,
+                            researchProgress: 0,
                             reputation: +8,
                             stress: -15,
                             motivation: +15,

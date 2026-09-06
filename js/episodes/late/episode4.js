@@ -12,7 +12,7 @@ export const episode4 = {
             text: "Prioritize research and career advancement",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: +15,
+                    researchProgress: 0,
                     publications: 0,
                     writing: +10,
                     teaching: 0,
@@ -29,7 +29,7 @@ export const episode4 = {
                         text: "Your focus on research pays off with a high-impact publication! However, you notice your personal relationships suffering. Your advisor is impressed with your dedication but gently suggests you take care of your well-being too.",
                         effects: {
                             ...effects,
-                            researchProgress: +20,
+                            researchProgress: -20,
                             reputation: +15,
                             advisorRelationship: +10,
                             publications: +1

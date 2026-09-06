@@ -29,7 +29,7 @@ export const episode1 = {
                             publications: +1,
                             reputation: +20,
                             networking: +15,
-                            researchProgress: +15
+                            researchProgress: -15
                         }
                     };
                 } else if (skills.writing >= 20 || skills.researchProgress >= 30) {
@@ -42,7 +42,7 @@ export const episode1 = {
                         text: "Despite your preparation, you struggle to clearly communicate your research. The experience is humbling and you question your abilities.",
                         effects: {
                             ...effects,
-                            researchProgress: +5,
+                            researchProgress: 0,
                             publications: 0,
                             reputation: +2,
                             motivation: -15,

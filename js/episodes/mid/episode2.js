@@ -73,7 +73,7 @@ export const episode2 = {
                         text: "Your hard work pays off! Despite the long hours, you make significant progress and feel a sense of accomplishment. Your dedication is noticed by your advisor.",
                         effects: {
                             ...effects,
-                            researchProgress: +20,
+                            researchProgress: -15,
                             publications: +1,
                             reputation: +10,
                             advisorRelationship: 0
@@ -89,7 +89,7 @@ export const episode2 = {
                         text: "The long hours lead to diminishing returns. You're exhausted and your work quality is suffering. Your advisor notices your decline and expresses concern.",
                         effects: {
                             ...effects,
-                            researchProgress: +10,
+                            researchProgress: 0,
                             publications: 0,
                             stress: +40,
                             motivation: -20,

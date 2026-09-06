@@ -30,6 +30,7 @@ export const episode8 = {
                             writing: +15,
                             reputation: +15,
                             advisorRelationship: +12,
+                            researchProgress: -15,
                             stress: +10
                         }
                     };
@@ -42,6 +43,7 @@ export const episode8 = {
                             writing: +12,
                             reputation: +8,
                             advisorRelationship: +8,
+                            researchProgress: -12,
                             stress: +15
                         }
                     };
@@ -54,6 +56,7 @@ export const episode8 = {
                             writing: +8,
                             reputation: -5,
                             advisorRelationship: -5,
+                            researchProgress: 0,
                             stress: +25,
                             motivation: -8
                         }

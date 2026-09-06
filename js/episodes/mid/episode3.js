@@ -29,7 +29,7 @@ export const episode3 = {
                             publications: +1,
                             networking: +25,
                             reputation: +30,
-                            researchProgress: +20
+                            researchProgress: -20
                         }
                     };
                 } else if (skills.networking >= 20 || skills.researchProgress >= 20) {
@@ -38,7 +38,8 @@ export const episode3 = {
                         effects: {
                             ...effects,
                             publications: +1,
-                            networking: +20
+                            networking: +20,
+                            researchProgress: -15
                         }
                     };
                 } else {
@@ -49,7 +50,7 @@ export const episode3 = {
                             publications: +1,
                             networking: +10,
                             reputation: +5,
-                            researchProgress: +10,
+                            researchProgress: -10,
                             stress: +25
                         }
                     };
