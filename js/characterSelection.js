@@ -14,6 +14,12 @@ export const ORIGIN_OPTIONS = [
     { value: 'prefer-not-to-say', label: 'Prefer not to say' }
 ];
 
+// Program length options
+export const PROGRAM_OPTIONS = [
+    { value: '3', label: '3-Year Program' },
+    { value: '4', label: '4-Year Program' }
+];
+
 // Disclaimer text for EU compliance
 export const DISCLAIMER_TEXT = `
     <p style="font-size: 0.9em; line-height: 1.6; color: #666; margin-bottom: 20px;">
@@ -48,6 +54,12 @@ export function createCharacterSelectionScreen(onStart) {
             <h3>Origin</h3>
             <p class="selection-description">Choose your character's origin. This affects certain scenarios and challenges in the game.</p>
             <div id="origin-selection" class="selection-buttons"></div>
+        </div>
+        
+        <div class="selection-section">
+            <h3>Program Length</h3>
+            <p class="selection-description">Choose your PhD program duration. You'll need to publish at least one paper per year and write a thesis to graduate.</p>
+            <div id="program-selection" class="selection-buttons"></div>
         </div>
         
         <button id="start-with-character-btn" class="btn" disabled>Start PhD</button>
@@ -93,13 +105,32 @@ export function createCharacterSelectionScreen(onStart) {
         originSelection.appendChild(button);
     });
     
-    // Check if both selections are made
+    // Add program length selection buttons
+    const programSelection = screen.querySelector('#program-selection');
+    PROGRAM_OPTIONS.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'selection-btn';
+        button.textContent = option.label;
+        button.dataset.value = option.value;
+        button.addEventListener('click', () => {
+            // Remove active class from all program buttons
+            programSelection.querySelectorAll('.selection-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            checkSelectionsComplete();
+        });
+        programSelection.appendChild(button);
+    });
+    
+    // Check if all selections are made
     function checkSelectionsComplete() {
         const genderSelected = genderSelection.querySelector('.selection-btn.active');
         const originSelected = originSelection.querySelector('.selection-btn.active');
+        const programSelected = programSelection.querySelector('.selection-btn.active');
         const startButton = screen.querySelector('#start-with-character-btn');
         
-        if (genderSelected && originSelected) {
+        if (genderSelected && originSelected && programSelected) {
             startButton.disabled = false;
         } else {
             startButton.disabled = true;
@@ -110,7 +141,8 @@ export function createCharacterSelectionScreen(onStart) {
     screen.querySelector('#start-with-character-btn').addEventListener('click', () => {
         const gender = genderSelection.querySelector('.selection-btn.active').dataset.value;
         const origin = originSelection.querySelector('.selection-btn.active').dataset.value;
-        onStart({ gender, origin });
+        const programLength = parseInt(programSelection.querySelector('.selection-btn.active').dataset.value);
+        onStart({ gender, origin, programLength });
     });
     
     return screen;
@@ -123,16 +155,18 @@ export function getCharacterFromHash() {
     
     const gender = params.get('gender');
     const origin = params.get('origin');
+    const programLength = params.get('program');
     
     // Validate
     const validGender = GENDER_OPTIONS.some(opt => opt.value === gender) ? gender : null;
     const validOrigin = ORIGIN_OPTIONS.some(opt => opt.value === origin) ? origin : null;
+    const validProgram = PROGRAM_OPTIONS.some(opt => opt.value === programLength) ? parseInt(programLength) : null;
     
-    return { gender: validGender, origin: validOrigin };
+    return { gender: validGender, origin: validOrigin, programLength: validProgram };
 }
 
 // Update URL hash with character selection
 export function updateHashWithCharacter(character) {
-    const hash = `#gender=${character.gender}&origin=${character.origin}`;
+    const hash = `#gender=${character.gender}&origin=${character.origin}&program=${character.programLength}`;
     window.location.hash = hash;
 }

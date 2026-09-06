@@ -1,7 +1,7 @@
-// Late PhD Episode 4: Work-Life Balance (Gender-specific)
+// Late PhD Episode 4: Work-Life Balance Challenge (Gender-specific)
 export const episode4 = {
-    title: "Late PhD Episode 4: Work-Life Balance Challenge",
-    description: "As you approach the end of your PhD, you're facing increasing pressure to balance your academic work with personal responsibilities. For women and non-binary individuals, societal expectations can add additional complexity.",
+    title: "Episode 4: Work-Life Balance Challenge",
+    description: "As a female or non-binary researcher, you're facing increasing pressure to balance your academic career with personal life expectations. How do you navigate this challenge?",
     image: "assets/images/work_life_balance.jpg",
     sound: "assets/sounds/reflection.mp3",
     availableFor: {
@@ -9,151 +9,141 @@ export const episode4 = {
     },
     choices: [
         {
-            text: "Set clear boundaries and prioritize self-care",
-            getOutcome: (skills, attributes) => {
-                const effects = {
-                    researchProgress: -5,
-                    publications: 0,
-                    writing: -5,
-                    teaching: 0,
-                    networking: 0,
-                    stress: -25,
-                    motivation: +10,
-                    advisorRelationship: 0,
-                    reputation: 0,
-                    personalLife: +20
-                };
-                
-                if (skills.personalLife >= 50) {
-                    return {
-                        text: "Setting clear boundaries transforms your well-being! You find that taking care of yourself actually improves your productivity. Your advisor notices your improved focus and respects your self-awareness. You become a role model for other students struggling with balance.",
-                        effects: {
-                            ...effects,
-                            personalLife: +30,
-                            stress: -30,
-                            motivation: +20,
-                            researchProgress: -2,
-                            advisorRelationship: +10
-                        }
-                    };
-                } else if (skills.personalLife >= 30) {
-                    return {
-                        text: "You set boundaries and prioritize self-care, which helps your mental health. While your research progress slows slightly, you feel much more balanced and sustainable. Your advisor appreciates your professional approach to work-life balance.",
-                        effects: {
-                            ...effects,
-                            personalLife: +25,
-                            stress: -25,
-                            researchProgress: -3
-                        }
-                    };
-                } else {
-                    return {
-                        text: "You try to set boundaries but struggle to maintain them. The guilt of not working enough weighs on you. However, you do see some improvement in your personal life and realize this is a skill that takes practice.",
-                        effects: {
-                            ...effects,
-                            personalLife: +15,
-                            stress: -20,
-                            researchProgress: -8,
-                            motivation: +5
-                        }
-                    };
-                }
-            }
-        },
-        {
-            text: "Work extra hard to prove your commitment",
+            text: "Prioritize research and career advancement",
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +15,
-                    publications: +5,
+                    publications: +1,
                     writing: +10,
                     teaching: 0,
-                    networking: 0,
-                    stress: +30,
-                    motivation: -10,
+                    networking: +5,
+                    stress: +15,
+                    motivation: +10,
                     advisorRelationship: +5,
                     reputation: +10,
                     personalLife: -20
                 };
                 
-                if (skills.motivation >= 60) {
+                if (skills.researchProgress >= 70) {
                     return {
-                        text: "Your hard work pays off with excellent research progress! However, you notice that your male colleagues seem to achieve similar results with less effort. You feel both accomplished and frustrated by the double standards.",
+                        text: "Your focus on research pays off with a high-impact publication! However, you notice your personal relationships suffering. Your advisor is impressed with your dedication but gently suggests you take care of your well-being too.",
                         effects: {
                             ...effects,
                             researchProgress: +20,
-                            publications: +8,
                             reputation: +15,
-                            stress: +35
+                            advisorRelationship: +10
                         }
                     };
-                } else if (skills.motivation >= 40) {
+                } else if (skills.researchProgress >= 50) {
                     return {
-                        text: "You make significant progress but at a cost to your well-being. You notice the toll this is taking on your personal life. Your advisor is pleased with your output but concerned about your sustainability.",
+                        text: "You make good research progress and submit a solid paper. But you feel exhausted and realize you've been neglecting your personal life. Your friends express concern about your constant availability for work.",
                         effects: effects
                     };
                 } else {
                     return {
-                        text: "Working extra hard leads to diminishing returns. You're exhausted and your personal life is suffering significantly. Your advisor notices your decline and expresses concern about burnout.",
+                        text: "You struggle to make significant research progress despite your focus. The pressure to succeed is overwhelming, and your personal life is in disarray. You begin to question if the sacrifices are worth it.",
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            publications: +2,
-                            stress: +40,
-                            motivation: -20,
-                            personalLife: -25,
-                            advisorRelationship: -5
+                            publications: 0,
+                            stress: +25,
+                            motivation: -5,
+                            personalLife: -25
                         }
                     };
                 }
             }
         },
         {
-            text: "Seek support from women/non-binary network",
+            text: "Set boundaries and maintain work-life balance",
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +5,
                     publications: 0,
                     writing: +5,
                     teaching: 0,
-                    networking: +10,
+                    networking: +5,
                     stress: -15,
-                    motivation: +15,
+                    motivation: +10,
                     advisorRelationship: +5,
                     reputation: +5,
+                    personalLife: +20
+                };
+                
+                if (skills.personalLife >= 40) {
+                    return {
+                        text: "Your balanced approach pays off! You maintain good personal relationships while making steady research progress. Your advisor respects your boundaries and notes that you seem happier and more productive. This sustainable approach serves you well.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +10,
+                            personalLife: +25,
+                            motivation: +15,
+                            stress: -20
+                        }
+                    };
+                } else if (skills.personalLife >= 20) {
+                    return {
+                        text: "You're getting better at setting boundaries. Your personal life improves, though your research progress is slower than some peers. You feel more fulfilled overall, even if your advisor occasionally hints you could be more productive.",
+                        effects: effects
+                    };
+                } else {
+                    return {
+                        text: "You try to set boundaries, but struggle with guilt about not working enough. Your personal life improves slightly, but you still feel torn between work and personal commitments. Your research progress suffers from the divided attention.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +3,
+                            personalLife: +15,
+                            stress: -10,
+                            advisorRelationship: 0
+                        }
+                    };
+                }
+            }
+        },
+        {
+            text: "Seek out mentorship from senior women/non-binary researchers",
+            getOutcome: (skills, attributes) => {
+                const effects = {
+                    researchProgress: +8,
+                    publications: 0,
+                    writing: +5,
+                    teaching: 0,
+                    networking: +15,
+                    stress: -10,
+                    motivation: +15,
+                    advisorRelationship: +5,
+                    reputation: +10,
                     personalLife: +10
                 };
                 
-                if (skills.networking >= 40) {
+                if (skills.networking >= 50) {
                     return {
-                        text: "Your women/non-binary network provides incredible support! They share strategies for maintaining balance and navigating academic expectations. You find solidarity and practical advice that helps you thrive both personally and professionally.",
+                        text: "Your mentorship connections are invaluable! Senior researchers share their experiences of balancing career and personal life, giving you practical strategies. You gain confidence in navigating academia while maintaining your well-being. Your network expands significantly.",
                         effects: {
                             ...effects,
-                            networking: +15,
-                            stress: -20,
+                            networking: +20,
+                            reputation: +15,
                             motivation: +20,
-                            personalLife: +15,
-                            researchProgress: +10
+                            personalLife: +15
                         }
                     };
                 } else if (skills.networking >= 25) {
                     return {
-                        text: "You connect with a supportive network of women and non-binary academics. They provide valuable advice about work-life balance and help you navigate the unique challenges you face. You feel less alone in your journey.",
+                        text: "You connect with some helpful mentors who share their experiences. Their advice helps you feel less alone in facing these challenges. You gain both professional guidance and personal support from these relationships.",
                         effects: {
                             ...effects,
-                            networking: +12,
-                            stress: -18,
-                            motivation: +18
+                            networking: +15,
+                            motivation: +15
                         }
                     };
                 } else {
                     return {
-                        text: "You seek support from the network but it's smaller than you hoped. Still, the connections you do make provide valuable perspective. You realize the importance of building this support system throughout your career.",
+                        text: "You reach out to potential mentors but find it hard to connect. However, the effort itself helps you reflect on your priorities. You realize building this support network takes time and persistence.",
                         effects: {
                             ...effects,
-                            networking: +8,
-                            stress: -10,
-                            motivation: +10
+                            networking: +10,
+                            motivation: +10,
+                            personalLife: +5
                         }
                     };
                 }

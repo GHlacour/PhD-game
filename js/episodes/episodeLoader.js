@@ -1,20 +1,24 @@
 // Episode Loader - Loads and randomly selects episodes from different PhD phases
+// Now supports yearly structure: 5 episodes per year (4 regular + 1 evaluation)
 
 // Import all episodes
 import { episode1 as early1 } from './early/episode1.js';
 import { episode2 as early2 } from './early/episode2.js';
 import { episode3 as early3 } from './early/episode3.js';
 import { episode4 as early4 } from './early/episode4.js';
+import { episode5 as early5 } from './early/episode5.js';
 
 import { episode1 as mid1 } from './mid/episode1.js';
 import { episode2 as mid2 } from './mid/episode2.js';
 import { episode3 as mid3 } from './mid/episode3.js';
 import { episode4 as mid4 } from './mid/episode4.js';
+import { episode5 as mid5 } from './mid/episode5.js';
 
 import { episode1 as late1 } from './late/episode1.js';
 import { episode2 as late2 } from './late/episode2.js';
 import { episode3 as late3 } from './late/episode3.js';
 import { episode4 as late4 } from './late/episode4.js';
+import { episode5 as late5 } from './late/episode5.js';
 
 // Preload images and sounds for better performance
 export function preloadMedia() {
@@ -30,7 +34,9 @@ export function preloadMedia() {
         'assets/images/defense_prep.jpg',
         'assets/images/diversity_initiative.jpg',
         'assets/images/visa_extension.jpg',
-        'assets/images/work_life_balance.jpg'
+        'assets/images/work_life_balance.jpg',
+        'assets/images/evaluation_meeting.jpg',
+        'assets/images/final_evaluation.jpg'
     ];
     
     const sounds = [
@@ -44,7 +50,9 @@ export function preloadMedia() {
         'assets/sounds/writing.mp3',
         'assets/sounds/defense.mp3',
         'assets/sounds/networking.mp3',
-        'assets/sounds/reflection.mp3'
+        'assets/sounds/reflection.mp3',
+        'assets/sounds/evaluation.mp3',
+        'assets/sounds/final_evaluation.mp3'
     ];
     
     // Preload images
@@ -62,9 +70,19 @@ export function preloadMedia() {
 }
 
 // Episode pools by phase
-export const earlyEpisodes = [early1, early2, early3, early4];
-export const midEpisodes = [mid1, mid2, mid3, mid4];
-export const lateEpisodes = [late1, late2, late3, late4];
+export const earlyEpisodes = [early1, early2, early3, early4, early5];
+export const midEpisodes = [mid1, mid2, mid3, mid4, mid5];
+export const lateEpisodes = [late1, late2, late3, late4, late5];
+
+// Separate regular episodes from evaluation episodes
+const earlyRegularEpisodes = [early1, early2, early3, early4];
+const earlyEvaluationEpisodes = [early5];
+
+const midRegularEpisodes = [mid1, mid2, mid3, mid4];
+const midEvaluationEpisodes = [mid5];
+
+const lateRegularEpisodes = [late1, late2, late3, late4];
+const lateEvaluationEpisodes = [late5];
 
 /**
  * Check if an episode is available for the given attributes
@@ -94,19 +112,19 @@ function isEpisodeAvailable(episode, attributes) {
 }
 
 /**
- * Get a random episode from a specific phase
+ * Get a random episode from a specific phase, excluding evaluation episodes
  * @param {string} phase - 'early', 'mid', or 'late'
  * @param {Object} attributes - Player attributes (gender, origin)
  * @returns {Object} Random episode from the specified phase
  */
-export function getRandomEpisode(phase, attributes = {}) {
-    const pools = {
-        early: earlyEpisodes,
-        mid: midEpisodes,
-        late: lateEpisodes
+export function getRandomRegularEpisode(phase, attributes = {}) {
+    const regularPools = {
+        early: earlyRegularEpisodes,
+        mid: midRegularEpisodes,
+        late: lateRegularEpisodes
     };
     
-    const pool = pools[phase];
+    const pool = regularPools[phase];
     if (!pool) {
         throw new Error(`Unknown phase: ${phase}`);
     }
@@ -116,7 +134,7 @@ export function getRandomEpisode(phase, attributes = {}) {
     
     // If no episodes available for these attributes, return a random one anyway
     if (availableEpisodes.length === 0) {
-        console.warn(`No episodes available for phase ${phase} with attributes:`, attributes);
+        console.warn(`No regular episodes available for phase ${phase} with attributes:`, attributes);
         const randomIndex = Math.floor(Math.random() * pool.length);
         return { ...pool[randomIndex], phase };
     }
@@ -126,32 +144,61 @@ export function getRandomEpisode(phase, attributes = {}) {
 }
 
 /**
- * Generate a complete game sequence with random episodes from each phase
- * @param {number} earlyCount - Number of early episodes
- * @param {number} midCount - Number of mid episodes
- * @param {number} lateCount - Number of late episodes
+ * Get the evaluation episode for a specific year
+ * @param {number} year - Year number (1, 2, 3, or 4)
+ * @param {Object} attributes - Player attributes (gender, origin)
+ * @returns {Object} Evaluation episode for the specified year
+ */
+export function getEvaluationEpisode(year, attributes = {}) {
+    // Year 1 evaluation is always early phase
+    if (year === 1) {
+        const episode = earlyEvaluationEpisodes[0];
+        return { ...episode, phase: 'early', year };
+    }
+    // Year 2 evaluation is mid phase
+    else if (year === 2) {
+        const episode = midEvaluationEpisodes[0];
+        return { ...episode, phase: 'mid', year };
+    }
+    // Year 3+ evaluations use late phase
+    else {
+        const episode = lateEvaluationEpisodes[0];
+        // Update the year in the episode
+        return { ...episode, phase: 'late', year };
+    }
+}
+
+/**
+ * Generate a complete game sequence with yearly structure
+ * Each year has: 4 regular episodes + 1 evaluation episode
+ * @param {number} programLength - 3 or 4 years
  * @param {Object} attributes - Player attributes (gender, origin)
  * @returns {Array} Array of episodes in game order
  */
-export function generateGameSequence(earlyCount = 3, midCount = 3, lateCount = 3, attributes = {}) {
+export function generateGameSequence(programLength = 3, attributes = {}) {
     const sequence = [];
     
-    // Add early episodes
-    for (let i = 0; i < earlyCount; i++) {
-        const episode = getRandomEpisode('early', attributes);
-        if (episode) sequence.push(episode);
-    }
+    // Define phases for each year
+    const yearPhases = {
+        1: 'early',
+        2: 'mid',
+        3: 'late',
+        4: 'late'
+    };
     
-    // Add mid episodes
-    for (let i = 0; i < midCount; i++) {
-        const episode = getRandomEpisode('mid', attributes);
-        if (episode) sequence.push(episode);
-    }
-    
-    // Add late episodes
-    for (let i = 0; i < lateCount; i++) {
-        const episode = getRandomEpisode('late', attributes);
-        if (episode) sequence.push(episode);
+    for (let year = 1; year <= programLength; year++) {
+        const phase = yearPhases[year];
+        
+        // Add 4 regular episodes for this year's phase
+        for (let i = 0; i < 4; i++) {
+            const episode = getRandomRegularEpisode(phase, attributes);
+            // Mark the episode with its year
+            sequence.push({ ...episode, year, episodeNumber: (year - 1) * 5 + i + 1 });
+        }
+        
+        // Add the evaluation episode for this year
+        const evalEpisode = getEvaluationEpisode(year, attributes);
+        sequence.push({ ...evalEpisode, episodeNumber: year * 5 });
     }
     
     return sequence;
@@ -182,4 +229,13 @@ export function getAllEpisodes() {
         mid: midEpisodes,
         late: lateEpisodes
     };
+}
+
+/**
+ * Get the total number of episodes for a program length
+ * @param {number} programLength - 3 or 4 years
+ * @returns {number} Total number of episodes
+ */
+export function getTotalEpisodes(programLength) {
+    return programLength * 5; // 5 episodes per year
 }

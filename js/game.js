@@ -1,8 +1,8 @@
 // PhD Life Game - Main JavaScript
 // Using ES modules for episode loading
 
-import { generateGameSequence, preloadMedia } from './episodes/episodeLoader.js';
-import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT } from './characterSelection.js';
+import { generateGameSequence, preloadMedia, getTotalEpisodes } from './episodes/episodeLoader.js';
+import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS } from './characterSelection.js';
 
 // Game state
 const gameState = {
@@ -24,11 +24,11 @@ const gameState = {
     },
     attributes: {
         gender: null,
-        origin: null
+        origin: null,
+        programLength: 3
     },
-    maxEpisodes: 9,
-    gameActive: false,
-    totalEpisodes: 9
+    thesisSubmitted: false,
+    gameActive: false
 };
 
 // Public skills that are shown to the player
@@ -45,6 +45,26 @@ const skillsDisplay = document.getElementById('skills-display');
 const endTitle = document.getElementById('end-title');
 const endDescription = document.getElementById('end-description');
 
+// Create year progress display
+const yearProgressContainer = document.createElement('div');
+yearProgressContainer.id = 'year-progress-container';
+yearProgressContainer.className = 'year-progress-container hidden';
+yearProgressContainer.innerHTML = `
+    <div class="year-info">
+        <span id="current-year">Year 1</span>
+        <span id="year-separator">/</span>
+        <span id="total-years">3</span>
+    </div>
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="year-progress-bar"></div>
+    </div>
+`;
+document.querySelector('.episode-container').prepend(yearProgressContainer);
+
+const currentYearElement = document.getElementById('current-year');
+const totalYearsElement = document.getElementById('total-years');
+const yearProgressBar = document.getElementById('year-progress-bar');
+
 // Create welcome screen
 const welcomeScreen = document.createElement('div');
 welcomeScreen.id = 'welcome-screen';
@@ -55,6 +75,7 @@ welcomeScreen.innerHTML = `
         <h2>Welcome to PhD Life</h2>
         <p>Experience the journey of a PhD student through challenging choices and real-world scenarios.</p>
         <p>Build your skills, navigate obstacles, and shape your academic future.</p>
+        <p><strong>Publish at least one paper per year and write your thesis to graduate!</strong></p>
         <button id="welcome-start-btn" class="btn">Start Game</button>
     </div>
 `;
@@ -118,6 +139,7 @@ function startGameFromWelcome() {
 function startPhD(character) {
     gameState.attributes.gender = character.gender;
     gameState.attributes.origin = character.origin;
+    gameState.attributes.programLength = character.programLength || 3;
     
     // Update URL hash for sharing
     updateHashWithCharacter(character);
@@ -146,20 +168,43 @@ async function initGame() {
         reputation: 50,
         personalLife: 60
     };
+    gameState.thesisSubmitted = false;
     gameState.gameActive = true;
     
-    // Generate random episode sequence with character attributes
-    gameState.episodes = generateGameSequence(3, 3, 3, gameState.attributes);
+    // Generate episode sequence based on program length
+    gameState.episodes = generateGameSequence(gameState.attributes.programLength, gameState.attributes);
+    
+    // Set total years display
+    totalYearsElement.textContent = gameState.attributes.programLength;
     
     // Hide screens
     welcomeScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
     outcomeDisplay.classList.add('hidden');
     gameScreen.classList.remove('hidden');
+    yearProgressContainer.classList.remove('hidden');
     
     // Load first episode
     loadEpisode(gameState.currentEpisode);
     updateSkillsDisplay();
+    updateYearProgress();
+}
+
+// Update year progress display
+function updateYearProgress() {
+    if (gameState.episodes.length === 0) return;
+    
+    const currentEpisode = gameState.episodes[gameState.currentEpisode];
+    const currentYear = currentEpisode.year || Math.floor(gameState.currentEpisode / 5) + 1;
+    
+    currentYearElement.textContent = `Year ${currentYear}`;
+    
+    // Calculate progress within the year (0-100%)
+    const episodesPerYear = 5;
+    const episodeInYear = gameState.currentEpisode % episodesPerYear;
+    const progressPercent = (episodeInYear / episodesPerYear) * 100;
+    
+    yearProgressBar.style.width = `${progressPercent}%`;
 }
 
 // Load an episode
@@ -180,6 +225,11 @@ function loadEpisode(episodeIndex) {
             late: 'Late PhD'
         };
         title = `[${phaseNames[episode.phase]}] ${episode.title}`;
+    }
+    
+    // Add episode number
+    if (episode.episodeNumber) {
+        title = `Episode ${episode.episodeNumber}: ${title}`;
     }
     
     episodeTitle.textContent = title;
@@ -209,6 +259,8 @@ function loadEpisode(episodeIndex) {
         choiceBtn.addEventListener('click', () => selectChoice(choice, episode));
         choicesContainer.appendChild(choiceBtn);
     });
+    
+    updateYearProgress();
 }
 
 // Handle choice selection
@@ -218,12 +270,18 @@ function selectChoice(choice, episode) {
     let finalEffects = choice.effects || {};
     
     if (choice.getOutcome) {
-        const outcome = choice.getOutcome(gameState.skills, gameState.attributes);
+        // Pass programLength to evaluation episodes
+        const outcome = choice.getOutcome(gameState.skills, gameState.attributes, gameState.attributes.programLength);
         if (typeof outcome === 'string') {
             outcomeTextContent = outcome;
         } else {
             outcomeTextContent = outcome.text;
             finalEffects = outcome.effects;
+            
+            // Check if thesis was submitted
+            if (outcome.effects.thesisSubmitted === true) {
+                gameState.thesisSubmitted = true;
+            }
         }
     } else {
         outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
@@ -231,7 +289,9 @@ function selectChoice(choice, episode) {
     
     // Apply skill changes
     for (const [skill, change] of Object.entries(finalEffects)) {
-        gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
+        if (skill !== 'thesisSubmitted') {
+            gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
+        }
     }
     
     // Show outcome
@@ -249,27 +309,27 @@ function continueAfterOutcome() {
     
     // Check for game over conditions
     if (gameState.skills.stress >= 100) {
-        endGame("You burned out! Game Over.");
+        endGame("You burned out! The stress of the PhD became too much. Game Over.");
         return;
     }
     
     if (gameState.skills.motivation <= 0) {
-        endGame("You lost all motivation. Game Over.");
+        endGame("You lost all motivation and decided to quit the PhD. Game Over.");
         return;
     }
     
     if (gameState.skills.advisorRelationship <= 0) {
-        endGame("Your advisor relationship broke down. Game Over.");
+        endGame("Your advisor relationship broke down completely. Without their support, you cannot continue. Game Over.");
         return;
     }
     
     if (gameState.skills.personalLife <= 0) {
-        endGame("Your personal life collapsed. Game Over.");
+        endGame("Your personal life collapsed. You decide to step away from the PhD to address personal matters. Game Over.");
         return;
     }
     
     if (gameState.skills.researchProgress <= 0 && gameState.skills.writing <= 0) {
-        endGame("Your research progress and writing skills are too low. Game Over.");
+        endGame("Your research progress and writing skills are too low to continue. Game Over.");
         return;
     }
     
@@ -278,22 +338,29 @@ function continueAfterOutcome() {
     
     // Check if we've completed all episodes
     if (gameState.currentEpisode >= gameState.episodes.length) {
-        // Determine outcome based on skills and attributes
+        // Determine outcome based on skills, attributes, and thesis submission
+        const requiredPublications = gameState.attributes.programLength || 3;
         const avgPublicSkill = (gameState.skills.researchProgress + gameState.skills.publications + gameState.skills.writing + gameState.skills.teaching + gameState.skills.networking) / 5;
         
         // Also consider hidden skills for more nuanced endings
         const hiddenFactor = (gameState.skills.stress + gameState.skills.motivation + gameState.skills.advisorRelationship + gameState.skills.reputation + gameState.skills.personalLife) / 5;
         
-        if (avgPublicSkill >= 70 && hiddenFactor >= 50) {
-            endGame("Congratulations! You've successfully graduated with honors and are ready for a prestigious career in academia!");
-        } else if (avgPublicSkill >= 70) {
-            endGame("Congratulations! You've successfully graduated and are ready for a career in academia!");
-        } else if (avgPublicSkill >= 50) {
-            endGame("You've graduated! Your skills open doors to both academia and industry.");
-        } else if (avgPublicSkill >= 30) {
-            endGame("You've completed your PhD journey, but your skills suggest you might thrive better in industry or non-research roles.");
+        // Check graduation requirements
+        const hasEnoughPublications = gameState.skills.publications >= requiredPublications;
+        const hasThesisSubmitted = gameState.thesisSubmitted;
+        
+        if (hasEnoughPublications && hasThesisSubmitted && avgPublicSkill >= 70 && hiddenFactor >= 50) {
+            endGame(`CONGRATULATIONS! You've successfully graduated with honors! With ${gameState.skills.publications} publications and a completed thesis, you've exceeded all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is extremely proud and you're ready for a prestigious career in academia!`);
+        } else if (hasEnoughPublications && hasThesisSubmitted && avgPublicSkill >= 50) {
+            endGame(`Congratulations! You've successfully graduated! With ${gameState.skills.publications} publications and a completed thesis, you've met all requirements for your ${gameState.attributes.programLength}-year program. Your advisor is satisfied with your work and you're ready for a career in academia or industry.`);
+        } else if (hasEnoughPublications && hasThesisSubmitted) {
+            endGame(`You've graduated! With ${gameState.skills.publications} publications and a completed thesis, you've met the basic requirements. Your skills open doors to both academia and industry, though you may need additional training for the most competitive positions.`);
+        } else if (hasEnoughPublications && !hasThesisSubmitted) {
+            endGame(`You've completed your publication requirement with ${gameState.skills.publications} papers, but without a submitted thesis, you cannot graduate. Your contract ends and you leave without a degree.`);
+        } else if (hasThesisSubmitted && !hasEnoughPublications) {
+            endGame(`You've submitted your thesis, but with only ${gameState.skills.publications} publications (required: ${requiredPublications}), you don't meet the publication requirement. Without sufficient publications, you cannot graduate.`);
         } else {
-            endGame("You've completed your PhD journey, but your limited skills suggest you may need additional training for most academic positions.");
+            endGame(`Your PhD journey has ended. With ${gameState.skills.publications} publications (required: ${requiredPublications}) and no thesis submitted, you have not met the graduation requirements. Your contract ends without a degree.`);
         }
         return;
     }
@@ -332,8 +399,9 @@ function endGame(message) {
     gameScreen.classList.add('hidden');
     outcomeDisplay.classList.add('hidden');
     endScreen.classList.remove('hidden');
+    yearProgressContainer.classList.add('hidden');
     
-    endTitle.textContent = "Game Over";
+    endTitle.textContent = "PhD Journey Complete";
     endDescription.textContent = message || "Your PhD journey has ended.";
 }
 
@@ -354,7 +422,8 @@ function restartGame() {
     // Reset game state
     gameState.currentEpisode = 0;
     gameState.episodes = [];
-    gameState.attributes = { gender: null, origin: null };
+    gameState.attributes = { gender: null, origin: null, programLength: 3 };
+    gameState.thesisSubmitted = false;
 }
 
 // Event listeners
