@@ -167,17 +167,25 @@ function loadEpisode(episodeIndex) {
 
 // Handle choice selection
 function selectChoice(choice, episode) {
-    // Apply skill changes
-    for (const [skill, change] of Object.entries(choice.effects)) {
-        gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
-    }
-    
-    // Get outcome text based on skills
+    // Get outcome - can be either just text or {text, effects}
     let outcomeTextContent = '';
+    let finalEffects = choice.effects || {};
+    
     if (choice.getOutcome) {
-        outcomeTextContent = choice.getOutcome(gameState.skills);
+        const outcome = choice.getOutcome(gameState.skills);
+        if (typeof outcome === 'string') {
+            outcomeTextContent = outcome;
+        } else {
+            outcomeTextContent = outcome.text;
+            finalEffects = outcome.effects;
+        }
     } else {
         outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
+    }
+    
+    // Apply skill changes
+    for (const [skill, change] of Object.entries(finalEffects)) {
+        gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
     }
     
     // Show outcome
