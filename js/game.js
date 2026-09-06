@@ -573,7 +573,7 @@ function displayCareerOutcome(outcome) {
             <p>After ${gameState.attributes.programLength} years of hard work, you've completed your PhD with:</p>
             <ul>
                 <li><strong>Publications:</strong> ${gameState.skills.publications}</li>
-                <li><strong>Research:</strong> ${gameState.skills.researchProgress}</li>
+                <li><strong>Research Progress:</strong> ${gameState.skills.researchProgress}</li>
                 <li><strong>Writing Skill:</strong> ${gameState.skills.writing}</li>
                 <li><strong>Teaching Skill:</strong> ${gameState.skills.teaching}</li>
                 <li><strong>Networking:</strong> ${gameState.skills.networking}</li>

@@ -1,6 +1,6 @@
 // Skill display names mapping
 export const SKILL_DISPLAY_NAMES = {
-    researchProgress: 'Research',
+    researchProgress: 'Research Progress',
     publications: 'Publications',
     writing: 'Writing',
     teaching: 'Teaching',
@@ -200,7 +200,7 @@ function getAcademicOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Prestigious Postdoc at Top Institution!',
-                    description: `Your exceptional publication record (${skills.publications} papers) and strong research (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is a key step toward a tenure-track faculty position.`,
+                    description: `Your exceptional publication record (${skills.publications} papers) and strong Research Progress (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is a key step toward a tenure-track faculty position.`,
                     salary: 'Competitive postdoc salary with research funding',
                     timeline: 'Start in 2 months',
                     satisfaction: 'Very High'
@@ -247,7 +247,7 @@ function getIndustryOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Senior Research Scientist at Top Tech Company!',
-                    description: `Your strong research (${skills.researchProgress}) and excellent networking skills (${skills.networking}) land you a senior research scientist position at a leading technology company. They value your ${phdType} expertise and your ability to communicate complex ideas (writing: ${skills.writing}). The salary and benefits are excellent, and you have opportunities for rapid advancement.`,
+                    description: `Your strong Research Progress (${skills.researchProgress}) and excellent networking skills (${skills.networking}) land you a senior research scientist position at a leading technology company. They value your ${phdType} expertise and your ability to communicate complex ideas (writing: ${skills.writing}). The salary and benefits are excellent, and you have opportunities for rapid advancement.`,
                     salary: 'High industry salary with stock options',
                     timeline: 'Start in 1-2 months',
                     satisfaction: 'Very High'
@@ -257,7 +257,7 @@ function getIndustryOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Research Scientist Position',
-                    description: `With your solid research skills (${skills.researchProgress}) and decent professional network (${skills.networking}), you secure a research scientist position at a mid-sized company. The work is interesting and the pay is good. While not at the most prestigious company, you have room to grow and make an impact in your field.`,
+                    description: `With your solid Research Progress (${skills.researchProgress}) and decent professional network (${skills.networking}), you secure a research scientist position at a mid-sized company. The work is interesting and the pay is good. While not at the most prestigious company, you have room to grow and make an impact in your field.`,
                     salary: 'Good industry salary with benefits',
                     timeline: 'Start in 2-3 months',
                     satisfaction: 'High'
@@ -267,7 +267,7 @@ function getIndustryOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Junior Researcher / Data Scientist',
-                    description: `Your research experience (${skills.researchProgress}) gets you a junior researcher or data scientist position. The company takes a chance on you despite your limited networking (${skills.networking}). The salary is decent but not great, and you'll need to prove yourself. It's a good entry point, but you'll need to work hard to advance.`,
+                    description: `Your Research Progress (${skills.researchProgress}) gets you a junior researcher or data scientist position. The company takes a chance on you despite your limited networking (${skills.networking}). The salary is decent but not great, and you'll need to prove yourself. It's a good entry point, but you'll need to work hard to advance.`,
                     salary: 'Modest starting salary',
                     timeline: 'Start in 1-2 months',
                     satisfaction: 'Moderate - room for growth'
@@ -277,7 +277,7 @@ function getIndustryOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Difficult Transition to Industry',
-                    description: `With limited research (${skills.researchProgress}) and weak networking (${skills.networking}), you struggle to find research positions in industry. Companies want proven skills and connections. You may need to consider non-research roles, take a lower-level position, or gain additional qualifications. The PhD doesn't guarantee industry success without the right complementary skills.`,
+                    description: `With limited Research Progress (${skills.researchProgress}) and weak networking (${skills.networking}), you struggle to find research positions in industry. Companies want proven skills and connections. You may need to consider non-research roles, take a lower-level position, or gain additional qualifications. The PhD doesn't guarantee industry success without the right complementary skills.`,
                     salary: 'Entry-level or below expectations',
                     timeline: '6-12 months of challenging job search',
                     satisfaction: 'Low - questioning PhD value in industry'
