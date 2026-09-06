@@ -685,7 +685,7 @@ function endGame(message) {
     yearProgressContainer.classList.add('hidden');
     
     endTitle.textContent = "PhD Journey Complete";
-    endDescription.textContent = message || "Your PhD journey has ended.";
+    endDescription.innerHTML = message || "Your PhD journey has ended.";
 }
 
 // Restart the game
