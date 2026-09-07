@@ -159,7 +159,7 @@ function isEpisodeAvailable(episode, attributes) {
  * @param {Object} attributes - Player attributes (gender, origin, phdType)
  * @returns {Object} Random episode from the specified phase
  */
-export function getRandomRegularEpisode(phase, attributes = {}) {
+export function getRandomRegularEpisode(phase, attributes = {}, usedEpisodeIds = new Set()) {
     const regularPools = {
         early: earlyRegularEpisodes,
         mid: midRegularEpisodes,
@@ -171,11 +171,19 @@ export function getRandomRegularEpisode(phase, attributes = {}) {
         throw new Error(`Unknown phase: ${phase}`);
     }
     
-    // Filter episodes based on attributes
-    const availableEpisodes = pool.filter(episode => isEpisodeAvailable(episode, attributes));
+    // Filter episodes based on attributes and exclude already-used episodes
+    const availableEpisodes = pool.filter(episode => 
+        isEpisodeAvailable(episode, attributes) && !usedEpisodeIds.has(episode.title)
+    );
     
-    // If no episodes available for these attributes, return a random one anyway
+    // If no episodes available for these attributes, try without the used filter
     if (availableEpisodes.length === 0) {
+        const availableByAttr = pool.filter(episode => isEpisodeAvailable(episode, attributes));
+        if (availableByAttr.length > 0) {
+            const randomIndex = Math.floor(Math.random() * availableByAttr.length);
+            return { ...availableByAttr[randomIndex], phase };
+        }
+        // If still none, return a random one anyway
         console.warn(`No regular episodes available for phase ${phase} with attributes:`, attributes);
         const randomIndex = Math.floor(Math.random() * pool.length);
         return { ...pool[randomIndex], phase };
@@ -242,6 +250,9 @@ export function getEvaluationEpisode(year, totalYears, attributes = {}) {
 export function generateGameSequence(programLength = 3, attributes = {}) {
     const sequence = [];
     
+    // Track which episodes have been used to avoid duplicates
+    const usedEpisodeIds = new Set();
+    
     for (let year = 1; year <= programLength; year++) {
         // Determine the phase for this year
         let phase;
@@ -259,8 +270,9 @@ export function generateGameSequence(programLength = 3, attributes = {}) {
         
         // Add 4 regular episodes for this year's phase
         for (let i = 0; i < 4; i++) {
-            const episode = getRandomRegularEpisode(phase, attributes);
+            const episode = getRandomRegularEpisode(phase, attributes, usedEpisodeIds);
             // Mark the episode with its year
+            usedEpisodeIds.add(episode.title);
             sequence.push({ ...episode, year, episodeNumber: (year - 1) * 5 + i + 1 });
         }
         
