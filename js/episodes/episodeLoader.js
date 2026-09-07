@@ -34,6 +34,7 @@ import { episode15 as mid15 } from './mid/episode15.js';
 import { episode16 as mid16 } from './mid/episode16.js';
 import { episode17 as mid17 } from './mid/episode17.js';
 import { episode18 as mid18 } from './mid/episode18.js';
+import { episode19 as mid19 } from './mid/episode19.js';
 
 import { episode1 as late1 } from './late/episode1.js';
 import { episode2 as late2 } from './late/episode2.js';
@@ -48,6 +49,7 @@ import { episode10 as late10 } from './late/episode10.js';
 import { episode11 as late11 } from './late/episode11.js';
 import { episode12 as late12 } from './late/episode12.js';
 import { episode13 as late13 } from './late/episode13.js';
+import { episode14 as late14 } from './late/episode14.js';
 
 // Preload images and sounds for better performance
 export function preloadMedia() {
@@ -106,18 +108,18 @@ export function preloadMedia() {
 
 // Episode pools by phase
 export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7, early8, early9, early10, early11, early12];
-export const midEpisodes = [mid1, mid2, mid3, mid4, mid5, mid6, mid7, mid8, mid9, mid10, mid11, mid12, mid13, mid14, mid15, mid16, mid17, mid18];
-export const lateEpisodes = [late1, late2, late3, late4, late5, late6, late7, late8, late9, late10, late11, late12, late13];
+export const midEpisodes = [mid1, mid2, mid3, mid4, mid5, mid6, mid7, mid8, mid9, mid10, mid11, mid12, mid13, mid14, mid15, mid16, mid17, mid18, mid19];
+export const lateEpisodes = [late1, late2, late3, late4, late5, late6, late7, late8, late9, late10, late11, late12, late13, late14];
 
 // Separate regular episodes from evaluation episodes
 const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7, early8, early9, early10, early12];
 const earlyEvaluationEpisodes = [early5]; // Year 1 evaluation
 
-const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7, mid8, mid13, mid14, mid15, mid16, mid17, mid18];
+const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7, mid8, mid13, mid14, mid15, mid16, mid17, mid18, mid19];
 const midEvaluationEpisodes = [mid5]; // Year 2 evaluation
 
 // Late regular episodes (non-final)
-const lateRegularEpisodes = [late1, late2, late3, late4, late6, late7, late8, late10, late11, late12, late13];
+const lateRegularEpisodes = [late1, late2, late3, late4, late6, late7, late8, late10, late11, late12, late13, late14];
 // Final evaluation episode
 const finalEvaluationEpisodes = [late5];
 
