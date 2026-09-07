@@ -249,9 +249,13 @@ function loadEpisode(episodeIndex) {
     
     const episode = gameState.episodes[episodeIndex];
     
+    // Use getTitle/getDescription functions if available for dynamic content
+    const title = episode.getTitle ? episode.getTitle(gameState.attributes) : episode.title;
+    const description = episode.getDescription ? episode.getDescription(gameState.attributes) : episode.description;
+    
     // Just use the episode title (removed phase and episode number since we have year progress display)
-    episodeTitle.textContent = episode.title;
-    episodeDescription.textContent = episode.description;
+    episodeTitle.textContent = title;
+    episodeDescription.textContent = description;
     
     // Set episode image
     if (episode.image) {

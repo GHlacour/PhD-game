@@ -1,7 +1,23 @@
 // Mid PhD Episode 15: Pregnancy
 export const episode15 = {
     title: "Pregnancy",
-    description: "You discover you're pregnant / Your partner discovers they're pregnant. This is unexpected but welcome news. However, it raises serious questions about timing - you're in the middle of your PhD with critical experiments and publications ahead. The due date falls during a key research period.",
+    availableFor: {
+        gender: ['female', 'male']
+    },
+    getDescription: (attributes) => {
+        if (attributes.gender === 'female') {
+            return "You discover you're pregnant. This is unexpected but welcome news. However, it raises serious questions about timing - you're in the middle of your PhD with critical experiments and publications ahead. The due date falls during a key research period.";
+        } else {
+            return "Your partner discovers they're pregnant. This is unexpected but welcome news. However, it raises serious questions about timing - you're in the middle of your PhD with critical experiments and publications ahead. The due date falls during a key research period.";
+        }
+    },
+    getTitle: (attributes) => {
+        if (attributes.gender === 'female') {
+            return "Pregnancy";
+        } else {
+            return "Partner's Pregnancy";
+        }
+    },
     image: "assets/images/work_life_balance.jpg",
     sound: "assets/sounds/reflection.mp3",
     phase: "mid",
@@ -22,9 +38,13 @@ export const episode15 = {
                     personalLife: +25
                 };
                 
+                const isFemale = attributes.gender === 'female';
+                const pronoun = isFemale ? 'you' : 'your partner';
+                const possessive = isFemale ? 'your' : 'their';
+                
                 if (skills.advisorRelationship >= 70) {
                     return {
-                        text: "Your advisor is completely supportive and helps you navigate the university's parental leave policy. They work with you to create a realistic timeline adjustment. The time with your newborn is precious and you return with renewed perspective. Your advisor even shares their own experiences balancing family and academia, which strengthens your bond.",
+                        text: `Your advisor is completely supportive and helps you navigate the university's parental leave policy. They work with you to create a realistic timeline adjustment. The time with ${pronoun} and ${possessive} newborn is precious and you return with renewed perspective. Your advisor even shares their own experiences balancing family and academia, which strengthens your bond.`,
                         effects: {
                             ...effects,
                             stress: -25,
@@ -36,7 +56,7 @@ export const episode15 = {
                     };
                 } else if (skills.advisorRelationship >= 40) {
                     return {
-                        text: "Your advisor agrees to the leave but seems concerned about the impact on your timeline. You take the full parental leave and cherish the early months with your baby. However, when you return, you feel pressure to catch up quickly. The transition back to work is challenging but you wouldn't change your decision.",
+                        text: `Your advisor agrees to the leave but seems concerned about the impact on your timeline. You take the full parental leave and cherish the early months with ${pronoun} and ${possessive} baby. However, when you return, you feel pressure to catch up quickly. The transition back to work is challenging but you wouldn't change your decision.`,
                         effects: {
                             ...effects,
                             stress: -15,
@@ -47,7 +67,7 @@ export const episode15 = {
                     };
                 } else {
                     return {
-                        text: "Your advisor is disappointed by your leave request and questions your commitment to the PhD. You take the leave anyway, knowing it's the right choice for your family. The early months with your baby are wonderful, but you return to a tense situation with your advisor. They make several comments about 'lost momentum.'",
+                        text: `Your advisor is disappointed by your leave request and questions your commitment to the PhD. You take the leave anyway, knowing it's the right choice for your family. The early months with ${pronoun} and ${possessive} baby are wonderful, but you return to a tense situation with your advisor. They make several comments about 'lost momentum'.`,
                         effects: {
                             ...effects,
                             stress: -10,
@@ -76,9 +96,14 @@ export const episode15 = {
                     personalLife: -10
                 };
                 
+                const isFemale = attributes.gender === 'female';
+                const pronoun = isFemale ? 'you' : 'your partner';
+                const possessive = isFemale ? 'your' : 'their';
+                const yourYour = isFemale ? 'your' : 'your';
+                
                 if (skills.personalLife >= 60) {
                     return {
-                        text: "You manage to work through most of the pregnancy with careful planning. Your support network is strong, and you only take a few weeks off after the birth. However, the sleep deprivation is brutal. You make good progress, but the exhaustion affects your work quality. You wonder if you're being fair to yourself and your baby.",
+                        text: `You manage to work through most of the pregnancy with careful planning. ${yourYour} support network is strong, and you only take a few weeks off after the birth. However, the sleep deprivation is brutal. You make good progress, but the exhaustion affects your work quality. You wonder if you're being fair to yourself and ${possessive} baby.`,
                         effects: {
                             ...effects,
                             researchProgress: +8,
@@ -89,7 +114,7 @@ export const episode15 = {
                     };
                 } else if (skills.stress >= 50) {
                     return {
-                        text: "You try to work through the pregnancy, but the physical and emotional demands are overwhelming. The lack of sleep after the birth makes it nearly impossible to focus. Your work suffers despite your best efforts. You feel like you're failing at both parenting and research.",
+                        text: `You try to work through the pregnancy, but the physical and emotional demands on ${pronoun} are overwhelming. The lack of sleep after the birth makes it nearly impossible to focus. Your work suffers despite your best efforts. You feel like you're failing at both parenting and research.`,
                         effects: {
                             ...effects,
                             researchProgress: +2,
@@ -101,7 +126,7 @@ export const episode15 = {
                     };
                 } else {
                     return {
-                        text: "Your attempt to work through the pregnancy backfires. The stress affects your health, and your baby has some complications that require extra care. You end up taking more time off than planned anyway, but now you're exhausted and behind on work. Your advisor is frustrated by the inconsistency.",
+                        text: `Your attempt to work through the pregnancy backfires. The stress affects ${pronoun} health, and ${possessive} baby has some complications that require extra care. You end up taking more time off than planned anyway, but now you're exhausted and behind on work. Your advisor is frustrated by the inconsistency.`,
                         effects: {
                             ...effects,
                             researchProgress: 0,
@@ -131,9 +156,12 @@ export const episode15 = {
                     personalLife: +10
                 };
                 
+                const isFemale = attributes.gender === 'female';
+                const youYour = isFemale ? 'you' : 'your partner';
+                
                 if (skills.advisorRelationship >= 60) {
                     return {
-                        text: "Your advisor is understanding and agrees to support a timeline extension request. They help you prepare a compelling case for the department. The extension is approved, giving you the breathing room you need. You can now plan for both parenthood and your PhD without constant stress. Your advisor's support means a lot to you.",
+                        text: `Your advisor is understanding and agrees to support a timeline extension request. They help you prepare a compelling case for the department. The extension is approved, giving you the breathing room you need. You can now plan for both parenthood and your PhD without constant stress. Your advisor's support means a lot to you.`,
                         effects: {
                             ...effects,
                             stress: -20,
@@ -145,7 +173,7 @@ export const episode15 = {
                     };
                 } else if (skills.advisorRelationship >= 30) {
                     return {
-                        text: "Your advisor reluctantly agrees to support the extension but warns it may affect your funding. The department approves a shorter extension than you hoped for. It's not ideal, but it's better than nothing. You feel relieved to have some official accommodation, even if the process was stressful.",
+                        text: `Your advisor reluctantly agrees to support the extension but warns it may affect your funding. The department approves a shorter extension than you hoped for. It's not ideal, but it's better than nothing. You feel relieved to have some official accommodation for ${youYour} situation, even if the process was stressful.`,
                         effects: {
                             ...effects,
                             stress: -5,
@@ -157,7 +185,7 @@ export const episode15 = {
                     };
                 } else {
                     return {
-                        text: "Your advisor refuses to support an extension, arguing that many people have babies during their PhD and manage to finish on time. They suggest you 'figure it out.' Without their support, the extension request is denied. You're left feeling unsupported and worried about how you'll manage everything. The lack of accommodation adds significant stress.",
+                        text: `Your advisor refuses to support an extension, arguing that many people have babies during their PhD and manage to finish on time. They suggest you 'figure it out.' Without their support, the extension request is denied. You're left feeling unsupported and worried about how you'll manage everything with ${youYour}. The lack of accommodation adds significant stress.`,
                         effects: {
                             ...effects,
                             stress: +15,
