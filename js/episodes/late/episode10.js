@@ -1,171 +1,169 @@
-// Late PhD Episode 10: Family Tragedy
+// Late PhD Episode 10: Family Pressure to Marry
 export const episode10 = {
-    title: "Family Tragedy",
-    description: "You receive devastating news - a close family member has suddenly passed away. The funeral is next week in your home country. Your research is at a critical stage, but this is a family emergency.",
-    image: "assets/images/conference.jpg",
+    title: "Family Pressure to Marry",
+    availableFor: {
+        gender: ['female'],
+        origin: ['international']
+    },
+    description: "Your parents back home have been calling more frequently, expressing concern that you're still not married. They argue that you're getting older and should settle down. They don't understand why you're 'wasting time' on a PhD when you could have a family. The pressure is intensifying as your graduation approaches, and they want you to return home after defending.",
+    image: "assets/images/work_life_balance.jpg",
     sound: "assets/sounds/stress.mp3",
     phase: "late",
     choices: [
         {
-            text: "Attend the funeral - family comes first",
+            text: "Explain your career goals and ask for their patience",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: -5,
+                    researchProgress: 0,
                     publications: 0,
-                    writing: -3,
+                    writing: -2,
                     teaching: 0,
                     networking: 0,
-                    stress: -10,
-                    motivation: -15,
+                    stress: +15,
+                    motivation: -5,
                     advisorRelationship: 0,
                     reputation: 0,
-                    personalLife: +10
+                    personalLife: -5
                 };
                 
                 if (skills.advisorRelationship >= 70) {
                     return {
-                        text: "Your advisor completely understands and insists you take the time you need. They help rearrange your commitments and even offer to cover some travel expenses. Attending the funeral gives you closure and the emotional support of extended family. You return exhausted but with a clearer mind. Your advisor's compassion strengthens your bond with them.",
+                        text: "You take time to explain your academic goals and the importance of finishing your PhD. Your advisor, who has heard about your situation, offers to speak with your parents to explain the value of your work. Your parents listen but still don't fully understand. However, they agree to stop pressuring you for now. The emotional conversation leaves you drained but relieved.",
                         effects: {
                             ...effects,
-                            stress: -20,
-                            motivation: -5,
-                            advisorRelationship: +10,
-                            personalLife: +15
+                            stress: +10,
+                            motivation: 0,
+                            advisorRelationship: +8,
+                            personalLife: 0
                         }
                     };
-                } else if (skills.advisorRelationship >= 40) {
+                } else if (skills.networking >= 50) {
                     return {
-                        text: "Your advisor reluctantly agrees you should go. You attend the funeral and find some comfort in being with family during this difficult time. However, you're worried about falling behind. When you return, your advisor seems impatient about the lost time.",
+                        text: "You explain your career goals clearly and firmly. Your parents listen but respond with concerns about societal expectations and family honor. They don't fully accept your choices but agree to reduce the pressure. The conversation is exhausting, and you spend days recovering emotionally.",
                         effects: {
                             ...effects,
-                            stress: -15,
-                            motivation: -10,
-                            advisorRelationship: -5,
-                            researchProgress: -8
+                            stress: +12,
+                            motivation: -3,
+                            personalLife: -3
                         }
                     };
                 } else {
                     return {
-                        text: "Your advisor seems annoyed by your request for time off. You attend the funeral but feel guilty the entire time. The grief is overwhelming, and you return to work emotionally drained. Your advisor makes several passive-aggressive comments about 'priorities.'",
+                        text: "Your attempts to explain fall on deaf ears. Your parents insist you're being selfish and that your duty is to the family. They tell you that no one in your community will respect a woman with a PhD but no husband. The conversation ends with them more frustrated than before. You feel devastated and question your life choices.",
                         effects: {
                             ...effects,
-                            stress: +5,
-                            motivation: -20,
-                            advisorRelationship: -15,
-                            researchProgress: -10,
-                            personalLife: +5
+                            stress: +25,
+                            motivation: -15,
+                            personalLife: -15,
+                            researchProgress: -3
                         }
                     };
                 }
             }
         },
         {
-            text: "Attend the funeral but work remotely",
+            text: "Promise to consider marriage after graduation",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: +2,
+                    researchProgress: +3,
                     publications: 0,
                     writing: +2,
                     teaching: 0,
                     networking: 0,
-                    stress: +5,
-                    motivation: -10,
-                    advisorRelationship: +3,
+                    stress: -10,
+                    motivation: +5,
+                    advisorRelationship: 0,
                     reputation: 0,
-                    personalLife: +3
+                    personalLife: +5
                 };
                 
-                if (skills.motivation >= 50) {
+                if (skills.motivation >= 60) {
                     return {
-                        text: "You bring your laptop and manage to get some work done during the trip. Being with family helps you process the grief, and the change of scenery actually boosts your productivity for a few days. However, you feel guilty for not being fully present with your family. The compromise leaves you emotionally drained but professionally on track.",
+                        text: "You tell your parents that you'll seriously consider marriage after you graduate and find a stable position. This satisfies them for now, and they stop pressuring you. With this weight off your shoulders, you can focus on finishing your thesis. However, you know this conversation will come up again soon.",
                         effects: {
                             ...effects,
-                            researchProgress: +5,
-                            writing: +5,
-                            stress: 0,
-                            motivation: -5
+                            stress: -15,
+                            motivation: +8,
+                            personalLife: +8,
+                            researchProgress: +5
                         }
                     };
-                } else if (skills.stress >= 60) {
+                } else if (skills.stress >= 50) {
                     return {
-                        text: "You try to work during the funeral trip, but your mind is elsewhere. The emotional toll makes it nearly impossible to focus. Your family notices you're distracted and feels you're not honoring the memory of your loved one. You return having made little progress and feeling worse than when you left.",
+                        text: "You make the promise to placate your parents, but the guilt weighs on you. You're not sure if you actually want to get married, and the thought of disappointing them again fills you with anxiety. Still, the immediate pressure is off, and you can focus on your defense. You feel conflicted but also relieved.",
                         effects: {
                             ...effects,
-                            researchProgress: 0,
-                            writing: 0,
-                            stress: +15,
-                            motivation: -15,
-                            advisorRelationship: -5,
-                            personalLife: -5
+                            stress: -8,
+                            motivation: +3,
+                            personalLife: +3,
+                            researchProgress: +3
                         }
                     };
                 } else {
                     return {
-                        text: "You spend the entire trip working, barely speaking to family members. Your relatives are hurt by your absence, both physical and emotional. The work you produce is subpar due to your emotional state. You return having damaged important family relationships without making meaningful research progress.",
+                        text: "You promise to consider marriage, but your parents see through your hesitation. They tell you that 'after graduation' is too vague and demand a specific timeline. The temporary relief turns into more pressure. You're stuck between family expectations and your own dreams.",
                         effects: {
                             ...effects,
-                            researchProgress: 0,
-                            writing: 0,
-                            advisorRelationship: -8,
-                            personalLife: -10,
-                            stress: +20,
-                            motivation: -20
+                            stress: -3,
+                            motivation: -2,
+                            personalLife: 0,
+                            researchProgress: +1
                         }
                     };
                 }
             }
         },
         {
-            text: "Stay and work - you can't afford the time off",
+            text: "Involve your advisor in the conversation",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: +8,
+                    researchProgress: +2,
                     publications: 0,
-                    writing: +5,
+                    writing: +1,
                     teaching: 0,
-                    networking: 0,
-                    stress: +20,
-                    motivation: -10,
+                    networking: +3,
+                    stress: +5,
+                    motivation: +3,
                     advisorRelationship: +5,
-                    reputation: 0,
-                    personalLife: -20
+                    reputation: +3,
+                    personalLife: 0
                 };
                 
-                if (skills.researchProgress >= 80) {
+                if (skills.advisorRelationship >= 60) {
                     return {
-                        text: "You make significant progress on your research, but the guilt is overwhelming. Your family is devastated by your absence. You try to rationalize that your loved one would have wanted you to finish your degree, but the regret gnaws at you. The emotional strain affects your work quality despite the extra time invested.",
+                        text: "Your advisor agrees to speak with your parents directly. As a respected academic, their words carry weight. They explain the value of your research and the opportunities that will come from completing your PhD. Your parents listen respectfully and seem genuinely impressed. While they still hope you'll marry eventually, they stop pressuring you. Your advisor's support means everything to you.",
                         effects: {
                             ...effects,
-                            researchProgress: +10,
-                            stress: +25,
-                            motivation: -15,
-                            personalLife: -25,
-                            reputation: -5
+                            stress: 0,
+                            motivation: +10,
+                            advisorRelationship: +10,
+                            personalLife: +10,
+                            researchProgress: +4,
+                            reputation: +5
                         }
                     };
-                } else if (skills.personalLife >= 40) {
+                } else if (skills.advisorRelationship >= 30) {
                     return {
-                        text: "You stay and work, but you're haunted by your decision. Your family expresses their disappointment and hurt. Your advisor praises your dedication, but you feel hollow. The emotional distress makes it hard to concentrate. You wonder if the professional gain was worth the personal cost.",
+                        text: "Your advisor speaks with your parents, but the cultural gap is significant. Your advisor tries to explain, but your parents don't fully grasp the concept of a female academic. Still, they appreciate that your advisor cares about you. The pressure decreases somewhat, and you feel supported by your academic family even if your birth family doesn't understand.",
                         effects: {
                             ...effects,
-                            researchProgress: +6,
-                            stress: +25,
-                            motivation: -15,
-                            personalLife: -25,
-                            advisorRelationship: +3
+                            stress: +3,
+                            motivation: +5,
+                            advisorRelationship: +8,
+                            personalLife: +5,
+                            researchProgress: +3
                         }
                     };
                 } else {
                     return {
-                        text: "Your decision to stay and work destroys your relationship with your family. They see it as a betrayal of your loved one's memory. Your advisor is pleased with your productivity, but your personal life is in shambles. The guilt and isolation affect your mental health severely. You question your priorities and values.",
+                        text: "Your advisor seems uncomfortable with the personal nature of the request. They agree to mention your progress in their next email to your parents, but it's clear they don't want to get involved. The call with your parents doesn't go well, and you feel caught between two worlds that don't understand each other.",
                         effects: {
                             ...effects,
-                            researchProgress: +5,
-                            stress: +30,
-                            motivation: -25,
-                            personalLife: -30,
+                            stress: +15,
+                            motivation: -5,
                             advisorRelationship: 0,
-                            reputation: -10
+                            personalLife: -5,
+                            researchProgress: 0
                         }
                     };
                 }
