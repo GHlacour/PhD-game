@@ -2,6 +2,19 @@
 
 This file provides guidance for AI agents (like Vibe Code) working on this PhD Life Game project.
 
+## Important Rules
+
+**NEVER make changes that affect user tracking, analytics, monetization, or business logic without explicit user approval.** This includes but is not limited to:
+- Removing or modifying analytics code (Google Analytics, etc.)
+- Removing or modifying advertising code
+- Removing or modifying payment/transaction systems
+- Changing user data collection or privacy policies
+- Modifying business-critical functionality
+
+If you encounter what appears to be an error related to these systems, **explain the issue and ask for guidance** rather than making changes.
+
+**General rule**: When in doubt, **ask first**.
+
 ## Project Overview
 
 PhD Life Game is a browser-based pedagogical game where players experience the journey of a PhD student through various choices and events. The game features:
