@@ -29,7 +29,6 @@ PhD-game/
 │       └── late/           # Late PhD episodes (years 4-5+)
 ├── assets/
 │   ├── images/             # Game images
-│   └── sounds/             # Game audio
 ├── LICENSE                 # MIT License
 ├── README.md               # Project description
 └── AGENTS.md               # This file
@@ -47,7 +46,6 @@ PhD-game/
        title: "Episode N: Title",
        description: "Brief description of the situation",
        image: "assets/images/filename.jpg",        // Optional
-       sound: "assets/sounds/filename.mp3",        // Optional
        choices: [
            {
                text: "Choice text",
@@ -90,7 +88,6 @@ PhD-game/
 
 Each episode can include:
 - **Image**: Visual representation (path in `image` field)
-- **Sound**: Background sound or effect (path in `sound` field)
 - **Dynamic Outcomes**: Each choice can have a `getOutcome` function that returns different text based on current skill levels
 
 ### Skill Balance
@@ -121,14 +118,14 @@ Each episode can include:
 ## Testing
 
 To test the game:
-1. Open `index.html` in a modern browser
-2. Click "Start Game"
-3. Play through a complete game (9 episodes)
-4. Verify:
+1. Open `index.html` in a modern browser, OR
+2. Visit the GitHub Pages site: [https://ghlacour.github.io/PhD-game/](https://ghlacour.github.io/PhD-game/)
+3. Click "Start Game"
+4. Play through a complete game (15 episodes for 3-year PhD, 20 for 4-year)
+5. Verify:
    - All choices work
    - Skills update correctly
    - Episode images display
-   - Sounds play (if available)
    - Outcome text appears after choices
    - Episode progression works
    - Ending is determined by final skills
