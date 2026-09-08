@@ -36,6 +36,7 @@ import { episode16 as mid16 } from './mid/episode16.js';
 import { episode17 as mid17 } from './mid/episode17.js';
 import { episode18 as mid18 } from './mid/episode18.js';
 import { episode19 as mid19 } from './mid/episode19.js';
+import { episode20 as mid20 } from './mid/episode20.js';
 
 import { episode1 as late1 } from './late/episode1.js';
 import { episode2 as late2 } from './late/episode2.js';
@@ -94,7 +95,7 @@ export const lateEpisodes = [late1, late2, late3, late4, late5, late6, late7, la
 const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7, early8, early9, early10, early12, early13];
 const earlyEvaluationEpisodes = [early5]; // Year 1 evaluation
 
-const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7, mid8, mid13, mid14, mid15, mid16, mid17, mid18, mid19];
+const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7, mid8, mid13, mid14, mid15, mid16, mid17, mid18, mid19, mid20];
 const midEvaluationEpisodes = [mid5]; // Year 2 evaluation
 
 // Late regular episodes (non-final)

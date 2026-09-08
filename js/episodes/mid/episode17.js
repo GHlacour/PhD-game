@@ -1,14 +1,16 @@
-// Mid PhD Episode 17: Authorship Dispute
+// Mid PhD Episode 17: Authorship Dispute - Wronged
 export const episode17 = {
-    title: "Authorship Dispute",
+    title: "Authorship Dispute - Wronged",
     availableFor: {
-        gender: ['female', 'male']
+        gender: ['female', 'male', 'non-binary']
     },
     getDescription: (attributes) => {
         if (attributes.gender === 'female') {
             return "You and a male colleague have both contributed significantly to a paper. During a meeting with your advisor, your colleague is given first authorship without discussion. You notice your contributions being downplayed. This isn't the first time this has happened.";
+        } else if (attributes.gender === 'male') {
+            return "You and a female colleague have both contributed significantly to a paper. During a meeting with your advisor, she is given first authorship without discussion. You notice your contributions being downplayed. This isn't the first time this has happened.";
         } else {
-            return "You and a female colleague have both contributed significantly to a paper. During a meeting with your advisor, you're given first authorship without discussion. You notice her contributions being downplayed. She seems frustrated but doesn't speak up.";
+            return "You and a colleague have both contributed significantly to a paper. During a meeting with your advisor, they are given first authorship without discussion. You notice your contributions being downplayed. This isn't the first time this has happened.";
         }
     },
     image: "assets/images/collaboration.jpg",
@@ -31,13 +33,12 @@ export const episode17 = {
                 };
                 
                 const isFemale = attributes.gender === 'female';
-                const colleague = isFemale ? 'male colleague' : 'female colleague';
-                const youYou = isFemale ? 'you' : 'she';
-                const yourYour = isFemale ? 'your' : 'her';
+                const isMale = attributes.gender === 'male';
+                const colleague = isFemale ? 'male colleague' : (isMale ? 'female colleague' : 'colleague');
                 
                 if (skills.reputation >= 60) {
                     return {
-                        text: `You calmly but firmly present evidence of ${yourYour} contributions - lab notebook entries, code commits, and experimental design. The room falls silent. Your advisor reviews the materials and agrees that the authorship order should be reconsidered. While awkward, your integrity earns respect. The authorship is adjusted fairly, and the paper is published with both of you as co-authors.`,
+                        text: `You calmly but firmly present evidence of your contributions - lab notebook entries, code commits, and experimental design. The room falls silent. Your advisor reviews the materials and agrees that the authorship order should be reconsidered. While awkward, your integrity earns respect. The authorship is adjusted fairly, and the paper is published with both of you as co-authors.`,
                         effects: {
                             ...effects,
                             publications: +1,
@@ -50,7 +51,7 @@ export const episode17 = {
                     };
                 } else if (skills.networking >= 40) {
                     return {
-                        text: `You speak up, but ${youYou} lack concrete evidence at hand. The ${colleague} dismisses ${yourYour} concerns as 'overreacting.' Your advisor seems uncomfortable and suggests you 'work it out between yourselves.' The tension lingers, and ${youYou} feel unsupported. However, the paper is still published with both of you as authors.`,
+                        text: `You speak up, but you lack concrete evidence at hand. The ${colleague} dismisses your concerns as 'overreacting.' Your advisor seems uncomfortable and suggests you 'work it out between yourselves.' The tension lingers, and you feel unsupported. However, the paper is still published with both of you as authors.`,
                         effects: {
                             ...effects,
                             publications: +1,
@@ -63,7 +64,7 @@ export const episode17 = {
                     };
                 } else {
                     return {
-                        text: `Your attempt to assert ${yourYour}self backfires. The ${colleague} has already established a narrative, and without strong evidence, you come across as difficult. Your advisor reprimands you for 'causing conflict in the lab.' You leave feeling defeated and questioning ${yourYour} place in academia. The paper is published, but you're removed from the author list.`,
+                        text: `Your attempt to assert yourself backfires. The ${colleague} has already established a narrative, and without strong evidence, you come across as difficult. Your advisor reprimands you for 'causing conflict in the lab.' You leave feeling defeated and questioning your place in academia. The paper is published, but you're removed from the author list.`,
                         effects: {
                             ...effects,
                             publications: 0,
@@ -95,13 +96,14 @@ export const episode17 = {
                 };
                 
                 const isFemale = attributes.gender === 'female';
-                const colleague = isFemale ? 'male colleague' : 'female colleague';
-                const youShe = isFemale ? 'you' : 'she';
-                const yourHer = isFemale ? 'your' : 'her';
+                const isMale = attributes.gender === 'male';
+                const colleague = isFemale ? 'male colleague' : (isMale ? 'female colleague' : 'colleague');
+                const youShe = 'you';
+                const yourHer = 'your';
                 
                 if (skills.advisorRelationship >= 60) {
                     return {
-                        text: `You spend a week documenting ${yourHer} contributions thoroughly - every experiment, every analysis, every meeting. When you present this to your advisor privately, they're shocked by the disparity. They thank you for bringing this to their attention and promise to review authorship guidelines with the whole lab. The ${colleague} is disappointed but can't argue with the evidence. The paper is published with proper authorship credit for both of you.`,
+                        text: `You spend a week documenting your contributions thoroughly - every experiment, every analysis, every meeting. When you present this to your advisor privately, they're shocked by the disparity. They thank you for bringing this to their attention and promise to review authorship guidelines with the whole lab. The ${colleague} is disappointed but can't argue with the evidence. The paper is published with proper authorship credit for both of you.`,
                         effects: {
                             ...effects,
                             publications: +1,
@@ -114,7 +116,7 @@ export const episode17 = {
                     };
                 } else if (skills.advisorRelationship >= 30) {
                     return {
-                        text: `You present your evidence to your advisor. They acknowledge the issue but seem reluctant to confront the ${colleague}, who is a favorite in the lab. They suggest a compromise where ${youShe} share first authorship. It's not ideal, but it's better than nothing. The ${colleague} seems resentful. The paper is published with both of you as co-authors.`,
+                        text: `You present your evidence to your advisor. They acknowledge the issue but seem reluctant to confront the ${colleague}, who is a favorite in the lab. They suggest a compromise where you share first authorship. It's not ideal, but it's better than nothing. The ${colleague} seems resentful. The paper is published with both of you as co-authors.`,
                         effects: {
                             ...effects,
                             publications: +1,
@@ -158,12 +160,14 @@ export const episode17 = {
                 };
                 
                 const isFemale = attributes.gender === 'female';
-                const youShe = isFemale ? 'you' : 'she';
-                const yourHer = isFemale ? 'your' : 'her';
+                const isMale = attributes.gender === 'male';
+                const colleague = isFemale ? 'male colleague' : (isMale ? 'female colleague' : 'colleague');
+                const youShe = 'you';
+                const yourHer = 'your';
                 
                 if (skills.motivation >= 60) {
                     return {
-                        text: `You decide this battle isn't worth fighting. The paper gets published with the ${isFemale ? 'incorrect' : 'unfair'} authorship, but ${youShe} channel ${yourHer} energy into ${yourHer} next project. The work speaks for itself eventually, and you establish a reputation for quality research. However, you notice this pattern continuing with the ${isFemale ? 'male colleague' : 'female colleague'} getting credit for ${yourHer} ideas. You're still listed as a co-author on the paper.`,
+                        text: `You decide this battle isn't worth fighting. The paper gets published with unfair authorship, but you channel your energy into your next project. The work speaks for itself eventually, and you establish a reputation for quality research. However, you notice this pattern continuing with the ${colleague} getting credit for your ideas. You're still listed as a co-author on the paper.`,
                         effects: {
                             ...effects,
                             researchProgress: +8,
@@ -175,7 +179,7 @@ export const episode17 = {
                     };
                 } else if (skills.stress >= 50) {
                     return {
-                        text: `You let it go, but the resentment builds. Every time you see the published paper, you're reminded of the injustice. Your research progress suffers from the lingering bitterness. The ${isFemale ? 'male colleague' : 'female colleague'} seems to thrive while ${youShe} feel invisible. You're still listed as a co-author on the paper.`,
+                        text: `You let it go, but the resentment builds. Every time you see the published paper, you're reminded of the injustice. Your research progress suffers from the lingering bitterness. The ${colleague} seems to thrive while you feel invisible. You're still listed as a co-author on the paper.`,
                         effects: {
                             ...effects,
                             publications: +1,
@@ -187,7 +191,7 @@ export const episode17 = {
                     };
                 } else {
                     return {
-                        text: `Not speaking up haunts you. The pattern continues - the ${isFemale ? 'male colleague' : 'female colleague'} keeps getting credit for ${yourHer} work. Your confidence erodes, and you start to wonder if you're cut out for academia. The cumulative effect on your mental health is significant. The paper is published, but you're removed from the author list.`,
+                        text: `Not speaking up haunts you. The pattern continues - the ${colleague} keeps getting credit for your work. Your confidence erodes, and you start to wonder if you're cut out for academia. The cumulative effect on your mental health is significant. The paper is published, but you're removed from the author list.`,
                         effects: {
                             ...effects,
                             publications: 0,
