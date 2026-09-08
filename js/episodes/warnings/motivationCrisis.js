@@ -3,7 +3,6 @@ export const motivationCrisis = {
     title: "Motivation Crisis",
     description: "You've lost all motivation for your PhD. The excitement and passion you once had have faded. Every task feels like a burden, and you question why you started this journey. This is a critical juncture.",
     image: "assets/images/motivation_crisis.jpg",
-    sound: "assets/sounds/reflection.mp3",
     isWarning: true,
     warningType: "motivation",
     choices: [

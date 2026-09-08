@@ -3,7 +3,6 @@ export const episode3 = {
     title: "Collaborative Project",
     description: "A renowned researcher invites you to collaborate on a project. How do you respond?",
     image: "assets/images/collaboration.jpg",
-    sound: "assets/sounds/collaboration.mp3",
     choices: [
         {
             text: "Accept and prioritize this project",

@@ -3,7 +3,6 @@ export const episode1 = {
     title: "Job Applications",
     description: "It's time to start applying for post-PhD positions. What's your strategy?",
     image: "assets/images/job_applications.jpg",
-    sound: "assets/sounds/job_search.mp3",
     choices: [
         {
             text: "Apply broadly to many positions",

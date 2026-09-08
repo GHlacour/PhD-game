@@ -3,7 +3,6 @@ export const episode8 = {
     title: "Advisor Delays Feedback",
     description: "Your advisor has had your thesis chapter draft for weeks and hasn't provided feedback. You need their input to move forward but they keep putting it off. Deadlines are approaching.",
     image: "assets/images/evaluation_meeting.jpg",
-    sound: "assets/sounds/evaluation.mp3",
     choices: [
         {
             text: "Send a polite reminder email",

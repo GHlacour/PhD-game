@@ -3,7 +3,6 @@ export const episode1 = {
     title: "The Beginning",
     description: "You've just started your PhD. What's your priority?",
     image: "assets/images/early_phd_start.jpg",
-    sound: "assets/sounds/start_phd.mp3",
     choices: [
         {
             text: "Dive deep into research immediately",

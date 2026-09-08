@@ -3,7 +3,6 @@ export const episode10 = {
     title: "Advisor Expectations Clash",
     description: "Your advisor expects much faster progress than you're delivering. They seem frustrated with your pace and you're feeling the pressure to speed up your work.",
     image: "assets/images/evaluation_meeting.jpg",
-    sound: "assets/sounds/evaluation.mp3",
     choices: [
         {
             text: "Push harder - work longer hours to meet expectations",

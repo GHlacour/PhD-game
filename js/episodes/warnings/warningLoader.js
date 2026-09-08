@@ -64,12 +64,12 @@ export function checkForWarningEpisode(skills) {
     return null;
 }
 
-// Preload warning episode media
-let mediaPreloaded = false;
-export function preloadWarningMedia() {
-    if (mediaPreloaded) return;
+// Preload warning episode images
+let imagesPreloaded = false;
+export function preloadWarningImages() {
+    if (imagesPreloaded) return;
     
-    // Preload images and sounds for warning episodes
+    // Preload images for warning episodes
     const warningImages = [
         'assets/images/burnout.jpg',
         'assets/images/motivation_crisis.jpg',
@@ -78,23 +78,14 @@ export function preloadWarningMedia() {
         'assets/images/research_stagnation.jpg'
     ];
     
-    const warningSounds = [
-        'assets/sounds/stress.mp3',
-        'assets/sounds/reflection.mp3'
-    ];
-    
     // Preload images
     warningImages.forEach(src => {
         const img = new Image();
         img.src = src;
     });
     
-    // Preload sounds (just create audio objects, don't play them)
-    warningSounds.forEach(src => {
-        const audio = new Audio();
-        audio.src = src;
-        audio.load();
-    });
-    
-    mediaPreloaded = true;
+    imagesPreloaded = true;
 }
+
+// Backwards compatibility alias
+export const preloadWarningMedia = preloadWarningImages;

@@ -3,7 +3,6 @@ export const episode5 = {
     title: "Final Year Evaluation & Thesis Submission",
     description: "This is your final evaluation meeting. You must have completed enough publications and be ready to submit your thesis to graduate. This is your last chance to demonstrate you've met all requirements.",
     image: "assets/images/final_evaluation.jpg",
-    sound: "assets/sounds/final_evaluation.mp3",
     phase: "late",
     isEvaluation: true,
     isFinalEvaluation: true,

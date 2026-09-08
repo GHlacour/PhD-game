@@ -3,7 +3,6 @@ export const episode5 = {
     title: "Year 1 Evaluation Meeting",
     description: "It's the end of Year 1. Time for your annual evaluation meeting with your advisor. This is your opportunity to discuss your progress and potentially submit a paper for publication.",
     image: "assets/images/evaluation_meeting.jpg",
-    sound: "assets/sounds/evaluation.mp3",
     phase: "early",
     isEvaluation: true,
     year: 1,

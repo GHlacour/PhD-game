@@ -3,7 +3,6 @@ export const episode3 = {
     title: "Defense Preparation",
     description: "Your defense is coming up. How do you prepare?",
     image: "assets/images/defense_prep.jpg",
-    sound: "assets/sounds/defense.mp3",
     choices: [
         {
             text: "Practice with mock defenses",

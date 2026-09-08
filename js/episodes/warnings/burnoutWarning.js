@@ -3,7 +3,6 @@ export const burnoutWarning = {
     title: "Burnout Warning",
     description: "You're on the edge of burnout. The constant pressure, long hours, and stress have taken a severe toll. You feel exhausted, overwhelmed, and question whether you can continue. This is a critical moment in your PhD journey.",
     image: "assets/images/burnout.jpg",
-    sound: "assets/sounds/stress.mp3",
     isWarning: true,
     warningType: "burnout",
     choices: [

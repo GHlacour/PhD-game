@@ -3,7 +3,6 @@ export const advisorRelationshipWarning = {
     title: "Advisor Relationship Crisis",
     description: "Your relationship with your advisor has deteriorated to a critical point. Communication has broken down, trust is eroded, and you feel unsupported. Without their guidance, your PhD is in jeopardy.",
     image: "assets/images/advisor_conflict.jpg",
-    sound: "assets/sounds/stress.mp3",
     isWarning: true,
     warningType: "advisor",
     choices: [

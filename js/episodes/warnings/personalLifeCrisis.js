@@ -3,7 +3,6 @@ export const personalLifeCrisis = {
     title: "Personal Life Crisis",
     description: "Your personal life has collapsed. Relationships are strained, you feel isolated, and the demands of the PhD have consumed everything. You're at a breaking point where something has to change.",
     image: "assets/images/personal_life_crisis.jpg",
-    sound: "assets/sounds/reflection.mp3",
     isWarning: true,
     warningType: "personalLife",
     choices: [

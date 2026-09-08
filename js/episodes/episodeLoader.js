@@ -52,8 +52,8 @@ import { episode12 as late12 } from './late/episode12.js';
 import { episode13 as late13 } from './late/episode13.js';
 import { episode14 as late14 } from './late/episode14.js';
 
-// Preload images and sounds for better performance
-export function preloadMedia() {
+// Preload images for better performance
+export function preloadImages() {
     const images = [
         'assets/images/early_phd_start.jpg',
         'assets/images/literature_review.jpg',
@@ -75,37 +75,15 @@ export function preloadMedia() {
         'assets/images/research_challenges.jpg'
     ];
     
-    const sounds = [
-        'assets/sounds/start_phd.mp3',
-        'assets/sounds/research.mp3',
-        'assets/sounds/experiment.mp3',
-        'assets/sounds/conference.mp3',
-        'assets/sounds/stress.mp3',
-        'assets/sounds/collaboration.mp3',
-        'assets/sounds/job_search.mp3',
-        'assets/sounds/writing.mp3',
-        'assets/sounds/defense.mp3',
-        'assets/sounds/networking.mp3',
-        'assets/sounds/reflection.mp3',
-        'assets/sounds/evaluation.mp3',
-        'assets/sounds/final_evaluation.mp3',
-        'assets/sounds/computer_error.mp3',
-        'assets/sounds/lab_failure.mp3'
-    ];
-    
     // Preload images
     images.forEach(src => {
         const img = new Image();
         img.src = src;
     });
-    
-    // Preload sounds (note: browsers may block autoplay, but we can at least cache the files)
-    sounds.forEach(src => {
-        const audio = new Audio();
-        audio.src = src;
-        audio.preload = 'auto';
-    });
 }
+
+// Backwards compatibility alias
+export const preloadMedia = preloadImages;
 
 // Episode pools by phase
 export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7, early8, early9, early10, early11, early12, early13];

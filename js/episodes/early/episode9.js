@@ -3,7 +3,6 @@ export const episode9 = {
     title: "Imposter Syndrome Crisis",
     description: "You're feeling like a fraud. Everyone around you seems so competent, and you're convinced you don't belong in the PhD program. The doubt is affecting your work.",
     image: "assets/images/midpoint_crisis.jpg",
-    sound: "assets/sounds/stress.mp3",
     choices: [
         {
             text: "Talk openly with other PhD students about these feelings",

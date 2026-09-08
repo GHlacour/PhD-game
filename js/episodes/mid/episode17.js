@@ -12,7 +12,6 @@ export const episode17 = {
         }
     },
     image: "assets/images/collaboration.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "mid",
     choices: [
         {

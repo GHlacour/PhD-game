@@ -3,7 +3,6 @@ export const episode2 = {
     title: "Thesis Writing",
     description: "You're deep into writing your thesis. How do you manage your time?",
     image: "assets/images/thesis_writing.jpg",
-    sound: "assets/sounds/writing.mp3",
     choices: [
         {
             text: "Write for 8 hours a day",

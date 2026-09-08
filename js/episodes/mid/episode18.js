@@ -6,7 +6,6 @@ export const episode18 = {
     },
     description: "During a lab meeting, you make a suggestion based on how things are done in your home country. Your colleagues laugh and dismiss it as 'not how we do things here.' This isn't the first time your cultural perspective has been ignored. You feel frustrated and undervalued.",
     image: "assets/images/conference.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "mid",
     choices: [
         {

@@ -3,7 +3,6 @@ export const episode7 = {
     title: "Job Market Realities",
     description: "You've started looking at post-PhD opportunities and the academic job market is far more competitive than you realized. The uncertainty about your future is adding significant stress.",
     image: "assets/images/job_applications.jpg",
-    sound: "assets/sounds/job_search.mp3",
     choices: [
         {
             text: "Focus exclusively on academic positions - it's my dream",

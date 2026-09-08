@@ -3,7 +3,6 @@ export const episode2 = {
     title: "Midpoint Crisis",
     description: "You're halfway through and feeling overwhelmed. What do you do?",
     image: "assets/images/midpoint_crisis.jpg",
-    sound: "assets/sounds/stress.mp3",
     choices: [
         {
             text: "Take a short break to recharge",

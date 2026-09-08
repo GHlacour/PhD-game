@@ -3,7 +3,6 @@ export const episode8 = {
     title: "Publication Pressure",
     description: "Your advisor is pressuring you to publish more. You have some results but they're not as strong or complete as you'd like. The pressure to get papers out is intense.",
     image: "assets/images/job_applications.jpg",
-    sound: "assets/sounds/job_search.mp3",
     choices: [
         {
             text: "Submit to a high-impact journal despite incomplete results",

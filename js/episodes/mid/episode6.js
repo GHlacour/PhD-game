@@ -3,7 +3,6 @@ export const episode6 = {
     title: "Data Contradicts Hypothesis",
     description: "Your latest results directly contradict your main hypothesis. This could be a major setback or an opportunity to discover something new.",
     image: "assets/images/research_challenges.jpg",
-    sound: "assets/sounds/computer_error.mp3",
     choices: [
         {
             text: "Pivot your research direction based on the new findings",

@@ -3,7 +3,6 @@ export const episode13 = {
     title: "Teaching Obligations Struggle",
     description: "Your department requires all PhD students to teach undergraduate courses as part of their funding package. You've been assigned to lead a lab section for 20 first-year students. The preparation, grading, and office hours are taking far more time than you expected, and your own research is suffering.",
     image: "assets/images/teaching.jpg",
-    sound: "assets/sounds/teaching.mp3",
     phase: "early",
     choices: [
         {

@@ -3,7 +3,6 @@ export const episode10 = {
     title: "Supervising an Undergraduate Student",
     description: "Your advisor asks you to supervise an undergraduate student working on a project related to your research. This is your first opportunity to mentor someone less experienced.",
     image: "assets/images/teaching.jpg",
-    sound: "assets/sounds/teaching.mp3",
     phase: "mid",
     choices: [
         {

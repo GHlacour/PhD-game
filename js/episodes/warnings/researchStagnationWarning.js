@@ -3,7 +3,6 @@ export const researchStagnationWarning = {
     title: "Research Stagnation",
     description: "Your research has ground to a halt. You're not making progress on your thesis, your writing has stalled, and you feel like you're falling behind. Without a turnaround, your PhD timeline is at risk.",
     image: "assets/images/research_stagnation.jpg",
-    sound: "assets/sounds/stress.mp3",
     isWarning: true,
     warningType: "research",
     choices: [

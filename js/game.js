@@ -1,9 +1,9 @@
 // PhD Life Game - Main JavaScript
 // Using ES modules for episode loading
 
-import { generateGameSequence, preloadMedia, getTotalEpisodes } from './episodes/episodeLoader.js';
+import { generateGameSequence, preloadImages, getTotalEpisodes } from './episodes/episodeLoader.js';
 import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS, PHD_TYPE_OPTIONS } from './characterSelection.js';
-import { checkForWarningEpisode, preloadWarningMedia } from './episodes/warnings/warningLoader.js';
+import { checkForWarningEpisode, preloadWarningImages } from './episodes/warnings/warningLoader.js';
 import { createCareerSelectionScreen, getCareerOutcome, getCareerPath, SKILL_DISPLAY_NAMES } from './careerSelection.js';
 
 // Game state
@@ -133,28 +133,6 @@ const careerOutcomeTitle = document.getElementById('career-outcome-title');
 const careerOutcomeContent = document.getElementById('career-outcome-content');
 const careerOutcomeContinueBtn = document.getElementById('career-outcome-continue');
 
-// Audio context for sound effects
-let audioContext = null;
-let currentAudio = null;
-
-function playSound(soundPath) {
-    if (!soundPath) return;
-    
-    // Create audio context on first use
-    if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    
-    // Stop current sound if playing
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
-    
-    currentAudio = new Audio(soundPath);
-    currentAudio.play().catch(e => console.log('Audio playback failed:', e));
-}
-
 // Start game from welcome screen
 function startGameFromWelcome() {
     // Hide welcome screen, show character selection
@@ -265,11 +243,6 @@ function loadEpisode(episodeIndex) {
         episodeImageContainer.classList.add('hidden');
     }
     
-    // Play episode sound
-    if (episode.sound) {
-        playSound(episode.sound);
-    }
-    
     // Clear previous choices
     choicesContainer.innerHTML = '';
     
@@ -345,11 +318,6 @@ function loadWarningEpisode(warningEpisode) {
         episodeImageContainer.classList.remove('hidden');
     } else {
         episodeImageContainer.classList.add('hidden');
-    }
-    
-    // Play episode sound
-    if (warningEpisode.sound) {
-        playSound(warningEpisode.sound);
     }
     
     // Clear previous choices
@@ -726,5 +694,5 @@ careerOutcomeContinueBtn.addEventListener('click', restartGame);
 
 // Initial setup
 updateSkillsDisplay();
-preloadMedia();
-preloadWarningMedia();
+preloadImages();
+preloadWarningImages();

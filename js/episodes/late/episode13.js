@@ -3,7 +3,6 @@ export const episode13 = {
     title: "Academic Misconduct Accusation",
     description: "You receive a shocking email from the university's research integrity office. A former lab mate has accused you of data fabrication in a paper you co-authored two years ago. You're innocent - the data was collected and analyzed by the senior author. But the investigation process is serious, and your reputation is on the line.",
     image: "assets/images/evaluation_meeting.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "late",
     choices: [
         {

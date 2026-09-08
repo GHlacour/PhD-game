@@ -3,7 +3,6 @@ export const episode7 = {
     title: "Lab Equipment Failure",
     description: "A critical piece of laboratory equipment has broken down, halting your experiments. As an experimental researcher, this is a major setback that could delay your research for weeks.",
     image: "assets/images/lab_equipment.jpg",
-    sound: "assets/sounds/lab_failure.mp3",
     availableFor: {
         phdType: ['experimental']
     },

@@ -3,7 +3,6 @@ export const episode9 = {
     title: "Exclusion by Peers",
     description: "You notice that a group of fellow PhD students frequently collaborates on projects but never invites you to join. You feel left out of important discussions and opportunities.",
     image: "assets/images/conference.jpg",
-    sound: "assets/sounds/conference.mp3",
     phase: "mid",
     choices: [
         {

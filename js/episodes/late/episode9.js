@@ -3,7 +3,6 @@ export const episode9 = {
     title: "Ethical Review Concern",
     description: "Your research has raised unexpected ethical concerns during the review process. The ethics committee has questions about potential unintended consequences of your work.",
     image: "assets/images/defense_prep.jpg",
-    sound: "assets/sounds/evaluation.mp3",
     phase: "late",
     choices: [
         {

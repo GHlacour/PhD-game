@@ -3,7 +3,6 @@ export const episode1 = {
     title: "Conference Presentation",
     description: "You have the opportunity to present at a major conference. How do you prepare?",
     image: "assets/images/conference.jpg",
-    sound: "assets/sounds/conference.mp3",
     choices: [
         {
             text: "Spend months perfecting your presentation",

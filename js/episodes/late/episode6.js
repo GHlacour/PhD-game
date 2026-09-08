@@ -3,7 +3,6 @@ export const episode6 = {
     title: "Thesis Writing Block",
     description: "You've been staring at a blank page for days. Your thesis needs to be written but you can't seem to start. The pressure is mounting as your deadline approaches.",
     image: "assets/images/thesis_writing.jpg",
-    sound: "assets/sounds/writing.mp3",
     choices: [
         {
             text: "Write an imperfect first draft - just get words on paper",

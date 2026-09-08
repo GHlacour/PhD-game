@@ -3,7 +3,6 @@ export const episode8 = {
     title: "Literature Review Overload",
     description: "You're drowning in papers trying to find the research gap in your field. The sheer volume of literature is overwhelming and you're not sure where to focus.",
     image: "assets/images/literature_review.jpg",
-    sound: "assets/sounds/research.mp3",
     choices: [
         {
             text: "Create a systematic review framework",

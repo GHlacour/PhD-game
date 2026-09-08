@@ -19,7 +19,6 @@ export const episode15 = {
         }
     },
     image: "assets/images/work_life_balance.jpg",
-    sound: "assets/sounds/reflection.mp3",
     phase: "mid",
     choices: [
         {

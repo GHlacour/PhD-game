@@ -3,7 +3,6 @@ export const episode11 = {
     title: "Coworker Conflict",
     description: "A fellow PhD student in your lab has been taking credit for your ideas in group meetings. This has happened multiple times now, and it's starting to affect your reputation. Today, they presented your key insight as their own in front of your advisor.",
     image: "assets/images/conference.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "late",
     choices: [
         {

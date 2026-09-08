@@ -3,7 +3,6 @@ export const episode4 = {
     title: "Research Challenges",
     description: "You encounter a significant obstacle in your research. How you handle it depends on your PhD type.",
     image: "assets/images/research_challenges.jpg",
-    sound: "assets/sounds/stress.mp3",
     choices: [
         {
             text: "Debug your simulation code",

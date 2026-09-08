@@ -3,7 +3,6 @@ export const episode4 = {
     title: "Visa Extension",
     description: "Your student visa is about to expire. You need to apply for an extension to continue your PhD studies.",
     image: "assets/images/visa_extension.jpg",
-    sound: "assets/sounds/stress.mp3",
     availableFor: {
         origin: ['international']
     },

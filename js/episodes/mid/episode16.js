@@ -6,7 +6,6 @@ export const episode16 = {
     },
     description: "The university's Diversity and Inclusion Committee is forming a working group to improve support for LGBTQ+ students, particularly non-binary and gender non-conforming students. They've specifically asked for non-binary PhD student representation. This is a chance to make a real difference, but it will require significant time and emotional energy.",
     image: "assets/images/diversity_initiative.jpg",
-    sound: "assets/sounds/collaboration.mp3",
     phase: "mid",
     choices: [
         {

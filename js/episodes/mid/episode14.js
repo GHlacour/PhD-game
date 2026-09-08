@@ -3,7 +3,6 @@ export const episode14 = {
     title: "Personal Relationships",
     description: "Your partner has been feeling neglected lately. They've planned a special weekend getaway for just the two of you, but it falls during a critical period for your research. They've been patient, but you can see this is important to them.",
     image: "assets/images/conference.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "mid",
     choices: [
         {

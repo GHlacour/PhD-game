@@ -3,7 +3,6 @@ export const episode6 = {
     title: "Computer Cluster Breakdown",
     description: "The university's high-performance computing cluster has gone down, and your simulations that were running for days have been lost. This is a crisis for your theoretical work.",
     image: "assets/images/computer_cluster.jpg",
-    sound: "assets/sounds/computer_error.mp3",
     availableFor: {
         phdType: ['theory']
     },

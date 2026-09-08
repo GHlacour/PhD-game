@@ -3,7 +3,6 @@ export const episode11 = {
     title: "Data Fabrication Temptation",
     description: "Your experiment results are not as strong as you hoped. You notice that with a small adjustment to the data, the results would be much more significant. No one would know. The pressure to publish is intense.",
     image: "assets/images/experiment.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "mid",
     choices: [
         {

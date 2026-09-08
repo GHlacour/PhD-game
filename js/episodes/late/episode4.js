@@ -3,7 +3,6 @@ export const episode4 = {
     title: "Work-Life Balance Challenge",
     description: "As a female or non-binary researcher, you're facing increasing pressure to balance your academic career with personal life expectations. How do you navigate this challenge?",
     image: "assets/images/work_life_balance.jpg",
-    sound: "assets/sounds/reflection.mp3",
     availableFor: {
         gender: ['female', 'non-binary']
     },

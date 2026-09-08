@@ -3,7 +3,6 @@ export const episode12 = {
     title: "Collaboration Conflict",
     description: "You're collaborating with a fellow PhD student on a joint project. You've discovered an interesting pattern in the data, but your collaborator interprets it very differently. The disagreement is becoming heated.",
     image: "assets/images/collaboration.jpg",
-    sound: "assets/sounds/collaboration.mp3",
     phase: "mid",
     choices: [
         {

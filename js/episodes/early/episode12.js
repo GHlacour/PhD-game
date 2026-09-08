@@ -6,7 +6,6 @@ export const episode12 = {
     },
     description: "Your parents have never fully supported your identity, and now they're also questioning your decision to pursue a PhD. They call you frequently, expressing doubts about your career path and making subtle comments about your appearance and lifestyle. The pressure to prove yourself is immense.",
     image: "assets/images/work_life_balance.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "early",
     choices: [
         {

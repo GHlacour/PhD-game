@@ -3,7 +3,6 @@ export const episode12 = {
     title: "Family Tragedy",
     description: "You receive devastating news - a close family member has suddenly passed away. The funeral is next week in your home country. Your research is at a critical stage, but this is a family emergency.",
     image: "assets/images/conference.jpg",
-    sound: "assets/sounds/stress.mp3",
     phase: "late",
     choices: [
         {
