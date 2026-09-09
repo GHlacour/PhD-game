@@ -18,11 +18,11 @@ const gameState = {
         teaching: 0,
         networking: 0,
         // Hidden skills (invisible to player)
-        stress: 10,
-        motivation: 80,
-        advisorRelationship: 70,
-        reputation: 50,
-        personalLife: 60
+        stress: 0,
+        motivation: 0,
+        advisorRelationship: 0,
+        reputation: 0,
+        personalLife: 0
     },
     attributes: {
         gender: null,
@@ -188,6 +188,41 @@ async function initGame() {
     teaching = Math.max(0, Math.min(25, teaching));
     networking = Math.max(0, Math.min(25, networking));
     
+    // Distribute 150 points randomly across hidden skills with target averages:
+    // stress ~10, motivation ~80, advisorRelationship ~50, reputation ~30, personalLife ~40
+    let stress = Math.floor(Math.random() * 21);
+    let motivation = 70 + Math.floor(Math.random() * 21);
+    let advisorRelationship = 40 + Math.floor(Math.random() * 21);
+    let reputation = 20 + Math.floor(Math.random() * 21);
+    let personalLife = 30 + Math.floor(Math.random() * 21);
+    
+    // Calculate total and adjust to sum to exactly 150
+    const totalHidden = stress + motivation + advisorRelationship + reputation + personalLife;
+    const differenceHidden = 150 - totalHidden;
+    
+    // Adjust one random skill to make the sum exactly 150
+    if (differenceHidden !== 0) {
+        const skillToAdjustHidden = Math.floor(Math.random() * 5);
+        if (skillToAdjustHidden === 0) {
+            stress += differenceHidden;
+        } else if (skillToAdjustHidden === 1) {
+            motivation += differenceHidden;
+        } else if (skillToAdjustHidden === 2) {
+            advisorRelationship += differenceHidden;
+        } else if (skillToAdjustHidden === 3) {
+            reputation += differenceHidden;
+        } else {
+            personalLife += differenceHidden;
+        }
+    }
+    
+    // Ensure no skill goes below 0 or above 100
+    stress = Math.max(0, Math.min(100, stress));
+    motivation = Math.max(0, Math.min(100, motivation));
+    advisorRelationship = Math.max(0, Math.min(100, advisorRelationship));
+    reputation = Math.max(0, Math.min(100, reputation));
+    personalLife = Math.max(0, Math.min(100, personalLife));
+    
     gameState.skills = {
         // Public skills
         researchProgress: 0,
@@ -196,11 +231,11 @@ async function initGame() {
         teaching: teaching,
         networking: networking,
         // Hidden skills
-        stress: 10,
-        motivation: 80,
-        advisorRelationship: 70,
-        reputation: 50,
-        personalLife: 60
+        stress: stress,
+        motivation: motivation,
+        advisorRelationship: advisorRelationship,
+        reputation: reputation,
+        personalLife: personalLife
     };
     gameState.thesisSubmitted = false;
     gameState.gameActive = true;
