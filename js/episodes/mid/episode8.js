@@ -56,8 +56,8 @@ export const episode8 = {
                             reputation: -5,
                             advisorRelationship: -5,
                             researchProgress: 0,
-                            stress: +15,
-                            motivation: -8
+                            stress: +20,
+                            motivation: -15
                         }
                     };
                 }
@@ -165,7 +165,8 @@ export const episode8 = {
                             writing: +6,
                             advisorRelationship: +3,
                             reputation: +2,
-                            stress: +15
+                            stress: +15,
+                            motivation: -10
                         }
                     };
                 }

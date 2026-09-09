@@ -63,8 +63,8 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            stress: +15,
-                            motivation: -10,
+                            stress: +20,
+                            motivation: -15,
                             advisorRelationship: -15
                         }
                     };
@@ -113,8 +113,8 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            stress: +15,
-                            motivation: -10,
+                            stress: +20,
+                            motivation: -15,
                             reputation: -5
                         }
                     };
@@ -164,8 +164,8 @@ export const episode5 = {
                         text: `Your advisor flatly refuses your extension request. With only ${skills.publications} publications (need: ${requiredPublications}) and your contract ending, they cannot justify an extension to the department. You must submit what you have or leave without a degree.`,
                         effects: {
                             ...effects,
-                            stress: +15,
-                            motivation: -15,
+                            stress: +20,
+                            motivation: -20,
                             advisorRelationship: -20,
                             reputation: -15,
                             thesisSubmitted: false
