@@ -14,9 +14,9 @@ const gameState = {
         // Public skills (visible to player)
         researchProgress: 0,
         publications: 0,
-        writing: 50,
-        teaching: 30,
-        networking: 20,
+        writing: 0,
+        teaching: 0,
+        networking: 0,
         // Hidden skills (invisible to player)
         stress: 10,
         motivation: 80,
@@ -160,13 +160,41 @@ function startPhD(character) {
 // Initialize the game
 async function initGame() {
     gameState.currentEpisode = 0;
+    
+    // Distribute 25 points randomly across writing, teaching, and networking
+    // Each skill gets a random value between 0 and 10, then adjust to sum to exactly 25
+    let writing = Math.floor(Math.random() * 11);
+    let teaching = Math.floor(Math.random() * 11);
+    let networking = Math.floor(Math.random() * 11);
+    
+    // Calculate the difference needed to reach 25
+    const total = writing + teaching + networking;
+    const difference = 25 - total;
+    
+    // Adjust one random skill to make the sum exactly 25
+    if (difference !== 0) {
+        const skillToAdjust = Math.floor(Math.random() * 3); // 0, 1, or 2
+        if (skillToAdjust === 0) {
+            writing += difference;
+        } else if (skillToAdjust === 1) {
+            teaching += difference;
+        } else {
+            networking += difference;
+        }
+    }
+    
+    // Ensure no skill goes below 0 or above 25
+    writing = Math.max(0, Math.min(25, writing));
+    teaching = Math.max(0, Math.min(25, teaching));
+    networking = Math.max(0, Math.min(25, networking));
+    
     gameState.skills = {
         // Public skills
         researchProgress: 0,
         publications: 0,
-        writing: 50,
-        teaching: 30,
-        networking: 20,
+        writing: writing,
+        teaching: teaching,
+        networking: networking,
         // Hidden skills
         stress: 10,
         motivation: 80,
