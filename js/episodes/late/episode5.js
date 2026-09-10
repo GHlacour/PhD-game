@@ -58,13 +58,14 @@ export const episode5 = {
                     };
                 } else if (skills.publications >= requiredPublications - 1 && skills.writing >= 50) {
                     return {
-                        text: `Your thesis needs significant work before submission. You have ${skills.publications} publications but need at least ${requiredPublications}. Your advisor agrees to give you a short extension to complete the requirements, but warns this is your final chance.`,
+                        text: `Your thesis needs significant work before submission. You have ${skills.publications} publications but need at least ${requiredPublications}. Your advisor agrees to accept your thesis submission, but you'll need to make substantial improvements in your spare time before the examination. You graduate, but with the understanding that significant revisions are required.`,
                         effects: {
                             ...effects,
                             publications: 0,
                             writing: +5,
                             stress: +10,
-                            motivation: +5
+                            motivation: +5,
+                            thesisSubmitted: true
                         }
                     };
                 } else {
