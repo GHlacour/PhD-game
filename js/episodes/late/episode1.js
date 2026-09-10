@@ -1,158 +1,161 @@
-// Late PhD Episode 1: Job Applications
+// Late PhD Episode 1: Final International Conference
 export const episode1 = {
-    title: "Job Applications",
-    description: "It's time to start applying for post-PhD positions. What's your strategy?",
-    image: "assets/images/job_applications.jpg",
+    title: "Final International Conference",
+    description: "You have the opportunity to present your final research findings at a major international conference. This is your chance to showcase your work, receive feedback, and build your academic network before completing your PhD.",
+    image: "assets/images/conference.jpg",
     choices: [
         {
-            text: "Apply broadly to many positions",
+            text: "Present your latest findings with a polished talk",
             getOutcome: (skills, attributes) => {
                 const effects = {
-                    researchProgress: 0,
+                    researchProgress: +10,
                     publications: 0,
                     writing: +5,
-                    teaching: 0,
-                    networking: +10,
-                    stress: +15,
-                    motivation: -5,
-                    advisorRelationship: 0,
-                    reputation: +5,
-                    personalLife: -10
-                };
-                
-                if (skills.publications >= 15 && skills.writing >= 40) {
-                    return {
-                        text: "Your strong publication record and writing skills make your applications stand out! You receive multiple interview requests from prestigious institutions. Your advisor is proud of your success.",
-                        effects: {
-                            ...effects,
-                            reputation: +5,
-                            motivation: +5,
-                            advisorRelationship: +5,
-                            stress: +15
-                        }
-                    };
-                } else if (skills.publications >= 10) {
-                    return {
-                        text: "You get a reasonable number of interview requests, but mostly from less competitive positions. Your publication record is good but not exceptional. Your advisor encourages you to aim higher.",
-                        effects: {
-                            ...effects,
-                            reputation: +5,
-                            motivation: +5,
-                            stress: +15
-                        }
-                    };
-                } else {
-                    return {
-                        text: "You receive very few interview requests. Your limited publication record is making it difficult to compete for the best positions. Your advisor is concerned about your future prospects.",
-                        effects: {
-                            ...effects,
-                            reputation: +2,
-                            motivation: -10,
-                            stress: +15,
-                            advisorRelationship: -5
-                        }
-                    };
-                }
-            }
-        },
-        {
-            text: "Focus on quality applications to dream positions",
-            getOutcome: (skills, attributes) => {
-                const effects = {
-                    researchProgress: 0,
-                    publications: 0,
-                    writing: +5,
-                    teaching: 0,
-                    networking: +5,
-                    stress: +15,
-                    motivation: +5,
-                    advisorRelationship: +5,
-                    reputation: +5,
-                    personalLife: -5
-                };
-                
-                if (skills.reputation >= 60 && skills.writing >= 50) {
-                    return {
-                        text: "Your targeted approach pays off! Your excellent reputation and strong application materials secure you interviews at your top-choice institutions. Your advisor is thrilled with your success.",
-                        effects: {
-                            ...effects,
-                            reputation: +5,
-                            motivation: +5,
-                            advisorRelationship: +5,
-                            networking: +15
-                        }
-                    };
-                } else if (skills.reputation >= 40) {
-                    return {
-                        text: "You receive some interview requests from your dream institutions, but not as many as you'd hoped. Your reputation helps, but isn't quite strong enough. Your advisor suggests you expand your search.",
-                        effects: {
-                            ...effects,
-                            reputation: +5,
-                            motivation: +5,
-                            stress: +15
-                        }
-                    };
-                } else {
-                    return {
-                        text: "Despite your focused efforts, you only receive a few interview requests. Your reputation in the field isn't strong enough to get you the attention you need. Your advisor is disappointed with the results.",
-                        effects: {
-                            ...effects,
-                            reputation: +2,
-                            motivation: -5,
-                            stress: +15,
-                            advisorRelationship: -5
-                        }
-                    };
-                }
-            }
-        },
-        {
-            text: "Leverage your network for opportunities",
-            getOutcome: (skills, attributes) => {
-                const effects = {
-                    researchProgress: 0,
-                    publications: 0,
-                    writing: +5,
-                    teaching: 0,
+                    teaching: +10,
                     networking: +15,
                     stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
-                    reputation: +5,
+                    reputation: +10,
+                    personalLife: -5
+                };
+                
+                if (skills.researchProgress >= 60 && skills.writing >= 40) {
+                    return {
+                        text: "Your presentation is exceptional! The audience is captivated by your findings, and you receive thoughtful questions that help you see new angles in your work. Several researchers approach you afterward to discuss potential collaborations. Your advisor receives excellent feedback about your performance.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +15,
+                            reputation: +15,
+                            networking: +20,
+                            stress: +5,
+                            motivation: +10
+                        }
+                    };
+                } else if (skills.researchProgress >= 40 || skills.writing >= 30) {
+                    return {
+                        text: "Your presentation goes well! The audience is engaged, and you receive positive feedback. A few researchers express interest in your work and exchange contact information. Your advisor is pleased with your performance.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +10,
+                            reputation: +10,
+                            networking: +15
+                        }
+                    };
+                } else {
+                    return {
+                        text: "You struggle with your presentation. The audience seems interested but confused by some of your explanations. You receive constructive feedback that helps you improve. It's a learning experience, and you realize you need more practice presenting complex ideas.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +5,
+                            reputation: +5,
+                            networking: +10,
+                            stress: +15,
+                            motivation: 0
+                        }
+                    };
+                }
+            }
+        },
+        {
+            text: "Focus on networking with senior researchers",
+            getOutcome: (skills, attributes) => {
+                const effects = {
+                    researchProgress: +5,
+                    publications: 0,
+                    writing: +5,
+                    teaching: +5,
+                    networking: +20,
+                    stress: +5,
+                    motivation: +5,
+                    advisorRelationship: +5,
+                    reputation: +10,
                     personalLife: 0
                 };
                 
                 if (skills.networking >= 50) {
                     return {
-                        text: "Your extensive network comes through for you! Former colleagues and collaborators reach out with exciting opportunities you wouldn't have found otherwise. You secure interviews at several excellent institutions.",
+                        text: "Your networking efforts are incredibly productive! You connect with several senior researchers in your field who are impressed by your knowledge and enthusiasm. They offer valuable advice about your research and express interest in future collaborations. One even mentions a potential post-graduation opportunity. Your advisor notices the quality of connections you're making.",
                         effects: {
                             ...effects,
-                            networking: +15,
-                            reputation: +5,
-                            motivation: +5,
-                            advisorRelationship: +5
+                            networking: +25,
+                            reputation: +15,
+                            researchProgress: +8,
+                            stress: 0,
+                            motivation: +10
                         }
                     };
-                } else if (skills.networking >= 30) {
+                } else if (skills.networking >= 25) {
                     return {
-                        text: "You get a few good leads through your network, but realize you should have been more proactive about maintaining these relationships earlier. Still, you secure some solid interview opportunities.",
+                        text: "You make several good connections at the conference. You have meaningful conversations with researchers whose work you admire, and they seem genuinely interested in your research. You exchange contact information and discuss potential future collaborations. Your advisor is pleased to see you building your network.",
                         effects: {
                             ...effects,
-                            networking: +15,
-                            reputation: +5,
-                            motivation: +5
+                            networking: +20,
+                            reputation: +10,
+                            researchProgress: +5
                         }
                     };
                 } else {
                     return {
-                        text: "Your network doesn't yield as many opportunities as you'd hoped. You realize too late that you should have invested more in building professional relationships. You struggle to find good positions.",
+                        text: "You try to network but find it challenging to approach senior researchers. You manage a few brief conversations but struggle to make meaningful connections. You realize building a strong network takes more confidence and practice than you currently have.",
                         effects: {
                             ...effects,
-                            networking: +10,
-                            reputation: +2,
-                            motivation: -5,
-                            stress: +15,
-                            advisorRelationship: -5
+                            networking: +15,
+                            reputation: +5,
+                            stress: +10,
+                            motivation: -3
+                        }
+                    };
+                }
+            }
+        },
+        {
+            text: "Attend workshops to learn new research skills",
+            getOutcome: (skills, attributes) => {
+                const effects = {
+                    researchProgress: +8,
+                    publications: 0,
+                    writing: +10,
+                    teaching: +5,
+                    networking: +8,
+                    stress: +5,
+                    motivation: +10,
+                    advisorRelationship: +5,
+                    reputation: +5,
+                    personalLife: 0
+                };
+                
+                if (skills.researchProgress >= 50 && skills.writing >= 35) {
+                    return {
+                        text: "The workshops are transformative! You learn cutting-edge techniques that directly apply to your research. The hands-on sessions give you new ideas for analyzing your data, and you gain confidence in using advanced methods. You share your new knowledge with your advisor, who is impressed by your initiative and the quality of insights you've gained.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +12,
+                            writing: +12,
+                            reputation: +8,
+                            stress: 0,
+                            motivation: +15
+                        }
+                    };
+                } else if (skills.researchProgress >= 30) {
+                    return {
+                        text: "You find the workshops very useful. You learn new skills that will help you improve your research and thesis. The instructors are impressed by your engagement and willingness to learn. You return with fresh ideas and renewed energy for your work. Your advisor appreciates your proactive approach to skill development.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +10,
+                            writing: +10,
+                            motivation: +10
+                        }
+                    };
+                } else {
+                    return {
+                        text: "The workshops are helpful but also reveal how much you still have to learn. Some of the material is quite advanced, and you struggle to keep up. However, you gain valuable exposure to new ideas and methods. You realize you need to dedicate more time to developing your technical skills.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +6,
+                            writing: +6,
+                            stress: +10,
+                            motivation: +5
                         }
                     };
                 }

@@ -1,162 +1,165 @@
-// Late PhD Episode 7: Job Market Realities
+// Late PhD Episode 7: Cross-Disciplinary Collaboration
 export const episode7 = {
-    title: "Job Market Realities",
-    description: "You've started looking at post-PhD opportunities and the academic job market is far more competitive than you realized. The uncertainty about your future is adding significant stress.",
-    image: "assets/images/job_applications.jpg",
+    title: "Cross-Disciplinary Collaboration",
+    description: "A researcher from another department has approached you about a collaboration. They've been working on a project that connects to your research, and they believe combining your expertise could produce a strong publication. However, your thesis defense is approaching and you need to focus on completing your work.",
+    image: "assets/images/collaboration.jpg",
+    phase: "late",
     choices: [
         {
-            text: "Focus exclusively on academic positions - it's my dream",
-            getOutcome: (skills, attributes) => {
-                const effects = {
-                    researchProgress: 0,
-                    publications: 0,
-                    writing: +5,
-                    teaching: +5,
-                    networking: +3,
-                    stress: +15,
-                    motivation: +5,
-                    advisorRelationship: +5,
-                    reputation: +5,
-                    personalLife: -8
-                };
-                
-                if (skills.publications >= 8 && skills.reputation >= 50) {
-                    return {
-                        text: "You have a strong academic profile! Your publication record and reputation open doors at several universities. Your advisor's strong recommendation helps you secure interviews. The process is stressful but you're competitive.",
-                        effects: {
-                            ...effects,
-                            publications: 0,
-                            reputation: +5,
-                            advisorRelationship: +5,
-                            stress: +15,
-                            motivation: +5
-                        }
-                    };
-                } else if (skills.publications >= 5 && skills.reputation >= 30) {
-                    return {
-                        text: "You apply to academic positions but the competition is fierce. You get a few interviews at less prestigious institutions. Your advisor encourages you to broaden your search.",
-                        effects: {
-                            ...effects,
-                            stress: +18,
-                            motivation: +5,
-                            advisorRelationship: +6
-                        }
-                    };
-                } else {
-                    return {
-                        text: "The academic job market is brutal. With your current publication record and reputation, you're not getting interviews. Your advisor gently suggests you consider other options. The reality is harsh.",
-                        effects: {
-                            ...effects,
-                            stress: +15,
-                            motivation: -5,
-                            advisorRelationship: +3,
-                            personalLife: -10
-                        }
-                    };
-                }
-            }
-        },
-        {
-            text: "Expand search to industry and non-academic roles",
-            getOutcome: (skills, attributes) => {
-                const effects = {
-                    researchProgress: +5,
-                    publications: 0,
-                    writing: +3,
-                    teaching: 0,
-                    networking: +10,
-                    stress: -10,
-                    motivation: +5,
-                    advisorRelationship: +3,
-                    reputation: +3,
-                    personalLife: +5
-                };
-                
-                if (skills.networking >= 50 && skills.researchProgress >= 60) {
-                    return {
-                        text: "Excellent decision! Industry values your research skills and practical experience. You receive multiple offers from companies impressed with your background. Your advisor supports your choice and helps you navigate the transition.",
-                        effects: {
-                            ...effects,
-                            networking: +15,
-                            researchProgress: 0,
-                            reputation: +8,
-                            stress: -15,
-                            motivation: +5,
-                            advisorRelationship: +8
-                        }
-                    };
-                } else if (skills.networking >= 30) {
-                    return {
-                        text: "You discover many interesting opportunities outside academia. Some companies are very interested, though the roles aren't always a perfect fit. You feel more optimistic about your future.",
-                        effects: {
-                            ...effects,
-                            networking: +12,
-                            stress: -12,
-                            motivation: +12
-                        }
-                    };
-                } else {
-                    return {
-                        text: "You start exploring industry options but your limited network makes it hard to find the right opportunities. You'll need to build more connections and tailor your approach.",
-                        effects: {
-                            ...effects,
-                            networking: +8,
-                            stress: -8,
-                            motivation: +8
-                        }
-                    };
-                }
-            }
-        },
-        {
-            text: "Take a postdoc anywhere to keep academic options open",
+            text: "Dive deeply into the collaboration - this could be a great paper",
             getOutcome: (skills, attributes) => {
                 const effects = {
                     researchProgress: +10,
-                    publications: +1,
+                    publications: 0,
+                    writing: +10,
+                    teaching: +5,
+                    networking: +15,
+                    stress: +15,
+                    motivation: +5,
+                    advisorRelationship: +5,
+                    reputation: +10,
+                    personalLife: -10
+                };
+                
+                if (skills.researchProgress >= 60 && skills.networking >= 40) {
+                    return {
+                        text: "Your deep involvement in the collaboration pays off handsomely! The combined expertise leads to a breakthrough that neither of you could have achieved alone. You submit a paper to a high-impact journal, and it's accepted with minor revisions. Your advisor is thrilled with this additional publication, and your co-author becomes a valuable long-term collaborator.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +15,
+                            publications: +1,
+                            networking: +20,
+                            reputation: +15,
+                            stress: +10,
+                            motivation: +10
+                        }
+                    };
+                } else if (skills.researchProgress >= 40) {
+                    return {
+                        text: "You make significant contributions to the collaboration. The resulting paper is solid and gets accepted to a good conference. Your advisor is pleased with the additional publication, though they remind you to keep your thesis as the top priority. Your new collaborator appreciates your expertise and effort.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +10,
+                            publications: +1,
+                            networking: +15,
+                            stress: +15
+                        }
+                    };
+                } else {
+                    return {
+                        text: "You struggle to contribute as much as you'd hoped to the collaboration. The paper is submitted but to a lower-tier venue. Your advisor is somewhat disappointed that you spent so much time on this when your thesis needs attention. You gain some new connections but at a cost to your primary work.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +5,
+                            publications: +1,
+                            stress: +20,
+                            motivation: 0,
+                            advisorRelationship: 0
+                        }
+                    };
+                }
+            }
+        },
+        {
+            text: "Collaborate but maintain focus on your thesis",
+            getOutcome: (skills, attributes) => {
+                const effects = {
+                    researchProgress: +10,
+                    publications: 0,
                     writing: +8,
                     teaching: +3,
-                    networking: +5,
-                    stress: +15,
-                    motivation: +8,
-                    advisorRelationship: +8,
+                    networking: +10,
+                    stress: +10,
+                    motivation: +5,
+                    advisorRelationship: +5,
                     reputation: +8,
                     personalLife: -5
                 };
                 
-                if (skills.publications >= 6 && skills.advisorRelationship >= 60) {
+                if (skills.writing >= 50 && skills.networking >= 30) {
                     return {
-                        text: "Your advisor helps you secure a good postdoc position at a respected institution. It's not your dream location, but it keeps you in the academic pipeline. You'll have time to strengthen your CV for faculty positions.",
+                        text: "You strike an excellent balance! You contribute meaningfully to the collaboration while also making steady progress on your thesis. The resulting paper is strong, and you submit it to a respected conference. Your advisor is impressed with your ability to multitask effectively, and your collaborator values your contributions. This approach works perfectly.",
                         effects: {
                             ...effects,
+                            researchProgress: +12,
+                            writing: +10,
                             publications: +1,
-                            reputation: +12,
-                            advisorRelationship: +12,
-                            stress: +10,
-                            motivation: +12
+                            networking: +12,
+                            stress: +5,
+                            motivation: +8
                         }
                     };
-                } else if (skills.publications >= 4) {
+                } else if (skills.writing >= 30 || skills.networking >= 20) {
                     return {
-                        text: "You find a postdoc position, though it's at a less prestigious institution than you hoped. Your advisor warns you that you'll need to be strategic about your next steps to remain competitive for faculty positions.",
+                        text: "You manage both tasks reasonably well. You contribute to the collaboration and produce a solid paper for a conference. Meanwhile, your thesis also progresses steadily. Your advisor is satisfied with your progress on both fronts, and your collaborator is happy with your contributions.",
                         effects: {
                             ...effects,
+                            researchProgress: +10,
                             publications: +1,
-                            reputation: +6,
-                            advisorRelationship: +6,
-                            stress: +12
+                            networking: +10
                         }
                     };
                 } else {
                     return {
-                        text: "With your limited publication record, postdoc opportunities are scarce. You end up with a position that feels like a lateral move rather than progress. Your advisor is concerned this might not be the best path for you.",
+                        text: "You struggle to give both tasks the attention they deserve. The collaboration produces a modest paper, and your thesis progress is slower than hoped. Your advisor notices you seem spread thin and suggests you focus more on your primary work. It's a valuable learning experience about time management.",
                         effects: {
                             ...effects,
-                            publications: 0,
-                            reputation: +3,
-                            advisorRelationship: +3,
+                            researchProgress: +5,
+                            publications: +1,
                             stress: +15,
-                            motivation: -3
+                            motivation: 0,
+                            advisorRelationship: +2
+                        }
+                    };
+                }
+            }
+        },
+        {
+            text: "Politely decline to focus on your thesis",
+            getOutcome: (skills, attributes) => {
+                const effects = {
+                    researchProgress: +15,
+                    publications: 0,
+                    writing: +10,
+                    teaching: 0,
+                    networking: 0,
+                    stress: -5,
+                    motivation: +5,
+                    advisorRelationship: +8,
+                    reputation: +3,
+                    personalLife: +5
+                };
+                
+                if (skills.researchProgress >= 60) {
+                    return {
+                        text: "You politely decline the collaboration, explaining that you need to focus on completing your thesis. The researcher understands and respects your priorities. You use the time to make excellent progress on your writing. Your advisor strongly approves of your decision, praising your dedication to finishing your degree. Sometimes saying no to opportunities is the right strategic choice.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +20,
+                            writing: +15,
+                            advisorRelationship: +12,
+                            stress: -10,
+                            motivation: +10
+                        }
+                    };
+                } else if (skills.advisorRelationship >= 40) {
+                    return {
+                        text: "You explain your situation to the researcher, who accepts your decision gracefully. You use the time to make significant progress on your thesis. Your advisor respects your focus and ability to prioritize your primary responsibilities. It's the responsible choice, even if it means missing a collaboration opportunity.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +18,
+                            writing: +12,
+                            advisorRelationship: +10
+                        }
+                    };
+                } else {
+                    return {
+                        text: "You decline the opportunity. The researcher seems disappointed but accepts your decision. You make steady progress on your thesis, though you can't help feeling like you missed a chance to expand your research network and publication record. Your advisor is supportive of your choice.",
+                        effects: {
+                            ...effects,
+                            researchProgress: +12,
+                            writing: +8,
+                            advisorRelationship: +5
                         }
                     };
                 }
