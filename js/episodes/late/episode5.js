@@ -46,6 +46,16 @@ export const episode5 = {
                             thesisSubmitted: true
                         }
                     };
+                } else if (skills.publications >= requiredPublications) {
+                    return {
+                        text: `Your thesis is submitted but requires significant revisions. With ${skills.publications} publications, you meet the minimum publication requirement. Your advisor accepts the submission but notes that substantial work is needed before examination. The quality is not ideal, but you have met the basic requirements.`,
+                        effects: {
+                            ...effects,
+                            writing: +5,
+                            stress: -5,
+                            thesisSubmitted: true
+                        }
+                    };
                 } else if (skills.publications >= requiredPublications - 1 && skills.writing >= 50) {
                     return {
                         text: `Your thesis needs significant work before submission. You have ${skills.publications} publications but need at least ${requiredPublications}. Your advisor agrees to give you a short extension to complete the requirements, but warns this is your final chance.`,
@@ -59,7 +69,7 @@ export const episode5 = {
                     };
                 } else {
                     return {
-                        text: `Your thesis is not ready for submission. With only ${skills.publications} publications (need: ${requiredPublications}) and insufficient research progress, your advisor cannot approve your graduation. You'll need to continue working, but your contract may not be extended.`,
+                        text: `Your thesis is not ready for submission. With only ${skills.publications} publications (need: ${requiredPublications}), your advisor cannot approve your graduation. You'll need to continue working, but your contract may not be extended.`,
                         effects: {
                             ...effects,
                             publications: 0,
