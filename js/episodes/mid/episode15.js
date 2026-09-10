@@ -39,7 +39,7 @@ export const episode15 = {
                 
                 const isFemale = attributes.gender === 'female';
                 const pronoun = isFemale ? 'you' : 'your partner';
-                const possessive = isFemale ? 'your' : 'their';
+                const possessive = 'your';
                 
                 if (skills.advisorRelationship >= 70) {
                     return {
@@ -97,8 +97,8 @@ export const episode15 = {
                 
                 const isFemale = attributes.gender === 'female';
                 const pronoun = isFemale ? 'you' : 'your partner';
-                const possessive = isFemale ? 'your' : 'their';
-                const yourYour = isFemale ? 'your' : 'your';
+                const possessive = 'your';
+                const yourYour = 'your';
                 
                 if (skills.personalLife >= 60) {
                     return {
@@ -157,6 +157,7 @@ export const episode15 = {
                 
                 const isFemale = attributes.gender === 'female';
                 const youYour = isFemale ? 'you' : 'your partner';
+                const possessive = 'your';
                 
                 if (skills.advisorRelationship >= 60) {
                     return {
