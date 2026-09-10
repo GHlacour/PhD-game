@@ -81,7 +81,7 @@ welcomeScreen.innerHTML = `
         <h2>Welcome to PhD Life</h2>
         <p>Experience the journey of a PhD student through challenging choices and real-world scenarios.</p>
         <p>Build your skills, navigate obstacles, and shape your academic future.</p>
-        <p><strong>Publish at least one paper per year and write your thesis to graduate!</strong></p>
+        <p><strong>Publish one paper per year on average and write your thesis to graduate!</strong></p>
         <button id="welcome-start-btn" class="btn">Start Game</button>
     </div>
 `;

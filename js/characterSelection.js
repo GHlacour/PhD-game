@@ -70,7 +70,7 @@ export function createCharacterSelectionScreen(onStart) {
         
         <div class="selection-section">
             <h3>Program Length</h3>
-            <p class="selection-description">Choose your PhD program duration. You'll need to publish at least one paper per year and write a thesis to graduate.</p>
+            <p class="selection-description">Choose your PhD program duration. You'll need to publish one paper per year on average and write a thesis to graduate.</p>
             <div id="program-selection" class="selection-buttons"></div>
         </div>
         

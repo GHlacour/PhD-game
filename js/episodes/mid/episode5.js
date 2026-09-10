@@ -98,7 +98,7 @@ export const episode5 = {
                     };
                 } else if (skills.researchProgress >= 40 && skills.publications >= 1) {
                     return {
-                        text: "Your advisor acknowledges your solid progress but is concerned that your publication count is low for Year 2. They stress the importance of publishing at least one paper per year and expect to see a manuscript soon.",
+                        text: "Your advisor acknowledges your solid progress but is concerned that your publication count is low for Year 2. They stress the importance of publishing one paper per year on average and expect to see a manuscript soon.",
                         effects: {
                             ...effects,
                             researchProgress: +5,
