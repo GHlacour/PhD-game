@@ -23,9 +23,9 @@ export const episode5 = {
                     personalLife: 0
                 };
                 
-                if (skills.publications >= 1 && skills.researchProgress >= 40 && skills.writing >= 30) {
+                if (skills.researchProgress >= 40 && skills.writing >= 30) {
                     return {
-                        text: "Outstanding! Your advisor is very pleased with your publishing record. Your paper is accepted to a high-impact journal. You're making excellent progress and are well on track for graduation. Your advisor mentions you're building a strong publication portfolio.",
+                        text: "Outstanding! Your advisor is very pleased with your paper. It's accepted to a high-impact journal. You're making excellent progress and are well on track for graduation. Your advisor mentions you're building a strong publication portfolio.",
                         effects: {
                             ...effects,
                             publications: +1,
@@ -35,7 +35,7 @@ export const episode5 = {
                             researchProgress: -5
                         }
                     };
-                } else if (skills.publications >= 1 && skills.researchProgress >= 25 && skills.writing >= 15) {
+                } else if (skills.researchProgress >= 25 && skills.writing >= 15) {
                     return {
                         text: "Good work! Your paper is accepted for publication. Your advisor is satisfied with your progress and notes that you're meeting the annual publication requirement. They encourage you to aim for higher-impact venues for your next paper.",
                         effects: {
