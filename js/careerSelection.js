@@ -37,13 +37,13 @@ const CAREER_PATHS = {
         name: 'Academic Researcher',
         description: 'Continue in academia as a postdoc, research scientist, or professor, conducting cutting-edge research.',
         icon: '\ud83d\udd2c',
-        primarySkills: ['publications', 'researchProgress', 'writing', 'reputation'],
+        primarySkills: ['publications', 'motivation', 'researchProgress', 'writing', 'reputation'],
         secondarySkills: ['teaching', 'networking'],
         requiredThresholds: {
-            immediate: { publications: 10, researchProgress: 70, writing: 60, reputation: 60 },
-            good: { publications: 6, researchProgress: 50, writing: 40, reputation: 40 },
-            acceptable: { publications: 3, researchProgress: 30, writing: 20, reputation: 20 },
-            struggle: { publications: 0, researchProgress: 0, writing: 0, reputation: 0 }
+            immediate: { publications: 5, motivation: 70, researchProgress: 60, writing: 50, reputation: 50 },
+            good: { publications: 3, motivation: 50, researchProgress: 40, writing: 35, reputation: 35 },
+            acceptable: { publications: 3, motivation: 30, researchProgress: 25, writing: 20, reputation: 20 },
+            struggle: { publications: 0, motivation: 0, researchProgress: 0, writing: 0, reputation: 0 }
         },
         image: 'assets/images/career_academic.jpg'
     },
@@ -200,7 +200,7 @@ function getAcademicOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Prestigious Postdoc at Top Institution!',
-                    description: `Your exceptional publication record (${skills.publications} papers) and strong Research Progress (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is a key step toward a tenure-track faculty position.`,
+                    description: `Your exceptional publication record (${skills.publications} papers), strong motivation (${skills.motivation}), and Research Progress (${skills.researchProgress}) earn you a coveted postdoc position at a leading research institution. Your advisor's recommendation and your reputation (${skills.reputation}) in the field open doors. This is a key step toward a tenure-track faculty position.`,
                     salary: 'Competitive postdoc salary with research funding',
                     timeline: 'Start in 2 months',
                     satisfaction: 'Very High'
@@ -210,7 +210,7 @@ function getAcademicOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Postdoc Position',
-                    description: `With ${skills.publications} publications and solid research experience, you secure a postdoc position at a respected university. While not at the most prestigious institution, it's a good opportunity to build your research portfolio. Your advisor helps connect you with the right people. With hard work, you can aim for a faculty position in a few years.`,
+                    description: `With ${skills.publications} publications, solid motivation (${skills.motivation}), and good research experience, you secure a postdoc position at a respected university. While not at the most prestigious institution, it's a good opportunity to build your research portfolio. Your advisor helps connect you with the right people. With hard work, you can aim for a faculty position in a few years.`,
                     salary: 'Standard postdoc salary',
                     timeline: 'Start in 3-4 months',
                     satisfaction: 'High'
@@ -220,7 +220,7 @@ function getAcademicOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Industry Research with Academic Hopes',
-                    description: `Your publication count (${skills.publications}) is on the lower side for academia, so you take a research position in industry that allows you to continue publishing. It's not your dream of becoming a professor, but it pays well and keeps your academic options open. You can try for academic positions again after gaining more experience and publications.`,
+                    description: `Your publication count (${skills.publications}) and motivation (${skills.motivation}) are on the lower side for academia, so you take a research position in industry that allows you to continue publishing. It's not your dream of becoming a professor, but it pays well and keeps your academic options open. You can try for academic positions again after gaining more experience and publications.`,
                     salary: 'Good industry salary',
                     timeline: 'Start in 1 month',
                     satisfaction: 'Moderate - still hoping for academia'
@@ -230,7 +230,7 @@ function getAcademicOutcomes(tier, skills, attributes) {
             return [
                 {
                     title: 'Academic Career in Jeopardy',
-                    description: `With only ${skills.publications} publications and limited research impact, you find it nearly impossible to secure a postdoc or faculty position. The academic job market is brutal, and your CV doesn't stand out. You may need to consider leaving academia entirely or pursuing a non-research role in a university. This is a tough realization after years of PhD work.`,
+                    description: `With only ${skills.publications} publications, low motivation (${skills.motivation}), and limited research impact, you find it nearly impossible to secure a postdoc or faculty position. The academic job market is brutal, and your CV doesn't stand out. You may need to consider leaving academia entirely or pursuing a non-research role in a university. This is a tough realization after years of PhD work.`,
                     salary: 'Uncertain - may need to change career path',
                     timeline: '12+ months of difficult searching',
                     satisfaction: 'Low - facing career disappointment'
