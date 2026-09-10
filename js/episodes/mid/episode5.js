@@ -23,7 +23,7 @@ export const episode5 = {
                     personalLife: 0
                 };
                 
-                if (skills.publications >= 2 && skills.researchProgress >= 60) {
+                if (skills.publications >= 1 && skills.researchProgress >= 40 && skills.writing >= 30) {
                     return {
                         text: "Outstanding! Your advisor is very pleased with your publishing record. Your paper is accepted to a high-impact journal. You're making excellent progress and are well on track for graduation. Your advisor mentions you're building a strong publication portfolio.",
                         effects: {
@@ -32,15 +32,25 @@ export const episode5 = {
                             reputation: +5,
                             advisorRelationship: +5,
                             motivation: +5,
-                            researchProgress: +10
+                            researchProgress: -5
                         }
                     };
-                } else if (skills.publications >= 1 && skills.researchProgress >= 40) {
+                } else if (skills.publications >= 1 && skills.researchProgress >= 25 && skills.writing >= 15) {
                     return {
                         text: "Good work! Your paper is accepted for publication. Your advisor is satisfied with your progress and notes that you're meeting the annual publication requirement. They encourage you to aim for higher-impact venues for your next paper.",
                         effects: {
                             ...effects,
-                            publications: +1
+                            publications: +1,
+                            researchProgress: -3
+                        }
+                    };
+                } else if (skills.researchProgress >= 15 && skills.writing >= 10) {
+                    return {
+                        text: "Your paper is accepted to a conference. Your advisor is satisfied with your progress and encourages you to keep up the good work. You've met the annual publication expectation.",
+                        effects: {
+                            ...effects,
+                            publications: +1,
+                            researchProgress: -2
                         }
                     };
                 } else {

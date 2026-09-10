@@ -99,7 +99,7 @@ export const episode5 = {
                     personalLife: -5
                 };
                 
-                if (skills.publications >= requiredPublications - 1 && skills.writing >= 50) {
+                if (skills.publications >= requiredPublications - 1 && skills.writing >= 30) {
                     return {
                         text: `Excellent! Your final paper is accepted, bringing your total to ${skills.publications + 1} publications. Combined with your thesis submission, you now meet all graduation requirements! Your advisor is very pleased with your final push.`,
                         effects: {
@@ -107,6 +107,17 @@ export const episode5 = {
                             publications: +1,
                             reputation: +5,
                             advisorRelationship: +5,
+                            researchProgress: -2,
+                            thesisSubmitted: true
+                        }
+                    };
+                } else if (skills.publications >= requiredPublications - 1 && skills.writing >= 15) {
+                    return {
+                        text: `Your paper is accepted to a conference! With this publication, you now have ${skills.publications + 1} papers. Combined with your thesis submission, you now meet all graduation requirements! Your advisor is pleased with your final push.`,
+                        effects: {
+                            ...effects,
+                            publications: +1,
+                            researchProgress: -1,
                             thesisSubmitted: true
                         }
                     };

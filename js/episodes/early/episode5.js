@@ -23,25 +23,25 @@ export const episode5 = {
                     personalLife: 0
                 };
                 
-                if (skills.researchProgress >= 40 && skills.writing >= 30) {
+                if (skills.researchProgress >= 25 && skills.writing >= 15) {
                     return {
                         text: "Excellent work! Your advisor is very impressed with your paper. It's accepted for publication in a good journal. This is a strong start to your PhD! Your advisor notes that you're on track for timely graduation.",
                         effects: {
                             ...effects,
                             publications: +1,
-                            researchProgress: -15,
+                            researchProgress: -10,
                             reputation: +5,
                             advisorRelationship: +5,
                             motivation: +5
                         }
                     };
-                } else if (skills.researchProgress >= 25 && skills.writing >= 20) {
+                } else if (skills.researchProgress >= 15 && skills.writing >= 8) {
                     return {
                         text: "Good effort! Your paper is accepted to a conference. Your advisor is satisfied with your progress and encourages you to keep up the good work. You've met the annual publication expectation.",
                         effects: {
                             ...effects,
                             publications: +1,
-                            researchProgress: -10
+                            researchProgress: -5
                         }
                     };
                 } else {
@@ -50,10 +50,10 @@ export const episode5 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            researchProgress: 0,
-                            writing: +5,
-                            advisorRelationship: +5,
-                            motivation: +5,
+                            researchProgress: +5,
+                            writing: +8,
+                            advisorRelationship: +3,
+                            motivation: +3,
                             stress: +5
                         }
                     };
