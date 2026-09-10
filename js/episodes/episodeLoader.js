@@ -52,6 +52,7 @@ import { episode11 as late11 } from './late/episode11.js';
 import { episode12 as late12 } from './late/episode12.js';
 import { episode13 as late13 } from './late/episode13.js';
 import { episode14 as late14 } from './late/episode14.js';
+import { episode15 as late15 } from './late/episode15.js';
 
 // Preload images for better performance
 export function preloadImages() {
@@ -99,7 +100,7 @@ const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7, mid8, mid13, mid
 const midEvaluationEpisodes = [mid5]; // Year 2 evaluation
 
 // Late regular episodes (non-final)
-const lateRegularEpisodes = [late1, late2, late3, late4, late6, late7, late8, late10, late11, late12, late13, late14];
+const lateRegularEpisodes = [late1, late2, late3, late4, late6, late7, late8, late10, late11, late12, late13, late14, late15];
 // Final evaluation episode
 const finalEvaluationEpisodes = [late5];
 
