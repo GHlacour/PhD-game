@@ -66,14 +66,14 @@ export const episode15 = {
                     };
                 } else {
                     return {
-                        text: `Your advisor is disappointed by your leave request and questions your commitment to the PhD. You take the leave anyway, knowing it's the right choice for your family. The early months with ${pronoun} and ${possessive} baby are wonderful, but you return to a tense situation with your advisor. They make several comments about 'lost momentum'.`,
+                        text: `Your advisor acknowledges that while the timing is challenging, parental leave is your right and the university policy is clear. They help you arrange the leave properly. The early months with ${pronoun} and ${possessive} baby are wonderful. When you return, your advisor works with you to adjust your timeline realistically. There may be some catching up to do, but you have official support.`,
                         effects: {
                             ...effects,
-                            stress: -10,
-                            motivation: -5,
-                            advisorRelationship: -15,
-                            researchProgress: -15,
-                            personalLife: +20
+                            stress: -15,
+                            motivation: +5,
+                            advisorRelationship: +5,
+                            researchProgress: -10,
+                            personalLife: +25
                         }
                     };
                 }
@@ -185,14 +185,14 @@ export const episode15 = {
                     };
                 } else {
                     return {
-                        text: `Your advisor refuses to support an extension, arguing that many people have babies during their PhD and manage to finish on time. They suggest you 'figure it out.' Without their support, the extension request is denied. You're left feeling unsupported and worried about how you'll manage everything with ${youYour}. The lack of accommodation adds significant stress.`,
+                        text: `Your advisor explains that the university has a standard pregnancy/parental leave policy that automatically grants extensions for PhD students. They help you navigate the paperwork. While they may have initial concerns about the timeline, they recognize this is a university-mandated accommodation, not a personal favor. You get the extension you need and can plan accordingly.`,
                         effects: {
                             ...effects,
-                            stress: +15,
-                            motivation: -10,
-                            advisorRelationship: -10,
-                            personalLife: -5,
-                            researchProgress: -3
+                            stress: -10,
+                            motivation: +5,
+                            advisorRelationship: +3,
+                            personalLife: +10,
+                            researchProgress: +2
                         }
                     };
                 }
