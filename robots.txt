@@ -1,0 +1,72 @@
+# robots.txt for PhD Life Game
+# https://computationalspectroscopy.eu/PhD-game/
+# https://ghlacour.github.io/PhD-game/
+
+# Allow standard search engine crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yahoo
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# Default: Allow all other standard crawlers
+User-agent: *
+Allow: /
+
+# Block known AI training crawlers
+# OpenAI - ChatGPT training
+User-agent: GPTBot
+Disallow: /
+
+# Google - AI training (separate from Googlebot)
+User-agent: Google-Extended
+Disallow: /
+
+# Common Crawl - Open dataset used by many AI companies
+User-agent: CCBot
+Disallow: /
+
+# Facebook/Meta - AI and ML purposes
+User-agent: FacebookBot
+Disallow: /
+
+# Amazon - Alexa and AI training
+User-agent: Amazonbot
+Disallow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Disallow: /
+
+# Cohere
+User-agent: Cohere-Web
+Disallow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Disallow: /
+
+# Block any other bots that identify as AI
+User-agent: *Bot*
+Disallow: /
+
+User-agent: *AI*
+Disallow: /
+
+User-agent: *Crawler*
+Disallow: /
+
+# Sitemap location
+Sitemap: https://computationalspectroscopy.eu/PhD-game/sitemap.xml
