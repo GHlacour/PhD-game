@@ -17,6 +17,7 @@ import { episode11 as early11 } from './early/episode11.js';
 import { episode12 as early12 } from './early/episode12.js';
 import { episode13 as early13 } from './early/episode13.js';
 import { episode14 as early14 } from './early/episode14.js';
+import { episode15 as early15 } from './early/episode15.js';
 
 import { episode1 as mid1 } from './mid/episode1.js';
 import { episode2 as mid2 } from './mid/episode2.js';
@@ -90,12 +91,12 @@ export function preloadImages() {
 export const preloadMedia = preloadImages;
 
 // Episode pools by phase
-export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7, early8, early9, early10, early11, early12, early13, early14];
+export const earlyEpisodes = [early1, early2, early3, early4, early5, early6, early7, early8, early9, early10, early11, early12, early13, early14, early15];
 export const midEpisodes = [mid1, mid2, mid3, mid4, mid5, mid6, mid7, mid8, mid9, mid10, mid11, mid12, mid13, mid14, mid15, mid16, mid17, mid18, mid19];
 export const lateEpisodes = [late1, late2, late3, late4, late5, late6, late7, late8, late9, late10, late11, late12, late13, late14, late15, late16];
 
 // Separate regular episodes from evaluation episodes
-const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7, early8, early9, early10, early12, early13, early14];
+const earlyRegularEpisodes = [early1, early2, early3, early4, early6, early7, early8, early9, early10, early12, early13, early14, early15];
 const earlyEvaluationEpisodes = [early5]; // Year 1 evaluation
 
 const midRegularEpisodes = [mid1, mid2, mid3, mid4, mid6, mid7, mid8, mid13, mid14, mid15, mid16, mid17, mid18, mid19, mid20];
