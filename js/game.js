@@ -588,6 +588,73 @@ function calculateOverallScore(skills) {
     return positiveSum - negativeSum + (skills.publications * publicationsMultiplier);
 }
 
+// High score management (local storage only)
+function saveHighScore(score, careerName) {
+    try {
+        // Get existing scores
+        const highScores = JSON.parse(localStorage.getItem('phdGameHighScores') || '[]');
+        
+        // Add new score
+        highScores.push({
+            score: score,
+            careerPath: careerName || 'Unknown',
+            date: new Date().toISOString().split('T')[0] // Just the date part
+        });
+        
+        // Sort by score (descending) and keep top 10
+        highScores.sort((a, b) => b.score - a.score);
+        localStorage.setItem('phdGameHighScores', JSON.stringify(highScores.slice(0, 10)));
+        
+        return highScores;
+    } catch (e) {
+        console.log('Could not save high score:', e);
+        return [];
+    }
+}
+
+// Get high scores from local storage
+function getHighScores() {
+    try {
+        return JSON.parse(localStorage.getItem('phdGameHighScores') || '[]');
+    } catch (e) {
+        return [];
+    }
+}
+
+// Format high scores for display
+function formatHighScores(highScores) {
+    if (highScores.length === 0) {
+        return '<p>No high scores yet. This game will be your first!</p>';
+    }
+    
+    let html = '<table class="highscores-table"><thead><tr><th>Rank</th><th>Score</th><th>Career Path</th><th>Date</th></tr></thead><tbody>';
+    
+    highScores.forEach((entry, index) => {
+        const grade = getScoreGrade(entry.score);
+        html += `
+            <tr>
+                <td>${index + 1}</td>
+                <td><strong>${entry.score}</strong> <span class="score-grade">(${grade})</span></td>
+                <td>${entry.careerPath}</td>
+                <td>${entry.date}</td>
+            </tr>
+        `;
+    });
+    
+    html += '</tbody></table>';
+    return html;
+}
+
+// Get letter grade for a score
+function getScoreGrade(score) {
+    if (score >= 800) return 'A+';
+    if (score >= 700) return 'A';
+    if (score >= 600) return 'B';
+    if (score >= 500) return 'C';
+    if (score >= 400) return 'D';
+    return 'F';
+}
+
 // Display the career outcome
 function displayCareerOutcome(outcome) {
     const career = outcome.career;
@@ -600,14 +667,14 @@ function displayCareerOutcome(outcome) {
     // Calculate overall score
     const overallScore = calculateOverallScore(gameState.skills);
     
+    // Save to high scores
+    saveHighScore(overallScore, career.name);
+    
+    // Get all high scores for display
+    const highScores = getHighScores();
+    
     // Determine score grade
-    let scoreGrade = 'C (Average)';
-    if (overallScore >= 800) scoreGrade = 'A+ (Exceptional)';
-    else if (overallScore >= 700) scoreGrade = 'A (Outstanding)';
-    else if (overallScore >= 600) scoreGrade = 'B (Good)';
-    else if (overallScore >= 500) scoreGrade = 'C (Average)';
-    else if (overallScore >= 400) scoreGrade = 'D (Below Average)';
-    else scoreGrade = 'F (Needs Improvement)';
+    let scoreGrade = getScoreGrade(overallScore);
     
     // Build content
     let contentHTML = `
@@ -656,6 +723,14 @@ function displayCareerOutcome(outcome) {
         </div>
     `;
     
+    // Add personal high scores
+    contentHTML += `
+        <div class="highscores-container">
+            <h3>Your Personal High Scores</h3>
+            ${formatHighScores(highScores)}
+        </div>
+    `;
+    
     careerOutcomeContent.innerHTML = contentHTML;
 }
 
@@ -678,13 +753,15 @@ function showGraduationFailure() {
     
     // Calculate overall score
     const overallScore = calculateOverallScore(gameState.skills);
-    let scoreGrade = 'C (Average)';
-    if (overallScore >= 800) scoreGrade = 'A+ (Exceptional)';
-    else if (overallScore >= 700) scoreGrade = 'A (Outstanding)';
-    else if (overallScore >= 600) scoreGrade = 'B (Good)';
-    else if (overallScore >= 500) scoreGrade = 'C (Average)';
-    else if (overallScore >= 400) scoreGrade = 'D (Below Average)';
-    else scoreGrade = 'F (Needs Improvement)';
+    
+    // Save to high scores
+    saveHighScore(overallScore, 'Did not graduate');
+    
+    // Get all high scores for display
+    const highScores = getHighScores();
+    
+    // Determine score grade
+    let scoreGrade = getScoreGrade(overallScore);
     
     // Add hidden skills summary to failure screen
     message += `
@@ -713,6 +790,11 @@ function showGraduationFailure() {
                     </ul>
                 </div>
             </div>
+        </div>
+        
+        <div class="highscores-container">
+            <h3>Your Personal High Scores</h3>
+            ${formatHighScores(highScores)}
         </div>
     `;
     
