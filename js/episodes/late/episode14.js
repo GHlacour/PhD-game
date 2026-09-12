@@ -1,7 +1,7 @@
 // Late PhD Episode 14: Research Breakthrough at the Last Moment
 export const episode14 = {
     title: "Research Breakthrough at the Last Moment",
-    description: "With only weeks until your defense, you make a significant discovery that could fundamentally change your thesis. However, your funding ends with your contract and your advisor has no budget for an extension. Incorporating it properly would require months of additional work. What do you do?",
+    description: "With only weeks until completion, you make a significant discovery that could fundamentally change your thesis. However, your funding ends with your contract and your advisor has no budget for an extension. Incorporating it properly would require months of additional work. What do you do?",
     image: "assets/images/research_challenges.jpg",
     phase: "late",
     choices: [
@@ -23,7 +23,7 @@ export const episode14 = {
                 
                 if (skills.motivation >= 70 && skills.stress <= 40) {
                     return {
-                        text: "You throw yourself into the work, putting in 80-hour weeks. It's exhausting, but you manage to incorporate the key aspects of your discovery without needing an extension. Your advisor is impressed by your dedication. The committee will note the strength of your new findings, and your thesis becomes stronger than anyone expected. The personal cost was high, but the scientific payoff was worth it. This discovery will make for an excellent publication after your studies conclude.",
+                        text: "You throw yourself into the work, putting in 80-hour weeks. It's exhausting, but you manage to incorporate the key aspects of your discovery without needing an extension. Your advisor is impressed by your dedication. Reviewers will note the strength of your new findings, and your thesis becomes stronger than anyone expected. The personal cost was high, but the scientific payoff was worth it. This discovery will make for an excellent publication after your studies conclude.",
                         effects: {
                             ...effects,
                             researchProgress: +20,
@@ -84,7 +84,7 @@ export const episode14 = {
                 
                 if (skills.writing >= 60) {
                     return {
-                        text: "You decide to focus on your current work, incorporating your discovery as a clear direction for future work in your conclusion. Your advisor appreciates your discipline and realistic approach. The committee will be impressed by both your completed work and the exciting future directions. This discovery will make for an excellent follow-up paper. This approach gives you the best of both worlds - a strong thesis with a promising new research direction for future publications.",
+                        text: "You decide to focus on your current work, incorporating your discovery as a clear direction for future work in your conclusion. Your advisor appreciates your discipline and realistic approach. Reviewers will be impressed by both your completed work and the exciting future directions. This discovery will make for an excellent follow-up paper. This approach gives you the best of both worlds - a strong thesis with a promising new research direction for future publications.",
                         effects: {
                             ...effects,
                             researchProgress: +8,
@@ -98,7 +98,7 @@ export const episode14 = {
                     };
                 } else if (skills.researchProgress >= 50) {
                     return {
-                        text: "The committee will acknowledge the promise of your new discovery. They will appreciate that you prioritized completing your thesis over chasing every new lead. Your advisor is pleased with your professionalism. This was the pragmatic choice, and the discovery can always be published later as a separate paper.",
+                        text: "Reviewers will acknowledge the promise of your new discovery. They will appreciate that you prioritized completing your thesis over chasing every new lead. Your advisor is pleased with your professionalism. This was the pragmatic choice, and the discovery can always be published later as a separate paper.",
                         effects: {
                             ...effects,
                             researchProgress: +5,
@@ -111,7 +111,7 @@ export const episode14 = {
                     };
                 } else {
                     return {
-                        text: "The committee will likely be satisfied with your work, though they may not fully grasp the significance of your new discovery. Your advisor is relieved you finished on time. You can't help feeling like you missed an opportunity to make your thesis truly special, but the discovery still holds promise for future publications. The regret is tempered by the knowledge that you made the only realistic choice given your constraints.",
+                        text: "Reviewers will likely be satisfied with your work, though they may not fully grasp the significance of your new discovery. Your advisor is relieved you finished on time. You can't help feeling like you missed an opportunity to make your thesis truly special, but the discovery still holds promise for future publications. The regret is tempered by the knowledge that you made the only realistic choice given your constraints.",
                         effects: {
                             ...effects,
                             researchProgress: +3,
@@ -143,7 +143,7 @@ export const episode14 = {
                 
                 if (skills.advisorRelationship >= 70) {
                     return {
-                        text: "Your advisor listens carefully to your discovery and the dilemma you face. They acknowledge that an extension isn't possible due to funding, but help you find a creative solution: you can add a brief appendix describing the new discovery and its implications, with a note that full exploration will be in a follow-up paper. This allows you to include the work without derailing your timeline. The committee will appreciate this approach, and your advisor's guidance proves invaluable. This discovery will make for an excellent future publication.",
+                        text: "Your advisor listens carefully to your discovery and the dilemma you face. They acknowledge that an extension isn't possible due to funding, but help you find a creative solution: you can add a brief appendix describing the new discovery and its implications, with a note that full exploration will be in a follow-up paper. This allows you to include the work without derailing your timeline. Reviewers will appreciate this approach, and your advisor's guidance proves invaluable. This discovery will make for an excellent future publication.",
                         effects: {
                             ...effects,
                             researchProgress: +12,
@@ -157,7 +157,7 @@ export const episode14 = {
                     };
                 } else if (skills.advisorRelationship >= 40) {
                     return {
-                        text: "Your advisor understands the scientific significance but is firm about the timeline. They suggest you briefly mention the discovery in your presentation as preliminary results, with a plan to publish it separately. It's not ideal, but it's the best you can do. The committee will appreciate your transparency, and you can still give your discovery the attention it deserves in future publications.",
+                        text: "Your advisor understands the scientific significance but is firm about the timeline. They suggest you briefly mention the discovery in your presentation as preliminary results, with a plan to publish it separately. It's not ideal, but it's the best you can do. Reviewers will appreciate your transparency, and you can still give your discovery the attention it deserves in future publications.",
                         effects: {
                             ...effects,
                             researchProgress: +8,
