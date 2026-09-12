@@ -1,12 +1,14 @@
 // Late PhD Episode 12: Family Tragedy
 // Family members with weighted probabilities (older relatives have higher chance)
 const familyMembers = [
-    { name: "grandmother", weight: 30 },
-    { name: "grandfather", weight: 30 },
+    { name: "grandmother", weight: 29 },
+    { name: "grandfather", weight: 29 },
     { name: "mother", weight: 15 },
     { name: "father", weight: 15 },
     { name: "aunt", weight: 5 },
-    { name: "uncle", weight: 5 }
+    { name: "uncle", weight: 5 },
+    { name: "brother", weight: 1 },
+    { name: "sister", weight: 1 }
 ];
 
 // Calculate total weight
