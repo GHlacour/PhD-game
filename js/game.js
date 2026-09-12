@@ -924,6 +924,55 @@ restartBtn.addEventListener('click', restartGame);
 continueBtn.addEventListener('click', continueAfterOutcome);
 careerOutcomeContinueBtn.addEventListener('click', restartGame);
 
+// Create high scores button and modal
+const highscoresBtn = document.createElement('button');
+highscoresBtn.id = 'highscores-btn';
+highscoresBtn.className = 'btn highscores-btn';
+highscoresBtn.textContent = 'View High Scores';
+
+// Create modal for high scores
+const highscoresModal = document.createElement('div');
+highscoresModal.id = 'highscores-modal';
+highscoresModal.className = 'highscores-modal';
+highscoresModal.innerHTML = `
+    <div class="highscores-modal-content">
+        <div class="highscores-modal-header">
+            <h2>Your Personal High Scores</h2>
+            <button id="highscores-close-btn" class="highscores-close-btn">&times;</button>
+        </div>
+        <div id="highscores-modal-body"></div>
+    </div>
+`;
+
+// Add to document
+document.querySelector('header').appendChild(highscoresBtn);
+document.body.appendChild(highscoresModal);
+
+// Event listeners for high scores modal
+const highscoresCloseBtn = document.getElementById('highscores-close-btn');
+highscoresBtn.addEventListener('click', showHighScoresModal);
+highscoresCloseBtn.addEventListener('click', hideHighScoresModal);
+
+// Close modal when clicking outside
+highscoresModal.addEventListener('click', (e) => {
+    if (e.target === highscoresModal) {
+        hideHighScoresModal();
+    }
+});
+
+// Function to show high scores modal
+function showHighScoresModal() {
+    const highScores = getHighScores();
+    const modalBody = document.getElementById('highscores-modal-body');
+    modalBody.innerHTML = formatHighScores(highScores);
+    highscoresModal.classList.add('active');
+}
+
+// Function to hide high scores modal
+function hideHighScoresModal() {
+    highscoresModal.classList.remove('active');
+}
+
 // Initial setup
 updateSkillsDisplay();
 preloadImages();
