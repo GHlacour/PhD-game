@@ -127,7 +127,7 @@ export const episode11 = {
                             publications: 0,
                             reputation: -50,
                             advisorRelationship: -30,
-                            stress: +50,
+                            stress: +100,
                             motivation: -40
                         }
                     };

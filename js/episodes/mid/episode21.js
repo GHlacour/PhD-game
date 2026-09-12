@@ -29,7 +29,7 @@ export const episode21 = {
                             networking: +12,
                             advisorRelationship: +15,
                             reputation: +12,
-                            stress: +8
+                            stress: +10
                         }
                     };
                 } else if (skills.networking >= 30) {
@@ -60,7 +60,7 @@ export const episode21 = {
                     writing: +5,
                     teaching: +5,
                     networking: +5,
-                    stress: +8,
+                    stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
@@ -75,7 +75,7 @@ export const episode21 = {
                             researchProgress: +10,
                             teaching: +8,
                             advisorRelationship: +10,
-                            stress: +5
+                            stress: +10
                         }
                     };
                 } else if (skills.researchProgress >= 40) {

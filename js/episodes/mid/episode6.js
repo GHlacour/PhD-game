@@ -39,7 +39,7 @@ export const episode6 = {
                             ...effects,
                             researchProgress: +14,
                             advisorRelationship: +5,
-                            stress: +8
+                            stress: +10
                         }
                     };
                 } else {

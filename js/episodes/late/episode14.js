@@ -151,7 +151,7 @@ export const episode14 = {
                             motivation: +15,
                             advisorRelationship: +15,
                             reputation: +12,
-                            stress: +5,
+                            stress: +10,
                             personalLife: +3
                         }
                     };

@@ -102,7 +102,7 @@ export const episode19 = {
                         text: "Without formal accommodations, you struggle to maintain boundaries. You push yourself too hard on good days and crash on bad ones. Your health fluctuates, and your work suffers from the inconsistency. Your advisor notices the uneven progress and expresses concern.",
                         effects: {
                             ...effects,
-                            stress: +5,
+                            stress: +10,
                             motivation: -10,
                             personalLife: +3,
                             researchProgress: -6,

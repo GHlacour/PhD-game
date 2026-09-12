@@ -54,7 +54,7 @@ export const episode5 = {
                             writing: +8,
                             advisorRelationship: +3,
                             motivation: +3,
-                            stress: +5
+                            stress: +10
                         }
                     };
                 }

@@ -29,7 +29,7 @@ export const episode12 = {
                         text: "You take the time to explain your identity and your academic goals to your parents. They listen, though they don't fully understand. Over time, they begin to see your confidence and passion. While they may never completely accept your identity, they start to respect your choices. The emotional weight lifts slightly, and you return to your work with renewed focus.",
                         effects: {
                             ...effects,
-                            stress: +5,
+                            stress: +10,
                             motivation: +10,
                             personalLife: +10,
                             networking: +5
@@ -105,7 +105,7 @@ export const episode12 = {
                         effects: {
                             ...effects,
                             researchProgress: +2,
-                            stress: +5,
+                            stress: +10,
                             motivation: -10,
                             personalLife: -10,
                             advisorRelationship: -3

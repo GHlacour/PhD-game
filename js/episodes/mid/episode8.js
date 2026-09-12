@@ -88,7 +88,7 @@ export const episode8 = {
                             researchProgress: +18,
                             reputation: +5,
                             advisorRelationship: +5,
-                            stress: +5
+                            stress: +10
                         }
                     };
                 } else if (skills.researchProgress >= 40) {
@@ -99,7 +99,7 @@ export const episode8 = {
                             publications: +1,
                             researchProgress: +15,
                             advisorRelationship: +8,
-                            stress: +8
+                            stress: +10
                         }
                     };
                 } else {
@@ -142,7 +142,7 @@ export const episode8 = {
                             networking: +10,
                             reputation: +12,
                             advisorRelationship: +5,
-                            stress: +8
+                            stress: +10
                         }
                     };
                 } else if (skills.writing >= 35) {

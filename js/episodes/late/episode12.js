@@ -83,7 +83,7 @@ export const episode12 = {
                         text: `Your advisor seems annoyed by your request for time off. You attend your ${member}'s funeral but feel guilty the entire time. The grief is overwhelming, and you return to work emotionally drained. Your advisor makes several passive-aggressive comments about 'priorities.'`,
                         effects: {
                             ...effects,
-                            stress: +5,
+                            stress: +10,
                             motivation: -20,
                             advisorRelationship: -15,
                             researchProgress: -10,
@@ -103,7 +103,7 @@ export const episode12 = {
                     writing: +2,
                     teaching: 0,
                     networking: 0,
-                    stress: +5,
+                    stress: +10,
                     motivation: -10,
                     advisorRelationship: +3,
                     reputation: 0,

@@ -85,7 +85,7 @@ export const episode7 = {
                             writing: +10,
                             publications: +1,
                             networking: +12,
-                            stress: +5,
+                            stress: +10,
                             motivation: +8
                         }
                     };

@@ -31,7 +31,7 @@ export const episode16 = {
                             ...effects,
                             networking: +20,
                             reputation: +15,
-                            stress: +5,
+                            stress: +10,
                             motivation: +15,
                             advisorRelationship: +8,
                             personalLife: +10
@@ -73,7 +73,7 @@ export const episode16 = {
                     writing: -1,
                     teaching: +3,
                     networking: +10,
-                    stress: +8,
+                    stress: +10,
                     motivation: +8,
                     advisorRelationship: +3,
                     reputation: +8,
@@ -87,7 +87,7 @@ export const episode16 = {
                             ...effects,
                             researchProgress: -1,
                             networking: +12,
-                            stress: +5,
+                            stress: +10,
                             motivation: +12,
                             advisorRelationship: +5,
                             personalLife: +5
@@ -128,7 +128,7 @@ export const episode16 = {
                     writing: +5,
                     teaching: 0,
                     networking: 0,
-                    stress: +5,
+                    stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: 0,
@@ -153,7 +153,7 @@ export const episode16 = {
                             ...effects,
                             researchProgress: +10,
                             reputation: -3,
-                            stress: +5,
+                            stress: +10,
                             motivation: +5
                         }
                     };

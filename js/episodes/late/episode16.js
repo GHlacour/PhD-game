@@ -29,7 +29,7 @@ export const episode16 = {
                             teaching: +20,
                             reputation: +15,
                             networking: +15,
-                            stress: +5,
+                            stress: +10,
                             motivation: +10
                         }
                     };
@@ -67,7 +67,7 @@ export const episode16 = {
                     writing: +8,
                     teaching: +8,
                     networking: +5,
-                    stress: +5,
+                    stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,

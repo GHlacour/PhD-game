@@ -59,7 +59,7 @@ export const episode2 = {
                     writing: +5,
                     teaching: 0,
                     networking: 0,
-                    stress: +5,
+                    stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
@@ -135,7 +135,7 @@ export const episode2 = {
                             researchProgress: +2,
                             networking: +5,
                             motivation: +5,
-                            stress: +5
+                            stress: +10
                         }
                     };
                 }

@@ -14,7 +14,7 @@ export const episode11 = {
                     writing: 0,
                     teaching: 0,
                     networking: -5,
-                    stress: +5,
+                    stress: +10,
                     motivation: 0,
                     advisorRelationship: 0,
                     reputation: 0,

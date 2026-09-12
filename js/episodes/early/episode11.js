@@ -33,7 +33,7 @@ export const episode11 = {
                     writing: +8,
                     teaching: 0,
                     networking: +3,
-                    stress: +5,
+                    stress: +10,
                     motivation: +8,
                     advisorRelationship: +5,
                     reputation: +8,

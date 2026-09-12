@@ -120,7 +120,7 @@ export const episode4 = {
                         effects: {
                             ...effects,
                             networking: +10,
-                            stress: +5,
+                            stress: +10,
                             researchProgress: +5,
                             motivation: +5
                         }

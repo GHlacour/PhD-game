@@ -13,7 +13,7 @@ export const episode8 = {
                     writing: +2,
                     teaching: 0,
                     networking: +2,
-                    stress: +5,
+                    stress: +10,
                     motivation: +3,
                     advisorRelationship: +3,
                     reputation: 0,
@@ -51,7 +51,7 @@ export const episode8 = {
                             researchProgress: +5,
                             writing: +5,
                             advisorRelationship: -3,
-                            stress: +8,
+                            stress: +10,
                             motivation: 0
                         }
                     };
@@ -163,7 +163,7 @@ export const episode8 = {
                             writing: +6,
                             networking: +5,
                             advisorRelationship: -10,
-                            stress: +5
+                            stress: +10
                         }
                     };
                 }

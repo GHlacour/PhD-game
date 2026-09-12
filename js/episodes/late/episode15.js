@@ -30,7 +30,7 @@ export const episode15 = {
                             writing: +8,
                             networking: +10,
                             reputation: +10,
-                            stress: +5,
+                            stress: +10,
                             motivation: +10
                         }
                     };
@@ -43,7 +43,7 @@ export const episode15 = {
                             writing: +5,
                             networking: +5,
                             reputation: +5,
-                            stress: +8
+                            stress: +10
                         }
                     };
                 } else {
@@ -70,7 +70,7 @@ export const episode15 = {
                     writing: +5,
                     teaching: 0,
                     networking: 0,
-                    stress: +5,
+                    stress: +10,
                     motivation: +5,
                     advisorRelationship: 0,
                     reputation: 0,
@@ -105,7 +105,7 @@ export const episode15 = {
                             ...effects,
                             researchProgress: +8,
                             reputation: -3,
-                            stress: +8
+                            stress: +10
                         }
                     };
                 }

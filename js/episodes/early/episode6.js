@@ -30,7 +30,7 @@ export const episode6 = {
                             ...effects,
                             researchProgress: +15,
                             networking: +15,
-                            stress: +5,
+                            stress: +10,
                             advisorRelationship: +5,
                             reputation: +5
                         }
@@ -119,7 +119,7 @@ export const episode6 = {
                     writing: +5,
                     teaching: 0,
                     networking: +5,
-                    stress: +5,
+                    stress: +10,
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
