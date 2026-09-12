@@ -2,7 +2,7 @@
 export const episode15 = {
     title: "Summer School Opportunity",
     description: "You receive an invitation to attend a prestigious summer school in your field. It's a two-week intensive program with leading researchers, but it falls during a critical period for your research. The organizers mention that several past attendees have gone on to successful academic careers.",
-    image: "assets/images/conference.jpg",
+    image: "assets/images/summer_school.jpg",
     choices: [
         {
             text: "Attend enthusiastically - this is a rare opportunity",

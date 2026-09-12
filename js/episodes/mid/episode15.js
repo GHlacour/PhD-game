@@ -18,7 +18,7 @@ export const episode15 = {
             return "Partner's Pregnancy";
         }
     },
-    image: "assets/images/work_life_balance.jpg",
+    image: "assets/images/pregnancy_announcement.jpg",
     phase: "mid",
     choices: [
         {

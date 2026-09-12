@@ -2,7 +2,7 @@
 export const episode23 = {
     title: "Colleague's Birthday Celebration",
     description: "A close colleague from your lab is having a birthday and has invited the whole team to a celebration at a local restaurant. It's been a stressful few weeks, and this could be a nice opportunity to relax and bond with your lab mates outside of work. However, you're in the middle of an important experiment and have a deadline approaching.",
-    image: "assets/images/collaboration.jpg",
+    image: "assets/images/birthday_celebration.jpg",
     choices: [
         {
             text: "Attend and help organize a surprise",

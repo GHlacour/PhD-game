@@ -2,7 +2,7 @@
 export const episode16 = {
     title: "Starting a Journal Club",
     description: "You notice that your lab doesn't have a regular journal club, and you've been wanting to dive deeper into the literature. You consider organizing one yourself. It would be a chance to discuss recent papers, learn from peers, and build your understanding of the field.",
-    image: "assets/images/literature_review.jpg",
+    image: "assets/images/journal_club.jpg",
     choices: [
         {
             text: "Organize it enthusiastically - this is a great learning opportunity",

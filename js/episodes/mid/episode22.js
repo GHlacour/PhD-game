@@ -2,7 +2,7 @@
 export const episode22 = {
     title: "Lab Equipment Accident",
     description: "You're running an experiment when suddenly there's a loud bang and a puff of smoke. One of the lab's most expensive pieces of equipment has malfunctioned - and it was in your care. The damage is significant. Your advisor is going to be very concerned about this.",
-    image: "assets/images/lab_equipment.jpg",
+    image: "assets/images/lab_accident.jpg",
     availableFor: {
         phdType: ['experimental']
     },

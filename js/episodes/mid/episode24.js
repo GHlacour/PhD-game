@@ -8,7 +8,7 @@ export const episode24 = {
             return "Your experiment requires specialized equipment only available at the national facility. To conduct your measurements, you need to apply for beam time. This requires a detailed proposal justifying your experimental design and the facility's unique capabilities.";
         }
     },
-    image: "assets/images/computer_cluster.jpg",
+    image: "assets/images/national_facility.jpg",
     availableFor: {
         phdType: ['theory', 'experimental']
     },

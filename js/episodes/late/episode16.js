@@ -2,7 +2,7 @@
 export const episode16 = {
     title: "Guest Lecturing Opportunity",
     description: "A professor from another department has asked you to give a guest lecture in their advanced course. This is a great opportunity to showcase your expertise and improve your teaching skills. However, preparing a quality lecture will take time away from your thesis.",
-    image: "assets/images/conference.jpg",
+    image: "assets/images/guest_lecturing.jpg",
     phase: "late",
     choices: [
         {

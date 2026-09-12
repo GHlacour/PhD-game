@@ -2,7 +2,7 @@
 export const episode21 = {
     title: "Lab Management Responsibility",
     description: "Your advisor has asked you to take on lab management duties. This would involve ordering supplies, coordinating lab meetings, and helping new students get settled. They frame it as a leadership opportunity that will look good on your CV. However, you're concerned about the time it will take away from your research.",
-    image: "assets/images/lab_equipment.jpg",
+    image: "assets/images/lab_management.jpg",
     choices: [
         {
             text: "Accept enthusiastically - this is valuable experience",

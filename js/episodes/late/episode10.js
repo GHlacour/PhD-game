@@ -6,7 +6,7 @@ export const episode10 = {
         origin: ['international']
     },
     description: "Your parents back home have been calling more frequently, expressing concern that you're still not married. They argue that you're getting older and should settle down. They don't understand why you're 'wasting time' on a PhD when you could have a family. The pressure is intensifying as your graduation approaches, and they want you to return home after defending.",
-    image: "assets/images/work_life_balance.jpg",
+    image: "assets/images/family_pressure_call.jpg",
     phase: "late",
     choices: [
         {

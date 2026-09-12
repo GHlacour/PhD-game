@@ -2,7 +2,7 @@
 export const episode14 = {
     title: "A Helping Hand",
     description: "A senior PhD student from your lab approaches you. They're non-binary, have a warm smile, and offer to help you get settled. 'I remember how overwhelming the first months can be,' they say. 'I'm happy to share what I've learned.' They've been through the same challenges you're facing now.",
-    image: "assets/images/collaboration.jpg",
+    image: "assets/images/mentorship.jpg",
     choices: [
         {
             text: "Accept their help enthusiastically",

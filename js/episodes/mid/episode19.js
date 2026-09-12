@@ -2,7 +2,7 @@
 export const episode19 = {
     title: "Chronic Illness Diagnosis",
     description: "After months of feeling unwell, you finally get a diagnosis: you have a chronic illness that will require ongoing management. The symptoms - fatigue, pain, and brain fog - have been affecting your work. Your doctor recommends you reduce stress and prioritize rest, but your PhD timeline feels non-negotiable.",
-    image: "assets/images/work_life_balance.jpg",
+    image: "assets/images/chronic_illness.jpg",
     phase: "mid",
     choices: [
         {

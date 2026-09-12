@@ -2,7 +2,7 @@
 export const episode7 = {
     title: "Cross-Disciplinary Collaboration",
     description: "A researcher from another department has approached you about a collaboration. They've been working on a project that connects to your research, and they believe combining your expertise could produce a strong publication. However, your thesis defense is approaching and you need to focus on completing your work.",
-    image: "assets/images/collaboration.jpg",
+    image: "assets/images/cross_disciplinary.jpg",
     phase: "late",
     choices: [
         {

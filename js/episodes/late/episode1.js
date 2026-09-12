@@ -2,7 +2,7 @@
 export const episode1 = {
     title: "Final International Conference",
     description: "You have the opportunity to present your final research findings at a major international conference. This is your chance to showcase your work, receive feedback, and build your academic network before completing your PhD.",
-    image: "assets/images/conference.jpg",
+    image: "assets/images/final_conference.jpg",
     choices: [
         {
             text: "Present your latest findings with a polished talk",
