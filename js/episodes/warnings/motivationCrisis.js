@@ -38,12 +38,12 @@ export const motivationCrisis = {
             text: "Take a leave of absence to reassess",
             getOutcome: (skills, attributes) => {
                 return {
-                    text: "You decide you need time away to figure things out. The break gives you perspective, but you realize you've been disconnected from your work for too long. The path forward is unclear.",
+                    text: "You decide you need time away to figure things out. The break from work leaves you feeling completely disconnected. Without the structure of the PhD, you realize you've lost all will to continue. The doubt consumes you.",
                     effects: {
-                        motivation: +5,
+                        motivation: -10,
                         stress: -10,
-                        researchProgress: -8,
-                        personalLife: +10
+                        researchProgress: -10,
+                        personalLife: +5
                     }
                 };
             }

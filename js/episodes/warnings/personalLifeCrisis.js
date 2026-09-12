@@ -38,12 +38,12 @@ export const personalLifeCrisis = {
             text: "Continue pushing through - personal life can wait",
             getOutcome: (skills, attributes) => {
                 return {
-                    text: "You decide to delay addressing personal issues until after you graduate. The decision brings temporary relief from guilt, but the strain on your relationships continues to grow. This path is unsustainable.",
+                    text: "You decide to delay addressing personal issues until after you graduate. Your relationships cannot bear this neglect any longer. The final straw breaks your closest relationship, and you realize you've lost what matters most. Without support, you cannot continue.",
                     effects: {
-                        personalLife: +2,
-                        researchProgress: +5,
-                        stress: +10,
-                        motivation: -5
+                        personalLife: -15,
+                        researchProgress: +2,
+                        stress: +15,
+                        motivation: -10
                     }
                 };
             }

@@ -24,12 +24,12 @@ export const burnoutWarning = {
             text: "Push through - you're too close to quit now",
             getOutcome: (skills, attributes) => {
                 return {
-                    text: "You try to power through, but your body and mind are at their limits. The stress is unbearable and you're barely functioning. This approach is unsustainable.",
+                    text: "You try to power through, but your body and mind are at their limits. The stress becomes completely unbearable. You collapse under the pressure, unable to continue.",
                     effects: {
-                        stress: +10,
-                        motivation: -10,
-                        researchProgress: +2,
-                        personalLife: -5
+                        stress: +20,
+                        motivation: -15,
+                        researchProgress: 0,
+                        personalLife: -10
                     }
                 };
             }

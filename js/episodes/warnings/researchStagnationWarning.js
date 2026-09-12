@@ -38,12 +38,12 @@ export const researchStagnationWarning = {
             text: "Take a step back to reflect on your goals",
             getOutcome: (skills, attributes) => {
                 return {
-                    text: "You take time to reassess your research goals and priorities. This reflection helps you clarify what's truly important. You return with a better understanding of what needs to be done, but time is running short.",
+                    text: "You take time to reassess your research goals and priorities. The reflection paralyzes you with doubt. You realize you've been on the wrong track all along, but it's too late to change direction. Your research collapses completely.",
                     effects: {
-                        researchProgress: +3,
-                        writing: +5,
-                        stress: -5,
-                        motivation: +8
+                        researchProgress: -15,
+                        writing: -15,
+                        stress: +10,
+                        motivation: -10
                     }
                 };
             }

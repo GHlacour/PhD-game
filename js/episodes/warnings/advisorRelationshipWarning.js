@@ -38,12 +38,12 @@ export const advisorRelationshipWarning = {
             text: "Try to work independently without their support",
             getOutcome: (skills, attributes) => {
                 return {
-                    text: "You decide to go it alone, relying on your own abilities and other resources. While you maintain some progress, the lack of advisor support leaves you vulnerable. The isolation is difficult to bear.",
+                    text: "You decide to go it alone, relying on your own abilities and other resources. The lack of advisor support leaves you completely adrift. Without their guidance, you make critical mistakes and your advisor, feeling disrespected, withdraws all support entirely.",
                     effects: {
-                        advisorRelationship: +2,
-                        researchProgress: +3,
-                        stress: +8,
-                        motivation: -3
+                        advisorRelationship: -15,
+                        researchProgress: -5,
+                        stress: +15,
+                        motivation: -10
                     }
                 };
             }
