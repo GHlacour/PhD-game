@@ -576,6 +576,18 @@ function handleCareerSelection(careerId) {
     displayCareerOutcome(outcome);
 }
 
+// Calculate overall score for end game summary
+function calculateOverallScore(skills) {
+    const positiveSkills = ['researchProgress', 'publications', 'writing', 'teaching', 'networking', 'motivation', 'advisorRelationship', 'reputation', 'personalLife'];
+    const negativeSkills = ['stress'];
+    
+    const positiveSum = positiveSkills.reduce((sum, skill) => sum + (skills[skill] || 0), 0);
+    const negativeSum = negativeSkills.reduce((sum, skill) => sum + (skills[skill] || 0), 0);
+    const publicationsMultiplier = 10;
+    
+    return positiveSum - negativeSum + (skills.publications * publicationsMultiplier);
+}
+
 // Display the career outcome
 function displayCareerOutcome(outcome) {
     const career = outcome.career;
@@ -584,6 +596,18 @@ function displayCareerOutcome(outcome) {
     
     // Set title
     careerOutcomeTitle.textContent = `${career.icon} ${result.title}`;
+    
+    // Calculate overall score
+    const overallScore = calculateOverallScore(gameState.skills);
+    
+    // Determine score grade
+    let scoreGrade = 'C (Average)';
+    if (overallScore >= 800) scoreGrade = 'A+ (Exceptional)';
+    else if (overallScore >= 700) scoreGrade = 'A (Outstanding)';
+    else if (overallScore >= 600) scoreGrade = 'B (Good)';
+    else if (overallScore >= 500) scoreGrade = 'C (Average)';
+    else if (overallScore >= 400) scoreGrade = 'D (Below Average)';
+    else scoreGrade = 'F (Needs Improvement)';
     
     // Build content
     let contentHTML = `
@@ -606,6 +630,7 @@ function displayCareerOutcome(outcome) {
         <div class="final-summary">
             <h3>Your PhD Journey Summary</h3>
             <p>After ${gameState.attributes.programLength} years of hard work, you've completed your PhD with:</p>
+            <p><strong>Overall Score:</strong> ${overallScore} (${scoreGrade})</p>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h4>Public Skills</h4>
@@ -651,10 +676,21 @@ function showGraduationFailure() {
         message = `Your PhD journey has ended. With ${gameState.skills.publications} publications (required: ${requiredPublications}) and no thesis submitted, you have not met the graduation requirements. Your contract ends without a degree.`;
     }
     
+    // Calculate overall score
+    const overallScore = calculateOverallScore(gameState.skills);
+    let scoreGrade = 'C (Average)';
+    if (overallScore >= 800) scoreGrade = 'A+ (Exceptional)';
+    else if (overallScore >= 700) scoreGrade = 'A (Outstanding)';
+    else if (overallScore >= 600) scoreGrade = 'B (Good)';
+    else if (overallScore >= 500) scoreGrade = 'C (Average)';
+    else if (overallScore >= 400) scoreGrade = 'D (Below Average)';
+    else scoreGrade = 'F (Needs Improvement)';
+    
     // Add hidden skills summary to failure screen
     message += `
         <div class="final-summary">
             <h3>Your PhD Journey Summary</h3>
+            <p><strong>Overall Score:</strong> ${overallScore} (${scoreGrade})</p>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h4>Public Skills</h4>
