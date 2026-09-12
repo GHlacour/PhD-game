@@ -673,15 +673,15 @@ function getGraduationDistinction(skills) {
     }
     
     // Summa Cum Laude: Exceptional across all relationship metrics
-    if (advisorRel >= 85 && reputationVal >= 80 && networkingVal >= 75) {
+    if (advisorRel >= 90 && reputationVal >= 85 && networkingVal >= 80) {
         return 'Summa Cum Laude';
     }
     // Magna Cum Laude: Strong across all relationship metrics
-    if (advisorRel >= 70 && reputationVal >= 65 && networkingVal >= 60) {
+    if (advisorRel >= 75 && reputationVal >= 70 && networkingVal >= 65) {
         return 'Magna Cum Laude';
     }
     // Cum Laude: Good across all relationship metrics
-    if (advisorRel >= 55 && reputationVal >= 50 && networkingVal >= 45) {
+    if (advisorRel >= 60 && reputationVal >= 55 && networkingVal >= 50) {
         return 'Cum Laude';
     }
     // Standard: Meets minimum requirements
