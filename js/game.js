@@ -984,11 +984,10 @@ function clearHighScores() {
     }
 }
 
-// Event listener for clear button
-const clearHighscoresBtn = document.getElementById('clear-highscores-btn');
-clearHighscoresBtn.addEventListener('click', clearHighScores);
-
 // Initial setup
+// Add event listener for clear button (must be after modal is in DOM)
+document.getElementById('clear-highscores-btn').addEventListener('click', clearHighScores);
+
 updateSkillsDisplay();
 preloadImages();
 preloadWarningImages();
