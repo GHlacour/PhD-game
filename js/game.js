@@ -589,14 +589,18 @@ function calculateOverallScore(skills) {
 }
 
 // High score management (local storage only)
-function saveHighScore(score, careerName) {
+function saveHighScore(score, careerName, skills) {
     try {
         // Get existing scores
         const highScores = JSON.parse(localStorage.getItem('phdGameHighScores') || '[]');
         
+        // Calculate distinction based on skills
+        const distinction = skills ? getGraduationDistinction(skills) : 'Standard';
+        
         // Add new score
         highScores.push({
             score: score,
+            distinction: distinction,
             careerPath: careerName || 'Unknown',
             date: new Date().toISOString().split('T')[0] // Just the date part
         });
@@ -621,20 +625,21 @@ function getHighScores() {
     }
 }
 
-// Format high scores for display
+// Format high scores for display with distinction
 function formatHighScores(highScores) {
     if (highScores.length === 0) {
         return '<p>No high scores yet. This game will be your first!</p>';
     }
     
-    let html = '<table class="highscores-table"><thead><tr><th>Rank</th><th>Score</th><th>Career Path</th><th>Date</th></tr></thead><tbody>';
+    let html = '<table class="highscores-table"><thead><tr><th>Rank</th><th>Score</th><th>Distinction</th><th>Career Path</th><th>Date</th></tr></thead><tbody>';
     
     highScores.forEach((entry, index) => {
-        const grade = getScoreGrade(entry.score);
+        const distinction = entry.distinction || getGraduationDistinctionFromScore(entry.score) || 'Standard';
         html += `
             <tr>
                 <td>${index + 1}</td>
-                <td><strong>${entry.score}</strong> <span class="score-grade">(${grade})</span></td>
+                <td><strong>${entry.score}</strong></td>
+                <td><span class="distinction-badge distinction-${distinction.toLowerCase().replace(/\s+/g, '-')}">${distinction}</span></td>
                 <td>${entry.careerPath}</td>
                 <td>${entry.date}</td>
             </tr>
@@ -645,7 +650,45 @@ function formatHighScores(highScores) {
     return html;
 }
 
-// Get letter grade for a score
+// Helper function to estimate distinction from score for legacy high scores
+function getGraduationDistinctionFromScore(score) {
+    if (score >= 800) return 'Summa Cum Laude';
+    if (score >= 700) return 'Magna Cum Laude';
+    if (score >= 600) return 'Cum Laude';
+    if (score >= 400) return 'Standard';
+    return 'Standard';
+}
+
+// Get graduation distinction based on advisor relationship, reputation, and networking
+function getGraduationDistinction(skills) {
+    const advisorRel = skills.advisorRelationship || 0;
+    const reputationVal = skills.reputation || 0;
+    const networkingVal = skills.networking || 0;
+    const publications = skills.publications || 0;
+    const programLength = gameState.attributes.programLength || 3;
+    
+    // Must meet minimum publication requirement for any distinction
+    if (publications < programLength) {
+        return 'Standard';
+    }
+    
+    // Summa Cum Laude: Exceptional across all relationship metrics
+    if (advisorRel >= 85 && reputationVal >= 80 && networkingVal >= 75) {
+        return 'Summa Cum Laude';
+    }
+    // Magna Cum Laude: Strong across all relationship metrics
+    if (advisorRel >= 70 && reputationVal >= 65 && networkingVal >= 60) {
+        return 'Magna Cum Laude';
+    }
+    // Cum Laude: Good across all relationship metrics
+    if (advisorRel >= 55 && reputationVal >= 50 && networkingVal >= 45) {
+        return 'Cum Laude';
+    }
+    // Standard: Meets minimum requirements
+    return 'Standard';
+}
+
+// Legacy function for backwards compatibility with existing high scores
 function getScoreGrade(score) {
     if (score >= 800) return 'A+';
     if (score >= 700) return 'A';
@@ -667,13 +710,16 @@ function displayCareerOutcome(outcome) {
     // Calculate overall score
     const overallScore = calculateOverallScore(gameState.skills);
     
-    // Save to high scores
-    saveHighScore(overallScore, career.name);
+    // Calculate graduation distinction
+    const distinction = getGraduationDistinction(gameState.skills);
+    
+    // Save to high scores with distinction
+    saveHighScore(overallScore, career.name, gameState.skills);
     
     // Get all high scores for display
     const highScores = getHighScores();
     
-    // Determine score grade
+    // Determine score grade (kept for backwards compatibility)
     let scoreGrade = getScoreGrade(overallScore);
     
     // Build content
@@ -697,7 +743,8 @@ function displayCareerOutcome(outcome) {
         <div class="final-summary">
             <h3>Your PhD Journey Summary</h3>
             <p>After ${gameState.attributes.programLength} years of hard work, you've completed your PhD with:</p>
-            <p><strong>Overall Score:</strong> ${overallScore} (${scoreGrade})</p>
+            <p><strong>Overall Score:</strong> ${overallScore}</p>
+            <p><strong>Graduation Distinction:</strong> <span class="distinction-badge distinction-${distinction.toLowerCase().replace(/\s+/g, "-")}">${distinction}</span></p>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h4>Public Skills</h4>
@@ -754,8 +801,11 @@ function showGraduationFailure() {
     // Calculate overall score
     const overallScore = calculateOverallScore(gameState.skills);
     
-    // Save to high scores
-    saveHighScore(overallScore, 'Did not graduate');
+    // Calculate graduation distinction
+    const distinction = getGraduationDistinction(gameState.skills);
+    
+    // Save to high scores with distinction
+    saveHighScore(overallScore, 'Did not graduate', gameState.skills);
     
     // Get all high scores for display
     const highScores = getHighScores();
@@ -767,7 +817,8 @@ function showGraduationFailure() {
     message += `
         <div class="final-summary">
             <h3>Your PhD Journey Summary</h3>
-            <p><strong>Overall Score:</strong> ${overallScore} (${scoreGrade})</p>
+            <p><strong>Overall Score:</strong> ${overallScore}</p>
+            <p><strong>Graduation Distinction:</strong> <span class="distinction-badge distinction-${distinction.toLowerCase().replace(/\s+/g, "-")}">${distinction}</span></p>
             <div class="skills-grid">
                 <div class="skill-category">
                     <h4>Public Skills</h4>
