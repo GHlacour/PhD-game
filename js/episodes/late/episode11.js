@@ -39,7 +39,7 @@ export const episode11 = {
                             ...effects,
                             networking: -10,
                             stress: +15,
-                            motivation: -5,
+                            motivation: -10,
                             reputation: -3
                         }
                     };
@@ -52,7 +52,7 @@ export const episode11 = {
                             stress: +20,
                             motivation: -10,
                             reputation: -8,
-                            advisorRelationship: -5
+                            advisorRelationship: -10
                         }
                     };
                 }
@@ -123,7 +123,7 @@ export const episode11 = {
                     networking: -10,
                     stress: +15,
                     motivation: +5,
-                    advisorRelationship: -5,
+                    advisorRelationship: -10,
                     reputation: 0,
                     personalLife: 0
                 };
@@ -147,7 +147,7 @@ export const episode11 = {
                             ...effects,
                             reputation: -5,
                             stress: +20,
-                            motivation: -5,
+                            motivation: -10,
                             advisorRelationship: -10,
                             networking: -15
                         }

@@ -40,7 +40,7 @@ export const episode7 = {
                             stress: -18,
                             personalLife: +18,
                             motivation: +5,
-                            advisorRelationship: -5
+                            advisorRelationship: -10
                         }
                     };
                 } else {
@@ -51,7 +51,7 @@ export const episode7 = {
                             stress: -10,
                             personalLife: +12,
                             researchProgress: -8,
-                            advisorRelationship: -8,
+                            advisorRelationship: -10,
                             motivation: +3
                         }
                     };
@@ -105,7 +105,7 @@ export const episode7 = {
                             stress: +15,
                             motivation: -10,
                             personalLife: -25,
-                            advisorRelationship: -5
+                            advisorRelationship: -10
                         }
                     };
                 }

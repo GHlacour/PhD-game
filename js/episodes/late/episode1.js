@@ -17,7 +17,7 @@ export const episode1 = {
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +10,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.researchProgress >= 60 && skills.writing >= 40) {

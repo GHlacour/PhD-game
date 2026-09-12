@@ -104,7 +104,7 @@ export const episode5 = {
                             researchProgress: +5,
                             advisorRelationship: 0,
                             stress: +10,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 } else {
@@ -145,7 +145,7 @@ export const episode5 = {
                             ...effects,
                             stress: -20,
                             motivation: +5,
-                            advisorRelationship: -5,
+                            advisorRelationship: -10,
                             personalLife: +10
                         }
                     };
@@ -156,7 +156,7 @@ export const episode5 = {
                             ...effects,
                             stress: -10,
                             motivation: +5,
-                            advisorRelationship: -8,
+                            advisorRelationship: -10,
                             researchProgress: +3
                         }
                     };

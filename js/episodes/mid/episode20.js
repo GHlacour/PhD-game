@@ -70,8 +70,8 @@ export const episode20 = {
                             publications: +1,
                             reputation: +3,
                             stress: +15,
-                            motivation: -5,
-                            advisorRelationship: -5,
+                            motivation: -10,
+                            advisorRelationship: -10,
                             networking: -5
                         }
                     };
@@ -149,10 +149,10 @@ export const episode20 = {
                     teaching: 0,
                     networking: -5,
                     stress: +15,
-                    motivation: -5,
+                    motivation: -10,
                     advisorRelationship: 0,
                     reputation: -5,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 const isFemale = attributes.gender === 'female';
@@ -182,7 +182,7 @@ export const episode20 = {
                             stress: +20,
                             motivation: -10,
                             networking: -10,
-                            personalLife: -8
+                            personalLife: -10
                         }
                     };
                 } else {
@@ -196,7 +196,7 @@ export const episode20 = {
                             motivation: -2,
                             networking: -12,
                             reputation: -10,
-                            personalLife: -5
+                            personalLife: -10
                         }
                     };
                 }

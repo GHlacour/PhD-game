@@ -50,7 +50,7 @@ export const episode4 = {
                             researchProgress: +10,
                             publications: 0,
                             stress: +15,
-                            motivation: -5,
+                            motivation: -10,
                             personalLife: -25
                         }
                     };

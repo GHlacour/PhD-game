@@ -62,7 +62,7 @@ export const episode12 = {
                         effects: {
                             ...effects,
                             stress: -20,
-                            motivation: -5,
+                            motivation: -10,
                             advisorRelationship: +10,
                             personalLife: +15
                         }
@@ -74,7 +74,7 @@ export const episode12 = {
                             ...effects,
                             stress: -15,
                             motivation: -10,
-                            advisorRelationship: -5,
+                            advisorRelationship: -10,
                             researchProgress: -8
                         }
                     };
@@ -118,7 +118,7 @@ export const episode12 = {
                             researchProgress: +5,
                             writing: +5,
                             stress: 0,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 } else if (skills.stress >= 60) {
@@ -130,8 +130,8 @@ export const episode12 = {
                             writing: 0,
                             stress: +15,
                             motivation: -15,
-                            advisorRelationship: -5,
-                            personalLife: -5
+                            advisorRelationship: -10,
+                            personalLife: -10
                         }
                     };
                 } else {
@@ -141,7 +141,7 @@ export const episode12 = {
                             ...effects,
                             researchProgress: 0,
                             writing: 0,
-                            advisorRelationship: -8,
+                            advisorRelationship: -10,
                             personalLife: -10,
                             stress: +20,
                             motivation: -20

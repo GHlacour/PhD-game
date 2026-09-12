@@ -145,7 +145,7 @@ export const episode13 = {
                             researchProgress: +8,
                             personalLife: -15,
                             stress: +10,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 }

@@ -69,7 +69,7 @@ export const episode3 = {
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.reputation >= 40 && skills.motivation >= 40) {
@@ -113,7 +113,7 @@ export const episode3 = {
                     networking: -5,
                     stress: -5,
                     motivation: +5,
-                    advisorRelationship: -5,
+                    advisorRelationship: -10,
                     reputation: 0,
                     personalLife: +10
                 };
@@ -147,7 +147,7 @@ export const episode3 = {
                             writing: +8,
                             advisorRelationship: -10,
                             reputation: -5,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 }

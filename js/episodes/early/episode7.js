@@ -52,7 +52,7 @@ export const episode7 = {
                             ...effects,
                             researchProgress: +5,
                             stress: +15,
-                            motivation: -5,
+                            motivation: -10,
                             advisorRelationship: +5
                         }
                     };
@@ -72,7 +72,7 @@ export const episode7 = {
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.networking >= 25) {

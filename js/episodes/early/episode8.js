@@ -17,7 +17,7 @@ export const episode8 = {
                     motivation: +8,
                     advisorRelationship: +8,
                     reputation: +5,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.writing >= 25 && skills.researchProgress >= 20) {
@@ -110,7 +110,7 @@ export const episode8 = {
                     networking: 0,
                     stress: +15,
                     motivation: +5,
-                    advisorRelationship: -5,
+                    advisorRelationship: -10,
                     reputation: -3,
                     personalLife: +3
                 };
@@ -132,7 +132,7 @@ export const episode8 = {
                         effects: {
                             ...effects,
                             researchProgress: +8,
-                            advisorRelationship: -8
+                            advisorRelationship: -10
                         }
                     };
                 } else {
@@ -143,7 +143,7 @@ export const episode8 = {
                             researchProgress: +3,
                             advisorRelationship: -10,
                             stress: +15,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 }

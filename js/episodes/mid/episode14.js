@@ -86,7 +86,7 @@ export const episode14 = {
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            personalLife: -8,
+                            personalLife: -10,
                             stress: +10
                         }
                     };
@@ -98,7 +98,7 @@ export const episode14 = {
                             researchProgress: +5,
                             personalLife: -15,
                             stress: +15,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 }
@@ -149,7 +149,7 @@ export const episode14 = {
                             researchProgress: +5,
                             personalLife: -10,
                             stress: +15,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 }

@@ -52,7 +52,7 @@ export const episode6 = {
                             ...effects,
                             researchProgress: +2,
                             stress: +15,
-                            motivation: -5,
+                            motivation: -10,
                             advisorRelationship: +5
                         }
                     };
@@ -103,7 +103,7 @@ export const episode6 = {
                             ...effects,
                             researchProgress: +5,
                             stress: +15,
-                            motivation: -5,
+                            motivation: -10,
                             advisorRelationship: 0
                         }
                     };

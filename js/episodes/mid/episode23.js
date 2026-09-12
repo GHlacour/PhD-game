@@ -110,7 +110,7 @@ export const episode23 = {
                     motivation: +3,
                     advisorRelationship: 0,
                     reputation: 0,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.researchProgress >= 60) {
@@ -142,7 +142,7 @@ export const episode23 = {
                             ...effects,
                             researchProgress: +8,
                             networking: -8,
-                            personalLife: -8
+                            personalLife: -10
                         }
                     };
                 }

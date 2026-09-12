@@ -73,7 +73,7 @@ export const episode7 = {
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +8,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.writing >= 50 && skills.networking >= 30) {

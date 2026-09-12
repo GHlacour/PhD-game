@@ -96,7 +96,7 @@ export const episode5 = {
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.publications >= requiredPublications - 1 && skills.writing >= 30) {
@@ -167,7 +167,7 @@ export const episode5 = {
                             ...effects,
                             stress: -20,
                             motivation: +5,
-                            advisorRelationship: -5,
+                            advisorRelationship: -10,
                             thesisSubmitted: false
                         }
                     };

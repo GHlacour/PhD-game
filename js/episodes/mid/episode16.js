@@ -57,7 +57,7 @@ export const episode16 = {
                             researchProgress: -8,
                             stress: +20,
                             motivation: +5,
-                            personalLife: -5,
+                            personalLife: -10,
                             advisorRelationship: -3
                         }
                     };
@@ -111,7 +111,7 @@ export const episode16 = {
                             ...effects,
                             researchProgress: -5,
                             stress: +18,
-                            motivation: -5,
+                            motivation: -10,
                             networking: +5,
                             personalLife: -3
                         }
@@ -132,7 +132,7 @@ export const episode16 = {
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: 0,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.advisorRelationship >= 60) {
@@ -166,7 +166,7 @@ export const episode16 = {
                             reputation: -8,
                             networking: -5,
                             stress: +10,
-                            personalLife: -8
+                            personalLife: -10
                         }
                     };
                 }

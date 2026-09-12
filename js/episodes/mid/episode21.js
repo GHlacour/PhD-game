@@ -17,7 +17,7 @@ export const episode21 = {
                     motivation: +5,
                     advisorRelationship: +10,
                     reputation: +8,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.teaching >= 35) {
@@ -107,7 +107,7 @@ export const episode21 = {
                     networking: -5,
                     stress: -5,
                     motivation: +5,
-                    advisorRelationship: -5,
+                    advisorRelationship: -10,
                     reputation: 0,
                     personalLife: +3
                 };
@@ -139,7 +139,7 @@ export const episode21 = {
                         effects: {
                             ...effects,
                             researchProgress: +10,
-                            advisorRelationship: -8,
+                            advisorRelationship: -10,
                             reputation: -3
                         }
                     };

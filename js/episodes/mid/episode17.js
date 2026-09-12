@@ -57,8 +57,8 @@ export const episode17 = {
                             publications: +1,
                             reputation: -3,
                             stress: +20,
-                            motivation: -5,
-                            advisorRelationship: -5,
+                            motivation: -10,
+                            advisorRelationship: -10,
                             networking: -8
                         }
                     };
@@ -73,7 +73,7 @@ export const episode17 = {
                             motivation: -15,
                             advisorRelationship: -10,
                             networking: -10,
-                            personalLife: -5
+                            personalLife: -10
                         }
                     };
                 }
@@ -133,7 +133,7 @@ export const episode17 = {
                         effects: {
                             ...effects,
                             publications: 0,
-                            advisorRelationship: -8,
+                            advisorRelationship: -10,
                             reputation: -5,
                             stress: +20,
                             motivation: -10,
@@ -153,7 +153,7 @@ export const episode17 = {
                     teaching: 0,
                     networking: +3,
                     stress: +10,
-                    motivation: -5,
+                    motivation: -10,
                     advisorRelationship: +3,
                     reputation: 0,
                     personalLife: -3
@@ -186,7 +186,7 @@ export const episode17 = {
                             researchProgress: +3,
                             stress: +18,
                             motivation: -10,
-                            personalLife: -8
+                            personalLife: -10
                         }
                     };
                 } else {

@@ -62,7 +62,7 @@ export const episode3 = {
                     motivation: +5,
                     advisorRelationship: +5,
                     reputation: +5,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (attributes.phdType === 'experimental') {

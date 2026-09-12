@@ -18,7 +18,7 @@ export const episode10 = {
                     motivation: +10,
                     advisorRelationship: +10,
                     reputation: +5,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.teaching >= 50) {
@@ -48,7 +48,7 @@ export const episode10 = {
                             ...effects,
                             researchProgress: 0,
                             stress: +15,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 }
@@ -77,7 +77,7 @@ export const episode10 = {
                             ...effects,
                             researchProgress: +5,
                             stress: +10,
-                            advisorRelationship: -5,
+                            advisorRelationship: -10,
                             reputation: -5
                         }
                     };
@@ -116,7 +116,7 @@ export const episode10 = {
                     networking: -5,
                     stress: +5,
                     motivation: +5,
-                    advisorRelationship: -5,
+                    advisorRelationship: -10,
                     reputation: 0,
                     personalLife: +5
                 };
@@ -136,7 +136,7 @@ export const episode10 = {
                         effects: {
                             ...effects,
                             researchProgress: +12,
-                            advisorRelationship: -5
+                            advisorRelationship: -10
                         }
                     };
                 } else {

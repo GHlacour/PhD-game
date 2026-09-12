@@ -55,10 +55,10 @@ export const episode18 = {
                             ...effects,
                             networking: 0,
                             stress: +15,
-                            motivation: -5,
+                            motivation: -10,
                             advisorRelationship: -3,
                             reputation: -3,
-                            personalLife: -5
+                            personalLife: -10
                         }
                     };
                 }
@@ -77,7 +77,7 @@ export const episode18 = {
                     motivation: 0,
                     advisorRelationship: +5,
                     reputation: +3,
-                    personalLife: -5
+                    personalLife: -10
                 };
                 
                 if (skills.advisorRelationship >= 60) {
@@ -110,9 +110,9 @@ export const episode18 = {
                             ...effects,
                             researchProgress: +4,
                             stress: +5,
-                            motivation: -8,
+                            motivation: -10,
                             advisorRelationship: +3,
-                            personalLife: -8
+                            personalLife: -10
                         }
                     };
                 }

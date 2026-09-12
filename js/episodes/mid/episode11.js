@@ -95,8 +95,8 @@ export const episode11 = {
                         effects: {
                             ...effects,
                             stress: +15,
-                            motivation: -5,
-                            advisorRelationship: -5
+                            motivation: -10,
+                            advisorRelationship: -10
                         }
                     };
                 }

@@ -91,7 +91,7 @@ export const episode1 = {
                             networking: +5,
                             reputation: +5,
                             publications: 0,
-                            motivation: -5
+                            motivation: -10
                         }
                     };
                 }
@@ -107,7 +107,7 @@ export const episode1 = {
                     teaching: 0,
                     networking: -10,
                     stress: +15,
-                    motivation: -5,
+                    motivation: -10,
                     advisorRelationship: -10,
                     reputation: -15,
                     personalLife: +5
