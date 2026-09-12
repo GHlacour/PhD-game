@@ -78,7 +78,7 @@ export function preloadImages() {
         'assets/images/diversity_initiative.jpg',
         'assets/images/visa_extension.jpg',
         'assets/images/work_life_balance.jpg',
-        'assets/images/work_life_ballance.jpg',
+        'assets/images/work_life_balance.jpg',
         'assets/images/advisor_absent.jpg',
         'assets/images/evaluation_meeting.jpg',
         'assets/images/final_evaluation.jpg',

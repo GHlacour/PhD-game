@@ -2,7 +2,7 @@
 export const episode7 = {
     title: "Work-Life Balance Collapse",
     description: "You've been working 80-hour weeks for months. Your health is suffering, your personal relationships are strained, and you're exhausted. Something has to change.",
-    image: "assets/images/work_life_ballance.jpg",
+    image: "assets/images/work_life_balance.jpg",
     choices: [
         {
             text: "Set firm boundaries - no work after 6pm or on weekends",
