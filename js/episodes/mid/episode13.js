@@ -2,7 +2,7 @@
 export const episode13 = {
     title: "Social Invitation",
     description: "A friend invites you to a party this weekend. You've been working hard and could use a break, but you also have important research to complete. The invitation comes from a close friend you haven't seen in months.",
-    image: "assets/images/conference.jpg",
+    image: "assets/images/party.jpg",
     phase: "mid",
     choices: [
         {
