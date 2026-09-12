@@ -589,13 +589,13 @@ function calculateOverallScore(skills) {
 }
 
 // High score management (local storage only)
-function saveHighScore(score, careerName, skills) {
+function saveHighScore(score, careerName, skills, distinctionOverride) {
     try {
         // Get existing scores
         const highScores = JSON.parse(localStorage.getItem('phdGameHighScores') || '[]');
         
-        // Calculate distinction based on skills
-        const distinction = skills ? getGraduationDistinction(skills) : 'Standard';
+        // Calculate distinction based on skills, or use override
+        const distinction = distinctionOverride || (skills ? getGraduationDistinction(skills) : 'Standard');
         
         // Add new score
         highScores.push({
@@ -801,11 +801,8 @@ function showGraduationFailure() {
     // Calculate overall score
     const overallScore = calculateOverallScore(gameState.skills);
     
-    // Calculate graduation distinction
-    const distinction = getGraduationDistinction(gameState.skills);
-    
     // Save to high scores with distinction
-    saveHighScore(overallScore, 'Did not graduate', gameState.skills);
+    saveHighScore(overallScore, 'Did not graduate', gameState.skills, 'Did not graduate');
     
     // Get all high scores for display
     const highScores = getHighScores();
