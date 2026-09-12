@@ -79,6 +79,7 @@ export function preloadImages() {
         'assets/images/visa_extension.jpg',
         'assets/images/work_life_balance.jpg',
         'assets/images/work_life_ballance.jpg',
+        'assets/images/advisor_absent.jpg',
         'assets/images/evaluation_meeting.jpg',
         'assets/images/final_evaluation.jpg',
         'assets/images/computer_cluster.jpg',

@@ -2,7 +2,7 @@
 export const episode25 = {
     title: "Advisor Abandonment",
     description: "Your advisor has been completely absent for over a month. They ignore your emails, cancel all meetings, and provide no feedback on your work. You've discovered they've been focusing all their attention on a new, high-profile student. Your research has stalled, and you're starting to worry about your future. This pattern has been going on for too long.",
-    image: "assets/images/advisor_conflict.jpg",
+    image: "assets/images/advisor_absent.jpg",
     phase: "mid",
     choices: [
         {
