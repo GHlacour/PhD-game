@@ -941,6 +941,9 @@ highscoresModal.innerHTML = `
             <button id="highscores-close-btn" class="highscores-close-btn">&times;</button>
         </div>
         <div id="highscores-modal-body"></div>
+        <div class="highscores-modal-footer">
+            <button id="clear-highscores-btn" class="btn highscores-btn">Clear High Scores</button>
+        </div>
     </div>
 `;
 
@@ -972,6 +975,18 @@ function showHighScoresModal() {
 function hideHighScoresModal() {
     highscoresModal.classList.remove('active');
 }
+
+// Function to clear high scores
+function clearHighScores() {
+    if (confirm('Are you sure you want to clear all your high scores? This cannot be undone.')) {
+        localStorage.removeItem('phdGameHighScores');
+        showHighScoresModal();
+    }
+}
+
+// Event listener for clear button
+const clearHighscoresBtn = document.getElementById('clear-highscores-btn');
+clearHighscoresBtn.addEventListener('click', clearHighScores);
 
 // Initial setup
 updateSkillsDisplay();
