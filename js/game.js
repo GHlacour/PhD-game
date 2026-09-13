@@ -498,31 +498,31 @@ function handlePostWarningCheck() {
     // Check for game over conditions
     if (gameState.skills.stress >= 100) {
         console.log('[DEBUG] Game over: stress >= 100');
-        endGame("You burned out! The stress of the PhD became too much. Game Over.");
+        showGraduationFailure();
         return;
     }
     
     if (gameState.skills.motivation <= 0) {
         console.log('[DEBUG] Game over: motivation <= 0');
-        endGame("You lost all motivation and decided to quit the PhD. Game Over.");
+        showGraduationFailure();
         return;
     }
     
     if (gameState.skills.advisorRelationship <= 0) {
         console.log('[DEBUG] Game over: advisorRelationship <= 0');
-        endGame("Your advisor relationship broke down completely. Without their support, you cannot continue. Game Over.");
+        showGraduationFailure();
         return;
     }
     
     if (gameState.skills.personalLife <= 0) {
         console.log('[DEBUG] Game over: personalLife <= 0');
-        endGame("Your personal life collapsed. You decide to step away from the PhD to address personal matters. Game Over.");
+        showGraduationFailure();
         return;
     }
     
     if (gameState.skills.researchProgress <= 0 && gameState.skills.writing <= 0) {
         console.log('[DEBUG] Game over: researchProgress <= 0 && writing <= 0');
-        endGame("Your research progress and writing skills are too low to continue. Game Over.");
+        showGraduationFailure();
         return;
     }
     
