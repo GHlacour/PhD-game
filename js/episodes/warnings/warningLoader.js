@@ -29,8 +29,8 @@ const burnoutWarning = {
                 return {
                     text: "You try to power through, but your body and mind are at their limits. The stress becomes completely unbearable. You collapse under the pressure, unable to continue.",
                     effects: {
-                        stress: +20,
-                        motivation: -15,
+                        stress: +100,
+                        motivation: -100,
                         researchProgress: 0,
                         personalLife: -10
                     }
@@ -149,7 +149,7 @@ const advisorRelationshipWarning = {
                 return {
                     text: "You decide to go it alone, relying on your own abilities and other resources. The lack of advisor support leaves you completely adrift. Without their guidance, you make critical mistakes and your advisor, feeling disrespected, withdraws all support entirely.",
                     effects: {
-                        advisorRelationship: -15,
+                        advisorRelationship: -100,
                         researchProgress: -5,
                         stress: +15,
                         motivation: -10
@@ -202,7 +202,7 @@ const personalLifeCrisis = {
                 return {
                     text: "You decide to delay addressing personal issues until after you graduate. Your relationships cannot bear this neglect any longer. The final straw breaks your closest relationship, and you realize you've lost what matters most. Without support, you cannot continue.",
                     effects: {
-                        personalLife: -15,
+                        personalLife: -100,
                         researchProgress: +2,
                         stress: +15,
                         motivation: -10
@@ -255,8 +255,8 @@ const researchStagnationWarning = {
                 return {
                     text: "You take time to reassess your research goals and priorities. The reflection paralyzes you with doubt. You realize you've been on the wrong track all along, but it's too late to change direction. Your research collapses completely.",
                     effects: {
-                        researchProgress: -15,
-                        writing: -15,
+                        researchProgress: -100,
+                        writing: -100,
                         stress: +10,
                         motivation: -10
                     }
