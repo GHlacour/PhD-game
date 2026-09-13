@@ -828,8 +828,11 @@ function showGraduationFailure() {
     // Calculate overall score
     const overallScore = calculateOverallScore(gameState.skills);
     
+    // Calculate distinction for failed graduation
+    const distinction = 'Did not graduate';
+    
     // Save to high scores with distinction
-    saveHighScore(overallScore, 'Did not graduate', gameState.skills, 'Did not graduate');
+    saveHighScore(overallScore, 'Did not graduate', gameState.skills, distinction);
     
     // Get all high scores for display
     const highScores = getHighScores();
