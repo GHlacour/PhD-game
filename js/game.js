@@ -449,6 +449,16 @@ function continueAfterOutcome() {
     outcomeDisplay.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     
+    // Check if we've already completed all episodes (at or past the final episode)
+    // If so, skip warnings and go directly to graduation check
+    const allEpisodesCompleted = gameState.currentEpisode >= gameState.episodes.length - 1;
+    
+    if (allEpisodesCompleted) {
+        // Skip warning checks after final episode to prevent infinite loops
+        continueNormalFlow();
+        return;
+    }
+    
     // Check if we should trigger a warning episode
     setTimeout(() => {
         import('./episodes/warnings/warningLoader.js').then(module => {
