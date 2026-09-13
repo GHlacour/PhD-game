@@ -283,7 +283,9 @@ function updateYearProgress() {
 
 // Load an episode
 function loadEpisode(episodeIndex) {
+    console.log(`[DEBUG] loadEpisode called with index=${episodeIndex}, total=${gameState.episodes.length}`);
     if (episodeIndex >= gameState.episodes.length) {
+        console.log('[DEBUG] Episode index out of bounds - calling endGame');
         endGame();
         return;
     }
@@ -449,12 +451,17 @@ function continueAfterOutcome() {
     outcomeDisplay.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     
+    // Debug: log current state
+    console.log(`[DEBUG] continueAfterOutcome: currentEpisode=${gameState.currentEpisode}, totalEpisodes=${gameState.episodes.length}, thesisSubmitted=${gameState.thesisSubmitted}, publications=${gameState.skills.publications}`);
+    
     // Check if we've already completed all episodes (at or past the final episode)
     // If so, skip warnings and go directly to graduation check
     const allEpisodesCompleted = gameState.currentEpisode >= gameState.episodes.length - 1;
+    console.log(`[DEBUG] allEpisodesCompleted=${allEpisodesCompleted}`);
     
     if (allEpisodesCompleted) {
         // Skip warning checks after final episode to prevent infinite loops
+        console.log('[DEBUG] Skipping warnings, going to continueNormalFlow');
         continueNormalFlow();
         return;
     }
@@ -542,6 +549,7 @@ function handlePostWarningCheck() {
 function continueNormalFlow() {
     // Move to next episode
     gameState.currentEpisode++;
+    console.log(`[DEBUG] continueNormalFlow: currentEpisode=${gameState.currentEpisode}, totalEpisodes=${gameState.episodes.length}, thesisSubmitted=${gameState.thesisSubmitted}, publications=${gameState.skills.publications}`);
     
     // Check if we've completed all episodes
     if (gameState.currentEpisode >= gameState.episodes.length) {
@@ -549,18 +557,22 @@ function continueNormalFlow() {
         const requiredPublications = gameState.attributes.programLength || 3;
         const hasEnoughPublications = gameState.skills.publications >= requiredPublications;
         const hasThesisSubmitted = gameState.thesisSubmitted;
+        console.log(`[DEBUG] All episodes complete. publications=${gameState.skills.publications}, required=${requiredPublications}, thesisSubmitted=${hasThesisSubmitted}`);
         
         if (hasEnoughPublications && hasThesisSubmitted) {
             // Player graduated - show career selection
+            console.log('[DEBUG] Graduation requirements met - showing career selection');
             showCareerSelection();
         } else {
             // Player did not meet requirements - show failure ending
+            console.log('[DEBUG] Graduation requirements NOT met - showing failure screen');
             showGraduationFailure();
         }
         return;
     }
     
     // Load next episode
+    console.log(`[DEBUG] Loading next episode: ${gameState.currentEpisode}`);
     loadEpisode(gameState.currentEpisode);
     updateSkillsDisplay();
 }
