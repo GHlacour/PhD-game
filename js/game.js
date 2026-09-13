@@ -19,7 +19,7 @@ const gameState = {
         networking: 0,
         // Hidden skills (invisible to player)
         stress: 0,
-        motivation: 0,
+        motivation: 10,
         advisorRelationship: 0,
         reputation: 0,
         personalLife: 0
