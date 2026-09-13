@@ -403,7 +403,8 @@ function loadWarningEpisode(warningEpisode) {
 
 // Handle choice selection in warning episode
 function selectWarningChoice(choice, warningEpisode) {
-    gameState.inWarningEpisode = false;
+    // Keep inWarningEpisode = true until outcome is processed in continueAfterOutcome
+    // gameState.inWarningEpisode = false;
     
     // Get outcome - can be either just text or {text, effects}
     let outcomeTextContent = '';
@@ -452,7 +453,7 @@ function continueAfterOutcome() {
     gameScreen.classList.remove('hidden');
     
     // Debug: log current state
-    console.log(`[DEBUG] continueAfterOutcome: currentEpisode=${gameState.currentEpisode}, totalEpisodes=${gameState.episodes.length}, thesisSubmitted=${gameState.thesisSubmitted}, publications=${gameState.skills.publications}`);
+    console.log(`[DEBUG] continueAfterOutcome: currentEpisode=${gameState.currentEpisode}, totalEpisodes=${gameState.episodes.length}, thesisSubmitted=${gameState.thesisSubmitted}, publications=${gameState.skills.publications}, inWarningEpisode=${gameState.inWarningEpisode}`);
     
     // Check if we've already completed all episodes (at or past the final episode)
     // If so, skip warnings and go directly to graduation check
@@ -468,9 +469,11 @@ function continueAfterOutcome() {
     
     // Check if we should trigger a warning episode
     const warningEpisode = checkForWarningEpisode(gameState.skills);
+    console.log(`[DEBUG] checkForWarningEpisode returned: ${warningEpisode ? warningEpisode.warningType : 'null'}`);
     
     if (warningEpisode) {
         // Insert warning episode
+        console.log(`[DEBUG] Loading warning episode: ${warningEpisode.warningType}`);
         loadWarningEpisode(warningEpisode);
         return;
     }
@@ -478,6 +481,7 @@ function continueAfterOutcome() {
     // No warning, check if we're in a warning episode context
     if (gameState.inWarningEpisode) {
         // This was a warning episode outcome - check for game over
+        console.log('[DEBUG] In warning episode context, calling handlePostWarningCheck');
         handlePostWarningCheck();
         return;
     }
@@ -488,40 +492,54 @@ function continueAfterOutcome() {
 
 // Handle checks after a warning episode
 function handlePostWarningCheck() {
+    console.log(`[DEBUG] handlePostWarningCheck: skills=${JSON.stringify(gameState.skills)}`);
+    
     // Check for game over conditions
     if (gameState.skills.stress >= 100) {
+        console.log('[DEBUG] Game over: stress >= 100');
         endGame("You burned out! The stress of the PhD became too much. Game Over.");
         return;
     }
     
     if (gameState.skills.motivation <= 0) {
+        console.log('[DEBUG] Game over: motivation <= 0');
         endGame("You lost all motivation and decided to quit the PhD. Game Over.");
         return;
     }
     
     if (gameState.skills.advisorRelationship <= 0) {
+        console.log('[DEBUG] Game over: advisorRelationship <= 0');
         endGame("Your advisor relationship broke down completely. Without their support, you cannot continue. Game Over.");
         return;
     }
     
     if (gameState.skills.personalLife <= 0) {
+        console.log('[DEBUG] Game over: personalLife <= 0');
         endGame("Your personal life collapsed. You decide to step away from the PhD to address personal matters. Game Over.");
         return;
     }
     
     if (gameState.skills.researchProgress <= 0 && gameState.skills.writing <= 0) {
+        console.log('[DEBUG] Game over: researchProgress <= 0 && writing <= 0');
         endGame("Your research progress and writing skills are too low to continue. Game Over.");
         return;
     }
     
+    // Reset warning episode flag
+    gameState.inWarningEpisode = false;
+    console.log('[DEBUG] No game over, resetting inWarningEpisode=false');
+    
     // Check again if another warning should trigger (in case the first warning made things worse)
     const warningEpisode = checkForWarningEpisode(gameState.skills);
+    console.log(`[DEBUG] Post-warning checkForWarningEpisode returned: ${warningEpisode ? warningEpisode.warningType : 'null'}`);
     
     if (warningEpisode) {
+        console.log('[DEBUG] Loading another warning episode');
         loadWarningEpisode(warningEpisode);
         return;
     }
     
+    console.log('[DEBUG] No more warnings, continuing normal flow');
     // No more warnings, continue with normal flow
     continueNormalFlow();
 }
@@ -530,7 +548,7 @@ function handlePostWarningCheck() {
 function continueNormalFlow() {
     // Move to next episode
     gameState.currentEpisode++;
-    console.log(`[DEBUG] continueNormalFlow: currentEpisode=${gameState.currentEpisode}, totalEpisodes=${gameState.episodes.length}, thesisSubmitted=${gameState.thesisSubmitted}, publications=${gameState.skills.publications}`);
+    console.log(`[DEBUG] continueNormalFlow: currentEpisode=${gameState.currentEpisode}, totalEpisodes=${gameState.episodes.length}, thesisSubmitted=${gameState.thesisSubmitted}, publications=${gameState.skills.publications}, inWarningEpisode=${gameState.inWarningEpisode}`);
     
     // Check if we've completed all episodes
     if (gameState.currentEpisode >= gameState.episodes.length) {
