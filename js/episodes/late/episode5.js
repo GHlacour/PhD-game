@@ -76,7 +76,8 @@ export const episode5 = {
                             publications: 0,
                             stress: +20,
                             motivation: -15,
-                            advisorRelationship: -15
+                            advisorRelationship: -15,
+                            thesisSubmitted: false
                         }
                     };
                 }
@@ -137,7 +138,8 @@ export const episode5 = {
                             publications: 0,
                             stress: +20,
                             motivation: -15,
-                            reputation: -5
+                            reputation: -5,
+                            thesisSubmitted: false
                         }
                     };
                 }
@@ -178,7 +180,8 @@ export const episode5 = {
                             ...effects,
                             stress: -5,
                             motivation: +5,
-                            advisorRelationship: -10
+                            advisorRelationship: -10,
+                            thesisSubmitted: false
                         }
                     };
                 } else {
