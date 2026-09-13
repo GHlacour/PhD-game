@@ -337,10 +337,10 @@ function selectChoice(choice, episode) {
         } else {
             outcomeTextContent = outcome.text;
             finalEffects = outcome.effects;
-            
+
             // Check if thesis was submitted
-            if (outcome.effects.thesisSubmitted === true) {
-                gameState.thesisSubmitted = true;
+            if (outcome.effects.thesisSubmitted !== undefined) {
+                gameState.thesisSubmitted = outcome.effects.thesisSubmitted;
             }
         }
     } else {
@@ -414,6 +414,11 @@ function selectWarningChoice(choice, warningEpisode) {
         } else {
             outcomeTextContent = outcome.text;
             finalEffects = outcome.effects;
+
+            // Check if thesis was submitted
+            if (outcome.effects.thesisSubmitted !== undefined) {
+                gameState.thesisSubmitted = outcome.effects.thesisSubmitted;
+            }
         }
     } else {
         outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
