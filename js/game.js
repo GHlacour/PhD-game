@@ -877,7 +877,18 @@ function showGraduationFailure() {
         </div>
     `;
     
-    endGame(message);
+    // Display in career outcome screen for consistent styling
+    careerOutcomeTitle.textContent = "PhD Journey Complete";
+    careerOutcomeContent.innerHTML = message;
+    
+    gameState.gameActive = false;
+    gameState.inWarningEpisode = false;
+    gameScreen.classList.add('hidden');
+    outcomeDisplay.classList.add('hidden');
+    careerSelectionScreen.classList.add('hidden');
+    endScreen.classList.add('hidden');
+    yearProgressContainer.classList.add('hidden');
+    careerOutcomeScreen.classList.remove('hidden');
 }
 
 
