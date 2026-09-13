@@ -467,6 +467,15 @@ function continueAfterOutcome() {
         return;
     }
     
+    // Check if we're in a warning episode context FIRST
+    // This prevents re-triggering the same warning before the outcome is processed
+    if (gameState.inWarningEpisode) {
+        // This was a warning episode outcome - check for game over
+        console.log('[DEBUG] In warning episode context, calling handlePostWarningCheck');
+        handlePostWarningCheck();
+        return;
+    }
+    
     // Check if we should trigger a warning episode
     const warningEpisode = checkForWarningEpisode(gameState.skills);
     console.log(`[DEBUG] checkForWarningEpisode returned: ${warningEpisode ? warningEpisode.warningType : 'null'}`);
@@ -475,14 +484,6 @@ function continueAfterOutcome() {
         // Insert warning episode
         console.log(`[DEBUG] Loading warning episode: ${warningEpisode.warningType}`);
         loadWarningEpisode(warningEpisode);
-        return;
-    }
-    
-    // No warning, check if we're in a warning episode context
-    if (gameState.inWarningEpisode) {
-        // This was a warning episode outcome - check for game over
-        console.log('[DEBUG] In warning episode context, calling handlePostWarningCheck');
-        handlePostWarningCheck();
         return;
     }
     
