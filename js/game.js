@@ -3,7 +3,7 @@
 
 import { generateGameSequence, preloadImages, getTotalEpisodes } from './episodes/episodeLoader.js';
 import { createCharacterSelectionScreen, getCharacterFromHash, updateHashWithCharacter, DISCLAIMER_TEXT, PROGRAM_OPTIONS, PHD_TYPE_OPTIONS } from './characterSelection.js';
-import { checkForWarningEpisode, preloadWarningImages } from './episodes/warnings/warningLoader.js';
+import { checkForWarningEpisode, preloadWarningImages, getWarningEpisode } from './episodes/warnings/warningLoader.js';
 import { createCareerSelectionScreen, getCareerOutcome, getCareerPath, SKILL_DISPLAY_NAMES } from './careerSelection.js';
 
 // Game state
@@ -467,35 +467,23 @@ function continueAfterOutcome() {
     }
     
     // Check if we should trigger a warning episode
-    setTimeout(() => {
-        import('./episodes/warnings/warningLoader.js').then(module => {
-            const warningEpisode = module.checkForWarningEpisode(gameState.skills);
-            
-            if (warningEpisode) {
-                // Insert warning episode
-                loadWarningEpisode(warningEpisode);
-                return;
-            }
-            
-            // No warning, check if we're in a warning episode context
-            if (gameState.inWarningEpisode) {
-                // This was a warning episode outcome - check for game over
-                handlePostWarningCheck();
-                return;
-            }
-            
-            // Normal flow - continue to next episode
-            continueNormalFlow();
-        }).catch(e => {
-            console.log('Warning check failed:', e);
-            // Fallback to normal flow
-            if (gameState.inWarningEpisode) {
-                handlePostWarningCheck();
-            } else {
-                continueNormalFlow();
-            }
-        });
-    }, 0);
+    const warningEpisode = checkForWarningEpisode(gameState.skills);
+    
+    if (warningEpisode) {
+        // Insert warning episode
+        loadWarningEpisode(warningEpisode);
+        return;
+    }
+    
+    // No warning, check if we're in a warning episode context
+    if (gameState.inWarningEpisode) {
+        // This was a warning episode outcome - check for game over
+        handlePostWarningCheck();
+        return;
+    }
+    
+    // Normal flow - continue to next episode
+    continueNormalFlow();
 }
 
 // Handle checks after a warning episode
@@ -527,22 +515,15 @@ function handlePostWarningCheck() {
     }
     
     // Check again if another warning should trigger (in case the first warning made things worse)
-    setTimeout(() => {
-        import('./episodes/warnings/warningLoader.js').then(module => {
-            const warningEpisode = module.checkForWarningEpisode(gameState.skills);
-            
-            if (warningEpisode) {
-                loadWarningEpisode(warningEpisode);
-                return;
-            }
-            
-            // No more warnings, continue with normal flow
-            continueNormalFlow();
-        }).catch(e => {
-            console.log('Warning check failed:', e);
-            continueNormalFlow();
-        });
-    }, 0);
+    const warningEpisode = checkForWarningEpisode(gameState.skills);
+    
+    if (warningEpisode) {
+        loadWarningEpisode(warningEpisode);
+        return;
+    }
+    
+    // No more warnings, continue with normal flow
+    continueNormalFlow();
 }
 
 // Continue with normal episode flow
