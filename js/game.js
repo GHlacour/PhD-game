@@ -585,15 +585,16 @@ function handleCareerSelection(careerId) {
 }
 
 // Calculate overall score for end game summary
-function calculateOverallScore(skills) {
+function calculateOverallScore(skills, thesisSubmitted = false) {
     const positiveSkills = ['researchProgress', 'publications', 'writing', 'teaching', 'networking', 'motivation', 'advisorRelationship', 'reputation', 'personalLife'];
     const negativeSkills = ['stress'];
     
     const positiveSum = positiveSkills.reduce((sum, skill) => sum + (skills[skill] || 0), 0);
     const negativeSum = negativeSkills.reduce((sum, skill) => sum + (skills[skill] || 0), 0);
     const publicationsMultiplier = 10;
+    const thesisBonus = thesisSubmitted ? 250 : 0;
     
-    return positiveSum - negativeSum + (skills.publications * publicationsMultiplier);
+    return positiveSum - negativeSum + (skills.publications * publicationsMultiplier) + thesisBonus;
 }
 
 // High score management (local storage only)
@@ -716,7 +717,7 @@ function displayCareerOutcome(outcome) {
     careerOutcomeTitle.textContent = `${career.icon} ${result.title}`;
     
     // Calculate overall score
-    const overallScore = calculateOverallScore(gameState.skills);
+    const overallScore = calculateOverallScore(gameState.skills, gameState.thesisSubmitted);
     
     // Calculate graduation distinction
     const distinction = getGraduationDistinction(gameState.skills);
@@ -807,7 +808,7 @@ function showGraduationFailure() {
     }
     
     // Calculate overall score
-    const overallScore = calculateOverallScore(gameState.skills);
+    const overallScore = calculateOverallScore(gameState.skills, gameState.thesisSubmitted);
     
     // Calculate distinction for failed graduation
     const distinction = 'Did not graduate';
