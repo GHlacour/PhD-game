@@ -103,6 +103,7 @@ PhD-game/
    };
    ```
 4. Add the import and export in `js/episodes/episodeLoader.js`
+5. Add a fitting image illustrating the episode in the assets/images folder.  
 
 ### Episode Design Guidelines
 
@@ -113,7 +114,7 @@ PhD-game/
 - Keep skill changes reasonable (typically -10 to +20)
 - Stress should generally increase with intense work, decrease with rest
 - Ensure choices have meaningful trade-offs
-- Each choice must affect all 10 skills (5 public + 5 hidden)
+- Each choice may affect all 10 skills (5 public + 5 hidden)
 
 ## 🤝 Contributing
 
@@ -143,6 +144,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Save/load game state
 - Multiple difficulty levels
 - Customizable character/starting skills
-- Achievements system
-- More sophisticated outcome logic
-- Random events between episodes
+
