@@ -12,7 +12,7 @@ This game was co-created with the assistance of AI tools, including **Mistral Vi
 
 ## 📚 Inspiration
 
-This game was inspired by propositions 7 and 10 of the PhD thesis of Monica Espinoza Cangahuala: [From Monomers to Nanotubes: Theoretical Insights into the Self-Assembly of π-Conjugated Systems](https://research.rug.nl/en/publications/from-monomers-to-nanotubes-theoretical-insights-into-the-self-ass)
+This game was inspired by propositions 7 and 10 of the PhD thesis of Mónica Espinoza Cangahuala: [From Monomers to Nanotubes: Theoretical Insights into the Self-Assembly of π-Conjugated Systems](https://research.rug.nl/en/publications/from-monomers-to-nanotubes-theoretical-insights-into-the-self-ass)
 
 ## 🎮 About the Game
 
