@@ -8,7 +8,7 @@ A pedagogical browser-based game where you experience the journey of a PhD stude
 
 ## 🤖 AI Disclaimer
 
-This game was co-created with the assistance of AI tools. Artificial intelligence was used to help design the game mechanics, write episode content, and develop the codebase. All AI-generated content has been reviewed and curated by human developers.
+This game was co-created with the assistance of AI tools, including **Mistral Vibe Code**. Artificial intelligence was used to help design the game mechanics, write episode content, and develop the codebase. All AI-generated content has been reviewed and curated by human developers.
 
 ## 🎮 About the Game
 
