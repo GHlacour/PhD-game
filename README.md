@@ -10,6 +10,10 @@ A pedagogical browser-based game where you experience the journey of a PhD stude
 
 This game was co-created with the assistance of AI tools, including **Mistral Vibe Code**. Artificial intelligence was used to help design the game mechanics, write episode content, and develop the codebase. All AI-generated content has been reviewed and curated by human developers.
 
+## 📚 Inspiration
+
+This game was inspired by propositions 7 and 10 of the PhD thesis of Monica Espinoza Cangahuala: [From Monomers to Nanotubes: Theoretical Insights into the Self-Assembly of π-Conjugated Systems](https://research.rug.nl/en/publications/from-monomers-to-nanotubes-theoretical-insights-into-the-self-ass)
+
 ## 🎮 About the Game
 
 PhD Life Game simulates the real-life experience of pursuing a doctoral degree. Players progress through early, mid, and late PhD phases, making decisions that affect their skills and ultimately determine their graduation outcome and career path.
