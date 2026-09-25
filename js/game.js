@@ -736,13 +736,9 @@ function generateShareText(outcome, skills, overallScore, distinction, programLe
     const researchProgress = skills.researchProgress || 0;
     
     const shareText = `🎓 I just completed PhD Life!
-
 After ${programLength} years: ${publications} publications, ${researchProgress} research progress, ${distinction} distinction
-
 Overall Score: ${overallScore} | Career: ${careerName}
-
 Play it yourself: ${GAME_URL}
-
 #PhD #Academia #Graduation #PhDLifeGame`;
     
     return shareText;
