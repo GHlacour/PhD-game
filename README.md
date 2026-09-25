@@ -27,6 +27,7 @@ PhD Life Game simulates the real-life experience of pursuing a doctoral degree. 
   - **Hidden Skills** (invisible): Stress, Motivation, Advisor Relationship, Reputation, Personal Life
 - **Multiple endings**: Your final outcome depends on your skill levels at game completion
 - **Dynamic outcomes**: Choice results adapt based on your current skill levels
+- **Shareable results**: Share your PhD journey summary on LinkedIn, Facebook, Bluesky, Mastodon, or copy to clipboard
 
 ## 🎯 How to Play
 
