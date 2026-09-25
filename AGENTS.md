@@ -151,6 +151,10 @@ To test the game:
 - Keep commits atomic and focused
 - **Update version number in index.html footer after every commit** (e.g., from 0.0.11 to 0.0.12)
 
+## Implemented Features
+
+- Shareable summary card with social media buttons (LinkedIn, Facebook, Bluesky, Mastodon, Copy)
+
 ## Future Enhancements
 
 - More episodes in each phase
