@@ -726,6 +726,72 @@ function getScoreGrade(score) {
     return 'F';
 }
 
+// Game URL for sharing
+const GAME_URL = 'https://computationalspectroscopy.eu/PhD-game/';
+
+// Generate share text for social media
+function generateShareText(outcome, skills, overallScore, distinction, programLength) {
+    const careerName = outcome.career ? outcome.career.name : 'Unknown';
+    const publications = skills.publications || 0;
+    const researchProgress = skills.researchProgress || 0;
+    
+    const shareText = `🎓 I just completed PhD Life!
+
+After ${programLength} years: ${publications} publications, ${researchProgress} research progress, ${distinction} distinction
+
+Overall Score: ${overallScore} | Career: ${careerName}
+
+Play it yourself: ${GAME_URL}
+
+#PhD #Academia #Graduation #PhDLifeGame`;
+    
+    return shareText;
+}
+
+// Share on LinkedIn
+function shareOnLinkedIn(text) {
+    const encodedText = encodeURIComponent(text);
+    const url = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(GAME_URL)}&title=${encodeURIComponent('My PhD Life Journey')}&summary=${encodedText}`;
+    window.open(url, '_blank', 'width=600,height=400');
+}
+
+// Share on Facebook
+function shareOnFacebook(text) {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(GAME_URL)}&quote=${encodeURIComponent(text)}`;
+    window.open(url, '_blank', 'width=600,height=400');
+}
+
+// Share on Bluesky
+function shareOnBluesky(text) {
+    const fullText = text + '\n\n' + GAME_URL;
+    const url = `https://bsky.app/intent/compose?text=${encodeURIComponent(fullText)}`;
+    window.open(url, '_blank', 'width=600,height=400');
+}
+
+// Share on Mastodon
+function shareOnMastodon(text) {
+    const fullText = text + '\n\n' + GAME_URL;
+    const url = `https://mastodon.social/share?text=${encodeURIComponent(fullText)}`;
+    window.open(url, '_blank', 'width=600,height=400');
+}
+
+// Copy share text to clipboard
+function copyShareText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Share text copied to clipboard!');
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert('Share text copied to clipboard!');
+    });
+}
+
 // Display the career outcome
 function displayCareerOutcome(outcome) {
     const career = outcome.career;
@@ -798,6 +864,25 @@ function displayCareerOutcome(outcome) {
         </div>
     `;
     
+    // Add share section
+    const shareText = generateShareText(outcome, gameState.skills, overallScore, distinction, gameState.attributes.programLength);
+    
+    contentHTML += `
+        <div class="share-section">
+            <h3>Share Your PhD Journey</h3>
+            <div class="share-text-preview">
+                <p>${shareText.replace(/\n/g, '<br>')}</p>
+            </div>
+            <div class="share-buttons">
+                <button class="btn share-btn linkedin" id="linkedin-share">💼 Share on LinkedIn</button>
+                <button class="btn share-btn facebook" id="facebook-share">📘 Share on Facebook</button>
+                <button class="btn share-btn bluesky" id="bluesky-share">🌌 Share on Bluesky</button>
+                <button class="btn share-btn mastodon" id="mastodon-share">🐘 Share on Mastodon</button>
+                <button class="btn share-btn copy" id="copy-share">📋 Copy Text</button>
+            </div>
+        </div>
+    `;
+    
     // Add personal high scores
     contentHTML += `
         <div class="highscores-container">
@@ -807,6 +892,13 @@ function displayCareerOutcome(outcome) {
     `;
     
     careerOutcomeContent.innerHTML = contentHTML;
+    
+    // Add event listeners for share buttons
+    document.getElementById('linkedin-share').addEventListener('click', () => shareOnLinkedIn(shareText));
+    document.getElementById('facebook-share').addEventListener('click', () => shareOnFacebook(shareText));
+    document.getElementById('bluesky-share').addEventListener('click', () => shareOnBluesky(shareText));
+    document.getElementById('mastodon-share').addEventListener('click', () => shareOnMastodon(shareText));
+    document.getElementById('copy-share').addEventListener('click', () => copyShareText(shareText));
 }
 
 // Show graduation failure (didn't meet requirements)
@@ -870,6 +962,24 @@ function showGraduationFailure() {
                 </div>
             </div>
         </div>
+    `;
+    
+    // Add share section for failure screen too
+    const shareText = generateShareText(null, gameState.skills, overallScore, distinction, gameState.attributes.programLength);
+    message += `
+        <div class="share-section">
+            <h3>Share Your PhD Journey</h3>
+            <div class="share-text-preview">
+                <p>${shareText.replace(/\n/g, '<br>')}</p>
+            </div>
+            <div class="share-buttons">
+                <button class="btn share-btn linkedin" id="linkedin-share-fail">💼 Share on LinkedIn</button>
+                <button class="btn share-btn facebook" id="facebook-share-fail">📘 Share on Facebook</button>
+                <button class="btn share-btn bluesky" id="bluesky-share-fail">🌌 Share on Bluesky</button>
+                <button class="btn share-btn mastodon" id="mastodon-share-fail">🐘 Share on Mastodon</button>
+                <button class="btn share-btn copy" id="copy-share-fail">📋 Copy Text</button>
+            </div>
+        </div>
         
         <div class="highscores-container">
             <h3>Your Personal High Scores</h3>
@@ -880,6 +990,21 @@ function showGraduationFailure() {
     // Display in career outcome screen for consistent styling
     careerOutcomeTitle.textContent = "PhD Journey Complete";
     careerOutcomeContent.innerHTML = message;
+    
+    // Add event listeners for share buttons on failure screen
+    setTimeout(() => {
+        const linkedinBtn = document.getElementById('linkedin-share-fail');
+        const facebookBtn = document.getElementById('facebook-share-fail');
+        const blueskyBtn = document.getElementById('bluesky-share-fail');
+        const mastodonBtn = document.getElementById('mastodon-share-fail');
+        const copyBtn = document.getElementById('copy-share-fail');
+        
+        if (linkedinBtn) linkedinBtn.addEventListener('click', () => shareOnLinkedIn(shareText));
+        if (facebookBtn) facebookBtn.addEventListener('click', () => shareOnFacebook(shareText));
+        if (blueskyBtn) blueskyBtn.addEventListener('click', () => shareOnBluesky(shareText));
+        if (mastodonBtn) mastodonBtn.addEventListener('click', () => shareOnMastodon(shareText));
+        if (copyBtn) copyBtn.addEventListener('click', () => copyShareText(shareText));
+    }, 100);
     
     gameState.gameActive = false;
     gameState.inWarningEpisode = false;
