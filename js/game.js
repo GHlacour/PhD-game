@@ -729,42 +729,48 @@ function getScoreGrade(score) {
 // Game URL for sharing
 const GAME_URL = 'https://computationalspectroscopy.eu/PhD-game/';
 
-// Generate share text for social media (without empty lines)
+// Generate share text for social media (with single newlines)
 function generateShareText(outcome, skills, overallScore, distinction, programLength) {
     const careerName = outcome.career ? outcome.career.name : 'Unknown';
     const publications = skills.publications || 0;
     const researchProgress = skills.researchProgress || 0;
     
-    const shareText = `🎓 I just completed PhD Life! After ${programLength} years: ${publications} publications, ${researchProgress} research progress, ${distinction} distinction. Overall Score: ${overallScore} | Career: ${careerName}. Play it yourself: ${GAME_URL} #PhD #Academia #Graduation #PhDLifeGame`;
+    const shareText = `🎓 I just completed PhD Life!
+
+After ${programLength} years: ${publications} publications, ${researchProgress} research progress, ${distinction} distinction
+
+Overall Score: ${overallScore} | Career: ${careerName}
+
+Play it yourself: ${GAME_URL}
+
+#PhD #Academia #Graduation #PhDLifeGame`;
     
     return shareText;
 }
 
 // Share on LinkedIn
 function shareOnLinkedIn(text) {
-    const fullText = `${text} ${GAME_URL}`;
-    const encodedText = encodeURIComponent(fullText);
+    const encodedText = encodeURIComponent(text);
     const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(GAME_URL)}&text=${encodedText}`;
     window.open(url, '_blank', 'width=600,height=400');
 }
 
 // Share on Facebook
 function shareOnFacebook(text) {
-    const fullText = `${text} ${GAME_URL}`;
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(GAME_URL)}&quote=${encodeURIComponent(fullText)}`;
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(GAME_URL)}&quote=${encodeURIComponent(text)}`;
     window.open(url, '_blank', 'width=600,height=400');
 }
 
 // Share on Bluesky
 function shareOnBluesky(text) {
-    const fullText = `${text} ${GAME_URL}`;
+    const fullText = text + '\n' + GAME_URL;
     const url = `https://bsky.app/intent/compose?text=${encodeURIComponent(fullText)}`;
     window.open(url, '_blank', 'width=600,height=400');
 }
 
 // Share on Mastodon
 function shareOnMastodon(text) {
-    const fullText = `${text} ${GAME_URL}`;
+    const fullText = text + '\n' + GAME_URL;
     const url = `https://mastodon.social/share?text=${encodeURIComponent(fullText)}`;
     window.open(url, '_blank', 'width=600,height=400');
 }
