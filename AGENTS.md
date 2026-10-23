@@ -32,14 +32,19 @@ PhD Life Game is a browser-based pedagogical game where players experience the j
 PhD-game/
 ├── index.html              # Main HTML entry point
 ├── css/
-│   └── style.css           # All styling for the game
+│   ├── style.css           # All styling for the game
+│   └── highscores.css      # High scores styling
 ├── js/
 │   ├── game.js             # Main game logic and state management
+│   ├── characterSelection.js   # Gender/origin/PhD type/program length selection (persisted in URL hash)
+│   ├── careerSelection.js  # Career path selection and skill-based career outcomes
 │   └── episodes/
 │       ├── episodeLoader.js    # Loads and randomly selects episodes
 │       ├── early/          # Early PhD episodes (years 1-2)
 │       ├── mid/            # Mid PhD episodes (years 2-4)
-│       └── late/           # Late PhD episodes (years 4-5+)
+│       ├── late/           # Late PhD episodes (years 4-5+)
+│       └── warnings/       # Warning episodes triggered by hidden-skill crises
+│           └── warningLoader.js  # Warning episode definitions and selection logic
 ├── assets/
 │   ├── images/             # Game images
 ├── LICENSE                 # MIT License
@@ -154,6 +159,12 @@ To test the game:
 ## Implemented Features
 
 - Shareable summary card with social media buttons (LinkedIn, Facebook, Bluesky, Mastodon, Copy)
+- Character selection: gender, origin, PhD type, and program length (3 or 4 years), persisted in the URL hash
+- Warning episodes: triggered by hidden-skill crises (burnout, motivation crisis, research stagnation, personal life crisis, advisor relationship)
+- Career selection screen with multiple career paths and skill-based career outcomes
+- Failure endings (e.g., burnout) shown via the career outcome screen with full summary and high scores
+- High scores tracking
+- Dynamic outcomes: choices can adapt their outcome text and effects based on current skills (and attributes)
 
 ## Future Enhancements
 
@@ -161,7 +172,5 @@ To test the game:
 - Visual indicators for skill changes
 - Save/load game state
 - Multiple difficulty levels
-- Customizable character/starting skills
 - Achievements system
-- More sophisticated outcome logic
 - Random events between episodes
