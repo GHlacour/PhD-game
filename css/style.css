@@ -307,6 +307,63 @@ header h1 {
     font-size: 1.2em;
 }
 
+.skill-change {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: bold;
+    animation: skill-change-appear 0.3s ease-out;
+}
+
+.skill-change.positive {
+    background-color: #d5f5e3;
+    color: #1e8449;
+}
+
+.skill-change.negative {
+    background-color: #fadbd8;
+    color: #c0392b;
+}
+
+@keyframes skill-change-appear {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flash-positive {
+    animation: flash-green 1.5s ease-out;
+}
+
+.flash-negative {
+    animation: flash-red 1.5s ease-out;
+}
+
+@keyframes flash-green {
+    0%, 40% {
+        color: #1e8449;
+    }
+    100% {
+        color: #3498db;
+    }
+}
+
+@keyframes flash-red {
+    0%, 40% {
+        color: #c0392b;
+    }
+    100% {
+        color: #3498db;
+    }
+}
+
 /* Buttons */
 .btn {
     padding: 12px 25px;
