@@ -743,7 +743,7 @@ const GAME_URL = 'https://computationalspectroscopy.eu/PhD-game/';
 
 // Generate share text for social media (with single newlines)
 function generateShareText(outcome, skills, overallScore, distinction, programLength) {
-    const careerName = outcome.career ? outcome.career.name : 'Unknown';
+    const careerName = outcome && outcome.career ? outcome.career.name : 'Did not graduate';
     const publications = skills.publications || 0;
     const researchProgress = skills.researchProgress || 0;
     
