@@ -25,10 +25,10 @@ export const episode21 = {
                         text: "You excel at lab management! Your organizational skills shine as you streamline supply ordering, create helpful onboarding documents for new students, and run efficient lab meetings. The lab runs more smoothly than ever. Your advisor is thrilled with your initiative and mentions this experience in their letters of recommendation. Other lab members appreciate your efforts and seek your advice.",
                         effects: {
                             ...effects,
-                            teaching: +15,
+                            teaching: +8,
                             networking: +12,
                             advisorRelationship: +15,
-                            reputation: +12,
+                            reputation: +15,
                             stress: +10
                         }
                     };
@@ -37,7 +37,7 @@ export const episode21 = {
                         text: "You take to lab management naturally. You build good relationships with vendors, create a welcoming environment for new students, and facilitate productive lab discussions. Your advisor notices the positive impact on lab morale. The experience helps you understand the behind-the-scenes work that keeps research moving forward.",
                         effects: {
                             ...effects,
-                            teaching: +12,
+                            teaching: +7,
                             networking: +12,
                             advisorRelationship: +12,
                             reputation: +10
