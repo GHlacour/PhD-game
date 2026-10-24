@@ -41,6 +41,29 @@ const gameState = {
 // Public skills that are shown to the player
 const PUBLIC_SKILLS = ['researchProgress', 'publications', 'writing', 'teaching', 'networking'];
 
+// Last applied public-skill deltas, used to render +/- feedback after a choice
+let lastSkillDeltas = null;
+
+// Snapshot of public skill values, used to compute actual applied deltas
+function getPublicSkillSnapshot() {
+    const snapshot = {};
+    for (const skill of PUBLIC_SKILLS) {
+        snapshot[skill] = gameState.skills[skill];
+    }
+    return snapshot;
+}
+
+function computeSkillDeltas(previousSkills) {
+    const deltas = {};
+    for (const skill of PUBLIC_SKILLS) {
+        const delta = gameState.skills[skill] - previousSkills[skill];
+        if (delta !== 0) {
+            deltas[skill] = delta;
+        }
+    }
+    return Object.keys(deltas).length > 0 ? deltas : null;
+}
+
 // DOM elements
 const gameScreen = document.getElementById('game-screen');
 const endScreen = document.getElementById('end-screen');
@@ -355,6 +378,8 @@ function selectChoice(choice, episode) {
         outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
     }
     
+    const previousSkills = getPublicSkillSnapshot();
+    
     // Apply skill changes - ensure publications only increases by at most 1 per choice
     for (const [skill, change] of Object.entries(finalEffects)) {
         if (skill !== 'thesisSubmitted') {
@@ -372,6 +397,7 @@ function selectChoice(choice, episode) {
     outcomeDisplay.classList.remove('hidden');
     gameScreen.classList.add('hidden');
     
+    lastSkillDeltas = computeSkillDeltas(previousSkills);
     updateSkillsDisplay();
 }
 
@@ -434,6 +460,8 @@ function selectWarningChoice(choice, warningEpisode) {
         outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
     }
     
+    const previousSkills = getPublicSkillSnapshot();
+    
     // Apply skill changes
     for (const [skill, change] of Object.entries(finalEffects)) {
         if (skill !== 'thesisSubmitted') {
@@ -451,6 +479,7 @@ function selectWarningChoice(choice, warningEpisode) {
     outcomeDisplay.classList.remove('hidden');
     gameScreen.classList.add('hidden');
     
+    lastSkillDeltas = computeSkillDeltas(previousSkills);
     updateSkillsDisplay();
 }
 
@@ -1043,10 +1072,22 @@ function updateSkillsDisplay() {
         skillValue.className = 'skill-value';
         skillValue.textContent = value;
         
+        const delta = lastSkillDeltas ? lastSkillDeltas[skill] : undefined;
+        if (delta !== undefined) {
+            const deltaElement = document.createElement('span');
+            deltaElement.className = delta > 0 ? 'skill-change positive' : 'skill-change negative';
+            deltaElement.textContent = `${delta > 0 ? '+' : ''}${delta}`;
+            skillValue.appendChild(deltaElement);
+            
+            skillValue.classList.add(delta > 0 ? 'flash-positive' : 'flash-negative');
+        }
+        
         skillElement.appendChild(skillName);
         skillElement.appendChild(skillValue);
         skillsDisplay.appendChild(skillElement);
     }
+    
+    lastSkillDeltas = null;
 }
 
 // End the game
