@@ -401,6 +401,31 @@ header h1 {
     display: none;
 }
 
+.outcome-skill-changes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.outcome-skill-change {
+    padding: 6px 14px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.outcome-skill-change.positive {
+    background-color: #d5f5e3;
+    color: #1e8449;
+}
+
+.outcome-skill-change.negative {
+    background-color: #fadbd8;
+    color: #c0392b;
+}
+
 .outcome-container h3 {
     color: #2c3e50;
     margin-bottom: 20px;
