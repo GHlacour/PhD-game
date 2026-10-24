@@ -125,11 +125,29 @@ document.querySelector('main').appendChild(careerSelectionScreen);
 const outcomeDisplay = document.createElement('div');
 outcomeDisplay.id = 'outcome-display';
 outcomeDisplay.className = 'outcome-container hidden';
-outcomeDisplay.innerHTML = '<h3>Outcome</h3><p id="outcome-text"></p><button id="continue-btn" class="btn">Continue</button>';
+outcomeDisplay.innerHTML = '<h3>Outcome</h3><p id="outcome-text"></p><div id="outcome-skill-changes" class="outcome-skill-changes hidden"></div><button id="continue-btn" class="btn">Continue</button>';
 document.querySelector('main').appendChild(outcomeDisplay);
 
 const outcomeText = document.getElementById('outcome-text');
+const outcomeSkillChanges = document.getElementById('outcome-skill-changes');
 const continueBtn = document.getElementById('continue-btn');
+
+// Render the applied public-skill deltas inside the outcome screen
+function renderOutcomeSkillChanges(deltas) {
+    outcomeSkillChanges.innerHTML = '';
+    if (!deltas) {
+        outcomeSkillChanges.classList.add('hidden');
+        return;
+    }
+    for (const [skill, delta] of Object.entries(deltas)) {
+        const changeElement = document.createElement('div');
+        changeElement.className = delta > 0 ? 'outcome-skill-change positive' : 'outcome-skill-change negative';
+        const skillName = SKILL_DISPLAY_NAMES[skill] || skill.charAt(0).toUpperCase() + skill.slice(1);
+        changeElement.textContent = `${skillName} ${delta > 0 ? '+' : ''}${delta}`;
+        outcomeSkillChanges.appendChild(changeElement);
+    }
+    outcomeSkillChanges.classList.remove('hidden');
+}
 
 // DOM element for episode image
 const episodeImageContainer = document.createElement('div');
@@ -398,6 +416,7 @@ function selectChoice(choice, episode) {
     gameScreen.classList.add('hidden');
     
     lastSkillDeltas = computeSkillDeltas(previousSkills);
+    renderOutcomeSkillChanges(lastSkillDeltas);
     updateSkillsDisplay();
 }
 
@@ -480,12 +499,14 @@ function selectWarningChoice(choice, warningEpisode) {
     gameScreen.classList.add('hidden');
     
     lastSkillDeltas = computeSkillDeltas(previousSkills);
+    renderOutcomeSkillChanges(lastSkillDeltas);
     updateSkillsDisplay();
 }
 
 // Continue after outcome is displayed - handles both regular and warning episodes
 function continueAfterOutcome() {
     outcomeDisplay.classList.add('hidden');
+    outcomeSkillChanges.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     
     // Debug: log current state
