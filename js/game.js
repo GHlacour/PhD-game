@@ -33,6 +33,7 @@ const gameState = {
     thesisSubmitted: false,
     gameActive: false,
     inWarningEpisode: false,
+    lastWarningType: null,
     careerSelected: null,
     careerOutcome: null
 };
@@ -263,6 +264,7 @@ async function initGame() {
     gameState.thesisSubmitted = false;
     gameState.gameActive = true;
     gameState.inWarningEpisode = false;
+    gameState.lastWarningType = null;
     gameState.careerSelected = null;
     gameState.careerOutcome = null;
     
@@ -314,6 +316,10 @@ function loadEpisode(episodeIndex) {
     }
     
     const episode = gameState.episodes[episodeIndex];
+    
+    // Returning to a regular episode clears the last warning type,
+    // so the same warning may trigger again later but never consecutively
+    gameState.lastWarningType = null;
     
     // Use getTitle/getDescription functions if available for dynamic content
     const title = episode.getTitle ? episode.getTitle(gameState.attributes) : episode.title;
@@ -398,6 +404,7 @@ function selectChoice(choice, episode) {
 // Load a warning episode
 function loadWarningEpisode(warningEpisode) {
     gameState.inWarningEpisode = true;
+    gameState.lastWarningType = warningEpisode.warningType;
     
     // Load the warning episode
     episodeTitle.textContent = warningEpisode.title;
@@ -564,6 +571,11 @@ function handlePostWarningCheck() {
     console.log(`[DEBUG] Post-warning checkForWarningEpisode returned: ${warningEpisode ? warningEpisode.warningType : 'null'}`);
     
     if (warningEpisode) {
+        if (warningEpisode.warningType === gameState.lastWarningType) {
+            console.log('[DEBUG] Same warning repeated - game over');
+            showGraduationFailure();
+            return;
+        }
         console.log('[DEBUG] Loading another warning episode');
         loadWarningEpisode(warningEpisode);
         return;
@@ -760,7 +772,7 @@ const GAME_URL = 'https://computationalspectroscopy.eu/PhD-game/';
 
 // Generate share text for social media (with single newlines)
 function generateShareText(outcome, skills, overallScore, distinction, programLength) {
-    const careerName = outcome.career ? outcome.career.name : 'Unknown';
+    const careerName = outcome && outcome.career ? outcome.career.name : 'Did not graduate';
     const publications = skills.publications || 0;
     const researchProgress = skills.researchProgress || 0;
     
@@ -1115,6 +1127,7 @@ function restartGame() {
     gameState.attributes = { gender: null, origin: null, phdType: null, programLength: 3 };
     gameState.thesisSubmitted = false;
     gameState.inWarningEpisode = false;
+    gameState.lastWarningType = null;
     gameState.careerSelected = null;
     gameState.careerOutcome = null;
 }
