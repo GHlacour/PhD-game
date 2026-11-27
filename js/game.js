@@ -333,11 +333,19 @@ function loadEpisode(episodeIndex) {
         return;
     }
     
-    const episode = gameState.episodes[episodeIndex];
-    
-    // Returning to a regular episode clears the last warning type,
-    // so the same warning may trigger again later but never consecutively
-    gameState.lastWarningType = null;
+    renderEpisode(gameState.episodes[episodeIndex], false);
+}
+
+// Render an episode (regular or warning) on the game screen
+function renderEpisode(episode, isWarning) {
+    if (isWarning) {
+        gameState.inWarningEpisode = true;
+        gameState.lastWarningType = episode.warningType;
+    } else {
+        // Returning to a regular episode clears the last warning type,
+        // so the same warning may trigger again later but never consecutively
+        gameState.lastWarningType = null;
+    }
     
     // Use getTitle/getDescription functions if available for dynamic content
     const title = episode.getTitle ? episode.getTitle(gameState.attributes) : episode.title;
@@ -359,20 +367,25 @@ function loadEpisode(episodeIndex) {
     choicesContainer.innerHTML = '';
     
     // Add new choices
-    episode.choices.forEach((choice, index) => {
+    episode.choices.forEach((choice) => {
         const choiceBtn = document.createElement('button');
-        choiceBtn.className = 'choice-btn';
+        choiceBtn.className = isWarning ? 'choice-btn warning-choice' : 'choice-btn';
         choiceBtn.textContent = choice.text;
-        choiceBtn.addEventListener('click', () => selectChoice(choice, episode));
+        choiceBtn.addEventListener('click', () => selectChoice(choice, isWarning));
         choicesContainer.appendChild(choiceBtn);
     });
     
+    updateSkillsDisplay();
     updateYearProgress();
 }
 
-// Handle choice selection
-function selectChoice(choice, episode) {
-    gameState.inWarningEpisode = false;
+// Handle choice selection (shared by regular and warning episodes)
+function selectChoice(choice, isWarning) {
+    // A regular choice clears the warning context; a warning choice keeps it
+    // until the outcome is processed in continueAfterOutcome
+    if (!isWarning) {
+        gameState.inWarningEpisode = false;
+    }
     
     // Get outcome - can be either just text or {text, effects}
     let outcomeTextContent = '';
@@ -422,85 +435,7 @@ function selectChoice(choice, episode) {
 
 // Load a warning episode
 function loadWarningEpisode(warningEpisode) {
-    gameState.inWarningEpisode = true;
-    gameState.lastWarningType = warningEpisode.warningType;
-    
-    // Load the warning episode
-    episodeTitle.textContent = warningEpisode.title;
-    episodeDescription.textContent = warningEpisode.description;
-    
-    // Set episode image
-    if (warningEpisode.image) {
-        episodeImage.src = warningEpisode.image;
-        episodeImageContainer.classList.remove('hidden');
-    } else {
-        episodeImageContainer.classList.add('hidden');
-    }
-    
-    // Clear previous choices
-    choicesContainer.innerHTML = '';
-    
-    // Add warning choices
-    warningEpisode.choices.forEach((choice, index) => {
-        const choiceBtn = document.createElement('button');
-        choiceBtn.className = 'choice-btn warning-choice';
-        choiceBtn.textContent = choice.text;
-        choiceBtn.addEventListener('click', () => selectWarningChoice(choice, warningEpisode));
-        choicesContainer.appendChild(choiceBtn);
-    });
-    
-    updateSkillsDisplay();
-    updateYearProgress();
-}
-
-// Handle choice selection in warning episode
-function selectWarningChoice(choice, warningEpisode) {
-    // Keep inWarningEpisode = true until outcome is processed in continueAfterOutcome
-    // gameState.inWarningEpisode = false;
-    
-    // Get outcome - can be either just text or {text, effects}
-    let outcomeTextContent = '';
-    let finalEffects = choice.effects || {};
-    
-    if (choice.getOutcome) {
-        const outcome = choice.getOutcome(gameState.skills, gameState.attributes, gameState.attributes.programLength);
-        if (typeof outcome === 'string') {
-            outcomeTextContent = outcome;
-        } else {
-            outcomeTextContent = outcome.text;
-            finalEffects = outcome.effects;
-
-            // Check if thesis was submitted
-            if (outcome.effects.thesisSubmitted !== undefined) {
-                gameState.thesisSubmitted = outcome.effects.thesisSubmitted;
-            }
-        }
-    } else {
-        outcomeTextContent = "Your choice has been made. The effects will become apparent over time.";
-    }
-    
-    const previousSkills = getPublicSkillSnapshot();
-    
-    // Apply skill changes
-    for (const [skill, change] of Object.entries(finalEffects)) {
-        if (skill !== 'thesisSubmitted') {
-            if (skill === 'publications') {
-                // Clamp publication increase to maximum of 1 per choice
-                gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + Math.min(change, 1)));
-            } else {
-                gameState.skills[skill] = Math.max(0, Math.min(100, gameState.skills[skill] + change));
-            }
-        }
-    }
-    
-    // Show outcome
-    outcomeText.textContent = outcomeTextContent;
-    outcomeDisplay.classList.remove('hidden');
-    gameScreen.classList.add('hidden');
-    
-    lastSkillDeltas = computeSkillDeltas(previousSkills);
-    renderOutcomeSkillChanges(lastSkillDeltas);
-    updateSkillsDisplay();
+    renderEpisode(warningEpisode, true);
 }
 
 // Continue after outcome is displayed - handles both regular and warning episodes
